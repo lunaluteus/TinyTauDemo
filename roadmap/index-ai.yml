@@ -120,10 +120,11 @@
   docs: []
   comment: Match the integer-ring identification to Mathlib and verify the translation from the root-of-unity generator to one minus that root.
 - id: lem-kronecker-unit
-  ok: false
+  ok: true
   depends: []
-  docs: []
-  comment: Check existing versions of Kronecker's theorem and the hypotheses on embeddings and algebraic integrality.
+  docs:
+    - /docs/TinyTauDemo/Kronecker.html#NumberField.RingOfIntegers.isOfFinOrder_of_norm_eq_one
+  comment: Mathlib's embedding theorem gives a positive power equal to one in the field. Injectivity transports the equality to the ring of integers, where it gives finite multiplicative order.
 - id: prp-cyclotomic-units
   ok: false
   depends:

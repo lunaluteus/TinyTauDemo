@@ -7,4 +7,5 @@ module
 
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatFour
+public import TinyTauDemo.Kronecker
 public import TinyTauDemo.Test
