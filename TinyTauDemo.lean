@@ -5,4 +5,5 @@ Authors: Luna Luteus
 -/
 module
 
+public import TinyTauDemo.PrimitiveFermatSolution
 public import TinyTauDemo.Test

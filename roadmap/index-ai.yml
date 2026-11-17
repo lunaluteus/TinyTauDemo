@@ -4,10 +4,12 @@
   docs: []
   comment: Match the ideal factorization and class group assertions to the Dedekind domain API, accounting for the field case in the dimension convention.
 - id: def-primitive-solution
-  ok: false
+  ok: true
   depends: []
-  docs: []
-  comment: Use pairwise coprimality, nonvanishing, and at least one nonunit over a principal ideal domain.
+  docs:
+    - /docs/TinyTauDemo/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution
+    - /docs/TinyTauDemo/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution.xyz_ne_zero
+  comment: The predicate uses Bézout coprimality for each pair, nonzero coordinates, and at least one nonunit. Exponent bounds belong to the theorems that use it.
 - id: prp-exponent-reduction
   ok: false
   depends:
