@@ -19,11 +19,12 @@
     - /docs/TinyTauDemo/ExponentReduction.html#TinyTauDemo.not_primitiveFermatSolution_of_four_and_odd_primes
   comment: Positive powers preserve primitivity over an integral domain. Mathlib supplies divisibility by four or an odd prime for exponents at least three.
 - id: thm-fermat-n4
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
-  docs: []
-  comment: Check Mathlib's not_fermat_42 and fermatLastTheoremFour against the two integer statements.
+  docs:
+    - /docs/TinyTauDemo/FermatFour.html#TinyTauDemo.not_primitiveFermatSolution_four_int
+  comment: Mathlib's not_fermat_42 excludes the square equation for all integers with nonzero first and second coordinates. Setting the square's base to z² gives the primitive fourth-power result.
 - id: prp-unified-coprimality
   ok: false
   depends:

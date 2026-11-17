@@ -6,4 +6,5 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.ExponentReduction
+public import TinyTauDemo.FermatFour
 public import TinyTauDemo.Test
