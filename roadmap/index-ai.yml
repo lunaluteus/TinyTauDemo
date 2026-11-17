@@ -48,11 +48,13 @@
   docs: []
   comment: Identify which ideal factorization hypotheses are needed on the integral closure and use the image of the integer evaluation map in positive characteristic.
 - id: thm-flt-poly-descent
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
-  docs: []
-  comment: Check Polynomial.flt for the conclusion and isolate the all-exponent polynomial factorization and strict degree decrease for this proof route.
+  docs:
+    - /docs/TinyTauDemo/FermatPolynomialDescent.html#TinyTauDemo.cyclotomic_factors_of_fermat_eq
+    - /docs/TinyTauDemo/FermatPolynomialDescent.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_descent
+  comment: Extend scalars to an algebraic closure and take exact powers of the pairwise coprime linear factors. A relation among three weighted factors produces a primitive solution of strictly smaller maximum degree.
 - id: def-kahler-log-deriv
   ok: true
   depends: []
