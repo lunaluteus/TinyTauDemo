@@ -54,6 +54,7 @@ bash .tinytau/scripts/build-roadmap.sh
 - **Behavior**:
   - Copies `roadmap/` into a temporary working directory so your working tree's `roadmap/` stays untouched.
   - Provides a fallback `_quarto.yml` if `roadmap/` does not already contain one, forces `--output-dir _site/roadmap`, and injects `.tinytau/scripts/tinytau.lua` at Quarto's `pre-ast` entry point.
+  - Reads `quarto-profile` from [`.tinytau/config.yml`](/.tinytau/config.yml) and passes `--profile <quarto-profile>` when non-empty.
 - **Output**: Writes the rendered HTML roadmap into `_site/roadmap/`.
 
 ### Preview the Combined Site Locally

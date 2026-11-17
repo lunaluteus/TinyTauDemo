@@ -56,6 +56,18 @@ lake-manifest.json             # Lean 4 dependency lockfile
 lean-toolchain                 # Lean 4 version pinning
 ```
 
-## Explore
+## Install
 
-Clone this repository, start your agent at the root directory, and ask it to guide you through the installation. You may also start manually from `AGENTS.md`. To let your agent work autonomously, you can use a `/goal` like "Autonomously formalize the entire roadmap until no actionable tasks are available".
+Create your own repository from this template, then clone it locally. Start your agent at the root directory, and ask it to guide you through the installation. You may also start manually from `AGENTS.md`.
+
+To let your agent work autonomously, you can use a `/goal` like "Autonomously formalize the entire roadmap until no actionable tasks are available".
+
+## Update
+
+To update your repository with the latest TinyTau template, the following is recommended:
+
+```sh
+git remote add tinytau git@github.com:sun123zxy/sunquartex.git # add the TinyTau template repo as a remote
+git pull tinytau master --allow-unrelated-histories --no-commit # pull updates from the TinyTau template repo without committing automatically
+# ASK your agent to resolve merge conflicts and commit the changes
+```

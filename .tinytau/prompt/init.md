@@ -9,7 +9,7 @@ First read [`README.md`](/README.md), [`.tinytau/config.yml`](/.tinytau/config.y
 
 ### Repository & Upstream Access
 
-- **Git & Checkout** *(Required)*: Run `git --version`, `git status`, and `git remote -v` to confirm Git works and check the local working tree.
+- **Git & Checkout** *(Required)*: Run `git --version`, `git status`, and `git remote -v` to confirm Git works and check the local working tree. If `auto-push` is `true` in [`.tinytau/config.yml`](/.tinytau/config.yml), also check whether the current branch has an upstream tracking branch (`git rev-parse --abbrev-ref --symbolic-full-name @{u}`).
 - **TinyTau Config** *(Required for `Sync`)*: Check whether [`.tinytau/config.yml`](/.tinytau/config.yml) still contains sample placeholders, and test upstream read access:
 
   ```sh
@@ -42,9 +42,16 @@ Include a short note summarizing any placeholder configuration or missing tools,
 
 After reporting the doctor summary, offer to help the user with any of the following setup steps:
 
-- **Rename the Template Lean Library**: If the Lake config still uses a template library name (or the user asks to rename the Lean library), ask for their desired UpperCamelCase library name `<ProjectName>`, then:
+- **Install or Fix Missing Tools**: For any missing required tool—or any optional tool the user chooses to enable locally (such as Quarto for local roadmap preview, `rg`, or `lean-lsp-mcp`)—give concise OS-specific setup instructions and offer to re-run the affected check.
+
+- **Initialize the Lean Library**: If the Lake config still uses a template library name (or the user asks to rename the Lean library), ask for their desired UpperCamelCase library name `<ProjectName>`, then:
+
   1. Update `name`, `defaultTargets`, and `[[lean_lib]] name` in `lakefile.toml` (or `lakefile.lean`).
   2. Rename the root `.lean` file and library directory to `<ProjectName>.lean` and `<ProjectName>/`, updating all `import` paths accordingly.
-  3. Verify the renamed library per [`guide/build.md`](/.tinytau/guide/build.md).
-- **Configure `.tinytau/config.yml`**: Guide the user through configuring [`.tinytau/config.yml`](/.tinytau/config.yml) and replacing its sample placeholders (and any matching placeholder headers in existing Lean files), and confirm whether the sample `roadmap/` files should be kept or replaced by an initial `Sync`.
-- **Install or Fix Missing Tools**: For any missing required tool—or any optional tool the user chooses to enable locally (such as Quarto for local roadmap preview, `rg`, or `lean-lsp-mcp`)—give concise OS-specific setup instructions and offer to re-run the affected check.
+  3. **Initialize the Lean Toolchain**: `lake update` to refresh the Lean toolchain and dependencies. Then verify the renamed library per [`guide/build.md`](/.tinytau/guide/build.md).
+
+- **Configure `.tinytau/config.yml`**: Guide the user through configuring [`.tinytau/config.yml`](/.tinytau/config.yml) and replacing its sample placeholders (and any matching placeholder headers in existing Lean files).
+
+- **Offer to Run the First `Sync`**: If everything is settled, offer to run the first `Sync` to initialize the local `roadmap/` with the human-authored repository.
+
+- **Configure documentation & GitHub Pages settings**: Remind the user to enable GitHub Pages in their repository settings (**Settings → Pages → Build and deployment → Source: GitHub Actions**) so [`.github/workflows/pages.yml`](/.github/workflows/pages.yml) can deploy the site, and ask how frequently docs should build automatically via `docs-min-interval` in [`.tinytau/config.yml`](/.tinytau/config.yml) (minimum hours between automatic `push` builds, or `0` to never build automatically and rely on manual `workflow_dispatch`) as well as whether to set `quarto-profile` for Quarto rendering (`--profile`).

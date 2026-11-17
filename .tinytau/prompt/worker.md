@@ -1,6 +1,6 @@
 ---
 name: TinyTau Worker Agent Guidelines
-description: Determine the highest-priority actionable worker mode, execute it, self-check against rubrics, and commit directly.
+description: Determine the highest-priority actionable worker mode, execute it, self-check against rubrics, commit directly, and push if configured.
 ---
 
 ## Determining Worker Mode (Priority Order)
@@ -47,7 +47,7 @@ If none of these apply, report that no actionable task is currently available.
 
 ## Committing Work
 
-Before committing in `Sync`, `Bump`, `Refactor`, or `Feat`:
+For each task in `Sync`, `Bump`, `Refactor`, or `Feat`:
 
 1. **Self-Check**: Verify your changes against [`guide/rubrics.md`](/.tinytau/guide/rubrics.md).
 2. **Stage & Commit**: Commit one coherent task at a time using Conventional Commits (`<type>(<optional scope>): <description>`) in the imperative present tense, starting with a lowercase letter and with no trailing period:
@@ -58,3 +58,4 @@ Before committing in `Sync`, `Bump`, `Refactor`, or `Feat`:
    - `bump: update TauCeti to <latest-upstream-tag>`
 
    Include a concise commit body summarizing the purpose, design choices, and modified declarations or targets.
+3. **Push (If Configured)**: Read `auto-push` from [`.tinytau/config.yml`](/.tinytau/config.yml). If `auto-push` is `true`, push the commit (`git push`, never force-pushing; if pushing fails or no upstream is configured, report the error instead of guessing). If `auto-push` is `false` (or unset), leave the commit local.

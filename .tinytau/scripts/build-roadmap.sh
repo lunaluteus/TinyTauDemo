@@ -33,9 +33,27 @@ EOF
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
 
-quarto render "$WORK_DIR/roadmap" \
-  --to html \
-  --output-dir "$OUT_DIR" \
+QUARTO_PROFILE=""
+if [ -f .tinytau/config.yml ]; then
+  if command -v yq >/dev/null 2>&1; then
+    QUARTO_PROFILE="$(yq '."quarto-profile" // ""' .tinytau/config.yml)"
+  else
+    QUARTO_PROFILE="$(awk -F': *' '/^quarto-profile:/ {print $2}' .tinytau/config.yml | sed "s/#.*//; s/[[:space:]\"'\r]//g")"
+  fi
+  if [ "$QUARTO_PROFILE" = "null" ] || [ "$QUARTO_PROFILE" = "~" ]; then
+    QUARTO_PROFILE=""
+  fi
+fi
+
+QUARTO_ARGS=(
+  --to html
+  --output-dir "$OUT_DIR"
   --metadata-file "$WORK_DIR/tinytau-filter.yml"
+)
+if [ -n "$QUARTO_PROFILE" ]; then
+  QUARTO_ARGS+=(--profile "$QUARTO_PROFILE")
+fi
+
+quarto render "$WORK_DIR/roadmap" "${QUARTO_ARGS[@]}"
 
 echo "Rendered roadmap into $OUT_DIR"
