@@ -108,6 +108,12 @@ jobs:
         shell: bash
         run: bash .tinytau/scripts/build-docs.sh
 
+      - name: Copy root pages to _site
+        shell: bash
+        run: |
+          mkdir -p _site
+          cp -r .tinytau/page/. _site/
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 

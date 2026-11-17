@@ -59,13 +59,15 @@ bash .tinytau/scripts/build-roadmap.sh
 
 ### Preview the Combined Site Locally
 
-After running either or both build scripts, serve `_site/` with any static HTTP server from the repository root:
+After running either or both build scripts, copy the root landing page (`.tinytau/page/index.html`) and serve `_site/` with any static HTTP server from the repository root:
 
 ```sh
+cp -r .tinytau/page/. _site/
 python3 -m http.server 8000 --directory _site
 ```
 
 Then open:
 
+- `http://localhost:8000/` for the root landing page.
 - `http://localhost:8000/roadmap/` for the rendered roadmap (with interactive `/docs/...` and `/roadmap/...` links).
 - `http://localhost:8000/docs/` for the `doc-gen4` Lean API reference.
