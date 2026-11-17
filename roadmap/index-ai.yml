@@ -1,0 +1,189 @@
+- id: rem-scheme-dedekind
+  ok: false
+  depends: []
+  docs: []
+  comment: Match the ideal factorization and class group assertions to the Dedekind domain API, accounting for the field case in the dimension convention.
+- id: def-primitive-solution
+  ok: false
+  depends: []
+  docs: []
+  comment: Use pairwise coprimality, nonvanishing, and at least one nonunit over a principal ideal domain.
+- id: prp-exponent-reduction
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+  docs: []
+  comment: Show that passing to positive powers preserves primitivity and check Mathlib's existing reduction to odd primes and four.
+- id: thm-fermat-n4
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+  docs: []
+  comment: Check Mathlib's not_fermat_42 and fermatLastTheoremFour against the two integer statements.
+- id: prp-unified-coprimality
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+    - /roadmap/index.qmd#rem-scheme-dedekind
+  docs: []
+  comment: Identify which ideal factorization hypotheses are needed on the integral closure and use the image of the integer evaluation map in positive characteristic.
+- id: thm-flt-poly-descent
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+  docs: []
+  comment: Check Polynomial.flt for the conclusion and isolate the all-exponent polynomial factorization and strict degree decrease for this proof route.
+- id: def-kahler-log-deriv
+  ok: false
+  depends: []
+  docs: []
+  comment: Connect relative Kähler differentials to polynomial derivatives and the fraction-field logarithmic derivative.
+- id: thm-mason-stothers
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-kahler-log-deriv
+  docs: []
+  comment: Check Polynomial.abc and discharge its all-zero-derivatives alternative using characteristic zero and the nonconstant hypothesis.
+- id: cor-flt-poly-mason
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+    - /roadmap/index.qmd#thm-mason-stothers
+  docs: []
+  comment: Compare Polynomial.flt and the chapter's proof via the radical degree bound.
+- id: rem-scheme-curves-recall
+  ok: false
+  depends: []
+  docs: []
+  comment: Identify reusable Jacobian and valuative extension results and the construction of the map from a primitive triple.
+- id: thm-riemann-hurwitz-recall
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-kahler-log-deriv
+    - /roadmap/index.qmd#rem-scheme-curves-recall
+  docs: []
+  comment: Determine the available curve and divisor interfaces for the characteristic-zero ramification formula.
+- id: prp-fermat-genus
+  ok: false
+  depends:
+    - /roadmap/index.qmd#rem-scheme-curves-recall
+    - /roadmap/index.qmd#thm-riemann-hurwitz-recall
+  docs: []
+  comment: Check the smoothness criterion and the degree and ramification of the projection used for the genus calculation.
+- id: thm-flt-geometric
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+    - /roadmap/index.qmd#rem-scheme-curves-recall
+    - /roadmap/index.qmd#thm-riemann-hurwitz-recall
+    - /roadmap/index.qmd#prp-fermat-genus
+  docs: []
+  comment: Establish the curve map from a primitive solution and the degree obstruction when the target genus is at least one.
+- id: rem-mason-hurwitz-bridge
+  ok: false
+  depends:
+    - /roadmap/index.qmd#thm-riemann-hurwitz-recall
+  docs: []
+  comment: Derive the degree bound by counting ramification over zero, one, and infinity.
+- id: rem-arithmetic-surface
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+    - /roadmap/index.qmd#rem-scheme-dedekind
+    - /roadmap/index.qmd#def-kahler-log-deriv
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+    - /roadmap/index.qmd#thm-ring-of-integers
+  docs: []
+  comment: State the conditions on sections that correspond to primitivity and check the relative differential calculation after cyclotomic base change.
+- id: rem-ramification-disc-recall
+  ok: false
+  depends:
+    - /roadmap/index.qmd#rem-scheme-dedekind
+  docs: []
+  comment: Locate the ideal ramification, discriminant-index, and Eisenstein results used in the cyclotomic calculations.
+- id: prp-cyclotomic-ramification
+  ok: false
+  depends:
+    - /roadmap/index.qmd#rem-ramification-disc-recall
+  docs: []
+  comment: Check existing results for cyclotomic irreducibility, prime ramification, the norm of one minus the root, and the power-basis discriminant.
+- id: thm-ring-of-integers
+  ok: false
+  depends:
+    - /roadmap/index.qmd#rem-ramification-disc-recall
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+  docs: []
+  comment: Match the integer-ring identification to Mathlib and verify the translation from the root-of-unity generator to one minus that root.
+- id: lem-kronecker-unit
+  ok: false
+  depends: []
+  docs: []
+  comment: Check existing versions of Kronecker's theorem and the hypotheses on embeddings and algebraic integrality.
+- id: prp-cyclotomic-units
+  ok: false
+  depends:
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+    - /roadmap/index.qmd#thm-ring-of-integers
+    - /roadmap/index.qmd#lem-kronecker-unit
+  docs: []
+  comment: Track the roots of unity in the odd-prime cyclotomic field and the identification of conjugation-fixed units with units of the real subring.
+- id: lem-pth-power-congruence
+  ok: false
+  depends:
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+    - /roadmap/index.qmd#thm-ring-of-integers
+  docs: []
+  comment: Relate the congruences modulo the ramified prime and modulo the rational prime to the integral power basis.
+- id: def-regular-prime
+  ok: false
+  depends:
+    - /roadmap/index.qmd#thm-ring-of-integers
+  docs: []
+  comment: Express regularity as absence of nontrivial prime torsion in the cyclotomic class group and connect it to the class number.
+- id: rem-bernoulli-regular
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-regular-prime
+  docs: []
+  comment: Track the Bernoulli criterion and the finite examples separately from the open question about infinitely many regular primes.
+- id: thm-kummer-case-1
+  ok: false
+  depends:
+    - /roadmap/index.qmd#prp-unified-coprimality
+    - /roadmap/index.qmd#prp-cyclotomic-units
+    - /roadmap/index.qmd#lem-pth-power-congruence
+    - /roadmap/index.qmd#def-regular-prime
+  docs: []
+  comment: Treat the cubic case modulo nine and use regularity, unit decomposition, and coefficient congruences for the remaining primes.
+- id: lem-kummer-unit
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-regular-prime
+  docs: []
+  comment: Check for an existing formalized unit lemma before developing the ramification and class-group argument.
+- id: rem-kummer-unit-proof
+  ok: false
+  depends:
+    - /roadmap/index.qmd#prp-cyclotomic-units
+    - /roadmap/index.qmd#def-regular-prime
+    - /roadmap/index.qmd#lem-kummer-unit
+  docs: []
+  comment: Track the cubic specialization and clarify the local boundary congruence needed by the general proof sketch.
+- id: lem-case2-valuations
+  ok: false
+  depends:
+    - /roadmap/index.qmd#prp-unified-coprimality
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+    - /roadmap/index.qmd#thm-ring-of-integers
+  docs: []
+  comment: State the coprimality calculation over cyclotomic integers and justify the exact valuations and cancellation of the ramified prime.
+- id: thm-kummer-case-2
+  ok: false
+  depends:
+    - /roadmap/index.qmd#def-primitive-solution
+    - /roadmap/index.qmd#thm-kummer-case-1
+    - /roadmap/index.qmd#lem-kummer-unit
+    - /roadmap/index.qmd#lem-pth-power-congruence
+    - /roadmap/index.qmd#lem-case2-valuations
+  docs: []
+  comment: Extract the three-factor linear relation and prove that the new coprime triple gives a strict decrease of the valuation parameter.
