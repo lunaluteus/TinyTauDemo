@@ -11,11 +11,13 @@
     - /docs/TinyTauDemo/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution.xyz_ne_zero
   comment: The predicate uses Bézout coprimality for each pair, nonzero coordinates, and at least one nonunit. Exponent bounds belong to the theorems that use it.
 - id: prp-exponent-reduction
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
-  docs: []
-  comment: Show that passing to positive powers preserves primitivity and check Mathlib's existing reduction to odd primes and four.
+  docs:
+    - /docs/TinyTauDemo/ExponentReduction.html#TinyTauDemo.PrimitiveFermatSolution.pow
+    - /docs/TinyTauDemo/ExponentReduction.html#TinyTauDemo.not_primitiveFermatSolution_of_four_and_odd_primes
+  comment: Positive powers preserve primitivity over an integral domain. Mathlib supplies divisibility by four or an odd prime for exponents at least three.
 - id: thm-fermat-n4
   ok: false
   depends:
