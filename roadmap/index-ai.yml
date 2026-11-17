@@ -1,8 +1,16 @@
 - id: rem-scheme-dedekind
   ok: false
-  depends: []
+  depends:
+    - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
   docs: []
-  comment: Match the ideal factorization and class group assertions to the Dedekind domain API, accounting for the field case in the dimension convention.
+  comment: The fractional ideal isomorphism is available. The spectrum and stalk statements, identification of local orders, and comparison with invertible sheaves remain.
+- id: thm-dedekind-weil-divisor
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv
+    - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv_apply
+  comment: Mathlib's integer prime exponents identify the units of the fractional ideal monoid with finitely supported integers on the height-one spectrum.
 - id: def-primitive-solution
   ok: true
   depends: []
@@ -29,7 +37,7 @@
   ok: false
   depends:
     - /roadmap/index.qmd#def-primitive-solution
-    - /roadmap/index.qmd#rem-scheme-dedekind
+    - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
   docs: []
   comment: Identify which ideal factorization hypotheses are needed on the integral closure and use the image of the integer evaluation map in positive characteristic.
 - id: thm-flt-poly-descent
