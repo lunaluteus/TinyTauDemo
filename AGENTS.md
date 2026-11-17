@@ -7,4 +7,4 @@
   - Read `.tinytau/prompt/init.md` to guide the user through initialization of TinyTau in their local repository.
   - When user asks you to work, follow `.tinytau/prompt/worker.md`.
 
-- `.tinytau/guide/` saves guides on navigating the roadmap (`roadmap.md`), self-checking formalization quality (`rubrics.md`), and running local CI/documentation scripts (`tooling.md`).
+- `.tinytau/guide/` saves guides on navigating the roadmap (`roadmap.md`), local build/verification standards (`build.md`), self-checking formalization quality (`rubrics.md`), and running local CI/documentation scripts (`tooling.md`).

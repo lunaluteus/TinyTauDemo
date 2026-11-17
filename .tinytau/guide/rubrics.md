@@ -7,7 +7,7 @@ Use these rubrics as a self-check reference before committing `Feat`, `Refactor`
 
 ## Correctness and Faithfulness (`correctness`)
 
-Every new definition and theorem must faithfully capture the intended mathematics. Green `lake build` guarantees valid proofs and axioms, not that a statement says what it should. Inspect every definition and statement adversarially: try to find a counterexample, vacuous case, or hidden narrowing.
+Every new definition and theorem must faithfully capture the intended mathematics. Passing local verification ([`guide/build.md`](/.tinytau/guide/build.md)) guarantees valid, warning-free proofs using only standard axioms, not that a statement says what it should. Inspect every definition and statement adversarially: try to find a counterexample, vacuous case, or hidden narrowing.
 
 - **No Mis-formalization**: Verify that the Lean statement matches `roadmap/`. Check quantifiers, implication directions, edge cases (empty, zero, degenerate, characteristic `p`), and underlying objects.
 - **No Weakened Claims / Content in Hypotheses**: Do not make hypotheses too strong or smuggle real mathematical content into assumptions (e.g., a structure turning downstream theorems into fields rather than consequences).
@@ -49,7 +49,7 @@ Keep edits under `roadmap/` (and `.tinytau/sync.yml`) mathematically sound, prop
   - **Soundness & Clarity**: Definitions, assumptions, and intermediate lemmas in `*-ai.qmd` must be mathematically sound, unambiguous, and consistent with both human prose and Lean code.
 - **Metadata Consistency (`*-ai.yml`)**:
   - Every `id` must match an existing `::: {#id}` fenced div in the paired roadmap file.
-  - `ok` (`true` | `false` | `refactor`) must reflect reality (`ok: true` only when completely formalized with no `sorry`/axioms; `ok: refactor` when invalidated, mismatched, or flagged for cleanup).
+  - `ok` (`true` | `false` | `refactor`) must reflect reality (`ok: true` only when completely formalized; `ok: refactor` when invalidated, mismatched, or flagged for cleanup).
   - Every `/docs/...` path in `docs` must point to an actual module and declaration in the repo, and `comment`s must accurately note representation/typeclass choices or remaining work.
   - Links in `depends` must point to valid `/roadmap/...` files/targets and form an acyclic planning graph.
 
@@ -98,6 +98,7 @@ Keep names and notation clear, accurate, and consistent with Lean/Mathlib conven
 
 Write accurate, concise docstrings and comments in Lean files.
 
+- **Copyright Header**: New `.lean` files should begin with the standard copyright/author header referencing `copyright-name` from [`.tinytau/config.yml`](/.tinytau/config.yml).
 - **Module Docstrings**: Substantive new Lean files should begin with a module docstring explaining what mathematical content lives there and why.
 - **Public Declarations**: Document public definitions, main theorems, non-obvious abbreviations, and exported instances whose purpose is not self-evident. Describe the mathematical object or statement, not proof mechanics.
 - **Commit-Pinned Roadmap References**: Lean docstrings or comments may reference `roadmap/` paths or target IDs **only** when pinned to an exact commit SHA (e.g., `/roadmap/area/topic.qmd#thm-main @ <commit-sha>`), so stale references remain detectable.

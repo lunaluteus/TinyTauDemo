@@ -32,3 +32,7 @@ sync-min-interval: 24
 # tag (v<major>.<minor>.<patch>, excluding -rc* prereleases).
 # Set to false to disable automatic bumps.
 bump: true
+
+# Reference name for copyright and author headers at the top of Lean files.
+# Replace this placeholder during initialization.
+copyright-name: Your Name

@@ -7,7 +7,7 @@ description: Explains how TinyTau uses Lean, doc-gen4, Quarto, and Git scripts, 
 
 TinyTau relies on a small set of standard tools shared between local execution and GitHub Actions CI:
 
-- **Lean 4 & Lake (`lean-action.yml`)**: Compiles the Lean library (`lake build`) and runs [`leanprover-community/axiom-audit`](https://github.com/leanprover-community/axiom-audit) to verify that every declaration depends only on Lean's three standard axioms (`propext`, `Classical.choice`, `Quot.sound`), catching any `sorryAx` (`sorry`/`admit`), `Lean.ofReduceBool` (`native_decide`), or custom `axiom`s.
+- **Lean 4 & Lake (`lean-action.yml`)**: Compiles the Lean library (`lake build --wfail`) and runs [`leanprover-community/axiom-audit`](https://github.com/leanprover-community/axiom-audit) to verify that every declaration depends only on Lean's three standard axioms (`propext`, `Classical.choice`, `Quot.sound`), catching any `sorryAx` (`sorry`/`admit`), `Lean.ofReduceBool` (`native_decide`), or custom `axiom`s.
 - **Upstream Roadmap Integrity (`compare-human.sh`)**: Uses pure `git` tree diffs to verify that all human-authored files under `roadmap/` (every file whose stem does not end in `-ai`) match `human-repo` at `.tinytau/sync.yml`'s `human-sha` byte-for-byte.
 - **API Documentation (`build-docs.sh` + `parse-lake-metadata.py`)**: Uses [`doc-gen4`](https://github.com/leanprover/doc-gen4) in a temporary `docbuild/` Lake workspace (matching the official `leanprover-community/docgen-action` layout) to generate HTML API reference pages under `_site/docs/`.
 - **Roadmap Rendering (`build-roadmap.sh` + `tinytau.lua`)**: Uses [Quarto](https://quarto.org/) to render `roadmap/` into `_site/roadmap/`. During rendering, `.tinytau/scripts/tinytau.lua` hooks into Quarto's `pre-ast` filter stage (`quarto.doc`, `quarto.project.offset`, `quarto.utils`), reads each document's paired `<stem>-ai.yml` sidecar, and appends a `.tinytau-meta` block (`Status`, `docs` links, `Depends` links, and `Note` with Quarto `@crossref` support) to the end of each matching `::: {#id}` block.
@@ -35,7 +35,7 @@ Both parts of the GitHub Pages site (`.github/workflows/pages.yml`) can be built
 Ensure your Lean project builds cleanly first, then run `build-docs.sh`:
 
 ```sh
-lake build
+lake build --wfail
 bash .tinytau/scripts/build-docs.sh
 ```
 

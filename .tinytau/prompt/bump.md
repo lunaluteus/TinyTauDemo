@@ -5,7 +5,7 @@ description: Upgrade the upstream TauCeti dependency when a new stable Lean rele
 
 ## Goal
 
-Adopt the new stable `TauCeti` release (`<latest-upstream-tag>`) rapidly and cleanly. Prioritize getting `lake build` passing with standard axioms first; defer larger cleanups or deduplications of newly redundant local code to follow-up `Refactor` commits by recording `ok: refactor` in `*-ai.yml`.
+Adopt the new stable `TauCeti` release (`<latest-upstream-tag>`) rapidly and cleanly. Prioritize passing [`guide/build.md`](/.tinytau/guide/build.md) first; defer larger cleanups or deduplications of newly redundant local code to follow-up `Refactor` commits by recording `ok: refactor` in `*-ai.yml`.
 
 ## Procedure
 
@@ -28,8 +28,8 @@ Adopt the new stable `TauCeti` release (`<latest-upstream-tag>`) rapidly and cle
 
 3. **Adapt & Verify Build First**:
 
-   - Run `lake build` and fix any breaking changes introduced by the upgraded `TauCeti` / `Mathlib` / Lean toolchain (e.g., renamed/moved upstream declarations, changed signatures or typeclass instances, or new linter errors).
-   - Keep changes minimal and focused on getting `lake build` green with zero errors and no `sorry` or custom `axiom`s. Do **not** block the bump on large-scale local deduplication or rewrites.
+   - Run `lake build --wfail` and fix any breaking changes introduced by the upgraded `TauCeti` / `Mathlib` / Lean toolchain (e.g., renamed/moved upstream declarations, changed signatures or typeclass instances, or new linter errors).
+   - Keep changes minimal and focused on getting the build green. Do **not** block the bump on large-scale local deduplication or rewrites.
 
 4. **Record Newly Redundant or Unsuitable Code as `ok: refactor`**:
 
@@ -40,5 +40,5 @@ Adopt the new stable `TauCeti` release (`<latest-upstream-tag>`) rapidly and cle
 
 5. **Self-Check & Commit**:
 
-   - Verify that no human-authored `roadmap/` files or `.tinytau/sync.yml` were modified, and `lake build` passes cleanly.
+   - Verify that no human-authored `roadmap/` files or `.tinytau/sync.yml` were modified, and verification passes cleanly.
    - Review your changes against [`guide/rubrics.md`](/.tinytau/guide/rubrics.md) and commit per [`worker.md`](./worker.md#committing-work).
