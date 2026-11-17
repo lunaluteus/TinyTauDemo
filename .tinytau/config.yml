@@ -4,7 +4,7 @@
 # Repository containing the human-authored roadmap files.
 # Sync copies human files from this repository verbatim and realigns
 # AI-maintained roadmap files.
-human-repo: example-org/research-roadmap
+human-repo: sun123zxy/TinyTauDemoRoadmap
 
 # Branch of human-repo used as the source for Sync.
 # Set this to the branch the human authors publish their roadmap on.
@@ -35,4 +35,4 @@ bump: true
 
 # Reference name for copyright and author headers at the top of Lean files.
 # Replace this placeholder during initialization.
-copyright-name: Your Name
+copyright-name: Luna Luteus
