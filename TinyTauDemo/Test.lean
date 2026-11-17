@@ -5,12 +5,10 @@ Authors: Luna Luteus
 -/
 module
 
-import TauCeti.Analysis.Complex.Conformal.RiemannMapping.Existence
-
 /-!
-# Module Docstring
+# Initialization example
+
+A sample declaration for the package build and axiom audit.
 -/
 
-public def thisisaprime : ℕ := 57
-
-#check TauCeti.riemannMapping
+public def thisisaprime : Nat := 57
