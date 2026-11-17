@@ -47,10 +47,16 @@
   docs: []
   comment: Check Polynomial.flt for the conclusion and isolate the all-exponent polynomial factorization and strict degree decrease for this proof route.
 - id: def-kahler-log-deriv
-  ok: false
+  ok: true
   depends: []
-  docs: []
-  comment: Connect relative Kähler differentials to polynomial derivatives and the fraction-field logarithmic derivative.
+  docs:
+    - /docs/TinyTauDemo/RationalLogDerivative.html#RatFunc.logDerivative
+    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.natDegree_radical_eq_card_roots_of_splits
+    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_eq_sum_roots_of_splits
+    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_eq_radical_fraction_of_splits
+    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_degree_lt
+    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_eval_ne_zero
+  comment: Mathlib supplies the universal Kähler derivation and its polynomial formula. The rational derivative extends polynomial differentiation to the fraction field. For a split polynomial, its logarithmic derivative has the radical as denominator and the chapter's explicit numerator, with no cancellation at the roots in characteristic zero.
 - id: thm-mason-stothers
   ok: false
   depends:
