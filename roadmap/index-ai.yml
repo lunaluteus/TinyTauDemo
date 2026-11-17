@@ -65,12 +65,13 @@
     - /docs/TinyTauDemo/MasonStothers.html#Polynomial.masonStothers
   comment: Apply Mathlib's Polynomial.abc to a, b, and −c. In characteristic zero, the alternative of three zero derivatives contradicts the positive maximum degree.
 - id: cor-flt-poly-mason
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
     - /roadmap/index.qmd#thm-mason-stothers
-  docs: []
-  comment: Compare Polynomial.flt and the chapter's proof via the radical degree bound.
+  docs:
+    - /docs/TinyTauDemo/FermatPolynomialMason.html#TinyTauDemo.not_primitiveFermatSolution_polynomial
+  comment: Apply the Mason–Stothers bound to the powers of the primitive coordinates. The radical is unchanged by positive powers, while the maximum degree is multiplied by the exponent.
 - id: rem-scheme-curves-recall
   ok: false
   depends: []
