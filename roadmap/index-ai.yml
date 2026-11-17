@@ -2,8 +2,9 @@
   ok: false
   depends:
     - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
+    - /roadmap/index-ai.qmd#lem-dedekind-principal-order
   docs: []
-  comment: The fractional ideal isomorphism is available. The spectrum and stalk statements, identification of local orders, and comparison with invertible sheaves remain.
+  comment: The fractional ideal isomorphism and principal ideal order formula are available. The spectrum and stalk statements and comparison with invertible sheaves remain.
 - id: thm-dedekind-weil-divisor
   ok: true
   depends: []
@@ -11,6 +12,12 @@
     - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv
     - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv_apply
   comment: Mathlib's integer prime exponents identify the units of the fractional ideal monoid with finitely supported integers on the height-one spectrum.
+- id: lem-dedekind-principal-order
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/PrincipalDivisor.html#FractionalIdeal.valuation_eq_exp_neg_count_spanSingleton
+  comment: Compute the exponent of the principal fractional ideal from a numerator and denominator. The valuation uses the exponential of its negative.
 - id: def-primitive-solution
   ok: true
   depends: []

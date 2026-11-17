@@ -16,3 +16,9 @@ For the cyclotomic coprimality statement, the allowed positive-characteristic ca
 
 For the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), index Weil divisors by the nonzero prime ideals of a Dedekind domain $R$. The exponent of a prime in a nonzero fractional ideal gives an integer. These exponents have finite support, add under ideal multiplication, and recover the ideal by taking the product of prime powers. This defines the group isomorphism for Weil divisors. In the field case the index set is empty and the group is trivial.
 :::
+
+::: {#lem-dedekind-principal-order}
+## Local orders of principal ideals
+
+In the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the order of a nonzero rational function at a nonzero prime equals the prime exponent of the principal fractional ideal it generates. Mathlib writes the valuation multiplicatively. The exponential of the negative ideal exponent gives that multiplicative valuation.
+:::
