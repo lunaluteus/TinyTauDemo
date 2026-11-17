@@ -1,0 +1,6 @@
+/.lake
+/_site
+/docbuild
+*.log
+
+/.luarc.json

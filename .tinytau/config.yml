@@ -1,0 +1,34 @@
+# Replace these sample values when setting up a TinyTau project.
+# GitHub repository names use OWNER/REPO, without a URL or a .git suffix.
+
+# Repository containing the human-authored roadmap files.
+# Sync copies human files from this repository verbatim and realigns
+# AI-maintained roadmap files.
+human-repo: example-org/research-roadmap
+
+# Branch of human-repo used as the source for Sync.
+# Set this to the branch the human authors publish their roadmap on.
+human-branch: master
+
+# Directory in human-repo to copy into this repository's roadmap/.
+# Paths start at the human repository root. The default, /, selects the
+# entire repository; /notes selects only the notes directory.
+#
+# The directory's contents are copied, preserving their relative paths:
+#   /      maps topic.qmd       to roadmap/topic.qmd
+#   /notes maps notes/topic.qmd to roadmap/topic.qmd
+human-directory: /
+
+# Minimum gap, in hours, between the tracked upstream commit's committer
+# timestamp and the latest upstream commit's committer timestamp.
+# This is not time since the last Sync or the age of the latest commit.
+# Sync is allowed at or above this gap; a smaller gap skips Sync.
+# Use a non-negative number. 0 requires no positive commit-time gap.
+# The first Sync has no tracked commit and does not use this gate.
+sync-min-interval: 24
+
+# Whether the worker checks for and bumps the upstream TauCeti dependency.
+# When true, Bump triggers only when TauCeti has a newer stable Lean release
+# tag (v<major>.<minor>.<patch>, excluding -rc* prereleases).
+# Set to false to disable automatic bumps.
+bump: true

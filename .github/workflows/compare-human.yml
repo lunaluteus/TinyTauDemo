@@ -1,0 +1,19 @@
+name: Compare Human Roadmap
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Compare roadmap/ human files against upstream
+        shell: bash
+        run: bash .tinytau/scripts/compare-human.sh

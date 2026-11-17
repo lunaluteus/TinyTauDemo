@@ -1,0 +1,4 @@
+# Human commit currently imported into roadmap/.
+# Sync updates human-sha in the same commit as the copied human files.
+# null means no human commit has been imported yet.
+human-sha: null

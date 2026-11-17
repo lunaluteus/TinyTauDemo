@@ -1,0 +1,79 @@
+name: Pages
+
+on:
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Cleanup to free disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          android: true
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: false
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Build Lean project
+        uses: leanprover/lean-action@v1
+
+      - name: Compute dependency doc cache paths
+        id: metadata
+        shell: bash
+        run: |
+          {
+            echo "cached_docbuild_dependencies<<PATHS"
+            python3 .tinytau/scripts/parse-lake-metadata.py --print-cache-paths
+            echo "PATHS"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Cache dependency docs
+        if: steps.metadata.outputs.cached_docbuild_dependencies != ''
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.metadata.outputs.cached_docbuild_dependencies }}
+          key: Docs-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Build API documentation to _site/docs
+        shell: bash
+        run: bash .tinytau/scripts/build-docs.sh
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render roadmap with Quarto to _site/roadmap
+        shell: bash
+        run: bash .tinytau/scripts/build-roadmap.sh
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,24 @@
+name = "ExampleLibrary"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["ExampleLibrary"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "TauCeti"
+scope = "TauCetiProject"
+rev = "v4.35.0"
+
+[[cache.service]]
+name = "tauceti"
+kind = "s3"
+artifactEndpoint = "https://cache.taucetiproject.org/artifacts"
+revisionEndpoint = "https://cache.taucetiproject.org/revisions"
+
+[[lean_lib]]
+name = "ExampleLibrary"
