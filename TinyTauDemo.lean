@@ -8,6 +8,7 @@ module
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatFour
 public import TinyTauDemo.Kronecker
+public import TinyTauDemo.MasonStothers
 public import TinyTauDemo.PolynomialLogDerivative
 public import TinyTauDemo.Test
 public import TinyTauDemo.WeilDivisor

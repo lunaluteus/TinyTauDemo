@@ -58,11 +58,12 @@
     - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_eval_ne_zero
   comment: Mathlib supplies the universal Kähler derivation and its polynomial formula. The rational derivative extends polynomial differentiation to the fraction field. For a split polynomial, its logarithmic derivative has the radical as denominator and the chapter's explicit numerator, with no cancellation at the roots in characteristic zero.
 - id: thm-mason-stothers
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-kahler-log-deriv
-  docs: []
-  comment: Check Polynomial.abc and discharge its all-zero-derivatives alternative using characteristic zero and the nonconstant hypothesis.
+  docs:
+    - /docs/TinyTauDemo/MasonStothers.html#Polynomial.masonStothers
+  comment: Apply Mathlib's Polynomial.abc to a, b, and −c. In characteristic zero, the alternative of three zero derivatives contradicts the positive maximum degree.
 - id: cor-flt-poly-mason
   ok: false
   depends:
