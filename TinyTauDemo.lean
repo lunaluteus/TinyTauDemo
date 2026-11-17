@@ -13,5 +13,6 @@ public import TinyTauDemo.Kronecker
 public import TinyTauDemo.MasonStothers
 public import TinyTauDemo.PolynomialLogDerivative
 public import TinyTauDemo.PrincipalDivisor
+public import TinyTauDemo.RegularPrime
 public import TinyTauDemo.Test
 public import TinyTauDemo.WeilDivisor

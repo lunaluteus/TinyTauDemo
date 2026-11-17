@@ -166,11 +166,13 @@
   docs: []
   comment: Relate the congruences modulo the ramified prime and modulo the rational prime to the integral power basis.
 - id: def-regular-prime
-  ok: false
-  depends:
-    - /roadmap/index.qmd#thm-ring-of-integers
-  docs: []
-  comment: Express regularity as absence of nontrivial prime torsion in the cyclotomic class group and connect it to the class number.
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/RegularPrime.html#TinyTauDemo.RegularPrime
+    - /docs/TinyTauDemo/RegularPrime.html#TinyTauDemo.regularPrime_iff_no_classGroup_torsion
+    - /docs/TinyTauDemo/RegularPrime.html#TinyTauDemo.RegularPrime.fractionalIdeal_isPrincipal_of_pow
+  comment: Use the class number of the canonical ring of integers. Cauchy's theorem gives the torsion equivalence, and coprimality with the class number gives the principal ideal consequence.
 - id: rem-bernoulli-regular
   ok: false
   depends:
