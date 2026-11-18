@@ -53,7 +53,8 @@ theorem projectiveLinePolynomialChart_toSpec (i : Fin 2) :
   intro r
   exact (projectiveLine.awayEquivPolynomial k i).commutes r
 
-private theorem projectiveLine_dim_le_one : topologicalKrullDim (projectiveLine k) ≤ 1 := by
+/-- The projective line over a field has Krull dimension at most one. -/
+theorem projectiveLine_dim_le_one : topologicalKrullDim (projectiveLine k) ≤ 1 := by
   rw [topologicalKrullDim_eq_iSup_coheight]
   refine iSup_le fun x ↦ ?_
   obtain ⟨i, q, rfl⟩ := projectiveLine.exists_eq_awayι k x
@@ -62,6 +63,41 @@ private theorem projectiveLine_dim_le_one : topologicalKrullDim (projectiveLine 
   refine (Ideal.height_le_ringKrullDim_of_isPrime (I := q.asIdeal)).trans ?_
   rw [ringKrullDim_eq_of_ringEquiv (projectiveLine.awayEquivPolynomial k i).toRingEquiv]
   exact Order.KrullDimLE.krullDim_le (n := 1)
+
+/-- A morphism from the affine-line chart into a proper scheme over the base field
+extends uniquely over the projective line. -/
+theorem existsUnique_projectiveLineMap_extending_polynomialChart
+    {Y : Scheme.{u}} [Y.Over (Spec (.of k))] [IsProper (Y ↘ Spec (.of k))]
+    (g₀ : Spec (.of k[X]) ⟶ Y)
+    (hg₀ : g₀ ≫ (Y ↘ Spec (.of k)) = Spec.map (CommRingCat.ofHom (algebraMap k k[X]))) :
+    ∃! f : projectiveLine k ⟶ Y,
+      f ≫ (Y ↘ Spec (.of k)) = (projectiveLine k ↘ Spec (.of k)) ∧
+        projectiveLinePolynomialChart k 0 ≫ f = g₀ := by
+  let S := Spec (.of k)
+  let X := projectiveLine k
+  let chart := projectiveLinePolynomialChart k 0
+  let U := chart.opensRange
+  let g := chart.isoOpensRange.inv ≫ g₀
+  let : g.IsOver S := by
+    rw [Scheme.Hom.isOver_iff]
+    change (chart.isoOpensRange.inv ≫ g₀) ≫ (Y ↘ S) = U.ι ≫ (X ↘ S)
+    rw [Category.assoc, hg₀, ← projectiveLinePolynomialChart_toSpec k 0,
+      ← Category.assoc, Scheme.Hom.isoOpensRange_inv_comp]
+  have hU : Dense (U : Set X) := by
+    apply U.isOpen.dense
+    obtain ⟨t⟩ := (inferInstance : Nonempty (Spec (.of k[X])))
+    exact ⟨chart t, ⟨t, rfl⟩⟩
+  obtain ⟨f, ⟨hfS, hfU⟩, hfuniq⟩ :=
+    existsUnique_hom_extending_denseOpen (S := S) (projectiveLine_dim_le_one k) U hU g
+  refine ⟨f, ⟨(Scheme.Hom.isOver_iff S).mp hfS, ?_⟩, fun f' hf' ↦ ?_⟩
+  · change chart ≫ f = g₀
+    rw [← chart.isoOpensRange_hom_ι, Category.assoc, hfU]
+    simp [g]
+  · apply hfuniq
+    refine ⟨(Scheme.Hom.isOver_iff S).mpr hf'.1, ?_⟩
+    have hchart : chart ≫ f' = g₀ := hf'.2
+    rw [← cancel_epi chart.isoOpensRange.hom, chart.isoOpensRange_hom_ι_assoc, hchart]
+    simp [g]
 
 section Transition
 
@@ -164,35 +200,11 @@ theorem existsUnique_fermatProjectiveLineMap (p : Fin 3 → k[X])
     ∃! f : projectiveLine k ⟶ fermatProjective k n,
       f ≫ fermatProjectiveToSpec k n = (projectiveLine k ↘ Spec (.of k)) ∧
         projectiveLinePolynomialChart k 0 ≫ f = fermatAffineMap p hF hp := by
-  let S := Spec (.of k)
-  let X := projectiveLine k
-  let Y := fermatProjective k n
-  let : Y.Over S := ⟨fermatProjectiveToSpec k n⟩
-  let : IsProper (Y ↘ S) := inferInstanceAs (IsProper (fermatProjectiveToSpec k n))
-  let chart := projectiveLinePolynomialChart k 0
-  let U := chart.opensRange
-  let g := chart.isoOpensRange.inv ≫ fermatAffineMap p hF hp
-  let : g.IsOver S := by
-    rw [Scheme.Hom.isOver_iff]
-    change (chart.isoOpensRange.inv ≫ fermatAffineMap p hF hp) ≫ fermatProjectiveToSpec k n =
-      U.ι ≫ (X ↘ S)
-    rw [Category.assoc, fermatAffineMap_toSpec, ← projectiveLinePolynomialChart_toSpec k 0,
-      ← Category.assoc, Scheme.Hom.isoOpensRange_inv_comp]
-  have hU : Dense (U : Set X) := by
-    apply U.isOpen.dense
-    obtain ⟨t⟩ := (inferInstance : Nonempty (Spec (.of k[X])))
-    exact ⟨chart t, ⟨t, rfl⟩⟩
-  obtain ⟨f, ⟨hfS, hfU⟩, hfuniq⟩ :=
-    existsUnique_hom_extending_denseOpen (S := S) (projectiveLine_dim_le_one k) U hU g
-  refine ⟨f, ⟨(Scheme.Hom.isOver_iff S).mp hfS, ?_⟩, fun f' hf' ↦ ?_⟩
-  · change chart ≫ f = fermatAffineMap p hF hp
-    rw [← chart.isoOpensRange_hom_ι, Category.assoc, hfU]
-    simp [g]
-  · apply hfuniq
-    refine ⟨(Scheme.Hom.isOver_iff S).mpr hf'.1, ?_⟩
-    have hchart : chart ≫ f' = fermatAffineMap p hF hp := hf'.2
-    rw [← cancel_epi chart.isoOpensRange.hom, chart.isoOpensRange_hom_ι_assoc, hchart]
-    simp [g]
+  let : (fermatProjective k n).Over (Spec (.of k)) := ⟨fermatProjectiveToSpec k n⟩
+  let : IsProper (fermatProjective k n ↘ Spec (.of k)) :=
+    inferInstanceAs (IsProper (fermatProjectiveToSpec k n))
+  exact existsUnique_projectiveLineMap_extending_polynomialChart k
+    (fermatAffineMap p hF hp) (fermatAffineMap_toSpec p hF hp)
 
 /-- A projective extension of the affine Fermat map has the reflected polynomials as
 its coordinates on the chart at infinity. -/

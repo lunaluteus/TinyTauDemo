@@ -54,10 +54,13 @@ public import TinyTauDemo.KummerUnramified
 public import TinyTauDemo.KummerUnit
 public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
+public import TinyTauDemo.PlaneFieldDegree
 public import TinyTauDemo.PlaneJacobianConverse
 public import TinyTauDemo.PlaneJacobianIntegral
+public import TinyTauDemo.PlaneProjectiveDegree
 public import TinyTauDemo.PlaceDifferentialLength
 public import TinyTauDemo.PolynomialLogDerivative
+public import TinyTauDemo.PolynomialTuplePoles
 public import TinyTauDemo.PullbackStalk
 public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor

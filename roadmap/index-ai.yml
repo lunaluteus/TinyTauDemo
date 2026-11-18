@@ -110,8 +110,21 @@
     - /roadmap/index-ai.qmd#prp-plane-jacobian-criterion
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
+    - /roadmap/index-ai.qmd#prp-plane-line-morphism-degree
   docs: []
-  comment: The plane Jacobian criterion, the valuative extension, and the Fermat morphism with its degree are verified. The corrected degree formula for arbitrary smooth plane curves remains.
+  comment: The plane Jacobian criterion and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The stated degree M in the human text requires the plane degree factor. The chart at infinity is verified for the Fermat specialization.
+- id: prp-plane-line-morphism-degree
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-plane-jacobian-criterion
+    - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
+  docs:
+    - /docs/TinyTauDemo/PolynomialTuplePoles.html#TinyTauDemo.rationalPoleDivisor_ratio_sup
+    - /docs/TinyTauDemo/PlaneFieldDegree.html#TinyTauDemo.max_natDegree_eq_mul_finrank_planeCoordinateField
+    - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.existsUnique_projectiveLineMap
+    - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_finrank_eq_chartCoordinates
+    - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_degree
+  comment: Form the actual projective extension. The supremum of the two ratio pole divisors pulls back to the supremum on k(t), whose degree is the maximum tuple degree.
 - id: prp-plane-jacobian-criterion
   ok: true
   depends: []
