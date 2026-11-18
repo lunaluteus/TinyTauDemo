@@ -124,8 +124,19 @@
     - /roadmap/index.qmd#def-kahler-log-deriv
     - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
+    - /roadmap/index-ai.qmd#lem-tame-relative-differential-length
   docs: []
-  comment: The function-field divisor and numerical formulas are available. The comparison with the differential sheaves and the local length statement remain.
+  comment: The function-field formula and the local differential length are verified. The comparison with the scheme differential sequence remains.
+- id: lem-tame-relative-differential-length
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/TameDifferentials.html#TinyTauDemo.differential_unit_mul_uniformizer_pow
+    - /docs/TinyTauDemo/TameDifferentials.html#TinyTauDemo.relativeKaehlerDifferentialEquivQuotient
+    - /docs/TinyTauDemo/TameDifferentials.html#TinyTauDemo.length_relativeKaehlerDifferential_eq_addVal_sub_one_of_finite
+    - /docs/TinyTauDemo/TameRamificationIndex.html#TinyTauDemo.ramificationIdx_maximalIdeal_eq_toNat_addVal
+    - /docs/TinyTauDemo/TameRamificationIndex.html#TinyTauDemo.length_relativeKaehlerDifferential_eq_ramificationIdx_sub_one
+  comment: Transitivity gives the local quotient. Nakayama gives the uniformizer generators. The valuation of a pulled-back uniformizer agrees with Mathlib's ramification index.
 - id: thm-tame-hurwitz-function-fields
   ok: true
   depends: []

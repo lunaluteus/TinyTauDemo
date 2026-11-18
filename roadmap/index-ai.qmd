@@ -65,6 +65,12 @@ For a nonconstant map to a plane curve of degree $n$, the coordinates give a pul
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), use divisors of Weil differentials over algebraically closed constants of characteristic zero. The canonical divisor has degree $2g-2$. Pulling it to the extension adds the tame different, whose coefficient at a place is $e_P-1$. Every place has degree one. For a genus-zero cover of degree $d$, the preimage of a set of $s$ places therefore has at least $sd-(2d-2)$ places.
 :::
 
+::: {#lem-tame-relative-differential-length}
+## Length of the local relative differentials
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), write the image of the source uniformizer as $\varepsilon\pi^e$ in the target discrete valuation ring. If $e$ is a unit in the residue field, the differential is $\pi^{e-1}$ times a unit times $d\pi$. Under the local smoothness hypotheses, the uniformizer differential generates the absolute differential module by the cotangent sequence and Nakayama’s lemma. Transitivity then presents the relative differential module as the quotient by the $(e-1)$st power of the maximal ideal, so it has length $e-1$.
+:::
+
 In the [Mason–Hurwitz argument](index.qmd#rem-mason-hurwitz-bridge), the point at infinity of the source contributes to the three fibres if its image is $0$, $1$, or $\infty$. This gives the stated upper bound of the radical degree plus one.
 
 ::: {#lem-kummer-local-congruence}

@@ -43,6 +43,8 @@ public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor
 public import TinyTauDemo.RamificationRecall
 public import TinyTauDemo.RegularPrime
+public import TinyTauDemo.TameDifferentials
+public import TinyTauDemo.TameRamificationIndex
 public import TinyTauDemo.Test
 public import TinyTauDemo.UnifiedCyclotomicCoprimality
 public import TinyTauDemo.UnramifiedCyclicDegree
