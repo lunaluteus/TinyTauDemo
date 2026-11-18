@@ -56,6 +56,7 @@ public import TinyTauDemo.Fermat.Polynomial.FermatLineExtension
 public import TinyTauDemo.Fermat.Polynomial.FermatPolynomialDescent
 public import TinyTauDemo.Fermat.Polynomial.FermatPolynomialMason
 public import TinyTauDemo.Fermat.Curve.FermatProjective
+public import TinyTauDemo.Fermat.ArithmeticSurface.FermatProjectiveBaseChange
 public import TinyTauDemo.Fermat.Polynomial.FermatProjectiveDegree
 public import TinyTauDemo.Fermat.Curve.FermatSchemeGenus
 public import TinyTauDemo.Fermat.Curve.FermatSchemeHurwitz
@@ -64,6 +65,7 @@ public import TinyTauDemo.Fermat.ArithmeticSurface.FermatSpecialFibre
 public import TinyTauDemo.AlgebraicGeometry.Curves.FiniteCurveMorphisms
 public import TinyTauDemo.NumberTheory.ClassFieldTheory.HilbertClassPrimeQuotient
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.HurwitzFibreCount
+public import TinyTauDemo.AlgebraicGeometry.Projective.HypersurfaceBaseChange
 public import TinyTauDemo.AlgebraicGeometry.Projective.InfinityCoordinates
 public import TinyTauDemo.NumberTheory.Cyclotomic.Kronecker
 public import TinyTauDemo.NumberTheory.Bernoulli.KummerBernoulliCongruence

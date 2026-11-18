@@ -306,15 +306,15 @@ A triple satisfying the Fermat equation and generating the unit ideal gives a se
 ::: {#prp-fermat-cone-integral}
 ## The Fermat cone and the cyclotomic factors
 
-For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homogeneous Fermat coordinate ring is a domain in positive degree over any characteristic-zero domain. The equation is monic in $X$, so division by it commutes with extending coefficients to an algebraic closure of the fraction field. The resulting embedding of quotient rings descends integrality. The affine cone after actual base change to $\mathbb Z[\zeta_p]$ is therefore integral. The cyclotomic identity factors $X^p+Y^p$ as $\prod_j(X+\zeta_p^jY)$ for odd $p$. Evaluating that identity on a primitive solution gives an ideal factorization with $p$th powers away from the prime over $p$.
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homogeneous Fermat coordinate ring is a domain in positive degree over any characteristic-zero domain. The equation is monic in $X$, so division by it commutes with extending coefficients to an algebraic closure of the fraction field. The resulting embedding of quotient rings descends integrality. Both the affine cone and the projective Fermat scheme after actual base change to $\mathbb Z[\zeta_p]$ are therefore integral. The cyclotomic identity factors $X^p+Y^p$ as $\prod_j(X+\zeta_p^jY)$ for odd $p$. Evaluating that identity on a primitive solution gives an ideal factorization with $p$th powers away from the prime over $p$.
 :::
 
 ::: {#prp-fermat-special-fibre}
 ## The Fermat special fibre in characteristic p
 
-For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), in characteristic $p$ Frobenius gives $X^p+Y^p-Z^p=(X+Y-Z)^p$. The radical of the equation ideal is the single linear ideal $(X+Y-Z)$. A linear coordinate change gives the cone coordinate ring $k[X,Y,T]/(T^p)$, and the class of $T$ has nilpotence index exactly $p$. The last affine chart detects nonreducedness on the actual projective base change of the integral Fermat scheme to $k$.
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), in characteristic $p$ Frobenius gives $X^p+Y^p-Z^p=(X+Y-Z)^p$. The radical of the equation ideal is the single linear ideal $(X+Y-Z)$. A linear coordinate change gives the cone coordinate ring $k[X,Y,T]/(T^p)$, and the class of $T$ has nilpotence index exactly $p$. The last affine chart detects nonreducedness.
 
-The quotient by the linear equation induces a surjective closed immersion into the characteristic-$p$ projective model. Its ideal sheaf is the nilradical because the source is reduced and the immersion meets every point. Eliminating $Z$ on the linear model identifies that reduced subscheme with $\mathbb P^1_k$.
+The quotient by the linear equation induces a surjective closed immersion into the characteristic-$p$ projective model. Its ideal sheaf is the nilradical because the source is reduced and the immersion meets every point. Eliminating $Z$ identifies the reduced subscheme with $\mathbb P^1_k$. The affine coordinate opens identify base change of the entire projective hypersurface with the coefficientwise model, so the same reduction isomorphism holds for the actual special fibre of the integral scheme.
 :::
 
 ::: {#prp-cyclotomic-differentials}

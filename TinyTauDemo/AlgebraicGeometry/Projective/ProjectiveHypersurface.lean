@@ -10,14 +10,14 @@ public import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ClosedImmersion
 public import TauCeti.RingTheory.GradedAlgebra.Homogeneous.Quotient
 public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Proper
 import Mathlib.RingTheory.Finiteness.Quotient
-import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
+public import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
 
 /-!
 # Standard charts of a projective hypersurface
 
 This generalizes the projective construction and affine chart proofs for
 the Fermat equation in `TinyTauDemo.FermatProjective` and `TinyTauDemo.FermatCharts`.
-See `/roadmap/index.qmd#rem-scheme-curves-recall @ ce3fed2d7209ae176aaa251ce23f48d13fd004d5`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall @ 2a0cfce18730a72e3af59be8ebaa793115ffd6d3`.
 -/
 
 public section
@@ -116,10 +116,9 @@ instance : IsProper (toSpec hF) := by
     inferInstance
   exact MorphismProperty.comp_mem @IsProper _ _ h₁ h₂
 
-/-- The standard opens defined by the coordinate variables cover the hypersurface. -/
-theorem iSup_basicOpen_eq_top :
-    ⨆ i : Fin (m + 1), Proj.basicOpen (grading hF) (coord F i) = ⊤ := by
-  apply Proj.iSup_basicOpen_eq_top
+/-- The coordinate classes generate the irrelevant ideal of a projective hypersurface. -/
+theorem irrelevant_le_span_coord :
+    (HomogeneousIdeal.irrelevant (grading hF)).toIdeal ≤ Ideal.span (Set.range (coord F)) := by
   rw [HomogeneousIdeal.toIdeal_irrelevant_le]
   intro i hi z hz
   obtain ⟨p, hp, rfl⟩ := (mem_quotientPiece_iff _ _).mp hz
@@ -129,6 +128,11 @@ theorem iSup_basicOpen_eq_top :
       (X : Fin (m + 1) → MvPolynomial (Fin (m + 1)) R)))
   rw [Set.range_comp, ← Ideal.map_span]
   exact Ideal.mem_map_of_mem _ hpI
+
+/-- The standard opens defined by the coordinate variables cover the hypersurface. -/
+theorem iSup_basicOpen_eq_top :
+    ⨆ i : Fin (m + 1), Proj.basicOpen (grading hF) (coord F i) = ⊤ :=
+  Proj.iSup_basicOpen_eq_top (grading hF) (coord F) (irrelevant_le_span_coord hF)
 
 /-- The coordinate ring on the affine chart obtained by normalizing coordinate `i`. -/
 noncomputable abbrev ChartRing (F : MvPolynomial (Fin (m + 1)) R) (i : Fin (m + 1)) :=
@@ -252,10 +256,18 @@ private theorem awayToAffine_algebraMap (i : Fin (m + 1)) (c : R) :
   rw [chartQuotient_mk, AlgHom.commutes]
   rfl
 
-private theorem awayι_comp_toSpec (i : Fin (m + 1)) :
-    Proj.awayι (grading hF) (coord F i) (coord_mem_degree_one hF i) Nat.one_pos ≫ toSpec hF =
-      Spec.map (CommRingCat.ofHom (algebraMap R (Away (grading hF) (coord F i)))) := by
-  change Proj.awayι (grading hF) (coord F i) (coord_mem_degree_one hF i) Nat.one_pos ≫
+/-- The dehomogenization isomorphism preserves the coefficient ring. -/
+theorem awayEquivChart_algebraMap (i : Fin (m + 1)) (c : R) :
+    awayEquivChart hF i (algebraMap R (Away (grading hF) (coord F i)) c) =
+      algebraMap R (ChartRing F i) c :=
+  awayToAffine_algebraMap hF i c
+
+/-- The standard homogeneous localization inclusion respects the coefficient structure map. -/
+theorem awayι_comp_toSpec {a : CoordinateRing F} {e : ℕ}
+    (ha : a ∈ grading hF e) (he : 0 < e) :
+    Proj.awayι (grading hF) a ha he ≫ toSpec hF =
+      Spec.map (CommRingCat.ofHom (algebraMap R (Away (grading hF) a))) := by
+  change Proj.awayι (grading hF) a ha he ≫
     (Proj.toSpecZero (grading hF) ≫
       Spec.map (CommRingCat.ofHom (algebraMap R (grading hF 0)))) = _
   rw [← Category.assoc, Proj.awayι_toSpecZero, ← Spec.map_comp]
@@ -296,10 +308,10 @@ theorem affineChart_comp_toSpec (i : Fin (m + 1)) :
     Proj.awayι (grading hF) (coord F i) (coord_mem_degree_one hF i) Nat.one_pos) ≫ f = _
   have hAway : Proj.awayι (grading hF) (coord F i) (coord_mem_degree_one hF i) Nat.one_pos ≫ f =
       Spec.map (CommRingCat.ofHom (algebraMap R (Away (grading hF) (coord F i)))) :=
-    awayι_comp_toSpec hF i
+    awayι_comp_toSpec hF (coord_mem_degree_one hF i) Nat.one_pos
   rw [Category.assoc, hAway, ← Spec.map_comp]
   congr 1
   ext c
-  exact awayToAffine_algebraMap hF i c
+  exact awayEquivChart_algebraMap hF i c
 
 end TinyTauDemo.ProjectiveHypersurface

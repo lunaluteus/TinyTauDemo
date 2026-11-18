@@ -6,6 +6,7 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.Fermat.Curve.FermatProjective
+import TinyTauDemo.Fermat.ArithmeticSurface.FermatConeBaseChange
 import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 import Mathlib.Algebra.MvPolynomial.Nilpotent
 
@@ -14,9 +15,10 @@ import Mathlib.Algebra.MvPolynomial.Nilpotent
 
 The homogeneous equation is irreducible over the algebraic closure of the rationals.
 Its coefficient of `X₀^n` is one, so a constant factor after extending coefficients
-already comes from an integer unit. The integer coordinate ring is therefore a domain.
+already comes from an integer unit. The projective model is integral over any
+characteristic-zero domain by integrality of its cone coordinate ring.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `c0372bfbcb956fd1debd35658018e366cbed2fde`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `2a0cfce18730a72e3af59be8ebaa793115ffd6d3`.
 -/
 
 public section
@@ -72,25 +74,31 @@ theorem fermatCoordinateRing_int_isDomain {n : ℕ} (hn : 0 < n) :
   have : (fermatIdeal ℤ n).IsPrime := (Ideal.span_singleton_prime hf.ne_zero).mpr hf
   exact Ideal.Quotient.isDomain _
 
-/-- The projective Fermat scheme over `ℤ` is integral in every positive degree. -/
-theorem fermatProjective_int_isIntegral {n : ℕ} (hn : 0 < n) :
-    IsIntegral (fermatProjective ℤ n) := by
-  let : IsDomain (FermatCoordinateRing ℤ n) := fermatCoordinateRing_int_isDomain hn
-  let a : FermatCoordinateRing ℤ n := Ideal.Quotient.mk _ (X 0)
-  have hmem := HomogeneousIdeal.mem_irrelevant_of_mem (fermatGrading ℤ n) Nat.one_pos
-    (fermatCoord_mem_degree_one (k := ℤ) (n := n) 0)
-  let g : MvPolynomial (Fin 3) ℤ →ₐ[ℤ] ℤ := aeval (![1, 0, 1] : Fin 3 → ℤ)
-  have hg : g (fermatEquation ℤ n) = 0 := by
+/-- The projective Fermat scheme over a characteristic-zero domain is integral
+in every positive degree. -/
+theorem fermatProjective_isIntegral_of_charZero (R : Type*) [CommRing R] [IsDomain R]
+    [CharZero R] {n : ℕ} (hn : 0 < n) : IsIntegral (fermatProjective R n) := by
+  let : IsDomain (FermatCoordinateRing R n) := fermatCoordinateRing_isDomain_of_charZero R hn
+  let a : FermatCoordinateRing R n := Ideal.Quotient.mk _ (X 0)
+  have hmem := HomogeneousIdeal.mem_irrelevant_of_mem (fermatGrading R n) Nat.one_pos
+    (fermatCoord_mem_degree_one (k := R) (n := n) 0)
+  let g : MvPolynomial (Fin 3) R →ₐ[R] R := aeval (![1, 0, 1] : Fin 3 → R)
+  have hg : g (fermatEquation R n) = 0 := by
     simp [g, fermatEquation_def, zero_pow hn.ne']
-  let φ : FermatCoordinateRing ℤ n →ₐ[ℤ] ℤ := Ideal.Quotient.liftₐ _ g (by
+  let φ : FermatCoordinateRing R n →ₐ[R] R := Ideal.Quotient.liftₐ _ g (by
     intro p hp
     obtain ⟨q, rfl⟩ := Ideal.mem_span_singleton.mp hp
     rw [map_mul, hg, zero_mul])
   have ha : φ a = 1 := by change g (X 0) = 1; simp [g]
-  apply Proj.isIntegral_of_isDomain (fermatGrading ℤ n)
+  apply Proj.isIntegral_of_isDomain (fermatGrading R n)
   intro he
   rw [he] at hmem
   have ha0 : a = 0 := Ideal.mem_bot.mp hmem
   exact one_ne_zero (ha.symm.trans (ha0 ▸ map_zero φ))
+
+/-- The projective Fermat scheme over `ℤ` is integral in every positive degree. -/
+theorem fermatProjective_int_isIntegral {n : ℕ} (hn : 0 < n) :
+    IsIntegral (fermatProjective ℤ n) :=
+  fermatProjective_isIntegral_of_charZero ℤ hn
 
 end TinyTauDemo

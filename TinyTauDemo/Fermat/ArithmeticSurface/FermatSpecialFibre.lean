@@ -6,13 +6,11 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.Fermat.Curve.FermatCharts
+import TinyTauDemo.Fermat.ArithmeticSurface.FermatProjectiveBaseChange
 public import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ProjectiveLine
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Basic
 import TauCeti.LinearAlgebra.SymmetricAlgebra.BasisComparison
-import TinyTauDemo.AlgebraicGeometry.Projective.ProjectiveHypersurface
 import Mathlib.Algebra.MvPolynomial.Division
-import Mathlib.RingTheory.TensorProduct.MvPolynomial
-import Mathlib.RingTheory.TensorProduct.Quotient
 import Mathlib.Tactic.Ring
 
 /-!
@@ -20,19 +18,18 @@ import Mathlib.Tactic.Ring
 
 The Frobenius identity makes the degree-p equation the pth power of the linear
 Fermat equation in characteristic p. The linear class has nilpotence index p.
-The last standard affine chart detects nonreducedness on the projective scheme
-and on the actual base change from the integral Fermat scheme. The linear
-Fermat scheme maps into the characteristic-p model by a surjective closed
-immersion. It identifies the nilradical subscheme with the projective line.
+The last standard affine chart detects nonreducedness. The linear Fermat scheme
+maps into the characteristic-p model by a surjective closed immersion, identifying
+the nilradical subscheme with the projective line. The coefficient-base-change
+isomorphism gives both conclusions for the fibre of the integral model.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `5972fa561ae1dd39b826aaf49cc874002874fb02`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `2a0cfce18730a72e3af59be8ebaa793115ffd6d3`.
 -/
 
 public section
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits MvPolynomial
 open TauCeti TauCeti.AlgebraicGeometry TauCeti.GradedAlgebra
-open scoped TensorProduct
 
 namespace TinyTauDemo
 
@@ -225,6 +222,13 @@ noncomputable def fermatProjectiveOneIsoProjectiveLine :
     rw [he, e.symm_apply_apply]
 
 
+private theorem fermatProjectiveOne_isReduced :
+    AlgebraicGeometry.IsReduced (fermatProjective k 1) := by
+  have hprime := fermatEquation_one_prime k
+  let : (fermatIdeal k 1).IsPrime := (Ideal.span_singleton_prime hprime.ne_zero).2 hprime
+  let : IsDomain (FermatCoordinateRing k 1) := Ideal.Quotient.isDomain _
+  exact Proj.isReduced (𝒜 := fermatGrading k 1)
+
 end LinearCoordinate
 
 section PositiveCharacteristic
@@ -319,11 +323,7 @@ instance : Surjective (fermatSpecialFibreLinearInclusion k p) := by
 /-- The reduced subscheme of the characteristic-`p` Fermat scheme is the projective line. -/
 noncomputable def fermatProjectiveNilradicalSubschemeIsoProjectiveLine :
     (fermatProjective k p).nilradical.subscheme ≅ projectiveLine k := by
-  have hprime := fermatEquation_one_prime k
-  let : (fermatIdeal k 1).IsPrime := (Ideal.span_singleton_prime hprime.ne_zero).2 hprime
-  let : IsDomain (FermatCoordinateRing k 1) := Ideal.Quotient.isDomain _
-  let : AlgebraicGeometry.IsReduced (fermatProjective k 1) :=
-    Proj.isReduced (𝒜 := fermatGrading k 1)
+  let := fermatProjectiveOne_isReduced k
   exact (isoNilradicalSubschemeOfSurjectiveClosedImmersion
     (fermatSpecialFibreLinearInclusion k p)).symm ≪≫ fermatProjectiveOneIsoProjectiveLine k
 
@@ -370,56 +370,29 @@ theorem not_isReduced_fermatProjective_charP :
 
 end PositiveCharacteristic
 
-variable (k : Type) [Field k] (p : ℕ)
+variable (k : Type) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
 
-private noncomputable def tensorFermatLastChartEquiv :
-    k ⊗[ℤ] ProjectiveHypersurface.ChartRing (fermatEquation ℤ p) 2 ≃ₐ[k]
-      FermatAffineRing k p 2 := by
-  let A := MvPolynomial (Fin 2) ℤ
-  let F := TauCeti.dehomogenize (R := ℤ) (2 : Fin 3) (fermatEquation ℤ p)
-  let I : Ideal A := Ideal.span {F}
-  let e := MvPolynomial.algebraTensorAlgEquiv (σ := Fin 2) ℤ k
-  refine (Algebra.TensorProduct.tensorQuotientEquiv (R := ℤ) k A k I).trans
-    (Ideal.quotientEquivAlg _ _ e ?_)
-  change Ideal.span {fermatAffineEquation k p 2} =
-    (I.map (Algebra.TensorProduct.includeRight (R := ℤ) (A := k))).map e.toRingHom
-  have hF : MvPolynomial.map (algebraMap ℤ k) F = fermatAffineEquation k p 2 := by
-    dsimp only [F]
-    rw [TauCeti.map_dehomogenize]
-    congr 1
-    simp only [fermatEquation_def, map_add, map_sub, map_pow, MvPolynomial.map_X]
-  dsimp only [I]
-  rw [Ideal.map_span, Set.image_singleton, Ideal.map_span, Set.image_singleton]
-  congr 2
-  change fermatAffineEquation k p 2 = e (1 ⊗ₜ[ℤ] F)
-  rw [MvPolynomial.algebraTensorAlgEquiv_tmul, one_smul, hF]
-
-variable [Fact p.Prime] [CharP k p]
-
-set_option backward.isDefEq.respectTransparency false in
 /-- The base change of the integral Fermat scheme to a field of characteristic `p` is nonreduced. -/
 theorem not_isReduced_fermatProjective_baseChange_charP :
     ¬ AlgebraicGeometry.IsReduced (pullback (fermatProjectiveToSpec ℤ p)
       (Spec.map (CommRingCat.ofHom (algebraMap ℤ k)))) := by
-  let R := ProjectiveHypersurface.ChartRing (fermatEquation ℤ p) 2
-  let f := fermatProjectiveToSpec ℤ p
-  let g := Spec.map (CommRingCat.ofHom (algebraMap ℤ k))
-  let j : Spec (.of R) ⟶ fermatProjective ℤ p :=
-    ProjectiveHypersurface.affineChart (fermatEquation_isHomogeneous ℤ p) 2
-  have hj : j ≫ f = Spec.map (CommRingCat.ofHom (algebraMap ℤ R)) :=
-    ProjectiveHypersurface.affineChart_comp_toSpec (fermatEquation_isHomogeneous ℤ p) 2
-  let e : pullback j (pullback.fst f g) ≅ Spec (.of (k ⊗[ℤ] R)) :=
-    pullbackRightPullbackFstIso f g j ≪≫ pullbackSymmetry _ _ ≪≫
-      pullback.congrHom rfl hj ≪≫ pullbackSpecIso ℤ k R
-  have : IsOpenImmersion j := by
-    dsimp only [j]
-    infer_instance
   intro h
-  have := isReduced_of_isOpenImmersion (pullback.snd j (pullback.fst f g))
-  have hS := isReduced_of_isOpenImmersion e.inv
-  have : IsReduced (k ⊗[ℤ] R) := (affine_isReduced_iff _).mp hS
-  exact not_isReduced_fermatAffineRing_last k p
-    (isReduced_of_injective (tensorFermatLastChartEquiv k p).symm.toRingHom
-      (tensorFermatLastChartEquiv k p).symm.injective)
+  exact not_isReduced_fermatProjective_charP k p
+    (isReduced_of_isOpenImmersion (fermatProjective_baseChangeIso k p).hom)
+
+/-- The reduced subscheme of the actual characteristic-`p` fibre is the projective line. -/
+noncomputable def fermatProjective_baseChange_charP_nilradicalSubschemeIsoProjectiveLine :
+    (pullback (fermatProjectiveToSpec ℤ p)
+      (Spec.map (CommRingCat.ofHom (algebraMap ℤ k)))).nilradical.subscheme ≅ projectiveLine k := by
+  let f := fermatSpecialFibreLinearInclusion k p ≫ (fermatProjective_baseChangeIso k p).hom
+  let : IsClosedImmersion f := by
+    dsimp only [f]
+    infer_instance
+  let : Surjective f := by
+    dsimp only [f]
+    infer_instance
+  let := fermatProjectiveOne_isReduced k
+  exact (isoNilradicalSubschemeOfSurjectiveClosedImmersion f).symm ≪≫
+    fermatProjectiveOneIsoProjectiveLine k
 
 end TinyTauDemo

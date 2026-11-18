@@ -442,6 +442,7 @@
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatConeBaseChange.html#TinyTauDemo.fermatCoordinateRing_isDomain_of_charZero
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatConeBaseChange.html#TinyTauDemo.tensorFermatConeEquiv
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatConeBaseChange.html#TinyTauDemo.isIntegral_fermatCone_baseChange_ringOfIntegers
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatProjectiveBaseChange.html#TinyTauDemo.isIntegral_fermatProjective_baseChange_of_charZero
     - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
   comment: Monic division descends integrality to any characteristic-zero domain, and the affine pullback to the cyclotomic integers has that integral coordinate ring. For primitive solutions the cyclotomic ideal decomposition applies to the linear factors of the sum of two powers.
 - id: prp-fermat-special-fibre
@@ -455,8 +456,11 @@
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRing_linear_nilpotence
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatSpecialFibreLinearInclusion
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjectiveNilradicalSubschemeIsoProjectiveLine
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/HypersurfaceBaseChange.html#TinyTauDemo.ProjectiveHypersurface.isPullback_baseChangeHom
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatProjectiveBaseChange.html#TinyTauDemo.fermatProjective_baseChangeIso
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_baseChange_charP
-  comment: The linear class has nilpotence index p. The linear projective model gives the nilradical subscheme, which is a projective line. The last affine chart detects nonreducedness of the actual base change.
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjective_baseChange_charP_nilradicalSubschemeIsoProjectiveLine
+  comment: The linear class has nilpotence index p. The linear model gives the nilradical subscheme, which is a projective line. Projective base change exposes both properties on the actual special fibre of the integral model.
 - id: prp-cyclotomic-differentials
   ok: true
   depends:
