@@ -159,6 +159,18 @@ For the class-number step of the [unit lemma](index.qmd#lem-kummer-unit), a cycl
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), among odd primes below 100, some numerator in $B_2,B_4,\ldots,B_{p-3}$ is divisible by $p$ exactly for $37$, $59$, and $67$. The witnesses are $B_{32}$, $B_{44}$, and $B_{58}$, respectively. Lean checks the finite table using Mathlib’s rational Bernoulli recurrence.
 :::
 
+::: {#lem-bernoulli-kummer-congruence}
+## The first Kummer congruence at coprime even indices
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let $p\ge5$ be prime. For positive even indices $m,n$ prime to $p$ and congruent modulo $p-1$, with $p-1$ dividing neither index, the difference $B_m/m-B_n/n$ is divisible by $p$ in the ring of $p$-integral rationals. Von Staudt–Clausen bounds the denominators in Faulhaber's formula. Multiplying residues by a primitive root and expanding modulo $p^2$ gives the congruence, which transfers numerator divisibility between the two indices.
+:::
+
+::: {#thm-bernoulli-irregular-infinite}
+## Infinitely many primes satisfying the Bernoulli numerator test
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), Jensen's argument begins with a finite set $S$ of primes satisfying the numerator test and a prime $q$ larger than every element of $S$, with $q\equiv1\pmod{12\prod_{p\in S}p(p-1)}$. The denominator of $B_{2q}$ is six. Euler's formula for even zeta values gives positivity, and Faulhaber's formula at four gives a numerator congruent to three modulo four. A prime divisor $p\equiv3\pmod4$ of that numerator is different from $q$ and is at least five. Reducing $2q$ modulo $p-1$ and using Kummer's congruence gives an even irregular index between two and $p-3$. For a prime in $S$, the reduced index would be two, whose Bernoulli numerator is one. Thus the numerator test holds for infinitely many primes, even within the residue class three modulo four.
+:::
+
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 

@@ -7,6 +7,7 @@ module
 
 public import TinyTauDemo.AmbientProjectiveCharts
 public import TinyTauDemo.BernoulliExamples
+public import TinyTauDemo.BernoulliIrregular
 public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.ChartFunctionField
 public import TinyTauDemo.ClosedDifferentialLength
@@ -43,6 +44,7 @@ public import TinyTauDemo.FermatSpecMap
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates
 public import TinyTauDemo.Kronecker
+public import TinyTauDemo.KummerBernoulliCongruence
 public import TinyTauDemo.KummerCaseOne
 public import TinyTauDemo.KummerCaseTwo
 public import TinyTauDemo.KummerLocalArithmetic

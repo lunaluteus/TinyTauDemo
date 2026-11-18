@@ -429,13 +429,34 @@
   depends:
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index-ai.qmd#prp-bernoulli-numerator-test-below-100
+    - /roadmap/index-ai.qmd#thm-bernoulli-irregular-infinite
   docs: []
-  comment: The finite numerator tests are verified. The comparison with class numbers and the infinitude of irregular primes remain to be formalized.
+  comment: The finite tests and infinitude theorem are verified for the Bernoulli numerator predicate. Its equivalence with divisibility of the cyclotomic class number remains.
+- id: lem-bernoulli-kummer-congruence
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/KummerBernoulliCongruence.html#TinyTauDemo.mul_bernoulli_mem_pIntegrals
+    - /docs/TinyTauDemo/KummerBernoulliCongruence.html#TinyTauDemo.bernoulli_div_sub_div_prime_mem_pIntegrals
+    - /docs/TinyTauDemo/KummerBernoulliCongruence.html#TinyTauDemo.dvd_bernoulli_num_iff_of_congruent_even_indices
+  comment: Use von Staudt–Clausen to bound denominators, Faulhaber to reduce to power sums, and a primitive root modulo p to isolate the congruence.
+- id: thm-bernoulli-irregular-infinite
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#lem-bernoulli-kummer-congruence
+  docs:
+    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.BernoulliIrregular
+    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulli_den_two_mul_prime_eq_six
+    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulli_num_two_mul_prime_mod_four
+    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular_mod_four
+    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular
+  comment: Choose a prime q in a suitable progression. The positive numerator of B_(2q) is three modulo four, and Kummer's congruence yields a new prime satisfying the numerator test.
 - id: prp-bernoulli-numerator-test-below-100
   ok: true
   depends: []
   docs:
     - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.bernoulli_irregular_primes_below_100
+    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulliIrregular_below_100_iff
     - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_37
     - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_59
     - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_67
