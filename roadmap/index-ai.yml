@@ -112,7 +112,7 @@
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
     - /roadmap/index-ai.qmd#prp-plane-line-morphism-degree
   docs: []
-  comment: The plane Jacobian criterion, the general chart at infinity, and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The Fermat conic supplies a verified counterexample to the stated degree M.
+  comment: The plane Jacobian criterion, the infinity stalk and chart, and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The Fermat conic supplies a verified counterexample to the stated degree M.
 - id: prp-plane-line-morphism-degree
   ok: true
   depends:
@@ -166,7 +166,9 @@
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap
     - /docs/TinyTauDemo/Fermat/Polynomial/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
-  comment: Extend at the codimension-one points by the valuative criterion. Compare the original and reflected tuples by a common unit on the overlap to identify the restriction to the chart at infinity.
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinity_maximalIdeal
+  comment: Extend at the codimension-one points by the valuative criterion. Identify the infinity stalk with the localization at the origin of the second chart. A common unit on the overlap identifies the reflected tuple with the chart restriction.
 - id: thm-riemann-hurwitz-recall
   ok: true
   depends:

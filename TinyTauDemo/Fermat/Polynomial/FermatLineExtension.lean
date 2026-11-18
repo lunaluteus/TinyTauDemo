@@ -35,6 +35,14 @@ noncomputable def projectiveLinePolynomialChart (i : Fin 2) :
   Spec.map (CommRingCat.ofHom (projectiveLine.awayEquivPolynomial k i).toRingHom) ≫
     projectiveLine.awayι k i
 
+/-- The polynomial chart is the standard localization chart transported by its coordinate iso. -/
+theorem projectiveLinePolynomialChart_def (i : Fin 2) :
+    projectiveLinePolynomialChart k i =
+      Spec.map (CommRingCat.ofHom (projectiveLine.awayEquivPolynomial k i).toRingHom) ≫
+        projectiveLine.awayι k i := by
+  unfold projectiveLinePolynomialChart
+  rfl
+
 instance (i : Fin 2) : IsOpenImmersion (projectiveLinePolynomialChart k i) := by
   unfold projectiveLinePolynomialChart
   let : IsIso (CommRingCat.ofHom (projectiveLine.awayEquivPolynomial k i).toRingHom) :=
