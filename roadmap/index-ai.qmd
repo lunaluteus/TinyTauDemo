@@ -62,7 +62,7 @@ For the [projective curve recall](index.qmd#rem-scheme-curves-recall), the stand
 ::: {#lem-curve-extension-and-infinity-coordinates}
 ## Extension from a dense open and coordinates at infinity
 
-For the [projective curve recall](index.qmd#rem-scheme-curves-recall), a morphism into a proper scheme extends uniquely from a dense open of an integral curve with discrete valuation rings at its codimension-one points. On the chart at infinity, if $M$ is the maximum coordinate degree, the reflected polynomials $s^M p_i(s^{-1})$ generate the unit ideal and satisfy the same homogeneous equations. A leading coefficient gives a nonzero coordinate at $s=0$. The point at infinity is the origin of the second polynomial chart. Its stalk is $k[s]_{(s)}$ and the image of $s$ generates the maximal ideal.
+For the [projective curve recall](index.qmd#rem-scheme-curves-recall), a morphism into a proper scheme extends uniquely from a dense open of an integral curve with discrete valuation rings at its codimension-one points. On the chart at infinity, if $M$ is the maximum coordinate degree, the reflected polynomials $s^M p_i(s^{-1})$ generate the unit ideal and satisfy the same homogeneous equations. A leading coefficient gives a nonzero coordinate at $s=0$. The point at infinity is the origin of the second polynomial chart. Its stalk is $k[s]_{(s)}$ over $k$, and the image of $s$ generates the maximal ideal.
 
 For a homogeneous hypersurface over a field, the affine morphisms from the original and reflected tuples agree on the overlap of the two charts. Their tuples differ there by a common unit. The reflected tuple therefore describes the restriction of the projective extension to the chart at infinity, including its value at $s=0$.
 
@@ -292,7 +292,7 @@ Transfer extends the relative character to the ambient Galois group because the 
 ::: {#prp-integral-fermat-sections}
 ## The Fermat arithmetic surface and its integral sections
 
-For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the positive-degree Fermat scheme over $\mathbb Z$ is integral, flat, and of Krull dimension two. Irreducibility of the homogeneous equation descends from $\overline{\mathbb Q}$ because the coefficient of $X^n$ is one. Each monic dehomogenized equation gives a standard chart ring that is free and integral over a polynomial ring in one variable. The chart dimensions are two and the charts cover the model.
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the positive-degree Fermat scheme over $\mathbb Z$ is integral, flat, and of Krull dimension two. Irreducibility of the homogeneous equation descends from $\overline{\mathbb Q}$ because the coefficient of $X^n$ is one. Each monic dehomogenized equation gives a standard chart ring that is free and integral over a polynomial ring in one variable. The chart dimensions are two and the charts cover the model. The integer spectrum has no structure morphism to the spectrum of a field, since a field map would make $2$ a unit in $\mathbb Z$.
 
 A triple satisfying the Fermat equation and generating the unit ideal gives a section. Conversely, restrict a section to the rational generic point, normalize a coordinate to one on a standard chart, and clear denominators with a primitive tuple. Separatedness identifies the reconstructed section with the original. Two primitive integral tuples define the same section exactly when they differ by a common sign. Every primitive presentation of the section $[1:0:1]$ has zero second coordinate.
 :::

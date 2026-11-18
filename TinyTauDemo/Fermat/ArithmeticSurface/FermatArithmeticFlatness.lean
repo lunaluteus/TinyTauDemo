@@ -8,7 +8,10 @@ module
 public import TinyTauDemo.Fermat.Curve.FermatProjective
 public import Mathlib.AlgebraicGeometry.Morphisms.Flat
 public import TinyTauDemo.AlgebraicGeometry.Projective.ProjectiveHypersurface
+import Mathlib.AlgebraicGeometry.GammaSpecAdjunction
+import Mathlib.Algebra.Group.Int.Units
 import Mathlib.RingTheory.AdjoinRoot
+import Mathlib.Tactic.NormNum
 import Mathlib.RingTheory.KrullDimension.PID
 import Mathlib.RingTheory.KrullDimension.Polynomial
 import Mathlib.Algebra.Ring.Int.Field
@@ -21,7 +24,7 @@ import TauCeti.RingTheory.KrullDimension.Integral
 Each of the three standard charts is presented by a monic polynomial over
 an affine line. Each chart is flat over the integers and has Krull dimension two.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `c0372bfbcb956fd1debd35658018e366cbed2fde`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `027c4b61e59169b60bcae3dd1dcdf45fdd82d1f4`.
 -/
 
 public section
@@ -171,5 +174,19 @@ theorem fermatProjective_int_krullDim {n : ℕ} (hn : 0 < n) :
       PrimeSpectrum.topologicalKrullDim_eq_ringKrullDim _]
     exact fermatChartRing_int_krullDim hn i
   simp_rw [hdim, iSup_const]
+
+/-- The integer spectrum has no structure morphism to the spectrum of a field. -/
+theorem isEmpty_specInt_to_spec_field (k : Type) [Field k] :
+    IsEmpty (Spec (CommRingCat.of ℤ) ⟶ Spec (CommRingCat.of k)) := by
+  refine ⟨fun f ↦ ?_⟩
+  let g : k →+* ℤ := (Spec.preimage f).hom
+  have htwo : (2 : k) ≠ 0 := by
+    intro h
+    have hg := congrArg g h
+    exact (by decide : (2 : ℤ) ≠ 0) (by simpa only [map_ofNat, map_zero] using hg)
+  have hu : IsUnit (g 2) := (isUnit_iff_ne_zero.mpr htwo).map g
+  rw [map_ofNat] at hu
+  rw [Int.isUnit_iff] at hu
+  norm_num at hu
 
 end TinyTauDemo

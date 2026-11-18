@@ -9,6 +9,7 @@ public import TinyTauDemo.Fermat.Polynomial.FermatLineExtension
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineDifferentials
 public import Mathlib.RingTheory.Localization.AtPrime.Basic
 import Mathlib.RingTheory.Polynomial.Quotient
+public import TauCeti.AlgebraicGeometry.Scheme.BaseAlgebra
 
 /-!
 # The local ring of the projective line at infinity
@@ -16,7 +17,7 @@ import Mathlib.RingTheory.Polynomial.Quotient
 The valuation-defined point at infinity is the origin in the chart with
 coordinate `X₀/X₁`. The stalk is the localization of the polynomial ring at `(X)`.
 
-See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `1f38df1cf9d142fa5da4d43a1b973b77a7debc0c`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `027c4b61e59169b60bcae3dd1dcdf45fdd82d1f4`.
 -/
 
 public section
@@ -127,5 +128,40 @@ theorem projectiveLineInfinity_maximalIdeal :
     (Localization.AtPrime (polynomialChartOrigin k).asIdeal))).map e.symm.toRingHom) = _
   simp only [Ideal.map_span, Set.image_singleton]
   rfl
+
+/-- The identification of the infinity stalk with the polynomial localization
+preserves the coefficients from the base field. -/
+theorem projectiveLineInfinityStalkEquiv_algebraMap (a : k) :
+    projectiveLineInfinityStalkEquiv k (algebraMap k
+      ((P₁).presheaf.stalk (projectiveLineInfinity k : P₁)) a) =
+      algebraMap k (Localization.AtPrime (polynomialChartOrigin k).asIdeal) a := by
+  let Z := Spec (.of k[X])
+  let q : Z := polynomialChartOrigin k
+  let f : Z ⟶ P₁ := projectiveLinePolynomialChart k 1
+  let x : P₁ := projectiveLineInfinity k
+  let h : x = f q := projectiveLineInfinity_eq_polynomialChartOrigin k
+  let c := (P₁).presheaf.stalkCongr (.of_eq h)
+  let d := Spec.stalkIso (.of k[X]) q
+  have hc : Spec.map c.hom ≫ (P₁).fromSpecStalk x = (P₁).fromSpecStalk (f q) := by
+    dsimp only [c]
+    rw [TopCat.Presheaf.stalkCongr_hom]
+    exact Scheme.SpecMap_stalkSpecializes_fromSpecStalk (X := P₁) (Inseparable.of_eq h).ge
+  have hd : Spec.map d.hom ≫ Z.fromSpecStalk q =
+      Spec.map (CommRingCat.ofHom (algebraMap k[X]
+        (Localization.AtPrime (polynomialChartOrigin k).asIdeal))) := by
+    change Spec.map d.hom ≫ (Spec (.of k[X])).fromSpecStalk q = _
+    dsimp only [d]
+    rw [Spec.fromSpecStalk_eq, ← Spec.map_comp, Category.assoc, Spec.germ_stalkMapIso_hom,
+      Iso.inv_hom_id_assoc]
+  have hs : Spec.map (c.hom ≫ f.stalkMap q ≫ d.hom) ≫
+      ((P₁).fromSpecStalk x ≫ (P₁ ↘ Spec (.of k))) =
+        Spec.map (CommRingCat.ofHom (algebraMap k
+          (Localization.AtPrime (polynomialChartOrigin k).asIdeal))) := by
+    rw [Spec.map_comp, Spec.map_comp, Category.assoc, Category.assoc, ← Category.assoc
+      (Spec.map c.hom), hc, Scheme.SpecMap_stalkMap_fromSpecStalk_assoc, ← Category.assoc, hd]
+    rw [show f ≫ (P₁ ↘ Spec (.of k)) = _ from projectiveLinePolynomialChart_toSpec k 1,
+      ← Spec.map_comp, ← CommRingCat.ofHom_comp, ← IsScalarTower.algebraMap_eq]
+  rw [(P₁).fromSpecStalk_comp_over (k := k), ← Spec.map_comp, Spec.map_inj] at hs
+  exact DFunLike.congr_fun (congrArg CommRingCat.Hom.hom hs) a
 
 end TinyTauDemo

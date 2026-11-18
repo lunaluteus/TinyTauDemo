@@ -167,6 +167,7 @@
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap
     - /docs/TinyTauDemo/Fermat/Polynomial/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv_algebraMap
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinity_maximalIdeal
   comment: Extend at the codimension-one points by the valuative criterion. Identify the infinity stalk with the localization at the origin of the second chart. A common unit on the overlap identifies the reflected tuple with the chart restriction.
 - id: thm-riemann-hurwitz-recall
@@ -408,6 +409,7 @@
   docs:
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjectiveToSpec_int_flat
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjective_int_krullDim
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticFlatness.html#TinyTauDemo.isEmpty_specInt_to_spec_field
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticIntegrality.html#TinyTauDemo.fermatProjective_int_isIntegral
     - /docs/TinyTauDemo/Fermat/Polynomial/FermatSpecMap.html#TinyTauDemo.fermatSpecMap
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.PrimitiveIntegerFermatCoordinates.toSection
