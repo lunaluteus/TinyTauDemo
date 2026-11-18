@@ -5,58 +5,58 @@
     - /roadmap/index-ai.qmd#lem-dedekind-principal-order
     - /roadmap/index-ai.qmd#prp-dedekind-spectrum-local-rings
   docs:
-    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.heightOneSpectrumEquivCodimensionOneSpec
-    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.fractionalIdealDivisorSpecAddEquiv
-    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.coeff_fractionalIdealDivisorSpecAddEquiv
-    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.classGroupMulEquivPicardSpec
-    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.classGroupMulEquivPicardSpec_mk
-    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.mem_sections_neg_fractionalIdealDivisor_iff
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindPicard.html#TinyTauDemo.heightOneSpectrumEquivCodimensionOneSpec
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindPicard.html#TinyTauDemo.fractionalIdealDivisorSpecAddEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindPicard.html#TinyTauDemo.coeff_fractionalIdealDivisorSpecAddEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindPicard.html#TinyTauDemo.classGroupMulEquivPicardSpec
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindPicard.html#TinyTauDemo.classGroupMulEquivPicardSpec_mk
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindPicard.html#TinyTauDemo.mem_sections_neg_fractionalIdealDivisor_iff
   comment: Reindex prime exponents by codimension-one points. The corresponding ideal sheaf is the line bundle of the negative of that divisor, and its global rational sections recover the fractional ideal.
 - id: prp-dedekind-spectrum-local-rings
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/DedekindSpectrum.html#PrimeSpectrum.isClosed_singleton_iff_ne_bot_or_isField
-    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.fractionRingEquivGenericResidueField
-    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.fractionRingEquivGenericResidueField_algebraMap
-    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.stalk_isDiscreteValuationRing_iff_ne_genericPoint
-    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.isClosed_singleton_iff_stalk_isDiscreteValuationRing
-    - /docs/TinyTauDemo/DedekindSpectrum.html#IsDedekindDomain.HeightOneSpectrum.ordFrac_eq_inv_adicValuation
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindSpectrum.html#PrimeSpectrum.isClosed_singleton_iff_ne_bot_or_isField
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindSpectrum.html#AlgebraicGeometry.Spec.fractionRingEquivGenericResidueField
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindSpectrum.html#AlgebraicGeometry.Spec.fractionRingEquivGenericResidueField_algebraMap
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindSpectrum.html#AlgebraicGeometry.Spec.stalk_isDiscreteValuationRing_iff_ne_genericPoint
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindSpectrum.html#AlgebraicGeometry.Spec.isClosed_singleton_iff_stalk_isDiscreteValuationRing
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/DedekindSpectrum.html#IsDedekindDomain.HeightOneSpectrum.ordFrac_eq_inv_adicValuation
   comment: Include the field case, identify the generic residue field, and match local orders with the adic valuations.
 - id: thm-dedekind-weil-divisor
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv
-    - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv_apply
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/WeilDivisor.html#FractionalIdeal.divisorMulEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/WeilDivisor.html#FractionalIdeal.divisorMulEquiv_apply
   comment: The multiplicative presentation of Tau Ceti's Weil divisor equivalence sends each invertible fractional ideal to its integer prime exponents.
 - id: lem-dedekind-principal-order
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/PrincipalDivisor.html#FractionalIdeal.valuation_eq_exp_neg_count_spanSingleton
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/PrincipalDivisor.html#FractionalIdeal.valuation_eq_exp_neg_count_spanSingleton
   comment: Exponentiate Tau Ceti's logarithm formula for principal fractional ideals to recover the multiplicative valuation.
 - id: def-primitive-solution
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution
-    - /docs/TinyTauDemo/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution.xyz_ne_zero
+    - /docs/TinyTauDemo/Fermat/Integer/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution
+    - /docs/TinyTauDemo/Fermat/Integer/PrimitiveFermatSolution.html#TinyTauDemo.PrimitiveFermatSolution.xyz_ne_zero
   comment: The predicate uses Bézout coprimality for each pair, nonzero coordinates, and at least one nonunit. Exponent bounds belong to the theorems that use it.
 - id: prp-exponent-reduction
   ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
   docs:
-    - /docs/TinyTauDemo/ExponentReduction.html#TinyTauDemo.PrimitiveFermatSolution.pow
-    - /docs/TinyTauDemo/ExponentReduction.html#TinyTauDemo.not_primitiveFermatSolution_of_four_and_odd_primes
+    - /docs/TinyTauDemo/Fermat/Integer/ExponentReduction.html#TinyTauDemo.PrimitiveFermatSolution.pow
+    - /docs/TinyTauDemo/Fermat/Integer/ExponentReduction.html#TinyTauDemo.not_primitiveFermatSolution_of_four_and_odd_primes
   comment: Positive powers preserve primitivity over an integral domain. Mathlib supplies divisibility by four or an odd prime for exponents at least three.
 - id: thm-fermat-n4
   ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
   docs:
-    - /docs/TinyTauDemo/FermatFour.html#TinyTauDemo.not_primitiveFermatSolution_four_int
+    - /docs/TinyTauDemo/Fermat/Integer/FermatFour.html#TinyTauDemo.not_primitiveFermatSolution_four_int
   comment: Mathlib's not_fermat_42 excludes the square equation for all integers with nonzero first and second coordinates. Setting the square's base to z² gives the primitive fourth-power result.
 - id: prp-unified-coprimality
   ok: true
@@ -64,37 +64,37 @@
     - /roadmap/index.qmd#def-primitive-solution
     - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
   docs:
-    - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.geom_sum_isUnit_int_adjoin
-    - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.span_one_sub_pow_eq_span_one_sub
-    - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.span_one_sub_le_span_cyclotomic_linear_factors
-    - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.cyclotomic_linear_factors_pairwise_outside
-    - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.geom_sum_isUnit_int_adjoin
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.span_one_sub_pow_eq_span_one_sub
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.span_one_sub_le_span_cyclotomic_linear_factors
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.cyclotomic_linear_factors_pairwise_outside
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
   comment: Work in the integer subalgebra generated by the root of unity for the geometric sum. In the integral closure, every prime outside the exceptional ideal occurs in at most one factor, so its exponent is a multiple of the Fermat exponent.
 - id: thm-flt-poly-descent
   ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
   docs:
-    - /docs/TinyTauDemo/FermatPolynomialDescent.html#TinyTauDemo.cyclotomic_factors_of_fermat_eq
-    - /docs/TinyTauDemo/FermatPolynomialDescent.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_descent
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatPolynomialDescent.html#TinyTauDemo.cyclotomic_factors_of_fermat_eq
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatPolynomialDescent.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_descent
   comment: Extend scalars to an algebraic closure and take exact powers of the pairwise coprime linear factors. A relation among three weighted factors produces a primitive solution of strictly smaller maximum degree.
 - id: def-kahler-log-deriv
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/RationalLogDerivative.html#RatFunc.logDerivative
-    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.natDegree_radical_eq_card_roots_of_splits
-    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_eq_sum_roots_of_splits
-    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_eq_radical_fraction_of_splits
-    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_degree_lt
-    - /docs/TinyTauDemo/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_eval_ne_zero
+    - /docs/TinyTauDemo/Algebra/Polynomial/RationalLogDerivative.html#RatFunc.logDerivative
+    - /docs/TinyTauDemo/Algebra/Polynomial/PolynomialLogDerivative.html#Polynomial.natDegree_radical_eq_card_roots_of_splits
+    - /docs/TinyTauDemo/Algebra/Polynomial/PolynomialLogDerivative.html#Polynomial.logDerivative_eq_sum_roots_of_splits
+    - /docs/TinyTauDemo/Algebra/Polynomial/PolynomialLogDerivative.html#Polynomial.logDerivative_eq_radical_fraction_of_splits
+    - /docs/TinyTauDemo/Algebra/Polynomial/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_degree_lt
+    - /docs/TinyTauDemo/Algebra/Polynomial/PolynomialLogDerivative.html#Polynomial.logDerivative_numerator_eval_ne_zero
   comment: Mathlib supplies the universal Kähler derivation and its polynomial formula. The rational derivative extends polynomial differentiation to the fraction field. For a split polynomial, its logarithmic derivative has the radical as denominator and the chapter's explicit numerator, with no cancellation at the roots in characteristic zero.
 - id: thm-mason-stothers
   ok: true
   depends:
     - /roadmap/index.qmd#def-kahler-log-deriv
   docs:
-    - /docs/TinyTauDemo/MasonStothers.html#Polynomial.masonStothers
+    - /docs/TinyTauDemo/Algebra/Polynomial/MasonStothers.html#Polynomial.masonStothers
   comment: Apply Mathlib's Polynomial.abc to a, b, and −c. In characteristic zero, the alternative of three zero derivatives contradicts the positive maximum degree.
 - id: cor-flt-poly-mason
   ok: true
@@ -102,7 +102,7 @@
     - /roadmap/index.qmd#def-primitive-solution
     - /roadmap/index.qmd#thm-mason-stothers
   docs:
-    - /docs/TinyTauDemo/FermatPolynomialMason.html#TinyTauDemo.not_primitiveFermatSolution_polynomial
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatPolynomialMason.html#TinyTauDemo.not_primitiveFermatSolution_polynomial
   comment: Apply the Mason–Stothers bound to the powers of the primitive coordinates. The radical is unchanged by positive powers, while the maximum degree is multiplied by the exponent.
 - id: rem-scheme-curves-recall
   ok: false
@@ -119,32 +119,32 @@
     - /roadmap/index-ai.qmd#prp-plane-jacobian-criterion
     - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
   docs:
-    - /docs/TinyTauDemo/PolynomialTuplePoles.html#TinyTauDemo.rationalPoleDivisor_ratio_sup
-    - /docs/TinyTauDemo/PlaneFieldDegree.html#TinyTauDemo.max_natDegree_eq_mul_finrank_planeCoordinateField
-    - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.existsUnique_projectiveLineMap
-    - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_finrank_eq_chartCoordinates
-    - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_degree
-    - /docs/TinyTauDemo/FermatConicDegree.html#TinyTauDemo.pythagoreanCoordinates_projectiveLineMap_degree_one
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PolynomialTuplePoles.html#TinyTauDemo.rationalPoleDivisor_ratio_sup
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneFieldDegree.html#TinyTauDemo.max_natDegree_eq_mul_finrank_planeCoordinateField
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.existsUnique_projectiveLineMap
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_finrank_eq_chartCoordinates
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_degree
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatConicDegree.html#TinyTauDemo.pythagoreanCoordinates_projectiveLineMap_degree_one
   comment: Form the actual projective extension. The supremum of the two ratio pole divisors pulls back to the supremum on k(t), whose degree is the maximum tuple degree.
 - id: prp-plane-jacobian-criterion
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/AmbientProjectiveCharts.html#TinyTauDemo.ProjectiveHypersurface.ambientBasicOpenIsoSpecAffine
-    - /docs/TinyTauDemo/ProjectiveHypersurface.html#TinyTauDemo.ProjectiveHypersurface.basicOpenIsoSpec
-    - /docs/TinyTauDemo/PlaneJacobianConverse.html#TinyTauDemo.ProjectiveHypersurface.smooth_iff_forall_exists_pderiv_ne_zero
-    - /docs/TinyTauDemo/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isIntegral_smoothOne_dim_of_forall_exists_pderiv_ne_zero
-    - /docs/TinyTauDemo/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isDiscreteValuationRing_stalk_of_isClosed
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/AmbientProjectiveCharts.html#TinyTauDemo.ProjectiveHypersurface.ambientBasicOpenIsoSpecAffine
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/ProjectiveHypersurface.html#TinyTauDemo.ProjectiveHypersurface.basicOpenIsoSpec
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianConverse.html#TinyTauDemo.ProjectiveHypersurface.smooth_iff_forall_exists_pderiv_ne_zero
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isIntegral_smoothOne_dim_of_forall_exists_pderiv_ne_zero
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isDiscreteValuationRing_stalk_of_isClosed
   comment: Dehomogenize on the standard charts. The derivative opens are standard smooth, and formal smoothness splits the affine conormal inclusion. For a nonzero positive-degree equation the criterion gives an integral proper curve.
 - id: prp-fermat-line-morphism-degree
   ok: true
   depends:
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism
   docs:
-    - /docs/TinyTauDemo/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap_comp_SpecMap_eq_lastChart
-    - /docs/TinyTauDemo/FermatDegree.html#TinyTauDemo.PrimitiveFermatSolution.max_eq_mul_finrank_adjoin_ratFunc
-    - /docs/TinyTauDemo/FermatProjectiveDegree.html#TinyTauDemo.fermatProjectiveLineMap_degree_of_pos
-    - /docs/TinyTauDemo/FermatProjectiveDegree.html#TinyTauDemo.PrimitiveFermatSolution.exists_projectiveLineMap_degree
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap_comp_SpecMap_eq_lastChart
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatDegree.html#TinyTauDemo.PrimitiveFermatSolution.max_eq_mul_finrank_adjoin_ratFunc
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatProjectiveDegree.html#TinyTauDemo.fermatProjectiveLineMap_degree_of_pos
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatProjectiveDegree.html#TinyTauDemo.PrimitiveFermatSolution.exists_projectiveLineMap_degree
   comment: Compute the function-field inclusion through the last coordinate chart and divide the degree of the rational projection by the degree of the Fermat projection.
 - id: prp-fermat-line-morphism
   ok: true
@@ -152,20 +152,20 @@
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
     - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
   docs:
-    - /docs/TinyTauDemo/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap
-    - /docs/TinyTauDemo/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap_preimage_basicOpen
-    - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.existsUnique_fermatProjectiveLineMap
-    - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.fermatProjectiveLineMap_on_infinity_chart
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap_preimage_basicOpen
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatLineExtension.html#TinyTauDemo.existsUnique_fermatProjectiveLineMap
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatLineExtension.html#TinyTauDemo.fermatProjectiveLineMap_on_infinity_chart
   comment: Use the polynomial tuple to construct a Proj morphism. Compare its two affine restrictions along reciprocal parameters.
 - id: lem-curve-extension-and-infinity-coordinates
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen
-    - /docs/TinyTauDemo/InfinityCoordinates.html#TinyTauDemo.span_range_reflect_eq_top
-    - /docs/TinyTauDemo/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
-    - /docs/TinyTauDemo/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap
-    - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.span_range_reflect_eq_top
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
   comment: Extend at the codimension-one points by the valuative criterion. Compare the original and reflected tuples by a common unit on the overlap to identify the restriction to the chart at infinity.
 - id: thm-riemann-hurwitz-recall
   ok: true
@@ -183,12 +183,12 @@
     - /roadmap/index-ai.qmd#prp-canonical-differential-degrees
     - /roadmap/index-ai.qmd#prp-projective-line-canonical-differential
   docs:
-    - /docs/TinyTauDemo/FiniteCurveMorphisms.html#TinyTauDemo.finite_and_surjective_of_nonconstant_properCurveHom
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
-    - /docs/TinyTauDemo/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
-    - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.morphismRelativeDifferentials_isSkyscraper
-    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveWeilRamificationDivisor
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_relativeDifferentialsIsoInfinity
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/FiniteCurveMorphisms.html#TinyTauDemo.finite_and_surjective_of_nonconstant_properCurveHom
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialSkyscraper.html#TinyTauDemo.morphismRelativeDifferentials_isSkyscraper
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CartierRamification.html#TinyTauDemo.exists_effectiveWeilRamificationDivisor
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_relativeDifferentialsIsoInfinity
   comment: A nonconstant proper curve morphism is finite and surjective. The canonical sheaves give the local-index sum, and the same Weil divisor describes the twist and the support of relative differentials.
 - id: prp-cartier-ramification-divisor
   ok: true
@@ -196,12 +196,12 @@
     - /roadmap/index-ai.qmd#prp-closed-curve-differential-length
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
   docs:
-    - /docs/TinyTauDemo/SchemeRamificationDivisor.html#TinyTauDemo.toPlace_restrict_eq_of_dominant_curveHom
-    - /docs/TinyTauDemo/SchemeRamificationDivisor.html#TinyTauDemo.ramificationIdx_stalk_eq_toPlace
-    - /docs/TinyTauDemo/SchemeRamificationDivisor.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk_eq_ramificationDivisor_coeff
-    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveCartierDivisor_twist_of_lineMap
-    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveCartierRamificationDivisor_with_WeilDivisor
-    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveWeilRamificationDivisor
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeRamificationDivisor.html#TinyTauDemo.toPlace_restrict_eq_of_dominant_curveHom
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeRamificationDivisor.html#TinyTauDemo.ramificationIdx_stalk_eq_toPlace
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeRamificationDivisor.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk_eq_ramificationDivisor_coeff
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CartierRamification.html#TinyTauDemo.exists_effectiveCartierDivisor_twist_of_lineMap
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CartierRamification.html#TinyTauDemo.exists_effectiveCartierRamificationDivisor_with_WeilDivisor
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CartierRamification.html#TinyTauDemo.exists_effectiveWeilRamificationDivisor
   comment: A monomorphism of line bundles gives an effective Cartier divisor from its local multipliers. Its Weil divisor is the tame different reindexed from function-field places, and the associated Weil divisor sheaf gives the same twist.
 - id: prp-relative-differential-skyscrapers
   ok: true
@@ -209,10 +209,10 @@
     - /roadmap/index-ai.qmd#prp-cartier-ramification-divisor
     - /roadmap/index-ai.qmd#prp-closed-curve-differential-length
   docs:
-    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.isoPiModulesStalkSkyscraper
-    - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.subsingleton_morphismRelativeDifferentials_genericStalk
-    - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.finite_support_morphismRelativeDifferentials
-    - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.morphismRelativeDifferentials_isSkyscraper
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PullbackStalk.html#TinyTauDemo.isoPiModulesStalkSkyscraper
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialSkyscraper.html#TinyTauDemo.subsingleton_morphismRelativeDifferentials_genericStalk
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialSkyscraper.html#TinyTauDemo.finite_support_morphismRelativeDifferentials
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialSkyscraper.html#TinyTauDemo.morphismRelativeDifferentials_isSkyscraper
   comment: The generic stalk vanishes by separability, and the ramified closed points form finite support. Gluing the local representatives gives the product with the canonical germ projections.
 - id: prp-canonical-differential-degrees
   ok: true
@@ -220,25 +220,25 @@
     - /roadmap/index-ai.qmd#prp-cartier-ramification-divisor
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
   docs:
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.finrank_globalRelativeDifferentials_of_smoothProperCurve
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_of_smoothProperCurve
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_eq_pullback_add_ramification
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_pullback_relativeDifferentials
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.mem_support_curveRamificationDivisor_iff
-    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.finrank_globalRelativeDifferentials_of_smoothProperCurve
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_of_smoothProperCurve
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_eq_pullback_add_ramification
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_pullback_relativeDifferentials
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.mem_support_curveRamificationDivisor_iff
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
   comment: The canonical bundle degree and global section dimension follow from function-field Riemann–Roch. Apply degree additivity to the actual Weil ramification twist and identify its residue-weighted degree with the tame different.
 - id: prp-projective-line-canonical-differential
   ok: true
   depends:
     - /roadmap/index-ai.qmd#prp-canonical-differential-degrees
   docs:
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_smoothOfRelativeDimension
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_genus
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_eulerDegree_relativeDifferentials
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_inv_coordinate_isUniformizer
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_differential_coordinate
-    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_relativeDifferentialsIsoInfinity
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_smoothOfRelativeDimension
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_genus
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_eulerDegree_relativeDifferentials
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_inv_coordinate_isUniformizer
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_differential_coordinate
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_relativeDifferentialsIsoInfinity
   comment: Use the two standard charts and the rational function-field equivalence. The differential of the affine coordinate gives the divisor minus twice the point at infinity.
 - id: prp-closed-curve-differential-length
   ok: true
@@ -246,9 +246,9 @@
     - /roadmap/index-ai.qmd#prp-differential-sheaf-short-exact
     - /roadmap/index-ai.qmd#prp-relative-differential-sheaf-stalks
   docs:
-    - /docs/TinyTauDemo/ClosedDifferentialLength.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk_of_closed_smoothCurves
-    - /docs/TinyTauDemo/ClosedDifferentialLength.html#TinyTauDemo.nontrivial_morphismRelativeDifferentials_stalk_iff_ramified
-    - /docs/TinyTauDemo/DifferentialRamificationOrder.html#TinyTauDemo.ord_differentialPullbackStalk_eq_ramificationIdx_sub_one
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/ClosedDifferentialLength.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk_of_closed_smoothCurves
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/ClosedDifferentialLength.html#TinyTauDemo.nontrivial_morphismRelativeDifferentials_stalk_iff_ramified
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialRamificationOrder.html#TinyTauDemo.ord_differentialPullbackStalk_eq_ramificationIdx_sub_one
   comment: Smoothness gives rank-one absolute differential stalks and discrete valuation rings at closed points. Use finite separable residue fields and injectivity under dominance. The stalk cokernel length equals the order of the local differential multiplier.
 - id: prp-differential-sheaf-short-exact
   ok: true
@@ -256,18 +256,18 @@
     - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
     - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
   docs:
-    - /docs/TinyTauDemo/DifferentialMonomorphism.html#TinyTauDemo.differentialPullback_mono_of_dominant_curve
-    - /docs/TinyTauDemo/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialMonomorphism.html#TinyTauDemo.differentialPullback_mono_of_dominant_curve
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
   comment: At the generic point the extension of function fields is finite separable. Its differential map is an isomorphism after extending scalars, and a section of the pulled-back line bundle is determined by its generic germ.
 - id: prp-relative-differential-sheaf-stalks
   ok: true
   depends:
     - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
   docs:
-    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.modulesStalkFunctor
-    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsStalkEquiv
-    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsStalkEquiv_projection
-    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PullbackStalk.html#TinyTauDemo.modulesStalkFunctor
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsStalkEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsStalkEquiv_projection
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/RelativeDifferentialSheaf.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk
   comment: The stalk functor is left adjoint to skyscraper modules and preserves the transitivity cokernel. Its identification with the local Kähler module transfers the length formula under the DVR and differential hypotheses.
 - id: prp-scalar-extension-of-stalks
   ok: true
@@ -275,58 +275,58 @@
     - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
     - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
   docs:
-    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.pullbackStalkEquiv
-    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.pullbackStalkEquiv_tmul_germ
-    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.differentialPullbackStalk_eq_mapBaseChange
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PullbackStalk.html#TinyTauDemo.pullbackStalkEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PullbackStalk.html#TinyTauDemo.pullbackStalkEquiv_tmul_germ
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PullbackStalk.html#TinyTauDemo.differentialPullbackStalk_eq_mapBaseChange
   comment: Skyscraper sheaves identify stalk maps out of the pullback with semilinear maps from the original stalk. This gives the scalar-extension comparison and identifies the first differential map.
 - id: prp-differential-sheaf-transitivity
   ok: true
   depends:
     - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
   docs:
-    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.differentialPullback
-    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsHomEquiv
-    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.differentialTransitivity_exact
-    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.differentialTransitivity_epi
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialStalkMap.html#TinyTauDemo.differentialPullback
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsHomEquiv
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/RelativeDifferentialSheaf.html#TinyTauDemo.differentialTransitivity_exact
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/RelativeDifferentialSheaf.html#TinyTauDemo.differentialTransitivity_epi
   comment: Take the cokernel of the adjoint pullback map and prove its universal property for derivations that annihilate pulled-back sections.
 - id: prp-differential-pullback-on-stalks
   ok: true
   depends:
     - /roadmap/index-ai.qmd#lem-tame-relative-differential-length
   docs:
-    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.pullbackRelativeDifferentialsHom
-    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.pullbackRelativeDifferentialsStalk_eq_map
-    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.length_relativeKaehlerDifferential_stalkMap
-    - /docs/TinyTauDemo/PlaceDifferentialLength.html#TinyTauDemo.addVal_algebraMap_place_uniformizer
-    - /docs/TinyTauDemo/PlaceDifferentialLength.html#TinyTauDemo.length_relativeKaehlerDifferential_placeIntegers
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialStalkMap.html#TinyTauDemo.pullbackRelativeDifferentialsHom
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialStalkMap.html#TinyTauDemo.pullbackRelativeDifferentialsStalk_eq_map
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialStalkMap.html#TinyTauDemo.length_relativeKaehlerDifferential_stalkMap
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PlaceDifferentialLength.html#TinyTauDemo.addVal_algebraMap_place_uniformizer
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/PlaceDifferentialLength.html#TinyTauDemo.length_relativeKaehlerDifferential_placeIntegers
   comment: Compare the induced sheaf stalk map with the local Kähler map. Normalize the place valuation on a uniformizer to identify the length with the place ramification index.
 - id: thm-tame-hurwitz-schemes
   ok: true
   depends:
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
   docs:
-    - /docs/TinyTauDemo/SchemeHurwitz.html#TinyTauDemo.curveCodimensionOnePointEquivPlace
-    - /docs/TinyTauDemo/SchemeHurwitz.html#TinyTauDemo.genus_eq_genus_of_regularProperCurve
-    - /docs/TinyTauDemo/SchemeHurwitz.html#TinyTauDemo.hurwitz_genus_formula_of_regularProperCurveHom
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.curveCodimensionOnePointEquivPlace
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.genus_eq_genus_of_regularProperCurve
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.hurwitz_genus_formula_of_regularProperCurveHom
   comment: Use the pullback of function fields along the dominant morphism. Compare the scheme genera and reindex the ramification term by codimension-one points.
 - id: lem-tame-relative-differential-length
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/TameDifferentials.html#TinyTauDemo.differential_unit_mul_uniformizer_pow
-    - /docs/TinyTauDemo/TameDifferentials.html#TinyTauDemo.relativeKaehlerDifferentialEquivQuotient
-    - /docs/TinyTauDemo/TameDifferentials.html#TinyTauDemo.length_relativeKaehlerDifferential_eq_addVal_sub_one_of_finite
-    - /docs/TinyTauDemo/TameRamificationIndex.html#TinyTauDemo.ramificationIdx_maximalIdeal_eq_toNat_addVal
-    - /docs/TinyTauDemo/TameRamificationIndex.html#TinyTauDemo.length_relativeKaehlerDifferential_eq_ramificationIdx_sub_one
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/TameDifferentials.html#TinyTauDemo.differential_unit_mul_uniformizer_pow
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/TameDifferentials.html#TinyTauDemo.relativeKaehlerDifferentialEquivQuotient
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/TameDifferentials.html#TinyTauDemo.length_relativeKaehlerDifferential_eq_addVal_sub_one_of_finite
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/TameRamificationIndex.html#TinyTauDemo.ramificationIdx_maximalIdeal_eq_toNat_addVal
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/TameRamificationIndex.html#TinyTauDemo.length_relativeKaehlerDifferential_eq_ramificationIdx_sub_one
   comment: Transitivity gives the local quotient. Nakayama gives the uniformizer generators. The valuation of a pulled-back uniformizer agrees with Mathlib's ramification index.
 - id: thm-tame-hurwitz-function-fields
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.weilDifferentialDivisor_cotrace_eq_conorm_add_tameDifferent
-    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.hurwitz_genus_formula_of_isAlgClosed
-    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.sum_ramification_excess_above_finset
-    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.card_places_above_lower_bound_of_genus_zero
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/HurwitzFibreCount.html#TinyTauDemo.weilDifferentialDivisor_cotrace_eq_conorm_add_tameDifferent
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/HurwitzFibreCount.html#TinyTauDemo.hurwitz_genus_formula_of_isAlgClosed
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/HurwitzFibreCount.html#TinyTauDemo.sum_ramification_excess_above_finset
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/HurwitzFibreCount.html#TinyTauDemo.card_places_above_lower_bound_of_genus_zero
   comment: Use Tau Ceti's canonical degree formula and the divisor of the rational differential. Algebraically closed constants give degree one at each place, and characteristic zero ensures that the different is tame.
 - id: prp-fermat-genus
   ok: true
@@ -335,39 +335,39 @@
     - /roadmap/index-ai.qmd#prp-fermat-projective-smooth
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
   docs:
-    - /docs/TinyTauDemo/FermatSchemeFunctionField.html#TinyTauDemo.fermatProjectiveFunctionFieldEquiv
-    - /docs/TinyTauDemo/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_isCurveOver
-    - /docs/TinyTauDemo/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_isDiscreteValuationRing_stalk
-    - /docs/TinyTauDemo/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_genus
+    - /docs/TinyTauDemo/Fermat/Curve/FermatSchemeFunctionField.html#TinyTauDemo.fermatProjectiveFunctionFieldEquiv
+    - /docs/TinyTauDemo/Fermat/Curve/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_isCurveOver
+    - /docs/TinyTauDemo/Fermat/Curve/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_isDiscreteValuationRing_stalk
+    - /docs/TinyTauDemo/Fermat/Curve/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_genus
   comment: Use the fraction field of the actual Z-chart and the comparison of scheme genus with function-field genus.
 - id: prp-fermat-projective-smooth
   ok: true
   depends:
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
-    - /docs/TinyTauDemo/FermatAffineSmooth.html#TinyTauDemo.fermatAffine_locally_standardSmoothOne
-    - /docs/TinyTauDemo/FermatCharts.html#TinyTauDemo.fermatAwayEquivAffine
-    - /docs/TinyTauDemo/FermatCharts.html#TinyTauDemo.fermatBasicOpenIsoSpecAffine
-    - /docs/TinyTauDemo/FermatCharts.html#TinyTauDemo.fermatProjective_smoothOne
+    - /docs/TinyTauDemo/Fermat/Curve/FermatAffineSmooth.html#TinyTauDemo.fermatAffine_locally_standardSmoothOne
+    - /docs/TinyTauDemo/Fermat/Curve/FermatCharts.html#TinyTauDemo.fermatAwayEquivAffine
+    - /docs/TinyTauDemo/Fermat/Curve/FermatCharts.html#TinyTauDemo.fermatBasicOpenIsoSpecAffine
+    - /docs/TinyTauDemo/Fermat/Curve/FermatCharts.html#TinyTauDemo.fermatProjective_smoothOne
   comment: Identify the actual affine charts of Proj. The dehomogenized equations satisfy the Jacobian criterion in relative dimension one.
 - id: def-fermat-projective-scheme
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/FermatCoordinateRing.html#TinyTauDemo.fermatEquation_irreducible
-    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjective
-    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjectiveInclusion
-    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjectiveToSpec
-    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjective_iSup_basicOpen
-    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjective_isIntegral
+    - /docs/TinyTauDemo/Fermat/Curve/FermatCoordinateRing.html#TinyTauDemo.fermatEquation_irreducible
+    - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatProjective
+    - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatProjectiveInclusion
+    - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatProjectiveToSpec
+    - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatProjective_iSup_basicOpen
+    - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatProjective_isIntegral
   comment: Form Proj of the homogeneous quotient, embed it as a closed subscheme of the proper projective plane, and cover it by the three coordinate opens.
 - id: thm-fermat-function-field-genus
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/FermatEquation.html#TinyTauDemo.fermatEquation_exists_aeval_pderiv_ne_zero
-    - /docs/TinyTauDemo/FermatGenus.html#TinyTauDemo.isIntegrallyClosedIn_of_fermatEquation
-    - /docs/TinyTauDemo/FermatGenus.html#TinyTauDemo.genus_eq_of_fermatEquation
+    - /docs/TinyTauDemo/Fermat/Curve/FermatEquation.html#TinyTauDemo.fermatEquation_exists_aeval_pderiv_ne_zero
+    - /docs/TinyTauDemo/Fermat/Curve/FermatGenus.html#TinyTauDemo.isIntegrallyClosedIn_of_fermatEquation
+    - /docs/TinyTauDemo/Fermat/Curve/FermatGenus.html#TinyTauDemo.genus_eq_of_fermatEquation
   comment: Apply Tau Ceti's plane curve genus and constant field results to the nonsingular Fermat equation.
 - id: thm-flt-geometric
   ok: true
@@ -375,15 +375,15 @@
     - /roadmap/index.qmd#def-primitive-solution
     - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
   docs:
-    - /docs/TinyTauDemo/FermatHurwitz.html#TinyTauDemo.not_ratFunc_fermat_of_transcendental
-    - /docs/TinyTauDemo/FermatHurwitz.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_of_hurwitz
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatHurwitz.html#TinyTauDemo.not_ratFunc_fermat_of_transcendental
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatHurwitz.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_of_hurwitz
   comment: Normalizing a primitive triple gives a transcendental Fermat coordinate. The resulting subfield of the rational function field has positive genus, contradicting Riemann–Hurwitz.
 - id: rem-mason-hurwitz-bridge
   ok: true
   depends:
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
   docs:
-    - /docs/TinyTauDemo/MasonHurwitz.html#TinyTauDemo.masonStothers_of_hurwitz
+    - /docs/TinyTauDemo/Algebra/Polynomial/MasonHurwitz.html#TinyTauDemo.masonStothers_of_hurwitz
   comment: Use the degree of the reduced fraction a/c and count the places above zero, one, and infinity. The finite places belong to the support of the radical, with at most the source place at infinity as an extra place.
 - id: rem-arithmetic-surface
   ok: false
@@ -404,31 +404,31 @@
   depends:
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
-    - /docs/TinyTauDemo/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjectiveToSpec_int_flat
-    - /docs/TinyTauDemo/FermatSpecMap.html#TinyTauDemo.fermatSpecMap
-    - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.PrimitiveIntegerFermatCoordinates.toSection
-    - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.primitiveIntegerFermatCoordinates_toSection_eq_iff
-    - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.integralFermatSectionsEquiv
-    - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.exists_integralFermatSection_only_zero_secondCoordinate
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjectiveToSpec_int_flat
+    - /docs/TinyTauDemo/Fermat/Polynomial/FermatSpecMap.html#TinyTauDemo.fermatSpecMap
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.PrimitiveIntegerFermatCoordinates.toSection
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.primitiveIntegerFermatCoordinates_toSection_eq_iff
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.integralFermatSectionsEquiv
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.exists_integralFermatSection_only_zero_secondCoordinate
   comment: Use the monic affine equations for flatness. Normalize a rational point in a standard chart, clear denominators primitively, and use separatedness and common signs to compare sections.
 - id: prp-fermat-cone-integral
   ok: true
   depends:
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
-    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatCoordinateRing_isDomain
-    - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
+    - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatCoordinateRing_isDomain
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
   comment: The homogeneous Fermat coordinate ring over algebraically closed characteristic-zero constants is a domain for every positive exponent. For primitive solutions the cyclotomic ideal decomposition applies to the linear factors of the sum of two powers.
 - id: prp-fermat-special-fibre
   ok: true
   depends:
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
-    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.fermatEquation_eq_linear_pow
-    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.radical_fermatIdeal_eq_linear
-    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRingEquiv_truncated
-    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRing_linear_nilpotence
-    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_baseChange_charP
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatEquation_eq_linear_pow
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.radical_fermatIdeal_eq_linear
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRingEquiv_truncated
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRing_linear_nilpotence
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_baseChange_charP
   comment: The linear class has nilpotence index p by a linear coordinate change. The tensor description of the last affine chart transports nonreducedness to the projective base change.
 - id: prp-cyclotomic-differentials
   ok: true
@@ -436,55 +436,55 @@
     - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
   docs:
-    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsAdjoinRoot.kaehlerDifferentialEquivQuotient
-    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.differentIdeal_eq_span_one_sub_pow
-    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.cyclotomicKaehlerDifferentialEquiv
-    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.isEtaleAt_iff_natCast_notMem
-    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.etale_localizationAway_natCast
-    - /docs/TinyTauDemo/CyclotomicDifferentials.html#TinyTauDemo.subsingleton_kaehlerDifferential_int
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicDifferentials.html#IsAdjoinRoot.kaehlerDifferentialEquivQuotient
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicDifferentials.html#IsPrimitiveRoot.differentIdeal_eq_span_one_sub_pow
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicDifferentials.html#IsPrimitiveRoot.cyclotomicKaehlerDifferentialEquiv
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicDifferentials.html#IsPrimitiveRoot.isEtaleAt_iff_natCast_notMem
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicDifferentials.html#IsPrimitiveRoot.etale_localizationAway_natCast
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicDifferentials.html#TinyTauDemo.subsingleton_kaehlerDifferential_int
   comment: The monogenic presentation gives the quotient by the derivative. The different then gives the exact étale locus when the prime is odd.
 - id: prp-cyclotomic-cover-scheme
   ok: true
   depends:
     - /roadmap/index-ai.qmd#prp-cyclotomic-differentials
   docs:
-    - /docs/TinyTauDemo/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom
-    - /docs/TinyTauDemo/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_finite_flat
-    - /docs/TinyTauDemo/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_etale_away
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_finite_flat
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_etale_away
   comment: The morphism restricts to the actual base open D(p), identified with a map of affine localizations.
 - id: rem-ramification-disc-recall
   ok: true
   depends:
     - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
   docs:
-    - /docs/TinyTauDemo/RamificationRecall.html#Ideal.sum_ramification_inertia_integralClosure
-    - /docs/TinyTauDemo/RamificationRecall.html#Ideal.total_ramification_of_map_eq_span_pow
-    - /docs/TinyTauDemo/PowerBasisDiscriminant.html#Algebra.discr_powerBasis_eq_det_trace_pow
-    - /docs/TinyTauDemo/PowerBasisDiscriminant.html#Algebra.discr_powerBasis_eq_norm_of_isIntegral
-    - /docs/TinyTauDemo/DiscriminantIndex.html#TauCeti.NumberField.IntegralPrimitiveElement.discr_powerBasis_eq_card_quotient_sq_mul_discr
-    - /docs/TinyTauDemo/DiscriminantIndex.html#TauCeti.NumberField.IntegralPrimitiveElement.sq_dvd_discr_minpoly_of_dvd_index
+    - /docs/TinyTauDemo/NumberTheory/Ramification/RamificationRecall.html#Ideal.sum_ramification_inertia_integralClosure
+    - /docs/TinyTauDemo/NumberTheory/Ramification/RamificationRecall.html#Ideal.total_ramification_of_map_eq_span_pow
+    - /docs/TinyTauDemo/NumberTheory/Ramification/PowerBasisDiscriminant.html#Algebra.discr_powerBasis_eq_det_trace_pow
+    - /docs/TinyTauDemo/NumberTheory/Ramification/PowerBasisDiscriminant.html#Algebra.discr_powerBasis_eq_norm_of_isIntegral
+    - /docs/TinyTauDemo/NumberTheory/Ramification/DiscriminantIndex.html#TauCeti.NumberField.IntegralPrimitiveElement.discr_powerBasis_eq_card_quotient_sq_mul_discr
+    - /docs/TinyTauDemo/NumberTheory/Ramification/DiscriminantIndex.html#TauCeti.NumberField.IntegralPrimitiveElement.sq_dvd_discr_minpoly_of_dvd_index
   comment: Use Mathlib's ideal factorization. Total ramification follows from the positive summands for a nonzero prime. Relate the trace determinant and derivative norm, then use Tau Ceti's index formula for the quotient of the integer ring by the generated order.
 - id: prp-cyclotomic-ramification
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.span_natCast_eq_span_one_sub_pow
-    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.primesOver_span_natCast_eq_singleton_one_sub
-    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.quotientOneSubEquivZMod
-    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.norm_toInteger_one_sub_of_prime_ne_two
-    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.integralPowerBasis_discr_prime
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRamification.html#IsPrimitiveRoot.span_natCast_eq_span_one_sub_pow
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRamification.html#IsPrimitiveRoot.primesOver_span_natCast_eq_singleton_one_sub
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRamification.html#IsPrimitiveRoot.quotientOneSubEquivZMod
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRamification.html#IsPrimitiveRoot.norm_toInteger_one_sub_of_prime_ne_two
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRamification.html#IsPrimitiveRoot.integralPowerBasis_discr_prime
   comment: Use Mathlib's cyclotomic field degree, Galois action, and local indices. The integral formulas use one minus the root as generator and the primitive root as the basis generator.
 - id: thm-ring-of-integers
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/CyclotomicIntegers.html#IsPrimitiveRoot.isIntegralClosure_adjoin_one_sub
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicIntegers.html#IsPrimitiveRoot.isIntegralClosure_adjoin_one_sub
   comment: Mathlib identifies the integral closure with the algebra generated by the root of unity. The algebras generated by the root and by one minus the root are equal.
 - id: lem-kronecker-unit
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/Kronecker.html#NumberField.RingOfIntegers.isOfFinOrder_of_norm_eq_one
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Kronecker.html#NumberField.RingOfIntegers.isOfFinOrder_of_norm_eq_one
   comment: Mathlib's embedding theorem gives a positive power equal to one in the field. Injectivity transports the equality to the ring of integers, where it gives finite multiplicative order.
 - id: prp-cyclotomic-units
   ok: true
@@ -493,25 +493,25 @@
     - /roadmap/index.qmd#thm-ring-of-integers
     - /roadmap/index.qmd#lem-kronecker-unit
   docs:
-    - /docs/TinyTauDemo/CyclotomicUnits.html#TinyTauDemo.realCyclotomicIntegers
-    - /docs/TinyTauDemo/CyclotomicUnits.html#TinyTauDemo.mem_realCyclotomicIntegers_iff
-    - /docs/TinyTauDemo/CyclotomicUnits.html#TinyTauDemo.existsUnique_root_mul_realUnit
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicUnits.html#TinyTauDemo.realCyclotomicIntegers
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicUnits.html#TinyTauDemo.mem_realCyclotomicIntegers_iff
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicUnits.html#TinyTauDemo.existsUnique_root_mul_realUnit
   comment: Mathlib classifies the roots of unity. Identify the fixed integer subalgebra and use the conjugation quotient to obtain a unique residue exponent and a unit in that subalgebra.
 - id: lem-pth-power-congruence
   ok: true
   depends:
     - /roadmap/index.qmd#thm-ring-of-integers
   docs:
-    - /docs/TinyTauDemo/CyclotomicCongruences.html#TinyTauDemo.exists_int_pow_congruent
-    - /docs/TinyTauDemo/CyclotomicCongruences.html#TinyTauDemo.natCast_dvd_sum_smul_zeta_pow_iff
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCongruences.html#TinyTauDemo.exists_int_pow_congruent
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCongruences.html#TinyTauDemo.natCast_dvd_sum_smul_zeta_pow_iff
   comment: Taking the prime power of the initial integer lift gives both congruences modulo the prime power of the uniformizer. The integral basis representation detects divisibility coefficient by coefficient.
 - id: def-regular-prime
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/RegularPrime.html#TinyTauDemo.RegularPrime
-    - /docs/TinyTauDemo/RegularPrime.html#TinyTauDemo.regularPrime_iff_no_classGroup_torsion
-    - /docs/TinyTauDemo/RegularPrime.html#TinyTauDemo.RegularPrime.fractionalIdeal_isPrincipal_of_pow
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.RegularPrime
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.regularPrime_iff_no_classGroup_torsion
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.RegularPrime.fractionalIdeal_isPrincipal_of_pow
   comment: Use the class number of the canonical ring of integers. Cauchy's theorem gives the torsion equivalence, and coprimality with the class number gives the principal ideal consequence.
 - id: rem-bernoulli-regular
   ok: false
@@ -534,30 +534,30 @@
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index.qmd#prp-cyclotomic-units
   docs:
-    - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.dvd_classNumber_iff_dvd_base_or_dvd_normKernel
-    - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_maximalRealSubfield_or_dvd_normKernel
-    - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.classNumber_relNorm_index
-    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cm_dedekindZeta_residue_div
-    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_indexRealUnits_eq_one
-    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_torsionOrder_eq_two_mul
-    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div
-    - /docs/TinyTauDemo/CyclotomicRealDiscriminant.html#TinyTauDemo.cyclotomic_real_differentIdeal_absNorm
-    - /docs/TinyTauDemo/CyclotomicRealDiscriminant.html#TinyTauDemo.cyclotomic_real_discr_natAbs
-    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div_explicit
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/ClassNumberTransfer.html#TinyTauDemo.dvd_classNumber_iff_dvd_base_or_dvd_normKernel
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/ClassNumberTransfer.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_maximalRealSubfield_or_dvd_normKernel
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/ClassNumberTransfer.html#TinyTauDemo.classNumber_relNorm_index
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicResidueRatio.html#TinyTauDemo.cm_dedekindZeta_residue_div
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_indexRealUnits_eq_one
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_torsionOrder_eq_two_mul
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRealDiscriminant.html#TinyTauDemo.cyclotomic_real_differentIdeal_absNorm
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicRealDiscriminant.html#TinyTauDemo.cyclotomic_real_discr_natAbs
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div_explicit
   comment: Combine relative norm and extension of ideals for the divisibility reduction. Simplify the analytic residue ratio with the CM regulator identity, the real-unit index, the torsion order, and the discriminant tower.
 - id: prp-teichmuller-bernoulli-factors
   ok: true
   depends:
     - /roadmap/index-ai.qmd#lem-bernoulli-kummer-congruence
   docs:
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.prime_sq_dvd_power_sum_iff_dvd_bernoulli_num
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichNat_toZModPow_two
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_generalizedBernoulli_one
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_generalizedBernoulli_one_dvd_iff
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichWeightedSum_toZMod
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_exceptional_generalizedBernoulli_one_not_integral
-    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.orderOf_padicTeichmullerCharacter
-    - /docs/TinyTauDemo/BernoulliTeichmullerProduct.html#TinyTauDemo.padicTeichmuller_odd_generalizedBernoulli_product_dvd_iff
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.prime_sq_dvd_power_sum_iff_dvd_bernoulli_num
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.padicTeichNat_toZModPow_two
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_generalizedBernoulli_one
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_generalizedBernoulli_one_dvd_iff
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.padicTeichWeightedSum_toZMod
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_exceptional_generalizedBernoulli_one_not_integral
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmuller.html#TinyTauDemo.orderOf_padicTeichmullerCharacter
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliTeichmullerProduct.html#TinyTauDemo.padicTeichmuller_odd_generalizedBernoulli_product_dvd_iff
   comment: Reduce each Teichmüller lift modulo p squared to the pth power of its residue representative. Faulhaber and Kummer congruences identify the ordinary numerator test. The exceptional weighted sum is a unit, so the normalized odd product satisfies the same test.
 - id: prp-odd-bernoulli-product-transport
   ok: true
@@ -565,19 +565,19 @@
     - /roadmap/index-ai.qmd#prp-cyclotomic-class-number-reduction
     - /roadmap/index-ai.qmd#prp-teichmuller-bernoulli-factors
   docs:
-    - /docs/TinyTauDemo/OddBernoulliTransport.html#TinyTauDemo.map_prod_oddDirichletCharacters_generalizedBernoulli
-    - /docs/TinyTauDemo/OddBernoulliTransport.html#TinyTauDemo.exists_oddDirichletCharacters_generalizedBernoulli_common_preimage
-    - /docs/TinyTauDemo/OddBernoulliTransport.html#TinyTauDemo.dvd_iff_bernoulli_irregular_of_complex_oddProduct_eq
-    - /docs/TinyTauDemo/CyclotomicBernoulliReduction.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular_of_complex_oddProduct_eq
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/OddBernoulliTransport.html#TinyTauDemo.map_prod_oddDirichletCharacters_generalizedBernoulli
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/OddBernoulliTransport.html#TinyTauDemo.exists_oddDirichletCharacters_generalizedBernoulli_common_preimage
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/OddBernoulliTransport.html#TinyTauDemo.dvd_iff_bernoulli_irregular_of_complex_oddProduct_eq
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/CyclotomicBernoulliReduction.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular_of_complex_oddProduct_eq
   comment: Transport the odd product through a common cyclotomic coefficient field. Use the norm cokernel to pass from the complex relative class-number identity to the criterion for the norm kernel.
 - id: prp-dirichlet-l-values-at-zero
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.tendsto_sum_geom_div_eq_neg_log
-    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.sinZeta_one_eq
-    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.hurwitzZeta_zero_eq
-    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.dirichletLFunction_zero_eq_neg_generalizedBernoulli
+    - /docs/TinyTauDemo/NumberTheory/Dirichlet/DirichletLZero.html#TinyTauDemo.tendsto_sum_geom_div_eq_neg_log
+    - /docs/TinyTauDemo/NumberTheory/Dirichlet/DirichletLZero.html#TinyTauDemo.sinZeta_one_eq
+    - /docs/TinyTauDemo/NumberTheory/Dirichlet/DirichletLZero.html#TinyTauDemo.hurwitzZeta_zero_eq
+    - /docs/TinyTauDemo/NumberTheory/Dirichlet/DirichletLZero.html#TinyTauDemo.dirichletLFunction_zero_eq_neg_generalizedBernoulli
   comment: Use Abel's theorem and summation by parts for the sine zeta at one. The Hurwitz functional equation and the finite sum over residue classes give the generalized Bernoulli value.
 - id: thm-cyclotomic-relative-class-number
   ok: true
@@ -586,12 +586,12 @@
     - /roadmap/index-ai.qmd#prp-odd-bernoulli-product-transport
     - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
   docs:
-    - /docs/TinyTauDemo/CyclotomicOddEulerProduct.html#TinyTauDemo.cyclotomic_dedekindZeta_div_eq_prod_odd
-    - /docs/TinyTauDemo/CyclotomicOddEulerProduct.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div_eq_prod_odd_LFunction
-    - /docs/TinyTauDemo/DirichletOddFunctionalEquation.html#TinyTauDemo.norm_prod_odd_dirichletLFunction_one
-    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.cyclotomic_relative_classNumber_eq_norm_oddBernoulli
-    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular
-    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_real_or_bernoulliIrregular
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicOddEulerProduct.html#TinyTauDemo.cyclotomic_dedekindZeta_div_eq_prod_odd
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/Zeta/CyclotomicOddEulerProduct.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div_eq_prod_odd_LFunction
+    - /docs/TinyTauDemo/NumberTheory/Dirichlet/DirichletOddFunctionalEquation.html#TinyTauDemo.norm_prod_odd_dirichletLFunction_one
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/CyclotomicClassNumberFormula.html#TinyTauDemo.cyclotomic_relative_classNumber_eq_norm_oddBernoulli
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_real_or_bernoulliIrregular
   comment: Compare the odd Euler product limit and the explicit class-number ratio. Use the odd functional equation and transport of the generalized Bernoulli product to prove the criterion for the relative kernel.
 - id: prp-cyclotomic-reflection-reduction
   ok: true
@@ -599,28 +599,28 @@
     - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
     - /roadmap/index.qmd#prp-cyclotomic-units
   docs:
-    - /docs/TinyTauDemo/HilbertClassPrimeQuotient.html#TinyTauDemo.exists_ideleClass_prime_quotient_of_dvd_classNumber
-    - /docs/TinyTauDemo/UnramifiedCoprimeTower.html#TinyTauDemo.isUnramifiedAt_of_coprime_galois_towers
-    - /docs/TinyTauDemo/CyclotomicReflection.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_abelian_tower
-    - /docs/TinyTauDemo/CyclotomicReflectionBaseChange.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_real_extension
-    - /docs/TinyTauDemo/CyclotomicReflectionBaseChange.html#TinyTauDemo.bernoulliIrregular_of_unramified_real_extension
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/HilbertClassPrimeQuotient.html#TinyTauDemo.exists_ideleClass_prime_quotient_of_dvd_classNumber
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/UnramifiedCoprimeTower.html#TinyTauDemo.isUnramifiedAt_of_coprime_galois_towers
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicReflection.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_abelian_tower
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicReflectionBaseChange.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_real_extension
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicReflectionBaseChange.html#TinyTauDemo.bernoulliIrregular_of_unramified_real_extension
   comment: Construct the open idele-class quotient from the ordinary class group. A degree-p unramified real extension gives the required abelian Kummer tower and a p-factor of the relative norm kernel.
 - id: prp-kummer-idele-norm-index
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/KummerFrobeniusBasis.html#TinyTauDemo.exists_finset_frobeniusBasis_kummerField_sUnits
-    - /docs/TinyTauDemo/KummerFrobeniusPower.html#TinyTauDemo.exists_local_pow_iff_exists_intermediate_pow_of_frobeniusBasis
-    - /docs/TinyTauDemo/KummerNormIndex.html#TinyTauDemo.index_kummerIdeleClassSubgroup_eq_pow
-    - /docs/TinyTauDemo/KummerSecondInequality.html#TinyTauDemo.index_range_ideleClassNormMap_dvd_finrank_of_kummerField_sUnits
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerFrobeniusBasis.html#TinyTauDemo.exists_finset_frobeniusBasis_kummerField_sUnits
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerFrobeniusPower.html#TinyTauDemo.exists_local_pow_iff_exists_intermediate_pow_of_frobeniusBasis
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerNormIndex.html#TinyTauDemo.index_kummerIdeleClassSubgroup_eq_pow
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerSecondInequality.html#TinyTauDemo.index_range_ideleClassNormMap_dvd_finrank_of_kummerField_sUnits
   comment: The auxiliary Frobenius basis detects roots of S-units. Local powers and the principal intersection give an idele-class subgroup of the required index inside the norm group.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/KummerBernoulliCongruence.html#TinyTauDemo.mul_bernoulli_mem_pIntegrals
-    - /docs/TinyTauDemo/KummerBernoulliCongruence.html#TinyTauDemo.bernoulli_div_sub_div_prime_mem_pIntegrals
-    - /docs/TinyTauDemo/KummerBernoulliCongruence.html#TinyTauDemo.dvd_bernoulli_num_iff_of_congruent_even_indices
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/KummerBernoulliCongruence.html#TinyTauDemo.mul_bernoulli_mem_pIntegrals
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/KummerBernoulliCongruence.html#TinyTauDemo.bernoulli_div_sub_div_prime_mem_pIntegrals
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/KummerBernoulliCongruence.html#TinyTauDemo.dvd_bernoulli_num_iff_of_congruent_even_indices
   comment: Use von Staudt–Clausen to bound denominators, Faulhaber to reduce to power sums, and a primitive root modulo p to isolate the congruence.
 - id: thm-bernoulli-irregular-infinite
   ok: true
@@ -628,22 +628,22 @@
     - /roadmap/index-ai.qmd#lem-bernoulli-kummer-congruence
     - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
   docs:
-    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.BernoulliIrregular
-    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulli_den_two_mul_prime_eq_six
-    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulli_num_two_mul_prime_mod_four
-    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular_mod_four
-    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular
-    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.infinite_irregularPrime_mod_four
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliIrregular.html#TinyTauDemo.BernoulliIrregular
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliIrregular.html#TinyTauDemo.bernoulli_den_two_mul_prime_eq_six
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliIrregular.html#TinyTauDemo.bernoulli_num_two_mul_prime_mod_four
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular_mod_four
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/CyclotomicClassNumberFormula.html#TinyTauDemo.infinite_irregularPrime_mod_four
   comment: Choose a prime q in a suitable progression. The positive numerator of B_(2q) is three modulo four, and Kummer's congruence yields a new prime satisfying the numerator test.
 - id: prp-bernoulli-numerator-test-below-100
   ok: true
   depends: []
   docs:
-    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.bernoulli_irregular_primes_below_100
-    - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulliIrregular_below_100_iff
-    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_37
-    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_59
-    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_67
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliExamples.html#TinyTauDemo.bernoulli_irregular_primes_below_100
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliIrregular.html#TinyTauDemo.bernoulliIrregular_below_100_iff
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_37
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_59
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_67
   comment: Kernel evaluation of the rational recurrence certifies all of the finite numerator tests and the three witnesses.
 - id: thm-kummer-case-1
   ok: true
@@ -653,7 +653,7 @@
     - /roadmap/index.qmd#lem-pth-power-congruence
     - /roadmap/index.qmd#def-regular-prime
   docs:
-    - /docs/TinyTauDemo/KummerCaseOne.html#TinyTauDemo.kummer_case_I
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerCaseOne.html#TinyTauDemo.kummer_case_I
   comment: Uses Mathlib for exponent three. Dividing by each pair's gcd gives the coprimality for the linear-factor argument, so the theorem also applies to nonprimitive triples.
 - id: lem-kummer-unit
   ok: true
@@ -661,24 +661,24 @@
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index-ai.qmd#lem-kummer-extension-unramified
   docs:
-    - /docs/TinyTauDemo/KummerUnit.html#TinyTauDemo.RegularPrime.kummer_unit
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerUnit.html#TinyTauDemo.RegularPrime.kummer_unit
   comment: Finite-prime unramifiedness and the class number rule out a nontrivial cyclic splitting field for the Kummer polynomial.
 - id: lem-kummer-local-congruence
   ok: true
   depends:
     - /roadmap/index.qmd#prp-cyclotomic-ramification
   docs:
-    - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.one_sub_pow_dvd_unit_pow_pred_sub_one
-    - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
-    - /docs/TinyTauDemo/KummerTranslatedRoot.html#TinyTauDemo.isIntegral_sub_one_div_of_prime_pow
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerLocalArithmetic.html#TinyTauDemo.one_sub_pow_dvd_unit_pow_pred_sub_one
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerTranslatedRoot.html#TinyTauDemo.isIntegral_sub_one_div_of_prime_pow
   comment: The norm expansion lifts the congruence, and coefficientwise divisibility gives an integral translated root. The cubic case uses Mathlib's unit classification.
 - id: lem-kummer-extension-unramified
   ok: true
   depends:
     - /roadmap/index-ai.qmd#lem-kummer-local-congruence
   docs:
-    - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.inertia_eq_bot_of_kummer_unit
-    - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerUnramified.html#TinyTauDemo.inertia_eq_bot_of_kummer_unit
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
   comment: A nontrivial automorphism changes the integral translated root by a unit, forcing trivial inertia at every finite prime.
 - id: rem-kummer-unit-proof
   ok: true
@@ -687,9 +687,9 @@
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index.qmd#lem-kummer-unit
   docs:
-    - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
-    - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
-    - /docs/TinyTauDemo/UnramifiedCyclicDegree.html#TinyTauDemo.finrank_eq_one_of_unramified_cyclic_of_coprime_classNumber
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/UnramifiedCyclicDegree.html#TinyTauDemo.finrank_eq_one_of_unramified_cyclic_of_coprime_classNumber
   comment: The cubic specialization uses the congruence hypothesis. For the class-field step, local norms and class-number coprimality give idèle-class norm surjectivity.
 - id: lem-case2-valuations
   ok: true
@@ -698,7 +698,7 @@
     - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
   docs:
-    - /docs/TinyTauDemo/CaseTwoValuations.html#TinyTauDemo.caseTwo_valuations
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/CaseTwoValuations.html#TinyTauDemo.caseTwo_valuations
   comment: The twist is indexed by Fin p. Ideal factorization gives the exact valuations, and elements witness the integral quotients and their principal ideals.
 - id: thm-kummer-case-2
   ok: true
@@ -709,7 +709,7 @@
     - /roadmap/index.qmd#lem-pth-power-congruence
     - /roadmap/index.qmd#lem-case2-valuations
   docs:
-    - /docs/TinyTauDemo/KummerCaseTwo.html#TinyTauDemo.RegularPrime.caseTwo_no_solution
-    - /docs/TinyTauDemo/KummerCaseTwo.html#TinyTauDemo.RegularPrime.not_primitiveFermatSolution
-    - /docs/TinyTauDemo/KummerCaseTwo.html#TinyTauDemo.RegularPrime.fermatLastTheoremWith
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerCaseTwo.html#TinyTauDemo.RegularPrime.caseTwo_no_solution
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerCaseTwo.html#TinyTauDemo.RegularPrime.not_primitiveFermatSolution
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerCaseTwo.html#TinyTauDemo.RegularPrime.fermatLastTheoremWith
   comment: Eliminate three linear factors, use the unit lemma, and descend from m to m − 1. Combining the two cases with Mathlib's gcd reduction proves Fermat's last theorem at every regular prime.
