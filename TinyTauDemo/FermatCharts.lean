@@ -173,16 +173,49 @@ private theorem smoothOne_hasRingHomProperty :
     HasRingHomProperty (@SmoothOfRelativeDimension.{u} 1)
       (RingHom.Locally (RingHom.IsStandardSmoothOfRelativeDimension 1)) := inferInstance
 
+omit [CharZero k] [IsAlgClosed k] in
+private theorem fermatAwayι_comp_toSpec (n : ℕ) (i : Fin 3) :
+    Proj.awayι (fermatGrading k n) (coord k n i) (fermatCoord_mem_degree_one i) Nat.one_pos ≫
+      fermatProjectiveToSpec k n =
+      Spec.map (CommRingCat.ofHom (algebraMap k (Away (fermatGrading k n) (coord k n i)))) := by
+  change Proj.awayι (fermatGrading k n) (coord k n i) (fermatCoord_mem_degree_one i) Nat.one_pos ≫
+    (Proj.toSpecZero (fermatGrading k n) ≫
+      Spec.map (CommRingCat.ofHom (algebraMap k (fermatGrading k n 0)))) = _
+  rw [← Category.assoc, Proj.awayι_toSpecZero, ← Spec.map_comp]
+  rfl
+
+/-- The map from the dehomogenized Fermat scheme to its projective closure. -/
+noncomputable def fermatAffineChart {n : ℕ} (hn : 0 < n) (i : Fin 3) :
+    Spec (.of (FermatAffineRing k n i)) ⟶ fermatProjective k n :=
+  (fermatBasicOpenIsoSpecAffine k hn i).inv ≫
+    (Proj.basicOpen (fermatGrading k n) (coord k n i)).ι
+
+instance {n : ℕ} (hn : 0 < n) (i : Fin 3) : IsOpenImmersion (fermatAffineChart k hn i) := by
+  change IsOpenImmersion ((fermatBasicOpenIsoSpecAffine k hn i).inv ≫
+    (Proj.basicOpen (fermatGrading k n) (coord k n i)).ι)
+  exact IsOpenImmersion.comp _ _
+
+/-- The affine chart inclusion respects the structure maps to the coefficient field. -/
+theorem fermatAffineChart_comp_toSpec {n : ℕ} (hn : 0 < n) (i : Fin 3) :
+    fermatAffineChart k hn i ≫ fermatProjectiveToSpec k n =
+      Spec.map (CommRingCat.ofHom (algebraMap k (FermatAffineRing k n i))) := by
+  let f : Proj (fermatGrading k n) ⟶ Spec (.of k) := fermatProjectiveToSpec k n
+  change (Spec.map (CommRingCat.ofHom (fermatAwayEquivAffine k hn i).toRingHom) ≫
+    Proj.awayι (fermatGrading k n) (coord k n i) (fermatCoord_mem_degree_one i) Nat.one_pos) ≫ f = _
+  have hAway : Proj.awayι (fermatGrading k n) (coord k n i)
+      (fermatCoord_mem_degree_one i) Nat.one_pos ≫ f =
+      Spec.map (CommRingCat.ofHom (algebraMap k (Away (fermatGrading k n) (coord k n i)))) :=
+    fermatAwayι_comp_toSpec k n i
+  rw [Category.assoc, hAway, ← Spec.map_comp]
+  congr 1
+  ext c
+  exact awayToAffine_algebraMap k n i c
+
 private theorem fermatAway_smoothOne {n : ℕ} (hn : 0 < n) (i : Fin 3) :
     SmoothOfRelativeDimension 1 (Proj.awayι (fermatGrading k n) (coord k n i)
       (fermatCoord_mem_degree_one i) Nat.one_pos ≫ fermatProjectiveToSpec k n) := by
-  change SmoothOfRelativeDimension 1 (Proj.awayι (fermatGrading k n) (coord k n i)
-    (fermatCoord_mem_degree_one i) Nat.one_pos ≫ (Proj.toSpecZero (fermatGrading k n) ≫
-      Spec.map (CommRingCat.ofHom (algebraMap k (fermatGrading k n 0)))))
-  rw [← Category.assoc, Proj.awayι_toSpecZero, ← Spec.map_comp]
+  rw [fermatAwayι_comp_toSpec]
   have := smoothOne_hasRingHomProperty.{u}
-  change SmoothOfRelativeDimension 1
-    (Spec.map (CommRingCat.ofHom (algebraMap k (Away (fermatGrading k n) (coord k n i)))))
   let e := fermatAwayEquivAffine k hn i
   have hcomp : algebraMap k (Away (fermatGrading k n) (coord k n i)) =
       e.symm.toRingHom.comp (algebraMap k (FermatAffineRing k n i)) := by

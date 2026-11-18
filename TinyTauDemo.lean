@@ -28,6 +28,7 @@ public import TinyTauDemo.FermatLineExtension
 public import TinyTauDemo.FermatPolynomialDescent
 public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.FermatProjective
+public import TinyTauDemo.FermatSchemeGenus
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates
 public import TinyTauDemo.Kronecker

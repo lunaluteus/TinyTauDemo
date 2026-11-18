@@ -51,6 +51,8 @@ For the [projective Fermat curve](index.qmd#prp-fermat-genus), take the homogene
 For the [projective Fermat curve](index.qmd#prp-fermat-genus), the degree-zero localization at each coordinate identifies with the quotient by the corresponding dehomogenized polynomial. A polynomial in two variables can be homogenized to prove surjectivity. For injectivity, homogenize the multiple of the dehomogenized equation and cancel powers of the inverted coordinate using primality of the homogeneous equation. The polynomial and its two partial derivatives generate the unit ideal in each chart, so the Jacobian criterion gives smoothness of relative dimension one on the projective scheme.
 :::
 
+The function field of the projective Fermat curve is the fraction field of the $Z\ne0$ chart. Its normalized coordinates satisfy $x^n+y^n=1$ and generate the field over $k$. The curve is smooth, integral, and proper of dimension one. The comparison of its scheme genus with its function-field genus gives $\dim_k H^1(F_n,\mathcal O_{F_n})=(n-1)(n-2)/2$.
+
 ::: {#lem-curve-extension-and-infinity-coordinates}
 ## Extension from a dense open and coordinates at infinity
 

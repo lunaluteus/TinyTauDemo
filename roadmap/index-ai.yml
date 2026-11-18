@@ -167,14 +167,17 @@
     - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.card_places_above_lower_bound_of_genus_zero
   comment: Use Tau Ceti's canonical degree formula and the divisor of the rational differential. Algebraically closed constants give degree one at each place, and characteristic zero ensures that the different is tame.
 - id: prp-fermat-genus
-  ok: false
+  ok: true
   depends:
-    - /roadmap/index.qmd#rem-scheme-curves-recall
-    - /roadmap/index.qmd#thm-riemann-hurwitz-recall
     - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
     - /roadmap/index-ai.qmd#prp-fermat-projective-smooth
-  docs: []
-  comment: The projective model and smooth charts are verified. Relate the function field of this model to the verified genus calculation.
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
+  docs:
+    - /docs/TinyTauDemo/FermatSchemeFunctionField.html#TinyTauDemo.fermatProjectiveFunctionFieldEquiv
+    - /docs/TinyTauDemo/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_isCurveOver
+    - /docs/TinyTauDemo/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_isDiscreteValuationRing_stalk
+    - /docs/TinyTauDemo/FermatSchemeGenus.html#TinyTauDemo.fermatProjective_genus
+  comment: Use the fraction field of the actual Z-chart and the comparison of scheme genus with function-field genus.
 - id: prp-fermat-projective-smooth
   ok: true
   depends:
