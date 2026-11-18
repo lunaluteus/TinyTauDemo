@@ -132,8 +132,20 @@
     - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index.qmd#thm-riemann-hurwitz-recall
     - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
+    - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs: []
-  comment: The function-field genus and the Jacobian calculation are available. The projective scheme and the branch count for its coordinate projection remain.
+  comment: The integral projective model, Jacobian calculation, and function-field genus are verified. The chart identifications, scheme smoothness, and genus comparison for this model remain.
+- id: def-fermat-projective-scheme
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/FermatCoordinateRing.html#TinyTauDemo.fermatEquation_irreducible
+    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjective
+    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjectiveInclusion
+    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjectiveToSpec
+    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjective_iSup_basicOpen
+    - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatProjective_isIntegral
+  comment: Form Proj of the homogeneous quotient, embed it as a closed subscheme of the proper projective plane, and cover it by the three coordinate opens.
 - id: thm-fermat-function-field-genus
   ok: true
   depends: []

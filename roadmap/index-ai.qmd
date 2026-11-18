@@ -39,6 +39,12 @@ For the [Picard group comparison](index.qmd#rem-scheme-dedekind), the height-one
 For the [Fermat genus calculation](index.qmd#prp-fermat-genus), let $F = k(x,y)$ with $x$ transcendental over a field $k$ of characteristic zero and $x^n + y^n = 1$ for $n > 0$. The homogeneous Fermat polynomial has no common nonzero zero of its partial derivatives over an algebraic closure. Tau Ceti's plane curve genus theorem gives $g(F) = (n-1)(n-2)/2$ and shows that $k$ is the exact constant field. For the [geometric Fermat theorem](index.qmd#thm-flt-geometric), the normalized coordinates would put this field inside $k(t)$, which has genus zero. Riemann–Hurwitz excludes that inclusion when $n \ge 3$.
 :::
 
+::: {#def-fermat-projective-scheme}
+## The projective Fermat scheme
+
+For the [projective Fermat curve](index.qmd#prp-fermat-genus), take the homogeneous quotient of $k[X,Y,Z]$ by $(X^n+Y^n-Z^n)$ and form its projective spectrum. This gives a closed subscheme of $\mathbb{P}^2_k$ and a proper morphism to $\operatorname{Spec}k$. Its three coordinate opens cover it. Over algebraically closed constants of characteristic zero and for $n>0$, dehomogenizing at $Z$ preserves degree and yields an irreducible equation, so the homogeneous coordinate ring is a domain and the projective scheme is integral.
+:::
+
 ::: {#thm-tame-hurwitz-function-fields}
 ## Canonical divisors and tame Riemann–Hurwitz
 

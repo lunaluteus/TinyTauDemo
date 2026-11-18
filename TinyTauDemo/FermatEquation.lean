@@ -21,9 +21,14 @@ namespace TinyTauDemo
 open MvPolynomial
 
 /-- The Fermat polynomial in homogeneous coordinates. -/
+@[expose]
 public noncomputable def fermatEquation (k : Type*) [CommRing k] (n : ℕ) :
     MvPolynomial (Fin 3) k :=
   X 0 ^ n + X 1 ^ n - X 2 ^ n
+
+/-- The homogeneous Fermat equation as an expression in the three coordinates. -/
+public theorem fermatEquation_def (k : Type*) [CommRing k] (n : ℕ) :
+    fermatEquation k n = X 0 ^ n + X 1 ^ n - X 2 ^ n := rfl
 
 /-- Every monomial of the Fermat polynomial has degree `n`. -/
 public theorem fermatEquation_isHomogeneous (k : Type*) [CommRing k] (n : ℕ) :
