@@ -231,8 +231,18 @@
   ok: false
   depends:
     - /roadmap/index.qmd#def-regular-prime
+    - /roadmap/index-ai.qmd#lem-kummer-local-congruence
   docs: []
-  comment: Check for an existing formalized unit lemma before developing the ramification and class-group argument.
+  comment: Use the local congruences to prove unramifiedness, then rule out a nontrivial cyclic extension via the class number.
+- id: lem-kummer-local-congruence
+  ok: true
+  depends:
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+  docs:
+    - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.one_sub_pow_dvd_unit_pow_pred_sub_one
+    - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
+    - /docs/TinyTauDemo/KummerTranslatedRoot.html#TinyTauDemo.isIntegral_sub_one_div_of_prime_pow
+  comment: The norm expansion lifts the congruence, and coefficientwise divisibility gives an integral translated root. The cubic case uses Mathlib's unit classification.
 - id: rem-kummer-unit-proof
   ok: false
   depends:
@@ -240,7 +250,7 @@
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index.qmd#lem-kummer-unit
   docs: []
-  comment: Track the cubic specialization and clarify the local boundary congruence needed by the general proof sketch.
+  comment: The cubic specialization and local congruences are verified. The unramified extension argument is pending.
 - id: lem-case2-valuations
   ok: true
   depends:

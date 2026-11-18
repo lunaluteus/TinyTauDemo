@@ -22,6 +22,8 @@ public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.Kronecker
 public import TinyTauDemo.KummerCaseOne
+public import TinyTauDemo.KummerLocalArithmetic
+public import TinyTauDemo.KummerTranslatedRoot
 public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
 public import TinyTauDemo.PolynomialLogDerivative

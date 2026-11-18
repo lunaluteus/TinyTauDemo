@@ -38,3 +38,13 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), use di
 :::
 
 In the [Mason–Hurwitz argument](index.qmd#rem-mason-hurwitz-bridge), the point at infinity of the source contributes to the three fibres if its image is $0$, $1$, or $\infty$. This gives the stated upper bound of the radical degree plus one.
+
+::: {#lem-kummer-local-congruence}
+## Local congruences for Kummer’s unit lemma
+
+For the [proof of Kummer’s unit lemma](index.qmd#rem-kummer-unit-proof), suppose $u$ is congruent to an integer modulo $p$. Fermat’s little theorem gives $u^{p-1}=1+pb$ with $b$ integral. Since $p$ is odd, the norm of $u^{p-1}$ is one. Expanding the norm modulo $p^2$ shows that $p$ divides the trace of $b$. Every conjugate of $b$ has the same residue modulo $\lambda$, so the trace reduces to $(p-1)b$. Thus $\lambda$ divides $b$ and $\lambda^p$ divides $u^{p-1}-1$.
+
+Set $U=u^{p-1}$ and take $r^p=U$. Dividing $(\lambda X+1)^p-U$ coefficientwise by $\lambda^p$ gives a monic integral polynomial vanishing at $(r-1)/\lambda$.
+
+For $p=3$, the congruence hypothesis implies $u=\pm1$ by Mathlib’s classification of cubic cyclotomic units congruent to integers modulo $\lambda^2$. Cubing the six units $\pm\zeta_3^j$ gives exactly the two values $\pm1$.
+:::
