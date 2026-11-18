@@ -9,6 +9,7 @@ public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification
 public import TinyTauDemo.CyclotomicUnits
+public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatEquation
@@ -20,7 +21,9 @@ public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.Kronecker
 public import TinyTauDemo.MasonStothers
 public import TinyTauDemo.PolynomialLogDerivative
+public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor
+public import TinyTauDemo.RamificationRecall
 public import TinyTauDemo.RegularPrime
 public import TinyTauDemo.Test
 public import TinyTauDemo.UnifiedCyclotomicCoprimality

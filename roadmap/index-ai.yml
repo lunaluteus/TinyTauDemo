@@ -140,11 +140,17 @@
   docs: []
   comment: State the conditions on sections that correspond to primitivity and check the relative differential calculation after cyclotomic base change.
 - id: rem-ramification-disc-recall
-  ok: false
+  ok: true
   depends:
-    - /roadmap/index.qmd#rem-scheme-dedekind
-  docs: []
-  comment: Locate the ideal ramification, discriminant-index, and Eisenstein results used in the cyclotomic calculations.
+    - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
+  docs:
+    - /docs/TinyTauDemo/RamificationRecall.html#Ideal.sum_ramification_inertia_integralClosure
+    - /docs/TinyTauDemo/RamificationRecall.html#Ideal.total_ramification_of_map_eq_span_pow
+    - /docs/TinyTauDemo/PowerBasisDiscriminant.html#Algebra.discr_powerBasis_eq_det_trace_pow
+    - /docs/TinyTauDemo/PowerBasisDiscriminant.html#Algebra.discr_powerBasis_eq_norm_of_isIntegral
+    - /docs/TinyTauDemo/DiscriminantIndex.html#TauCeti.NumberField.IntegralPrimitiveElement.discr_powerBasis_eq_card_quotient_sq_mul_discr
+    - /docs/TinyTauDemo/DiscriminantIndex.html#TauCeti.NumberField.IntegralPrimitiveElement.sq_dvd_discr_minpoly_of_dvd_index
+  comment: Use Mathlib's ideal factorization. Total ramification follows from the positive summands for a nonzero prime. Relate the trace determinant and derivative norm, then use Tau Ceti's index formula for the quotient of the integer ring by the generated order.
 - id: prp-cyclotomic-ramification
   ok: true
   depends: []
