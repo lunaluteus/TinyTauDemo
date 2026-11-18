@@ -194,14 +194,14 @@
   docs: []
   comment: Track the Bernoulli criterion and the finite examples separately from the open question about infinitely many regular primes.
 - id: thm-kummer-case-1
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#prp-unified-coprimality
-    - /roadmap/index.qmd#prp-cyclotomic-units
     - /roadmap/index.qmd#lem-pth-power-congruence
     - /roadmap/index.qmd#def-regular-prime
-  docs: []
-  comment: Treat the cubic case modulo nine and use regularity, unit decomposition, and coefficient congruences for the remaining primes.
+  docs:
+    - /docs/TinyTauDemo/KummerCaseOne.html#TinyTauDemo.kummer_case_I
+  comment: Apply flt-regular's Case I theorem with the last coordinate negated. Its coefficient argument handles integer solutions under the prime nondivisibility hypothesis alone.
 - id: lem-kummer-unit
   ok: true
   depends:
