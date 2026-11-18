@@ -464,7 +464,10 @@
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjective_baseChange_charP_nilradicalSubschemeIsoProjectiveLine
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_fiber_prime
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjective_fiber_prime_nilradicalSubschemeIsoProjectiveLine
-  comment: The linear class has nilpotence index p. The linear model gives the nilradical subscheme, which is a projective line. The residue-field comparison and projective base change give these properties on the fibre over the closed point (p).
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatGoodReduction.html#TinyTauDemo.fermatProjective_fiber_smoothOne_of_not_dvd
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatGoodReduction.html#TinyTauDemo.fermatProjective_fiber_smooth_iff
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatGoodReduction.html#TinyTauDemo.fermatProjective_fiber_isReduced_iff
+  comment: The characteristic-p cone has a nilpotent linear class of index p. The fibre at (p) is nonreduced, with reduction a projective line. In degree p every other closed fibre is smooth of relative dimension one, hence reduced.
 - id: prp-cyclotomic-differentials
   ok: true
   depends:

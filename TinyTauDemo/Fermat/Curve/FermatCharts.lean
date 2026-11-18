@@ -9,6 +9,7 @@ public import TinyTauDemo.Fermat.Curve.FermatProjective
 public import TinyTauDemo.Fermat.Curve.FermatAffineSmooth
 public import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 import TinyTauDemo.AlgebraicGeometry.Projective.PlaneJacobian
+import Mathlib.FieldTheory.AlgebraicClosure
 import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
 
 /-!
@@ -16,7 +17,7 @@ import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
 
 The charts and smoothness criterion for a general projective hypersurface
 specialize to the Fermat equation.
-See `/roadmap/index.qmd#prp-fermat-genus` @ `acad2219963be552a5a2e3f90b6e76114117f1e6`.
+See `/roadmap/index.qmd#prp-fermat-genus` @ `40dfab7e513657bb92e859b30e7ad8f1b8c18a2d`.
 -/
 
 public section
@@ -80,7 +81,21 @@ theorem fermatAffineChart_comp_toSpec {n : ℕ} (hn : 0 < n) (i : Fin 3) :
 
 end Charts
 
-variable (k : Type u) [Field k] [CharZero k] [IsAlgClosed k]
+variable (k : Type u) [Field k]
+
+/-- A Fermat curve is smooth of relative dimension one over any field in which its degree
+is nonzero. -/
+theorem fermatProjective_smoothOne_of_natCast_ne_zero {n : ℕ}
+    (hn : (n : k) ≠ 0) : SmoothOfRelativeDimension 1 (fermatProjectiveToSpec k n) := by
+  let K := AlgebraicClosure k
+  have hK : (n : K) ≠ 0 := by
+    rw [← map_natCast (algebraMap k K)]
+    exact fun h ↦ hn ((algebraMap k K).injective (h.trans (map_zero _).symm))
+  exact ProjectiveHypersurface.smoothOne_of_forall_exists_pderiv_ne_zero
+    (K := K) (fermatEquation_isHomogeneous k n)
+    (fun b hb _ ↦ fermatEquation_exists_aeval_pderiv_ne_zero_of_natCast_ne_zero hK b hb)
+
+variable [CharZero k] [IsAlgClosed k]
 
 /-- The projective Fermat scheme is smooth of relative dimension one for every positive exponent
 over an algebraically closed field of characteristic zero. -/

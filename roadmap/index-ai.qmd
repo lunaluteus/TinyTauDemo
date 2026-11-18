@@ -315,6 +315,8 @@ For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homog
 For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), in characteristic $p$ Frobenius gives $X^p+Y^p-Z^p=(X+Y-Z)^p$. The radical of the equation ideal is the single linear ideal $(X+Y-Z)$. A linear coordinate change gives the cone coordinate ring $k[X,Y,T]/(T^p)$, and the class of $T$ has nilpotence index exactly $p$. The last affine chart detects nonreducedness.
 
 The quotient by the linear equation induces a surjective closed immersion into the characteristic-$p$ projective model. Its ideal sheaf is the nilradical because the source is reduced and the immersion meets every point. Eliminating $Z$ identifies the reduced subscheme with $\mathbb P^1_k$. The residue field of the closed point $(p)$ of $\operatorname{Spec}\mathbb Z$ is $\mathbb F_p$, and its residue-field morphism is induced by reduction modulo $p$. Projective base change therefore identifies the scheme-theoretic fibre at $(p)$ with the Fermat model over $\mathbb F_p$. In degree $p$ this fibre is nonreduced and its reduced subscheme is $\mathbb P^1_{\mathbb F_p}$.
+
+For a Fermat model of degree $n$ and a rational prime $q\nmid n$, the gradient has a nonzero entry at every projective point over an algebraic closure of $\mathbb F_q$. The fibre at $(q)$ is then smooth of relative dimension one. In prime degree $p$ the closed fibres are smooth and reduced precisely at the primes $q\ne p$.
 :::
 
 ::: {#prp-cyclotomic-differentials}

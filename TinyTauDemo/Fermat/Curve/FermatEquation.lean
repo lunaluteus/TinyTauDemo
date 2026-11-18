@@ -13,7 +13,7 @@ public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 
 The Fermat polynomial on projective coordinates is homogeneous of the stated degree and has
 no nonzero point where all partial derivatives vanish in characteristic zero.
-See `/roadmap/index.qmd#prp-fermat-genus @ 043043ffcec6f4232273321a224bc7d77c9ec441`.
+See `/roadmap/index.qmd#prp-fermat-genus @ 40dfab7e513657bb92e859b30e7ad8f1b8c18a2d`.
 -/
 
 namespace TinyTauDemo
@@ -35,23 +35,31 @@ public theorem fermatEquation_isHomogeneous (k : Type*) [CommRing k] (n : ℕ) :
     (fermatEquation k n).IsHomogeneous n :=
   ((isHomogeneous_X_pow _ _).add (isHomogeneous_X_pow _ _)).sub (isHomogeneous_X_pow _ _)
 
-/-- The Fermat polynomial has a nonzero partial derivative at every nonzero coordinate vector. -/
-public theorem fermatEquation_exists_aeval_pderiv_ne_zero {k K : Type*} [CommRing k]
-    [Field K] [CharZero K] [Algebra k K] {n : ℕ} (hn : 0 < n)
+/-- The Fermat polynomial has a nonzero partial derivative at a nonzero coordinate vector
+provided its degree is nonzero in the coefficient field. -/
+public theorem fermatEquation_exists_aeval_pderiv_ne_zero_of_natCast_ne_zero {k K : Type*}
+    [CommRing k] [Field K] [Algebra k K] {n : ℕ} (hnK : (n : K) ≠ 0)
     (b : Fin 3 → K) (hb : b ≠ 0) :
     ∃ i, aeval b (pderiv i (fermatEquation k n)) ≠ 0 := by
   obtain ⟨i, hi⟩ : ∃ i, b i ≠ 0 := by
     by_contra! h
     exact hb (funext h)
   refine ⟨i, ?_⟩
-  have hnK : (n : K) ≠ 0 := by exact_mod_cast hn.ne'
   fin_cases i
   · change b 0 ≠ 0 at hi
-    simp [fermatEquation, pderiv_X, hnK, hi]
+    simp [fermatEquation_def, pderiv_X, hnK, hi]
   · change b 1 ≠ 0 at hi
-    simp [fermatEquation, pderiv_X, hnK, hi]
+    simp [fermatEquation_def, pderiv_X, hnK, hi]
   · change b 2 ≠ 0 at hi
-    simp [fermatEquation, pderiv_X, hnK, hi]
+    simp [fermatEquation_def, pderiv_X, hnK, hi]
+
+/-- The Fermat polynomial has a nonzero partial derivative at every nonzero coordinate vector. -/
+public theorem fermatEquation_exists_aeval_pderiv_ne_zero {k K : Type*} [CommRing k]
+    [Field K] [CharZero K] [Algebra k K] {n : ℕ} (hn : 0 < n)
+    (b : Fin 3 → K) (hb : b ≠ 0) :
+    ∃ i, aeval b (pderiv i (fermatEquation k n)) ≠ 0 :=
+  fermatEquation_exists_aeval_pderiv_ne_zero_of_natCast_ne_zero
+    (by exact_mod_cast hn.ne') b hb
 
 /-- Evaluating the homogeneous polynomial gives the Fermat equation on the coordinates. -/
 public theorem aeval_fermatEquation_eq_zero_iff_coordinates {k B : Type*}

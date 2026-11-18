@@ -50,6 +50,7 @@ public import TinyTauDemo.Fermat.Polynomial.FermatDegree
 public import TinyTauDemo.Fermat.Curve.FermatEquation
 public import TinyTauDemo.Fermat.Integer.FermatFour
 public import TinyTauDemo.Fermat.Curve.FermatGenus
+public import TinyTauDemo.Fermat.ArithmeticSurface.FermatGoodReduction
 public import TinyTauDemo.Fermat.Polynomial.FermatHurwitz
 public import TinyTauDemo.Fermat.ArithmeticSurface.FermatIntegralSections
 public import TinyTauDemo.Fermat.Polynomial.FermatLineExtension
