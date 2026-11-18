@@ -65,6 +65,8 @@ theorem mono_of_injective_genericStalk {X : Scheme.{u}} [IsIntegral X]
   apply (cancel_mono g.val).mp
   exact congrArg (fun g' ↦ g'.val) h
 
+section GenericPullback
+
 variable {k : Type u} [Field k] {X Y : Scheme.{u}}
     [X.Over (Spec (.of k))] [Y.Over (Spec (.of k))]
     [IsIntegral X] [SmoothOfRelativeDimension 1 (Y ↘ Spec (.of k))]
@@ -103,6 +105,18 @@ theorem differentialPullback_mono_of_formallyEtale_generic
   have he'' := congrArg (fun g ↦ g w) he
   exact he'.symm.trans (heq.trans he'')
 
+end GenericPullback
+
+section DominantCurves
+
+variable {k : Type u} [Field k] {X Y : Scheme.{u}}
+    [X.Over (Spec (.of k))] [Y.Over (Spec (.of k))]
+    (f : X ⟶ Y) [f.IsOver (Spec (.of k))]
+
+local notation "η" => genericPoint X
+local notation "A" => Y.presheaf.stalk (f (genericPoint X))
+local notation "B" => X.presheaf.stalk (genericPoint X)
+
 private theorem isField_genericStalk {Z : Scheme.{u}} [IsIntegral Z] {z : Z}
     (hz : z = genericPoint Z) : IsField (Z.presheaf.stalk z) := by
   subst z
@@ -123,14 +137,13 @@ private theorem isFunctionField_genericStalk {Z : Scheme.{u}} [Z.Over (Spec (.of
   rw [ha]
   exact Scheme.IsCurveOver.isFunctionField (X := Z) (k := k)
 
-omit [IsIntegral X] in
 set_option backward.isDefEq.respectTransparency false in
-/-- For a dominant morphism of integral curves in characteristic zero, the first
-map in the differential transitivity sequence is monic. -/
-theorem differentialPullback_mono_of_dominant_curve [CharZero k]
+/-- A dominant morphism of curves in characteristic zero induces a formally
+étale extension at the generic stalks. -/
+theorem formallyEtale_genericStalk_of_dominant_curve [CharZero k]
     [X.IsCurveOver k] [Y.IsCurveOver k] [IsDominant f] :
-    Mono (differentialPullback k f) := by
-  apply differentialPullback_mono_of_formallyEtale_generic
+    let _ : Algebra A B := algebraStalkMap f η
+    Algebra.FormallyEtale A B := by
   let := algebraStalkMap f η
   let : Field A := (isField_genericStalk f.genericPoint_eq_of_isDominant).toField
   let : Field B := (isField_genericStalk (rfl : η = genericPoint X)).toField
@@ -144,12 +157,23 @@ theorem differentialPullback_mono_of_dominant_curve [CharZero k]
   let : CharZero A := charZero_of_injective_algebraMap (algebraMap k A).injective
   exact Algebra.FormallyEtale.of_isSeparable A B
 
-omit [IsIntegral X] in
+variable [SmoothOfRelativeDimension 1 (Y ↘ Spec (.of k))]
+
+/-- For a dominant morphism of integral curves in characteristic zero, the first
+map in the differential transitivity sequence is monic. -/
+theorem differentialPullback_mono_of_dominant_curve [CharZero k]
+    [X.IsCurveOver k] [Y.IsCurveOver k] [IsDominant f] :
+    Mono (differentialPullback k f) :=
+  differentialPullback_mono_of_formallyEtale_generic f
+    (formallyEtale_genericStalk_of_dominant_curve (k := k) f)
+
 /-- The differential transitivity sequence of a dominant morphism into a smooth integral curve
 in characteristic zero is short exact. -/
 theorem differentialTransitivity_shortExact [CharZero k] [X.IsCurveOver k] [Y.IsCurveOver k]
     [IsDominant f] : (differentialTransitivity k f).ShortExact := by
   let := differentialPullback_mono_of_dominant_curve (k := k) f
   exact differentialTransitivity_shortExact_of_mono k f
+
+end DominantCurves
 
 end TinyTauDemo

@@ -13,6 +13,7 @@ public import TauCeti.AlgebraicGeometry.WeilDivisor.Scheme.Cartier.Inverse
 import Mathlib.Algebra.Category.ModuleCat.Sheaf.Limits
 import Mathlib.CategoryTheory.Limits.Constructions.EpiMono
 import TauCeti.AlgebraicGeometry.CartierDivisor.Picard
+import TauCeti.AlgebraicGeometry.CartierDivisor.WeilComparison
 import TauCeti.AlgebraicGeometry.Modules.RationalEmbedding
 import TauCeti.AlgebraicGeometry.LineBundle.Pullback
 import Mathlib.AlgebraicGeometry.OrderOfVanishing
@@ -260,6 +261,21 @@ section RamificationDivisor
 open MonoidalCategory
 open scoped TensorProduct
 
+private theorem coheight_le_one_of_curve {k : Type u} [Field k] {X : Scheme.{u}}
+    [X.Over (Spec (.of k))] [X.IsCurveOver k] (y : X) : Order.coheight y ≤ 1 := by
+  exact_mod_cast (TauCeti.coheight_le_topologicalKrullDim y).trans
+    (Scheme.IsCurveOver.topologicalKrullDim_eq_one k).le
+
+/-- The local ring at a codimension-one point of a smooth integral curve is a DVR. -/
+theorem isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve
+    {k : Type u} [Field k] {X : Scheme.{u}}
+    [X.Over (Spec (.of k))] [X.IsCurveOver k]
+    [SmoothOfRelativeDimension 1 (X ↘ Spec (.of k))]
+    (x : CodimensionOnePoint X) : IsDiscreteValuationRing (X.presheaf.stalk (x : X)) :=
+  isDiscreteValuationRing_stalk_of_closed_smoothCurve (k := k) (x : X)
+    (TauCeti.isClosed_singleton_of_forall_coheight_le_one_of_coheight_eq_one
+      (coheight_le_one_of_curve (k := k)) x.property)
+
 variable {k : Type u} [Field k] [CharZero k] {X Y : Scheme.{u}}
     [X.Over (Spec (.of k))] [Y.Over (Spec (.of k))]
     [X.IsCurveOver k] [Y.IsCurveOver k]
@@ -304,9 +320,7 @@ theorem exists_effectiveCartierRamificationDivisor :
   intro x
   have hx : IsClosed {(x : X)} :=
     TauCeti.isClosed_singleton_of_forall_coheight_le_one_of_coheight_eq_one
-      (fun y ↦ by
-        exact_mod_cast (TauCeti.coheight_le_topologicalKrullDim y).trans
-          (Scheme.IsCurveOver.topologicalKrullDim_eq_one k).le) x.property
+      (coheight_le_one_of_curve (k := k)) x.property
   obtain ⟨U, tL, hU⟩ := L.obj.exists_mem_trivialization (x : X)
   obtain ⟨V, tM, hV⟩ := M.obj.exists_mem_trivialization (x : X)
   let W := U ⊓ V
@@ -349,6 +363,33 @@ theorem exists_effectiveCartierRamificationDivisor_with_WeilDivisor
   refine ⟨D, hD, e, ?_⟩
   ext x
   exact (hc x).trans (coeff_curveRamificationDivisor_eq_localIndex k f x).symm
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The effective Weil ramification divisor gives the canonical sheaf twist and
+has finite-support coefficients equal to the local ramification indices minus one. -/
+theorem exists_effectiveWeilRamificationDivisor :
+    let _ : Smooth (X ↘ Spec (.of k)) := SmoothOfRelativeDimension.smooth 1 _
+    let _ : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian (X ↘ Spec (.of k))
+    let _ := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+    ∃ D : SchemeWeilDivisor X, D.IsEffective ∧
+      Nonempty (X.relativeDifferentials k ≅
+        (Scheme.Modules.pullback f).obj (Y.relativeDifferentials k) ⊗ SchemeWeilDivisor.sheaf D) ∧
+      ∀ x : CodimensionOnePoint X,
+        let A := Y.presheaf.stalk (f x)
+        let B := X.presheaf.stalk (x : X)
+        let _ : Algebra A B := algebraStalkMap f x
+        WeilDivisor.coeff D x = (((IsLocalRing.maximalIdeal B).ramificationIdx A - 1 : ℕ) : ℤ) := by
+  let := SmoothOfRelativeDimension.smooth 1 (X ↘ Spec (.of k))
+  let : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian (X ↘ Spec (.of k))
+  let : CompactSpace X := (quasiCompact_iff_compactSpace (X ↘ Spec (.of k))).mp inferInstance
+  let : IsNoetherian X := ⟨⟩
+  let := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+  obtain ⟨D, -, ⟨e⟩, hD⟩ := exists_effectiveCartierRamificationDivisor (k := k) f
+  refine ⟨D.toWeilDivisor, (WeilDivisor.isEffective_iff _).mpr ?_, ⟨e ≪≫
+    (tensorLeft _).mapIso (D.sheafIsoToWeilDivisor (coheight_le_one_of_curve (k := k)))⟩, hD⟩
+  intro x
+  rw [hD x]
+  exact Int.natCast_nonneg _
 
 end RamificationDivisor
 

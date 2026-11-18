@@ -138,7 +138,13 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), consid
 ::: {#prp-cartier-ramification-divisor}
 ## The Cartier ramification divisor and the canonical sheaf
 
-For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), the injective morphism $f^*\Omega_{Y/k}\to\Omega_{X/k}$ between line bundles defines an effective Cartier divisor $R_f$ by its local multipliers. The target bundle is isomorphic to the source bundle tensored with $\mathcal O_X(R_f)$. At a closed point the order of a local equation is the relative differential length. The place of that point restricts to the place of its image, and the local ring ramification index agrees with the normalized function-field index. Thus the Weil divisor of $R_f$ is the tame different transported to the curve.
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), the injective morphism $f^*\Omega_{Y/k}\to\Omega_{X/k}$ between line bundles defines an effective Cartier divisor $R_f$ by its local multipliers. The target bundle is isomorphic to the source bundle tensored with $\mathcal O_X(R_f)$. At a closed point the order of a local equation is the relative differential length. The place of that point restricts to the place of its image, and the local ring ramification index agrees with the normalized function-field index. Thus the Weil divisor of $R_f$ is the tame different transported to the curve, and its associated Weil divisor sheaf gives the same twist.
+:::
+
+::: {#prp-relative-differential-skyscrapers}
+## The relative differential sheaf as a finite product
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), separability makes the generic relative differential stalk zero. At a closed point the stalk is nonzero exactly when the ramification index exceeds one. These points are the finite support of the ramification divisor. On an open set, any tuple of germs at the supported points has representatives on neighbourhoods that exclude the other supported points. The representatives glue because agreement can be checked at stalks. This identifies the relative differential sheaf with the finite product of its stalk skyscrapers via the germ maps.
 :::
 
 ::: {#thm-tame-hurwitz-schemes}

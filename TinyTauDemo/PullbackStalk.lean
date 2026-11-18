@@ -580,6 +580,212 @@ theorem cokernelDifferentialPullbackStalkEquiv_projection (m : Nₓ) :
 
 end RelativeDifferentialStalk
 
+section FiniteSkyscraper
+
+variable {X : Scheme.{u}} (M : X.Modules) (s : Finset X)
+
+private abbrev SectionStalkFamily (U : X.Opens) :=
+  (z : s) → PLift ((z : X) ∈ U) → ↑(M.presheaf.stalk (z : X))
+
+private def sectionStalkFamily (U : X.Opens) (r : Γ(M, U)) : SectionStalkFamily M s U :=
+  fun z hz ↦ M.presheaf.germ U z hz.down r
+
+variable (hs : ∀ z ∉ s, Subsingleton ↑(M.presheaf.stalk z))
+
+include hs in
+set_option backward.isDefEq.respectTransparency false in
+private theorem sectionStalkFamily_injective (U : X.Opens) :
+    Function.Injective (sectionStalkFamily M s U) := by
+  classical
+  intro a b hab
+  apply TopCat.Presheaf.section_ext (⟨M.presheaf, M.isSheaf⟩ : TopCat.Sheaf AddCommGrpCat X)
+  intro x hx
+  by_cases hxs : x ∈ s
+  · exact congrFun (congrFun hab ⟨x, hxs⟩) ⟨hx⟩
+  · exact (hs x hxs).elim _ _
+
+variable (hc : ∀ z ∈ s, IsClosed ({z} : Set X))
+
+include hs hc in
+set_option backward.isDefEq.respectTransparency false in
+private theorem sectionStalkFamily_surjective (U : X.Opens) :
+    Function.Surjective (sectionStalkFamily M s U) := by
+  classical
+  intro m
+  have hlocal (y : U) :
+      ∃ (V : X.Opens) (i : V ⟶ U), (y : X) ∈ V ∧
+        ∃ r : Γ(M, V), ∀ (z : s) (hz : (z : X) ∈ V),
+          M.presheaf.germ V z hz r = m z ⟨i.le hz⟩ := by
+    let E : Set X := ⋃ (z : X) (_ : z ∈ s.erase (y : X)), {z}
+    have hE : IsClosed E :=
+      (s.erase (y : X)).finite_toSet.isClosed_biUnion fun z hz ↦
+        hc z (Finset.mem_of_mem_erase hz)
+    let Q : X.Opens := U ⊓ ⟨Eᶜ, hE.isOpen_compl⟩
+    have hy : (y : X) ∈ Q := ⟨y.property, by
+      intro h
+      obtain ⟨z, hz, heq⟩ := Set.mem_iUnion₂.mp h
+      exact (Finset.mem_erase.mp hz).1 (Set.mem_singleton_iff.mp heq).symm⟩
+    have unique (z : s) (hz : (z : X) ∈ Q) : (z : X) = (y : X) := by
+      by_contra hne
+      exact hz.2 (Set.mem_iUnion₂.mpr ⟨z, Finset.mem_erase.mpr ⟨hne, z.property⟩, rfl⟩)
+    by_cases hys : (y : X) ∈ s
+    · let a : s := ⟨y, hys⟩
+      obtain ⟨V, hVQ, hyV, r, hr⟩ := M.presheaf.exists_le_germ_eq (m a ⟨y.property⟩) hy
+      refine ⟨V, homOfLE (hVQ.trans inf_le_left), hyV, r, fun z hz ↦ ?_⟩
+      have hza : z = a := Subtype.ext (unique z (hVQ hz))
+      subst z
+      exact hr
+    · refine ⟨Q, homOfLE inf_le_left, hy, 0, fun z hz ↦ ?_⟩
+      exact (hys ((unique z hz) ▸ z.property)).elim
+  choose V iV hyV sf hsf using hlocal
+  have hcompat : TopCat.Presheaf.IsCompatible M.presheaf V sf := by
+    intro y z
+    apply TopCat.Presheaf.section_ext (⟨M.presheaf, M.isSheaf⟩ : TopCat.Sheaf AddCommGrpCat X)
+    intro x hx
+    change M.presheaf.germ (V y ⊓ V z) x hx
+        (M.presheaf.map (Opens.infLELeft (V y) (V z)).op (sf y)) =
+      M.presheaf.germ (V y ⊓ V z) x hx
+        (M.presheaf.map (Opens.infLERight (V y) (V z)).op (sf z))
+    rw [M.presheaf.germ_res_apply, M.presheaf.germ_res_apply]
+    by_cases hxs : x ∈ s
+    · exact (hsf y ⟨x, hxs⟩ hx.1).trans (hsf z ⟨x, hxs⟩ hx.2).symm
+    · exact (hs x hxs).elim _ _
+  have hcover : U ≤ ⨆ y : U, V y :=
+    fun x hx ↦ Opens.mem_iSup.mpr ⟨⟨x, hx⟩, hyV ⟨x, hx⟩⟩
+  obtain ⟨r, hr, -⟩ :=
+    TopCat.Sheaf.existsUnique_gluing' (⟨M.presheaf, M.isSheaf⟩ : TopCat.Sheaf AddCommGrpCat X)
+      V U iV hcover sf hcompat
+  refine ⟨r, ?_⟩
+  funext z hz
+  let y : U := ⟨z, hz.down⟩
+  change M.presheaf.germ U z hz.down r = _
+  rw [← M.presheaf.germ_res_apply (iV y) (z : X) (hyV y)]
+  exact (congrArg (M.presheaf.germ (V y) z (hyV y)) (hr y)).trans (hsf y z (hyV y))
+
+open CategoryTheory.Limits
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The skyscraper sheaf supported at `x` with coefficient module the stalk of `M`. -/
+def modulesStalkSkyscraper (x : X) : X.Modules :=
+  skyscraper x ↑(M.presheaf.stalk x)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- A section maps to its germ in the skyscraper at the chosen point. -/
+def modulesStalkSkyscraperProjection (x : X) : M ⟶ modulesStalkSkyscraper M x :=
+  toSkyscraper x M ↑(M.presheaf.stalk x) LinearMap.id
+
+private noncomputable def sectionStalkFamilyEquiv (U : X.Opens) :
+    ↑Γ(M, U) ≃ SectionStalkFamily M s U :=
+  Equiv.ofBijective (sectionStalkFamily M s U)
+    ⟨sectionStalkFamily_injective M s hs U, sectionStalkFamily_surjective M s hs hc U⟩
+
+variable (P : Fan (fun z : s ↦ modulesStalkSkyscraper M (z : X)))
+
+set_option backward.isDefEq.respectTransparency false in
+private def liftSkyscraperSection (U : X.Opens) (a : Γ(P.pt, U)) : Γ(M, U) :=
+  (sectionStalkFamilyEquiv M s hs hc U).symm (fun z hz ↦ (P.proj z).app U a hz)
+
+set_option backward.isDefEq.respectTransparency false in
+private theorem liftSkyscraperSection_germ (U : X.Opens) (a : Γ(P.pt, U))
+    (z : s) (hz : (z : X) ∈ U) :
+    M.presheaf.germ U z hz (liftSkyscraperSection M s hs hc P U a) =
+      (P.proj z).app U a ⟨hz⟩ :=
+  congrFun (congrFun ((sectionStalkFamilyEquiv M s hs hc U).apply_symm_apply _) z) ⟨hz⟩
+
+set_option backward.isDefEq.respectTransparency false in
+private def liftStalkSkyscraperFan : P.pt ⟶ M := ⟨{
+  app := fun U ↦ by
+    letI : Module ((X.presheaf ⋙ forget₂ CommRingCat RingCat).obj U) (P.pt.val.obj U) :=
+      (P.pt.val.obj U).isModule
+    letI : Module ((X.presheaf ⋙ forget₂ CommRingCat RingCat).obj U) (M.val.obj U) :=
+      (M.val.obj U).isModule
+    refine ConcreteCategory.ofHom
+      (C := ModuleCat ((X.presheaf ⋙ forget₂ CommRingCat RingCat).obj U)) ?_
+    refine
+      { toFun := liftSkyscraperSection M s hs hc P U.unop
+        map_add' := ?_
+        map_smul' := ?_ }
+    · intro a b
+      apply sectionStalkFamily_injective M s hs U.unop
+      funext z hz
+      change M.presheaf.germ U.unop z hz.down (liftSkyscraperSection M s hs hc P U.unop (a + b)) =
+        M.presheaf.germ U.unop z hz.down
+          (liftSkyscraperSection M s hs hc P U.unop a + liftSkyscraperSection M s hs hc P U.unop b)
+      rw [map_add, liftSkyscraperSection_germ, liftSkyscraperSection_germ,
+        liftSkyscraperSection_germ, map_add]
+      rfl
+    · intro r a
+      apply sectionStalkFamily_injective M s hs U.unop
+      funext z hz
+      let V := U.unop
+      let r₀ : Γ(X, V) := r
+      let a₀ : Γ(P.pt, V) := a
+      change M.presheaf.germ V z hz.down (liftSkyscraperSection M s hs hc P V (r₀ • a₀)) =
+        M.presheaf.germ V z hz.down (r₀ • liftSkyscraperSection M s hs hc P V a₀)
+      rw [Scheme.Modules.germ_smul, liftSkyscraperSection_germ, liftSkyscraperSection_germ]
+      have he := congrFun (((P.proj z).val.app U).hom.map_smul r a) hz
+      exact he.trans (skyscraperObj_smul z _ V r₀ ((P.proj z).app V a₀) hz.down)
+  naturality := fun {U V} i ↦ by
+    ext a
+    apply sectionStalkFamily_injective M s hs V.unop
+    funext z hz
+    change M.presheaf.germ V.unop z hz.down
+        (liftSkyscraperSection M s hs hc P V.unop (P.pt.presheaf.map i a)) =
+      M.presheaf.germ V.unop z hz.down
+        (M.presheaf.map i (liftSkyscraperSection M s hs hc P U.unop a))
+    have hres := M.presheaf.germ_res_apply i.unop z hz.down
+      (liftSkyscraperSection M s hs hc P U.unop a)
+    rw [liftSkyscraperSection_germ]
+    refine (congrFun (PresheafOfModules.naturality_apply (P.proj z).val i a) hz).trans ?_
+    exact (liftSkyscraperSection_germ M s hs hc P U.unop a z (i.unop.le hz.down)).symm.trans
+      hres.symm }⟩
+
+private def stalkSkyscraperFan : Fan (fun z : s ↦ modulesStalkSkyscraper M (z : X)) :=
+  Fan.mk M fun z ↦ modulesStalkSkyscraperProjection M z
+
+set_option backward.isDefEq.respectTransparency false in
+private theorem stalkSkyscraperProjection_app (x : X) (U : X.Opens) (a : Γ(M, U)) (hx : x ∈ U) :
+    (modulesStalkSkyscraperProjection M x).app U a ⟨hx⟩ = M.presheaf.germ U x hx a :=
+  rfl
+
+set_option backward.isDefEq.respectTransparency false in
+private def stalkSkyscraperFanIsLimit : IsLimit (stalkSkyscraperFan M s) :=
+  Fan.IsLimit.mk _ (liftStalkSkyscraperFan M s hs hc)
+    (fun F z ↦ by
+      ext U a
+      funext hz
+      change (modulesStalkSkyscraperProjection M z).app U
+          (liftSkyscraperSection M s hs hc F U a) ⟨hz.down⟩ =
+        (F.proj z).app U a ⟨hz.down⟩
+      rw [stalkSkyscraperProjection_app, liftSkyscraperSection_germ])
+    (fun F g hg ↦ by
+      ext U a
+      apply sectionStalkFamily_injective M s hs U
+      funext z hz
+      change M.presheaf.germ U z hz.down (g.app U a) =
+        M.presheaf.germ U z hz.down (liftSkyscraperSection M s hs hc F U a)
+      rw [liftSkyscraperSection_germ, ← stalkSkyscraperProjection_app]
+      have h := congrArg (fun φ ↦ φ.app U a hz) (hg z)
+      exact h)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- A sheaf of modules whose stalks vanish away from finitely many closed points
+is the product of the skyscraper sheaves of its stalks at those points. -/
+def isoPiModulesStalkSkyscraper :
+    M ≅ ∏ᶜ fun z : s ↦ modulesStalkSkyscraper M (z : X) :=
+  (stalkSkyscraperFanIsLimit M s hs hc).conePointUniqueUpToIso (limit.isLimit _)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The product isomorphism is induced by the canonical germ morphisms. -/
+theorem isoPiModulesStalkSkyscraper_hom_π (z : s) :
+    (isoPiModulesStalkSkyscraper M s hs hc).hom ≫ Pi.π _ z =
+      modulesStalkSkyscraperProjection M z := by
+  unfold isoPiModulesStalkSkyscraper
+  exact IsLimit.conePointUniqueUpToIso_hom_comp
+    (stalkSkyscraperFanIsLimit M s hs hc) (limit.isLimit _) ⟨z⟩
+
+end FiniteSkyscraper
+
 end
 
 end TinyTauDemo
