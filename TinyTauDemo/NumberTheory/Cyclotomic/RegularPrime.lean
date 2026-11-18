@@ -14,7 +14,8 @@ import Mathlib.GroupTheory.Perm.Cycle.Type
 
 Regularity is the condition that the cyclotomic class group has no nontrivial prime torsion.
 The definition uses the ring of integers of the cyclotomic field through its class number.
-See `/roadmap/index.qmd#def-regular-prime @ d66158757f566bb25cab754e3173bb2087742cd8`.
+Equivalently, a fractional ideal is principal whenever its pth power is principal.
+See `/roadmap/index.qmd#def-regular-prime` @ `bf7f5564b71833b39d09f2fe3230b9c22ec609e0`.
 -/
 
 public section
@@ -59,5 +60,27 @@ theorem RegularPrime.fractionalIdeal_isPrincipal_of_pow {p : ℕ} (hr : RegularP
     (hI : (↑(I ^ p) : Submodule (𝓞 (CyclotomicField p ℚ)) (CyclotomicField p ℚ)).IsPrincipal) :
     (I : Submodule (𝓞 (CyclotomicField p ℚ)) (CyclotomicField p ℚ)).IsPrincipal :=
   FractionalIdeal.isPrincipal.of_isPrincipal_pow_of_coprime hr.coprime_classNumber I hI
+
+/-- At an odd prime, the fractional ideal principal-power criterion is equivalent to regularity. -/
+theorem regularPrime_iff_fractionalIdeal_isPrincipal_of_pow {p : ℕ} (hp : p.Prime) (ho : Odd p) :
+    let K := CyclotomicField p ℚ
+    let R := 𝓞 K
+    RegularPrime p ↔ ∀ I : FractionalIdeal R⁰ K,
+      ((I ^ p : FractionalIdeal R⁰ K) : Submodule R K).IsPrincipal →
+        (I : Submodule R K).IsPrincipal := by
+  dsimp only
+  constructor
+  · exact fun h ↦ h.fractionalIdeal_isPrincipal_of_pow
+  · intro h
+    refine (regularPrime_iff_no_classGroup_torsion hp ho).mpr fun c hc ↦ ?_
+    let K := CyclotomicField p ℚ
+    let R := 𝓞 K
+    obtain ⟨J, hJ⟩ := ClassGroup.mk0_surjective c
+    let I : (FractionalIdeal R⁰ K)ˣ := FractionalIdeal.mk0 K J
+    have hcI : ClassGroup.mk K I = c := (ClassGroup.mk_mk0 K J).trans hJ
+    rw [← hcI, ← map_pow, ClassGroup.mk_eq_one_iff] at hc
+    rw [← hcI, ClassGroup.mk_eq_one_iff]
+    apply h (I : FractionalIdeal R⁰ K)
+    exact_mod_cast hc
 
 end TinyTauDemo

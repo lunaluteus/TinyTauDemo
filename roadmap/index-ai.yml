@@ -551,7 +551,8 @@
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.RegularPrime
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.regularPrime_iff_no_classGroup_torsion
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.RegularPrime.fractionalIdeal_isPrincipal_of_pow
-  comment: Use the class number of the canonical ring of integers. Cauchy's theorem gives the torsion equivalence, and coprimality with the class number gives the principal ideal consequence.
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.regularPrime_iff_fractionalIdeal_isPrincipal_of_pow
+  comment: Cauchy's theorem gives the torsion equivalence. Representing each class by a nonzero ideal gives the equivalence with the principal-power criterion for fractional ideals.
 - id: rem-bernoulli-regular
   ok: true
   depends:
