@@ -22,3 +22,14 @@ revisionEndpoint = "https://cache.taucetiproject.org/revisions"
 
 [[lean_lib]]
 name = "TinyTauDemo"
+
+[[require]]
+name = "flt-regular"
+git = "https://github.com/leanprover-community/flt-regular.git"
+rev = "b8a5f23ab44a7be9fd49f6e3c831da54573c3c89"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+# Match TauCeti's Mathlib revision when updating the dependencies.
+rev = "074063781836922cb02701cd12943c9f51731afa"
