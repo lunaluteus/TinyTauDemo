@@ -263,6 +263,14 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), take a finite se
 Counting local power classes and the image of the principal ideles gives the index of the auxiliary idele-class subgroup. Local norm preimages show that this subgroup is contained in the norm group from the chosen subfield. Hence the norm index divides the subfield degree. With the auxiliary set empty, the same count gives the index of the ordinary Kummer idele-class subgroup.
 :::
 
+::: {#thm-prime-idele-artin-reciprocity}
+## The Artin map and the norm index in prime degree
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), adjoining the relevant roots of unity reduces the upper norm bound to the S-unit Kummer calculation. The first inequality then gives equality of the norm index and degree for every prime-degree extension. The two inequalities also give vanishing of the first idele-class cohomology for finite layers. This proves injectivity of Brauer localization and the sum formula for local invariants.
+
+The product of the finite and infinite local Artin symbols is well defined on ideles. Testing it on a principal idele against a Galois character gives the sum of the invariants of a global Brauer class, so the product descends to idele classes. It is surjective in abelian extensions, is compatible with restriction, and kills idele norms. In prime degree the index equality identifies its kernel with the norm group. At a finite prime, triviality on the completed integer units detects unramifiedness.
+:::
+
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 

@@ -526,8 +526,9 @@
     - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
     - /roadmap/index-ai.qmd#prp-cyclotomic-reflection-reduction
     - /roadmap/index-ai.qmd#prp-kummer-idele-norm-index
+    - /roadmap/index-ai.qmd#thm-prime-idele-artin-reciprocity
   docs: []
-  comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. The remaining reflection step is to realize an open prime-index idele-class quotient of the real subfield by such a field extension.
+  comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. Global Artin reciprocity identifies the norm kernel in prime degree. Realizing the open idele-class quotient by an unramified extension remains.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -614,6 +615,19 @@
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerNormIndex.html#TinyTauDemo.index_kummerIdeleClassSubgroup_eq_pow
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerSecondInequality.html#TinyTauDemo.index_range_ideleClassNormMap_dvd_finrank_of_kummerField_sUnits
   comment: The auxiliary Frobenius basis detects roots of S-units. Local powers and the principal intersection give an idele-class subgroup of the required index inside the norm group.
+- id: thm-prime-idele-artin-reciprocity
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-kummer-idele-norm-index
+  docs:
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/PrimeNormIndex.html#TinyTauDemo.index_range_ideleClassNormMap_eq_of_prime_degree
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/BrauerReciprocity.html#TinyTauDemo.brLocalization_injective
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/BrauerReciprocity.html#TinyTauDemo.sumLocalInv_brLocalization_eq_zero
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Artin/Classes.html#TinyTauDemo.ideleClassAbelianArtinMap_restrict
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Artin/Classes.html#TinyTauDemo.ker_ideleClassAbelianArtinMap_eq_of_prime_degree
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Artin/Frobenius.html#TinyTauDemo.finiteLocalArtinAt_uniformizer
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Artin/Unramified.html#TinyTauDemo.isUnramifiedAt_of_ideleClassCharacter_ker_eq
+  comment: The prime-degree norm bound gives the Brauer sum formula. The Artin product then descends to idele classes with the norm group as kernel in prime degree.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []

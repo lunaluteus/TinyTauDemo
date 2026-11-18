@@ -13,6 +13,8 @@ public import TinyTauDemo.NumberTheory.Bernoulli.BernoulliTeichmullerProduct
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.CartierRamification
 public import TinyTauDemo.Fermat.Integer.Kummer.CaseTwoValuations
 public import TinyTauDemo.AlgebraicGeometry.Curves.ChartFunctionField
+public import TinyTauDemo.NumberTheory.ClassFieldTheory.Artin.Frobenius
+public import TinyTauDemo.NumberTheory.ClassFieldTheory.Artin.Unramified
 public import TinyTauDemo.NumberTheory.ClassFieldTheory.ClassNumberTransfer
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.ClosedDifferentialLength
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.CurveCanonicalDegree
