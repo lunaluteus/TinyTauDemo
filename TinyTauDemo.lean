@@ -7,6 +7,7 @@ module
 
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicIntegers
+public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatEquation
 public import TinyTauDemo.FermatFour
@@ -20,4 +21,5 @@ public import TinyTauDemo.PolynomialLogDerivative
 public import TinyTauDemo.PrincipalDivisor
 public import TinyTauDemo.RegularPrime
 public import TinyTauDemo.Test
+public import TinyTauDemo.UnifiedCyclotomicCoprimality
 public import TinyTauDemo.WeilDivisor
