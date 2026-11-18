@@ -398,17 +398,19 @@
     - /roadmap/index-ai.qmd#prp-fermat-cone-integral
     - /roadmap/index-ai.qmd#prp-fermat-special-fibre
   docs: []
-  comment: The sections modulo common sign, the finite flat cyclotomic cover and its differentials, and the nonreduced characteristic-p fibre are verified. Geometric generic integrality disproves the stated hyperplane splitting.
+  comment: Flatness of the Fermat scheme, its sections modulo common sign, the cyclotomic cover, and the nonreduced characteristic-p fibre are verified. The section [1:0:1] needs a zero coordinate. Geometric generic integrality disproves the stated hyperplane splitting.
 - id: prp-integral-fermat-sections
   ok: true
   depends:
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
+    - /docs/TinyTauDemo/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjectiveToSpec_int_flat
     - /docs/TinyTauDemo/FermatSpecMap.html#TinyTauDemo.fermatSpecMap
     - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.PrimitiveIntegerFermatCoordinates.toSection
     - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.primitiveIntegerFermatCoordinates_toSection_eq_iff
     - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.integralFermatSectionsEquiv
-  comment: Generate the unit ideal and allow zero coordinates. Normalize a rational point in a standard chart, clear denominators primitively, and use separatedness to compare the resulting integer sections.
+    - /docs/TinyTauDemo/FermatIntegralSections.html#TinyTauDemo.exists_integralFermatSection_only_zero_secondCoordinate
+  comment: Use the monic affine equations for flatness. Normalize a rational point in a standard chart, clear denominators primitively, and use separatedness and common signs to compare sections.
 - id: prp-fermat-cone-integral
   ok: true
   depends:

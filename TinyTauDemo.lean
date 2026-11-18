@@ -39,6 +39,7 @@ public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatAffineEval
+public import TinyTauDemo.FermatArithmeticFlatness
 public import TinyTauDemo.FermatCharts
 public import TinyTauDemo.FermatConicDegree
 public import TinyTauDemo.FermatDegree

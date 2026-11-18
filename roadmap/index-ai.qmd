@@ -258,7 +258,9 @@ Complex conjugation inverts the resulting Kummer radicand modulo $p$th powers. T
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 
-For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), a triple satisfying the Fermat equation and generating the unit ideal gives a section of the integral Fermat scheme. Conversely, restrict a section to the rational generic point, normalize a coordinate to one on a standard chart, and clear denominators with a primitive tuple. Separatedness identifies the reconstructed section with the original. Two primitive integral tuples define the same section exactly when they differ by a common sign. Zero coordinates are allowed, as in $(1,0,1)$ for positive exponents.
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the integral Fermat scheme of positive degree is flat over $\mathbb Z$. Each of its three standard chart rings is a free module over a polynomial ring in one variable, by the monic dehomogenized equation.
+
+A triple satisfying the Fermat equation and generating the unit ideal gives a section. Conversely, restrict a section to the rational generic point, normalize a coordinate to one on a standard chart, and clear denominators with a primitive tuple. Separatedness identifies the reconstructed section with the original. Two primitive integral tuples define the same section exactly when they differ by a common sign. Every primitive presentation of the section $[1:0:1]$ has zero second coordinate.
 :::
 
 ::: {#prp-fermat-cone-integral}

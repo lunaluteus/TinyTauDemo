@@ -364,4 +364,23 @@ noncomputable def integralFermatSectionsEquiv (n : ℕ) :
   unfold integralFermatSectionsEquiv
   rfl
 
+/-- The integral section represented by `[1:0:1]` has no primitive presentation
+whose second coordinate is nonzero. -/
+theorem exists_integralFermatSection_only_zero_secondCoordinate {n : ℕ} (hn : 0 < n) :
+    ∃ s : IntegralFermatSections n,
+      ∀ p : PrimitiveIntegerFermatCoordinates n, p.toSection = s → p.coord 1 = 0 := by
+  let t : PrimitiveIntegerFermatCoordinates n :=
+    { coord := ![1, 0, 1]
+      equation := by
+        change (1 : ℤ) ^ n + 0 ^ n = 1 ^ n
+        rw [zero_pow hn.ne', add_zero]
+      generates := by
+        rw [Ideal.eq_top_iff_one]
+        exact Ideal.subset_span ⟨0, rfl⟩ }
+  refine ⟨t.toSection, fun p hp ↦ ?_⟩
+  have h := (primitiveIntegerFermatCoordinates_toSection_eq_iff t p).mp hp.symm
+  rcases (primitiveIntegerFermatCoordinateSetoid_iff t p).mp h with h | h
+  · simpa [t] using congrFun h 1
+  · simpa [t] using congrFun h 1
+
 end TinyTauDemo
