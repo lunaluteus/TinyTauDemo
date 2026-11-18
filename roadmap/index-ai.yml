@@ -168,13 +168,16 @@
     - /docs/TinyTauDemo/Kronecker.html#NumberField.RingOfIntegers.isOfFinOrder_of_norm_eq_one
   comment: Mathlib's embedding theorem gives a positive power equal to one in the field. Injectivity transports the equality to the ring of integers, where it gives finite multiplicative order.
 - id: prp-cyclotomic-units
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
     - /roadmap/index.qmd#lem-kronecker-unit
-  docs: []
-  comment: Track the roots of unity in the odd-prime cyclotomic field and the identification of conjugation-fixed units with units of the real subring.
+  docs:
+    - /docs/TinyTauDemo/CyclotomicUnits.html#TinyTauDemo.realCyclotomicIntegers
+    - /docs/TinyTauDemo/CyclotomicUnits.html#TinyTauDemo.mem_realCyclotomicIntegers_iff
+    - /docs/TinyTauDemo/CyclotomicUnits.html#TinyTauDemo.existsUnique_root_mul_realUnit
+  comment: Mathlib classifies the roots of unity. Identify the fixed integer subalgebra and use the conjugation quotient to obtain a unique residue exponent and a unit in that subalgebra.
 - id: lem-pth-power-congruence
   ok: true
   depends:

@@ -8,6 +8,7 @@ module
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification
+public import TinyTauDemo.CyclotomicUnits
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatEquation
