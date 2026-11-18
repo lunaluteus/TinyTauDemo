@@ -112,7 +112,7 @@
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
     - /roadmap/index-ai.qmd#prp-plane-line-morphism-degree
   docs: []
-  comment: The plane Jacobian criterion and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The stated degree M in the human text requires the plane degree factor. The chart at infinity is verified for the Fermat specialization.
+  comment: The plane Jacobian criterion, the general chart at infinity, and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The stated degree M in the human text requires the plane degree factor.
 - id: prp-plane-line-morphism-degree
   ok: true
   depends:
@@ -163,7 +163,9 @@
     - /docs/TinyTauDemo/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen
     - /docs/TinyTauDemo/InfinityCoordinates.html#TinyTauDemo.span_range_reflect_eq_top
     - /docs/TinyTauDemo/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
-  comment: Use the valuative criterion at the codimension-one points, and reflect the polynomial coordinates while preserving the unit ideal and the homogeneous relation.
+    - /docs/TinyTauDemo/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap
+    - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
+  comment: Extend at the codimension-one points by the valuative criterion. Compare the original and reflected tuples by a common unit on the overlap to identify the restriction to the chart at infinity.
 - id: thm-riemann-hurwitz-recall
   ok: false
   depends:

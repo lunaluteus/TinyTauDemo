@@ -6,8 +6,8 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.FermatProjective
+public import TinyTauDemo.PlanePolynomialMap
 public import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
-import TinyTauDemo.PlanePolynomialMap
 
 /-!
 # Morphisms defined by Fermat coordinates
@@ -47,6 +47,14 @@ noncomputable def fermatSpecMap (p : Fin 3 → B) (hF : p 0 ^ n + p 1 ^ n = p 2 
     (hp : Ideal.span (Set.range p) = ⊤) : Spec (.of B) ⟶ fermatProjective k n :=
   ProjectiveHypersurface.specMap (fermatEquation_isHomogeneous k n) p
     ((aeval_fermatEquation_eq_zero_iff_coordinates (k := k) n p).mpr hF) hp
+
+/-- The Fermat construction is the hypersurface coordinate morphism. -/
+theorem fermatSpecMap_eq_specMap (p : Fin 3 → B) (hF : p 0 ^ n + p 1 ^ n = p 2 ^ n)
+    (hp : Ideal.span (Set.range p) = ⊤) :
+    fermatSpecMap (k := k) p hF hp =
+      ProjectiveHypersurface.specMap (fermatEquation_isHomogeneous k n) p
+        ((aeval_fermatEquation_eq_zero_iff_coordinates (k := k) n p).mpr hF) hp := by
+  rfl
 
 /-- The coordinate morphism commutes with the structure maps to the base. -/
 @[reassoc]

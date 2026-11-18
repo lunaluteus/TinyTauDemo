@@ -38,6 +38,15 @@ noncomputable def fermatAffineMap (p : Fin 3 → k[X])
     Spec (.of k[X]) ⟶ fermatProjective k n :=
   fermatSpecMap (k := k) p ((aeval_fermatEquation_eq_zero_iff_coordinates n p).mp hF) hp
 
+/-- The polynomial-coordinate Fermat morphism agrees with the hypersurface construction. -/
+theorem fermatAffineMap_eq_specMap (p : Fin 3 → k[X])
+    (hF : MvPolynomial.aeval p (fermatEquation k n) = 0)
+    (hp : Ideal.span (Set.range p) = ⊤) :
+    fermatAffineMap p hF hp =
+      ProjectiveHypersurface.specMap (fermatEquation_isHomogeneous k n) p hF hp :=
+  fermatSpecMap_eq_specMap (k := k) p
+    ((aeval_fermatEquation_eq_zero_iff_coordinates n p).mp hF) hp
+
 /-- The inverse image of a Fermat coordinate chart is the basic open on which the
 corresponding polynomial coordinate does not vanish. -/
 theorem fermatAffineMap_preimage_basicOpen (p : Fin 3 → k[X])
@@ -81,32 +90,9 @@ theorem fermatAffineMap_reflect_overlap {k : Type u} [Field k] {n : ℕ}
           (aeval_reflect_eq_zero_of_isHomogeneous p (fermatEquation_isHomogeneous k n) hdeg hF)
           (span_range_reflect_eq_top p hp hdeg hmax) =
       Spec.map (CommRingCat.ofHom (aeval t).toRingHom) ≫ fermatAffineMap p hF hp := by
-  let q := fun i ↦ (p i).reflect M
-  let hG := aeval_reflect_eq_zero_of_isHomogeneous p (fermatEquation_isHomogeneous k n) hdeg hF
-  let hq := span_range_reflect_eq_top p hp hdeg hmax
-  let ψ := aeval (R := k) t
-  let ψ' := aeval (R := k) t⁻¹
-  let c : Lˣ := Units.mk0 (t⁻¹ ^ M) (pow_ne_zero _ (inv_ne_zero ht))
-  have hEq := (aeval_fermatEquation_eq_zero_iff_coordinates n p).mp hF
-  have hEq' := (aeval_fermatEquation_eq_zero_iff_coordinates n q).mp hG
-  change Spec.map (CommRingCat.ofHom ψ'.toRingHom) ≫ fermatSpecMap (k := k) q hEq' hq =
-    Spec.map (CommRingCat.ofHom ψ.toRingHom) ≫ fermatSpecMap (k := k) p hEq hp
-  rw [fermatSpecMap_comp_SpecMap (k := k) ψ' q hEq' hq
-      (evaluated_coordinates_equation ψ'.toRingHom q hEq')
-      (evaluated_coordinates_span ψ'.toRingHom q hq),
-    fermatSpecMap_comp_SpecMap (k := k) ψ p hEq hp
-      (evaluated_coordinates_equation ψ.toRingHom p hEq)
-      (evaluated_coordinates_span ψ.toRingHom p hp)]
-  symm
-  apply fermatSpecMap_eq_of_unit_rescale (k := k) _ _ _ _ _ _ c
-  intro i
-  let : Invertible t := invertibleOfNonzero ht
-  have hi := eval₂_reflect_mul_pow (algebraMap k L) t M (p i) (hdeg i)
-  rw [invOf_eq_inv, ← aeval_def, ← aeval_def] at hi
-  have htM : t ^ M ≠ 0 := pow_ne_zero _ ht
-  have hh := (eq_div_iff htM).mpr hi
-  simpa only [q, ψ, ψ', c, Units.val_mk0, inv_pow, div_eq_mul_inv,
-    mul_comm (t ^ M)⁻¹] using hh
+  rw [fermatAffineMap_eq_specMap, fermatAffineMap_eq_specMap]
+  exact ProjectiveHypersurface.specMap_reflect_overlap
+    (fermatEquation_isHomogeneous k n) p hF hp hdeg hmax ht
 
 open HomogeneousLocalization in
 /-- Where the last coordinate is nonzero, the polynomial-coordinate morphism factors

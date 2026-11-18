@@ -6,6 +6,7 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.ProjectiveHypersurface
+public import TinyTauDemo.InfinityCoordinates
 public import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ChartEquality
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Naturality
@@ -15,7 +16,7 @@ import TauCeti.RingTheory.MvPolynomial.Homogeneous
 # Coordinate morphisms to a projective hypersurface
 
 The coordinate map generalizes the construction for Fermat tuples.
-See `/roadmap/index.qmd#rem-scheme-curves-recall @ 0ce794f8b09e1d3bf189ed3c18dd9c1894d2a4a7`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall @ 0f81dbcc90994e1c646ad8a893818389c1142003`.
 -/
 
 public section
@@ -231,5 +232,67 @@ theorem specMap_eq_affineChart (p : Fin (m + 1) → L) (hP : aeval p F = 0)
   simp only [Units.val_inv_eq_inv_val, Units.val_pow_eq_pow_val, hu, inv_pow, mul_comm]
 
 end SourceField
+
+end TinyTauDemo.ProjectiveHypersurface
+
+namespace TinyTauDemo.ProjectiveHypersurface
+
+open Polynomial
+
+universe u
+
+variable {k : Type u} [Field k] {m d : ℕ} {F : MvPolynomial (Fin (m + 1)) k}
+  (hF : F.IsHomogeneous d)
+
+section Overlap
+
+variable {L : Type u} [Field L] [Algebra k L]
+
+private theorem evaluated_coordinates_vanish (φ : k[X] →ₐ[k] L) (p : Fin (m + 1) → k[X])
+    (hP : MvPolynomial.aeval p F = 0) :
+    MvPolynomial.aeval (fun i ↦ φ (p i)) F = 0 := by
+  rw [← MvPolynomial.comp_aeval_apply, hP, map_zero]
+
+private theorem evaluated_coordinates_span (φ : k[X] →ₐ[k] L) (p : Fin (m + 1) → k[X])
+    (hp : Ideal.span (Set.range p) = ⊤) :
+    Ideal.span (Set.range fun i ↦ φ (p i)) = ⊤ := by
+  change Ideal.span (Set.range (φ ∘ p)) = ⊤
+  rw [Set.range_comp, ← Ideal.map_span, hp, Ideal.map_top]
+
+/-- Reflecting the coordinate polynomials preserves the actual projective morphism
+over the overlap, where the parameter in the other chart is the reciprocal. -/
+theorem specMap_reflect_overlap (p : Fin (m + 1) → k[X]) {M : ℕ}
+    (hP : MvPolynomial.aeval p F = 0) (hp : Ideal.span (Set.range p) = ⊤)
+    (hdeg : ∀ i, (p i).natDegree ≤ M) (hmax : ∃ i, p i ≠ 0 ∧ (p i).natDegree = M)
+    {t : L} (ht : t ≠ 0) :
+    Spec.map (CommRingCat.ofHom (Polynomial.aeval t⁻¹).toRingHom) ≫
+        specMap hF (fun i ↦ (p i).reflect M)
+          (aeval_reflect_eq_zero_of_isHomogeneous p hF hdeg hP)
+          (span_range_reflect_eq_top p hp hdeg hmax) =
+      Spec.map (CommRingCat.ofHom (Polynomial.aeval t).toRingHom) ≫ specMap hF p hP hp := by
+  let q := fun i ↦ (p i).reflect M
+  let hQ := aeval_reflect_eq_zero_of_isHomogeneous p hF hdeg hP
+  let hq := span_range_reflect_eq_top p hp hdeg hmax
+  let ψ := Polynomial.aeval (R := k) t
+  let ψ' := Polynomial.aeval (R := k) t⁻¹
+  let c : Lˣ := Units.mk0 (t⁻¹ ^ M) (pow_ne_zero _ (inv_ne_zero ht))
+  change Spec.map (CommRingCat.ofHom ψ'.toRingHom) ≫ specMap hF q hQ hq =
+    Spec.map (CommRingCat.ofHom ψ.toRingHom) ≫ specMap hF p hP hp
+  rw [specMap_comp_SpecMap hF ψ' q hQ hq
+      (evaluated_coordinates_vanish ψ' q hQ) (evaluated_coordinates_span ψ' q hq),
+    specMap_comp_SpecMap hF ψ p hP hp
+      (evaluated_coordinates_vanish ψ p hP) (evaluated_coordinates_span ψ p hp)]
+  symm
+  apply specMap_eq_of_unit_rescale hF _ _ _ _ _ _ c
+  intro i
+  let : Invertible t := invertibleOfNonzero ht
+  have hi := eval₂_reflect_mul_pow (algebraMap k L) t M (p i) (hdeg i)
+  rw [invOf_eq_inv, ← Polynomial.aeval_def, ← Polynomial.aeval_def] at hi
+  have htM : t ^ M ≠ 0 := pow_ne_zero _ ht
+  have hh := (eq_div_iff htM).mpr hi
+  simpa only [q, ψ, ψ', c, Units.val_mk0, inv_pow, div_eq_mul_inv,
+    mul_comm (t ^ M)⁻¹] using hh
+
+end Overlap
 
 end TinyTauDemo.ProjectiveHypersurface

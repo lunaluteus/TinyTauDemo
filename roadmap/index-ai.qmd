@@ -64,6 +64,8 @@ For the [projective curve recall](index.qmd#rem-scheme-curves-recall), the stand
 
 For the [projective curve recall](index.qmd#rem-scheme-curves-recall), a morphism into a proper scheme extends uniquely from a dense open of an integral curve with discrete valuation rings at its codimension-one points. On the chart at infinity, if $M$ is the maximum coordinate degree, the reflected polynomials $s^M p_i(s^{-1})$ generate the unit ideal and satisfy the same homogeneous equations. A leading coefficient gives a nonzero coordinate at $s=0$.
 
+For a homogeneous hypersurface over a field, the affine morphisms from the original and reflected tuples agree on the overlap of the two charts. Their tuples differ there by a common unit. The reflected tuple therefore describes the restriction of the projective extension to the chart at infinity, including its value at $s=0$.
+
 For a nonconstant map to a plane curve of degree $n$, the coordinates give a pullback of $\mathcal O_C(1)$ of degree $M$. Since $\deg\mathcal O_C(1)=n$, the map degree satisfies $M=n\deg\pi$. For a direct map to $\mathbb P^1$ the corresponding line bundle has degree one.
 :::
 

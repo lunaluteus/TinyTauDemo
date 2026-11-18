@@ -206,6 +206,67 @@ theorem existsUnique_fermatProjectiveLineMap (p : Fin 3 → k[X])
   exact existsUnique_projectiveLineMap_extending_polynomialChart k
     (fermatAffineMap p hF hp) (fermatAffineMap_toSpec p hF hp)
 
+end TinyTauDemo
+
+namespace TinyTauDemo.ProjectiveHypersurface
+
+open Polynomial
+
+universe u
+
+variable {k : Type u} [Field k] {m d : ℕ} {F : MvPolynomial (Fin (m + 1)) k}
+  (hF : F.IsHomogeneous d)
+
+/-- On the infinity chart, a projective extension is the actual morphism defined by
+reflecting the coordinates of its affine polynomial tuple at their maximum degree. -/
+theorem projectiveLineMap_on_infinity_chart (p : Fin (m + 1) → k[X]) {M : ℕ}
+    (hP : MvPolynomial.aeval p F = 0) (hp : Ideal.span (Set.range p) = ⊤)
+    (hdeg : ∀ i, (p i).natDegree ≤ M) (hmax : ∃ i, p i ≠ 0 ∧ (p i).natDegree = M)
+    (f : projectiveLine k ⟶ scheme hF)
+    (hfS : f ≫ toSpec hF = (projectiveLine k ↘ Spec (.of k)))
+    (hf : projectiveLinePolynomialChart k 0 ≫ f = specMap hF p hP hp) :
+    projectiveLinePolynomialChart k 1 ≫ f =
+      specMap hF (fun i ↦ (p i).reflect M)
+        (aeval_reflect_eq_zero_of_isHomogeneous p hF hdeg hP)
+        (span_range_reflect_eq_top p hp hdeg hmax) := by
+  let S := Spec (.of k)
+  let Y := scheme hF
+  let A := Spec (.of k[X])
+  let : Y.Over S := ⟨toSpec hF⟩
+  let : A.Over S := ⟨Spec.map (CommRingCat.ofHom (algebraMap k k[X]))⟩
+  let : IsProper (Y ↘ S) := inferInstanceAs (IsProper (toSpec hF))
+  let q := fun i ↦ (p i).reflect M
+  let hQ := aeval_reflect_eq_zero_of_isHomogeneous p hF hdeg hP
+  let hq := span_range_reflect_eq_top p hp hdeg hmax
+  let : (specMap hF q hQ hq).IsOver S := (Scheme.Hom.isOver_iff S).mpr
+    (specMap_toSpec hF q hQ hq)
+  let : (projectiveLinePolynomialChart k 1 ≫ f).IsOver S := by
+    rw [Scheme.Hom.isOver_iff S]
+    change projectiveLinePolynomialChart k 1 ≫ f ≫ toSpec hF = _
+    rw [hfS, projectiveLinePolynomialChart_toSpec]
+    rfl
+  let t : RatFunc k := RatFunc.X
+  have ht : t ≠ 0 := RatFunc.X_ne_zero
+  have htrans : Transcendental k t⁻¹ := by
+    rw [Transcendental, IsAlgebraic.inv_iff]
+    exact RatFunc.transcendental_X
+  let b := Spec.map (CommRingCat.ofHom (Polynomial.aeval (R := k) t⁻¹).toRingHom)
+  let : IsDominant b :=
+    ⟨RingHom.denseRange_comap_of_injective _ (transcendental_iff_injective.mp htrans)⟩
+  change projectiveLinePolynomialChart k 1 ≫ f = specMap hF q hQ hq
+  apply ext_of_isDominant_of_isSeparated' S b
+  dsimp only [b]
+  rw [← Category.assoc, projectiveLinePolynomialChart_aeval_inv t ht, Category.assoc, hf]
+  exact (specMap_reflect_overlap hF p hP hp hdeg hmax ht).symm
+
+end TinyTauDemo.ProjectiveHypersurface
+
+namespace TinyTauDemo
+
+universe u
+
+variable {k : Type u} [Field k] {n : ℕ}
+
 /-- A projective extension of the affine Fermat map has the reflected polynomials as
 its coordinates on the chart at infinity. -/
 theorem fermatProjectiveLineMap_on_infinity_chart (p : Fin 3 → k[X]) {M : ℕ}
@@ -218,34 +279,8 @@ theorem fermatProjectiveLineMap_on_infinity_chart (p : Fin 3 → k[X]) {M : ℕ}
       fermatAffineMap (fun i ↦ (p i).reflect M)
         (aeval_reflect_eq_zero_of_isHomogeneous p (fermatEquation_isHomogeneous k n) hdeg hF)
         (span_range_reflect_eq_top p hp hdeg hmax) := by
-  let S := Spec (.of k)
-  let Y := fermatProjective k n
-  let A := Spec (.of k[X])
-  let : Y.Over S := ⟨fermatProjectiveToSpec k n⟩
-  let : A.Over S := ⟨Spec.map (CommRingCat.ofHom (algebraMap k k[X]))⟩
-  let : IsProper (Y ↘ S) := inferInstanceAs (IsProper (fermatProjectiveToSpec k n))
-  let q := fun i ↦ (p i).reflect M
-  let hG := aeval_reflect_eq_zero_of_isHomogeneous p (fermatEquation_isHomogeneous k n) hdeg hF
-  let hq := span_range_reflect_eq_top p hp hdeg hmax
-  let : (fermatAffineMap q hG hq).IsOver S := (Scheme.Hom.isOver_iff S).mpr
-    (fermatAffineMap_toSpec q hG hq)
-  let : (projectiveLinePolynomialChart k 1 ≫ f).IsOver S := by
-    rw [Scheme.Hom.isOver_iff S]
-    change projectiveLinePolynomialChart k 1 ≫ f ≫ fermatProjectiveToSpec k n = _
-    rw [hfS, projectiveLinePolynomialChart_toSpec]
-    rfl
-  let t : RatFunc k := RatFunc.X
-  have ht : t ≠ 0 := RatFunc.X_ne_zero
-  have htrans : Transcendental k t⁻¹ := by
-    rw [Transcendental, IsAlgebraic.inv_iff]
-    exact RatFunc.transcendental_X
-  let b := Spec.map (CommRingCat.ofHom (aeval (R := k) t⁻¹).toRingHom)
-  let : IsDominant b :=
-    ⟨RingHom.denseRange_comap_of_injective _ (transcendental_iff_injective.mp htrans)⟩
-  change projectiveLinePolynomialChart k 1 ≫ f = fermatAffineMap q hG hq
-  apply ext_of_isDominant_of_isSeparated' S b
-  dsimp only [b]
-  rw [← Category.assoc, projectiveLinePolynomialChart_aeval_inv t ht, Category.assoc, hf]
-  exact (fermatAffineMap_reflect_overlap p hF hp hdeg hmax ht).symm
+  rw [fermatAffineMap_eq_specMap] at hf ⊢
+  exact ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
+    (fermatEquation_isHomogeneous k n) p hF hp hdeg hmax f hfS hf
 
 end TinyTauDemo
