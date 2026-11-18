@@ -96,8 +96,18 @@
   depends:
     - /roadmap/index.qmd#def-kahler-log-deriv
     - /roadmap/index.qmd#rem-scheme-curves-recall
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
   docs: []
-  comment: Determine the available curve and divisor interfaces for the characteristic-zero ramification formula.
+  comment: The function-field divisor and numerical formulas are available. The comparison with the differential sheaves and the local length statement remain.
+- id: thm-tame-hurwitz-function-fields
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.weilDifferentialDivisor_cotrace_eq_conorm_add_tameDifferent
+    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.hurwitz_genus_formula_of_isAlgClosed
+    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.sum_ramification_excess_above_finset
+    - /docs/TinyTauDemo/HurwitzFibreCount.html#TinyTauDemo.card_places_above_lower_bound_of_genus_zero
+  comment: Use Tau Ceti's canonical degree formula and the divisor of the rational differential. Algebraically closed constants give degree one at each place, and characteristic zero ensures that the different is tame.
 - id: prp-fermat-genus
   ok: false
   depends:
@@ -124,11 +134,12 @@
     - /docs/TinyTauDemo/FermatHurwitz.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_of_hurwitz
   comment: Normalizing a primitive triple gives a transcendental Fermat coordinate. The resulting subfield of the rational function field has positive genus, contradicting Riemann–Hurwitz.
 - id: rem-mason-hurwitz-bridge
-  ok: false
+  ok: true
   depends:
-    - /roadmap/index.qmd#thm-riemann-hurwitz-recall
-  docs: []
-  comment: Derive the degree bound by counting ramification over zero, one, and infinity.
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
+  docs:
+    - /docs/TinyTauDemo/MasonHurwitz.html#TinyTauDemo.masonStothers_of_hurwitz
+  comment: Use the degree of the reduced fraction a/c and count the places above zero, one, and infinity. The finite places belong to the support of the radical, with at most the source place at infinity as an extra place.
 - id: rem-arithmetic-surface
   ok: false
   depends:

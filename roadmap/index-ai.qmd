@@ -30,3 +30,11 @@ In the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the order of a n
 
 For the [Fermat genus calculation](index.qmd#prp-fermat-genus), let $F = k(x,y)$ with $x$ transcendental over a field $k$ of characteristic zero and $x^n + y^n = 1$ for $n > 0$. The homogeneous Fermat polynomial has no common nonzero zero of its partial derivatives over an algebraic closure. Tau Ceti's plane curve genus theorem gives $g(F) = (n-1)(n-2)/2$ and shows that $k$ is the exact constant field. For the [geometric Fermat theorem](index.qmd#thm-flt-geometric), the normalized coordinates would put this field inside $k(t)$, which has genus zero. Riemann–Hurwitz excludes that inclusion when $n \ge 3$.
 :::
+
+::: {#thm-tame-hurwitz-function-fields}
+## Canonical divisors and tame Riemann–Hurwitz
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), use divisors of Weil differentials over algebraically closed constants of characteristic zero. The canonical divisor has degree $2g-2$. Pulling it to the extension adds the tame different, whose coefficient at a place is $e_P-1$. Every place has degree one. For a genus-zero cover of degree $d$, the preimage of a set of $s$ places therefore has at least $sd-(2d-2)$ places.
+:::
+
+In the [Mason–Hurwitz argument](index.qmd#rem-mason-hurwitz-bridge), the point at infinity of the source contributes to the three fibres if its image is $0$, $1$, or $\infty$. This gives the stated upper bound of the radical degree plus one.
