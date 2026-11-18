@@ -24,6 +24,7 @@ public import TinyTauDemo.CyclotomicDifferentials
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification
 public import TinyTauDemo.CyclotomicRealDiscriminant
+public import TinyTauDemo.CyclotomicReflectionBaseChange
 public import TinyTauDemo.CyclotomicResidueRatio
 public import TinyTauDemo.CyclotomicUnits
 public import TinyTauDemo.DedekindPicard
@@ -55,6 +56,7 @@ public import TinyTauDemo.FermatSchemeGenus
 public import TinyTauDemo.FermatSpecMap
 public import TinyTauDemo.FermatSpecialFibre
 public import TinyTauDemo.FiniteCurveMorphisms
+public import TinyTauDemo.HilbertClassPrimeQuotient
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates
 public import TinyTauDemo.Kronecker

@@ -247,6 +247,14 @@ $$2^{m-1}h=h^+ p\left|\prod_{\chi\ \mathrm{odd}}B_{1,\chi}\right|.$$
 The product is real by conjugation. Transport to the $p$-adic coefficient field and the norm cokernel calculation identify divisibility of the relative class norm kernel with the ordinary Bernoulli test. Consequently $p\mid h$ precisely when $p\mid h^+$ or the Bernoulli test holds. Removing the real-class-number alternative requires the reflection implication.
 :::
 
+::: {#prp-cyclotomic-reflection-reduction}
+## Reflection from an unramified real extension
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), a prime divisor $p$ of the real class number gives an open cyclic quotient of the idele class group of order $p$ that kills the ideles that are units at every finite place. A cyclic extension of degree $p$ unramified at every finite place of the real subfield has an abelian compositum with the full cyclotomic field. The relative ramification indices in this compositum divide both the quadratic degree and $p$, so they are one.
+
+Complex conjugation inverts the resulting Kummer radicand modulo $p$th powers. The radicand has principal ideal $I^p$. If the relative norm kernel were prime to $p$, the conjugation relation would force $I$ to be principal. The cyclotomic unit decomposition would then force a primitive $p^2$th root of unity in the unramified extension, which contradicts the ramification index at the conductor. This proves the ordinary Bernoulli criterion from the unramified real extension. Realization of the open quotient by such an extension remains.
+:::
+
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 

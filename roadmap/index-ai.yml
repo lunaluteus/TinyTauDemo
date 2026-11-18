@@ -522,8 +522,9 @@
     - /roadmap/index-ai.qmd#prp-odd-bernoulli-product-transport
     - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
     - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
+    - /roadmap/index-ai.qmd#prp-cyclotomic-reflection-reduction
   docs: []
-  comment: The unconditional relative class-number criterion and the implication from a Bernoulli numerator divisor to cyclotomic class-number divisibility are verified, including infinitude of actual irregular primes. The reflection implication from the real class group to the relative norm kernel remains, along with the consequent converse and exact classification below 100.
+  comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. The remaining reflection step is to realize an open prime-index idele-class quotient of the real subfield by such a field extension.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -589,6 +590,18 @@
     - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular
     - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_real_or_bernoulliIrregular
   comment: Compare the odd Euler product limit and the explicit class-number ratio. Use the odd functional equation and transport of the generalized Bernoulli product to prove the criterion for the relative kernel.
+- id: prp-cyclotomic-reflection-reduction
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
+    - /roadmap/index.qmd#prp-cyclotomic-units
+  docs:
+    - /docs/TinyTauDemo/HilbertClassPrimeQuotient.html#TinyTauDemo.exists_ideleClass_prime_quotient_of_dvd_classNumber
+    - /docs/TinyTauDemo/UnramifiedCoprimeTower.html#TinyTauDemo.isUnramifiedAt_of_coprime_galois_towers
+    - /docs/TinyTauDemo/CyclotomicReflection.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_abelian_tower
+    - /docs/TinyTauDemo/CyclotomicReflectionBaseChange.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_real_extension
+    - /docs/TinyTauDemo/CyclotomicReflectionBaseChange.html#TinyTauDemo.bernoulliIrregular_of_unramified_real_extension
+  comment: Construct the open idele-class quotient from the ordinary class group. A degree-p unramified real extension gives the required abelian Kummer tower and a p-factor of the relative norm kernel.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []
