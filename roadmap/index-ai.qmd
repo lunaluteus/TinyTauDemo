@@ -76,3 +76,9 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), among odd primes
 
 For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), write $B=\mathbb{Z}[\zeta_p]$ and $\lambda=1-\zeta_p$. In the monogenic presentation of $B$, $d\zeta_p$ generates the module of relative differentials with relation $\Phi_p'(\zeta_p)d\zeta_p=0$. Differentiating $(X-1)\Phi_p(X)=X^p-1$ shows that $(\zeta_p-1)\Phi_p'(\zeta_p)=p\zeta_p^{p-1}$. The derivative therefore generates $(\lambda^{p-2})$, which is also the different ideal. For odd $p$, the cover is étale precisely at primes of $B$ away from $p$.
 :::
+
+::: {#prp-cyclotomic-cover-scheme}
+## The cyclotomic cover over the integer spectrum
+
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the structural morphism from the spectrum of a number ring to $\operatorname{Spec}\mathbb{Z}$ is finite and flat. Over the basic open $D(p)$, the prime cyclotomic morphism is the spectrum map of $\mathbb{Z}[1/p]\to B[1/p]$. For odd $p$, this map is étale by the differential computation.
+:::

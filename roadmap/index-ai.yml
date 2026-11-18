@@ -166,9 +166,9 @@
     - /roadmap/index.qmd#def-kahler-log-deriv
     - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
-    - /roadmap/index-ai.qmd#prp-cyclotomic-differentials
+    - /roadmap/index-ai.qmd#prp-cyclotomic-cover-scheme
   docs: []
-  comment: The relative differentials, different ideal, and étale locus of the cyclotomic cover are verified. The comparison of sections and primitive projective coordinates remains.
+  comment: The finite flat cyclotomic cover, its relative differentials, and its étale restriction to D(p) are verified. The comparison of sections and primitive projective coordinates remains.
 - id: prp-cyclotomic-differentials
   ok: true
   depends:
@@ -182,6 +182,15 @@
     - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.etale_localizationAway_natCast
     - /docs/TinyTauDemo/CyclotomicDifferentials.html#TinyTauDemo.subsingleton_kaehlerDifferential_int
   comment: The monogenic presentation gives the quotient by the derivative. The different then gives the exact étale locus when the prime is odd.
+- id: prp-cyclotomic-cover-scheme
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-cyclotomic-differentials
+  docs:
+    - /docs/TinyTauDemo/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom
+    - /docs/TinyTauDemo/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_finite_flat
+    - /docs/TinyTauDemo/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_etale_away
+  comment: The morphism restricts to the actual base open D(p), identified with a map of affine localizations.
 - id: rem-ramification-disc-recall
   ok: true
   depends:
