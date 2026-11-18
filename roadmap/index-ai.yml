@@ -186,6 +186,7 @@
     - /roadmap/index-ai.qmd#prp-canonical-differential-degrees
     - /roadmap/index-ai.qmd#prp-projective-line-canonical-differential
   docs:
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/FiniteCurveMorphisms.html#TinyTauDemo.isDominant_of_nonconstant_properCurveHom
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/FiniteCurveMorphisms.html#TinyTauDemo.finite_and_surjective_of_nonconstant_properCurveHom
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
@@ -311,6 +312,7 @@
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.curveCodimensionOnePointEquivPlace
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.genus_eq_genus_of_regularProperCurve
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.hurwitz_genus_formula_of_regularProperCurveHom
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/RiemannHurwitz/SchemeHurwitz.html#TinyTauDemo.genus_le_of_dominant_regularProperCurveHom
   comment: Use the pullback of function fields along the dominant morphism. Compare the scheme genera and reindex the ramification term by codimension-one points.
 - id: lem-tame-relative-differential-length
   ok: true
@@ -377,10 +379,14 @@
   depends:
     - /roadmap/index.qmd#def-primitive-solution
     - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
+    - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
   docs:
+    - /docs/TinyTauDemo/Fermat/Curve/FermatSchemeHurwitz.html#TinyTauDemo.not_isDominant_fermatProjectiveLineMap
+    - /docs/TinyTauDemo/Fermat/Curve/FermatSchemeHurwitz.html#TinyTauDemo.not_nonconstant_fermatProjectiveLineMap
     - /docs/TinyTauDemo/Fermat/Polynomial/FermatHurwitz.html#TinyTauDemo.not_ratFunc_fermat_of_transcendental
     - /docs/TinyTauDemo/Fermat/Polynomial/FermatHurwitz.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_of_hurwitz
-  comment: Normalizing a primitive triple gives a transcendental Fermat coordinate. The resulting subfield of the rational function field has positive genus, contradicting Riemann–Hurwitz.
+  comment: A dominant morphism from the projective line would force the Fermat curve to have genus zero. A primitive polynomial triple yields such a morphism over the algebraic closure, where the Fermat genus is positive.
 - id: rem-mason-hurwitz-bridge
   ok: true
   depends:

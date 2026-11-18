@@ -57,6 +57,7 @@ public import TinyTauDemo.Fermat.Polynomial.FermatPolynomialMason
 public import TinyTauDemo.Fermat.Curve.FermatProjective
 public import TinyTauDemo.Fermat.Polynomial.FermatProjectiveDegree
 public import TinyTauDemo.Fermat.Curve.FermatSchemeGenus
+public import TinyTauDemo.Fermat.Curve.FermatSchemeHurwitz
 public import TinyTauDemo.Fermat.Polynomial.FermatSpecMap
 public import TinyTauDemo.Fermat.ArithmeticSurface.FermatSpecialFibre
 public import TinyTauDemo.AlgebraicGeometry.Curves.FiniteCurveMorphisms

@@ -18,7 +18,7 @@ import Mathlib.Tactic.NormNum
 A dominant morphism of proper regular curves induces a finite extension of
 their function fields. Comparing genera and reindexing the different by the
 codimension-one points gives the scheme formula.
-See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `403fbccd18f6bf4daf7cc7d42871f27446906a75`.
+See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `65b292ea5da1634b3c772334122a6faf23a1e68a`.
 -/
 
 public section
@@ -126,6 +126,28 @@ theorem genus_eq_genus_of_regularProperCurve [IsAlgClosed k]
     (Scheme.IsCurveOver.isFunctionField (k := k) (X := Z)) isIntegrallyClosedIn_of_isAlgClosed
 
 variable [IsAlgClosed k] [CharZero k]
+
+/-- The genus of the target of a dominant morphism of regular proper curves is
+at most the genus of the source in characteristic zero. -/
+theorem genus_le_of_dominant_regularProperCurveHom
+    (f : X ⟶ Y) [f.IsOver (Spec (.of k))] [IsDominant f] :
+    letI := finiteDimensional_cohomology_one_trivial_of_isProper k
+      (Scheme.IsCurveOver.topologicalKrullDim_eq_one (X := X) k)
+    letI := finiteDimensional_cohomology_one_trivial_of_isProper k
+      (Scheme.IsCurveOver.topologicalKrullDim_eq_one (X := Y) k)
+    Y.genus k ≤ X.genus k := by
+  let : Algebra Y.functionField X.functionField := (f.functionFieldAlgHom k).toRingHom.toAlgebra
+  let : IsScalarTower k Y.functionField X.functionField :=
+    IsScalarTower.of_algebraMap_eq fun r ↦ ((f.functionFieldAlgHom k).commutes r).symm
+  have hY := Scheme.IsCurveOver.isFunctionField (k := k) (X := Y)
+  have hX := Scheme.IsCurveOver.isFunctionField (k := k) (X := X)
+  let : FiniteDimensional Y.functionField X.functionField :=
+    finiteDimensional_of_functionFields hY hX
+  let : CharZero Y.functionField :=
+    charZero_of_injective_algebraMap (algebraMap k Y.functionField).injective
+  rw [genus_eq_genus_of_regularProperCurve X, genus_eq_genus_of_regularProperCurve Y]
+  exact TauCeti.genus_le_genus (k' := k) hY hX isIntegrallyClosedIn_of_isAlgClosed
+    isIntegrallyClosedIn_of_isAlgClosed
 
 /-- Riemann–Hurwitz for a dominant morphism of regular proper curves, with the
 ramification term indexed by the codimension-one points of the source. -/

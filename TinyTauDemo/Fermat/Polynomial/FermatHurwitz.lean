@@ -6,18 +6,22 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.Fermat.Polynomial.FermatRational
+import Mathlib.FieldTheory.AlgebraicClosure
+import TinyTauDemo.Fermat.Curve.FermatSchemeHurwitz
+import TinyTauDemo.Fermat.Polynomial.FermatProjectiveDegree
 import TauCeti.FieldTheory.FunctionField.Different.Hurwitz
 import TauCeti.FieldTheory.FunctionField.RiemannRoch.RatFunc
 import TauCeti.FieldTheory.RatFunc.Transcendental
 import TinyTauDemo.Fermat.Curve.FermatGenus
 
 /-!
-# The function-field Fermat obstruction
+# Fermat's Last Theorem via Riemann–Hurwitz
 
 The two normalized coordinates would generate the positive-genus function field of the Fermat
 curve inside the rational function field. Tau Ceti's Riemann–Hurwitz genus comparison excludes
-that inclusion.
-See `/roadmap/index.qmd#thm-flt-geometric @ 043043ffcec6f4232273321a224bc7d77c9ec441`.
+that inclusion. A primitive polynomial tuple also gives an actual dominant
+morphism over the algebraic closure, contradicting the scheme genus comparison.
+See `/roadmap/index.qmd#thm-flt-geometric` @ `65b292ea5da1634b3c772334122a6faf23a1e68a`.
 -/
 
 namespace TinyTauDemo
@@ -80,13 +84,27 @@ public theorem not_ratFunc_fermat_of_transcendental {x y : RatFunc k} (hx : Tran
     (by omega : 1 ≤ n - 2)
   omega
 
-open Polynomial in
+open AlgebraicGeometry Polynomial in
 /-- Riemann–Hurwitz excludes a primitive Fermat solution in the polynomial ring over a field
 of characteristic zero. -/
 public theorem not_primitiveFermatSolution_polynomial_of_hurwitz {n : ℕ} (hn : 3 ≤ n)
     (x y z : k[X]) : ¬ PrimitiveFermatSolution n x y z := by
   intro h
-  exact not_ratFunc_fermat_of_transcendental (h.transcendental_ratFunc_div (by omega))
-    hn h.ratFunc_div_pow_add_div_pow
+  let K := AlgebraicClosure k
+  let i := mapRingHom (algebraMap k K)
+  have hi : Function.Injective i := Polynomial.map_injective _ (algebraMap k K).injective
+  have hK : PrimitiveFermatSolution n (i x) (i y) (i z) := by
+    refine ⟨?_, h.coprime_xy.map i, h.coprime_yz.map i, h.coprime_zx.map i,
+      ?_, ?_, ?_, ?_⟩
+    · simpa only [map_add, map_pow] using congrArg i h.eq
+    · exact (map_ne_zero_iff i hi).2 h.x_ne_zero
+    · exact (map_ne_zero_iff i hi).2 h.y_ne_zero
+    · exact (map_ne_zero_iff i hi).2 h.z_ne_zero
+    · rintro ⟨hx, hy, hz⟩
+      exact h.not_all_units ⟨(Polynomial.isUnit_map _).mp hx,
+        (Polynomial.isUnit_map _).mp hy, (Polynomial.isUnit_map _).mp hz⟩
+  obtain ⟨f, hf, -, hdom, -⟩ := hK.exists_projectiveLineMap_degree (by omega)
+  let : f.IsOver (Spec (.of K)) := ⟨hf⟩
+  exact not_isDominant_fermatProjectiveLineMap hn f hdom
 
 end TinyTauDemo

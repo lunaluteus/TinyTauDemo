@@ -19,7 +19,7 @@ A morphism between proper integral curves over a field is proper. A dominant mor
 finite fibres, hence is finite by Zariski's main theorem, and its closed dense image is the
 entire target. A morphism with two distinct image points is dominant.
 
-See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `f0a3b3dec25a0c6b0b6f61e1f6b1a5be8ffec3f1`.
+See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `65b292ea5da1634b3c772334122a6faf23a1e68a`.
 -/
 
 public section
@@ -119,19 +119,24 @@ theorem isFinite_of_dominant_properCurveHom : IsFinite f := by
   have := locallyQuasiFinite_of_dominant_properCurveHom (k := k) f
   exact IsFinite.of_isProper_of_locallyQuasiFinite f
 
+omit hf [IsDominant f] in
+/-- A morphism of proper curves with two distinct image points is dominant. -/
+theorem isDominant_of_nonconstant_properCurveHom
+    (h : ∃ x y : X, f x ≠ f y) : IsDominant f := by
+  apply isDominant_iff_genericPoint_eq.mpr
+  by_contra hη
+  have hclosed := isClosed_singleton_of_ne_genericPoint k Y (f (genericPoint X)) hη
+  have he (x : X) : f x = f (genericPoint X) :=
+    Set.mem_singleton_iff.mp (((genericPoint_specializes x).map f.continuous).mem_closed
+      hclosed (Set.mem_singleton _))
+  obtain ⟨x, y, hxy⟩ := h
+  exact hxy ((he x).trans (he y).symm)
+
 omit [IsDominant f] in
 /-- A morphism of proper curves with two distinct image points is finite and surjective. -/
 theorem finite_and_surjective_of_nonconstant_properCurveHom
     (h : ∃ x y : X, f x ≠ f y) : IsFinite f ∧ Surjective f := by
-  have hd : IsDominant f := by
-    apply isDominant_iff_genericPoint_eq.mpr
-    by_contra hη
-    have hclosed := isClosed_singleton_of_ne_genericPoint k Y (f (genericPoint X)) hη
-    have he (x : X) : f x = f (genericPoint X) :=
-      Set.mem_singleton_iff.mp (((genericPoint_specializes x).map f.continuous).mem_closed
-        hclosed (Set.mem_singleton _))
-    obtain ⟨x, y, hxy⟩ := h
-    exact hxy ((he x).trans (he y).symm)
+  let : IsDominant f := isDominant_of_nonconstant_properCurveHom (k := k) f h
   exact ⟨isFinite_of_dominant_properCurveHom (k := k) f,
     surjective_of_dominant_properCurveHom (k := k) f⟩
 
