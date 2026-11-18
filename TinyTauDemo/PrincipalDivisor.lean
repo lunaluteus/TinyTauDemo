@@ -7,12 +7,14 @@ module
 
 public import Mathlib.RingTheory.DedekindDomain.AdicValuation
 public import Mathlib.RingTheory.DedekindDomain.Factorization
+import TauCeti.RingTheory.DedekindDomain.Factorization
 
 /-!
 # Orders of principal fractional ideals
 
 Mathlib's multiplicative valuation is the exponential of the negative additive order.
-See `/roadmap/index.qmd#rem-scheme-dedekind @ 74c76f14c420048048cf89f5ba74cdcd77806bd5`.
+The formula follows from Tau Ceti's `FractionalIdeal.count_toPrincipalIdeal_eq_neg_log_valuation`.
+See `/roadmap/index.qmd#rem-scheme-dedekind @ 03c4debea0506c626cb05b3cca9d44b387a26cd7`.
 -/
 
 open IsDedekindDomain
@@ -28,19 +30,8 @@ of the corresponding coefficient of its principal fractional ideal. -/
 public theorem valuation_eq_exp_neg_count_spanSingleton (v : HeightOneSpectrum R)
     {x : K} (hx : x ≠ 0) :
     v.valuation K x = WithZero.exp (-count K v (spanSingleton R⁰ x)) := by
-  obtain ⟨r, s, rfl⟩ := IsLocalization.exists_mk'_eq R⁰ x
-  have hs : (s : R) ≠ 0 := nonZeroDivisors.ne_zero s.property
-  have hr : r ≠ 0 := by
-    rintro rfl
-    simp [IsFractionRing.mk'_eq_div] at hx
-  have hfrac : spanSingleton R⁰ (IsLocalization.mk' K r s) =
-      spanSingleton R⁰ (algebraMap R K (s : R))⁻¹ *
-        (↑(Ideal.span ({r} : Set R)) : FractionalIdeal R⁰ K) := by
-    rw [coeIdeal_span_singleton, ← map_mul, IsFractionRing.mk'_eq_div,
-      div_eq_inv_mul]
-  rw [v.valuation_of_mk', v.intValuation_if_neg hr, v.intValuation_if_neg hs,
-    count_well_defined K v (spanSingleton_ne_zero_iff.mpr hx) hfrac, ← WithZero.exp_sub]
-  congr 1
-  ring
+  have h := count_toPrincipalIdeal_eq_neg_log_valuation K v (Units.mk0 x hx)
+  rw [coe_toPrincipalIdeal, Units.val_mk0] at h
+  rw [h, neg_neg, WithZero.exp_log ((v.valuation K).ne_zero_iff.mpr hx)]
 
 end FractionalIdeal

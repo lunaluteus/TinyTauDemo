@@ -11,13 +11,13 @@
   docs:
     - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv
     - /docs/TinyTauDemo/WeilDivisor.html#FractionalIdeal.divisorMulEquiv_apply
-  comment: Mathlib's integer prime exponents identify the units of the fractional ideal monoid with finitely supported integers on the height-one spectrum.
+  comment: The multiplicative presentation of Tau Ceti's Weil divisor equivalence sends each invertible fractional ideal to its integer prime exponents.
 - id: lem-dedekind-principal-order
   ok: true
   depends: []
   docs:
     - /docs/TinyTauDemo/PrincipalDivisor.html#FractionalIdeal.valuation_eq_exp_neg_count_spanSingleton
-  comment: Compute the exponent of the principal fractional ideal from a numerator and denominator. The valuation uses the exponential of its negative.
+  comment: Exponentiate Tau Ceti's logarithm formula for principal fractional ideals to recover the multiplicative valuation.
 - id: def-primitive-solution
   ok: true
   depends: []
