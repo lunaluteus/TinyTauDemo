@@ -56,6 +56,7 @@ public import TinyTauDemo.Fermat.ArithmeticSurface.FermatIntegralSections
 public import TinyTauDemo.Fermat.Polynomial.FermatLineExtension
 public import TinyTauDemo.Fermat.Polynomial.FermatPolynomialDescent
 public import TinyTauDemo.Fermat.Polynomial.FermatPolynomialMason
+public import TinyTauDemo.Fermat.Curve.FermatProjection
 public import TinyTauDemo.Fermat.Curve.FermatProjective
 public import TinyTauDemo.Fermat.ArithmeticSurface.FermatProjectiveBaseChange
 public import TinyTauDemo.Fermat.Polynomial.FermatProjectiveDegree
