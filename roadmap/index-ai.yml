@@ -108,8 +108,19 @@
   ok: false
   depends:
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism
+    - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
   docs: []
-  comment: The valuative extension, the actual Fermat morphism, and its chart at infinity are verified. The degree calculation and the general plane Jacobian criterion remain.
+  comment: The valuative extension and the Fermat morphism, including its chart at infinity and degree, are verified. The general plane Jacobian criterion and the degree formula for arbitrary smooth plane curves remain.
+- id: prp-fermat-line-morphism-degree
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-fermat-line-morphism
+  docs:
+    - /docs/TinyTauDemo/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap_comp_SpecMap_eq_lastChart
+    - /docs/TinyTauDemo/FermatDegree.html#TinyTauDemo.PrimitiveFermatSolution.max_eq_mul_finrank_adjoin_ratFunc
+    - /docs/TinyTauDemo/FermatProjectiveDegree.html#TinyTauDemo.fermatProjectiveLineMap_degree_of_pos
+    - /docs/TinyTauDemo/FermatProjectiveDegree.html#TinyTauDemo.PrimitiveFermatSolution.exists_projectiveLineMap_degree
+  comment: Compute the function-field inclusion through the last coordinate chart and divide the degree of the rational projection by the degree of the Fermat projection.
 - id: prp-fermat-line-morphism
   ok: true
   depends:

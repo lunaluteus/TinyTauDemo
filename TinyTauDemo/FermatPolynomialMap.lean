@@ -5,9 +5,10 @@ Authors: Luna Luteus
 -/
 module
 
-public import TinyTauDemo.FermatProjective
+public import TinyTauDemo.FermatCharts
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import TinyTauDemo.InfinityCoordinates
+import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ChartEquality
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Naturality
 import TauCeti.RingTheory.MvPolynomial.Homogeneous
 
@@ -189,5 +190,81 @@ theorem fermatAffineMap_reflect_overlap {k : Type u} [Field k] {n : ℕ}
   rw [hcoords, hF'.aeval_smul, smul_eq_mul]
 
 end Overlap
+
+open HomogeneousLocalization in
+/-- Where the last coordinate is nonzero, the polynomial-coordinate morphism factors
+through the last affine Fermat chart via evaluation in the two normalized coordinates. -/
+theorem fermatAffineMap_comp_SpecMap_eq_lastChart
+    {k L : Type u} [Field k] [CharZero k] [IsAlgClosed k] [Field L] [Algebra k L]
+    {n : ℕ} (hn : 0 < n)
+    (p : Fin 3 → k[X]) (hF : MvPolynomial.aeval p (fermatEquation k n) = 0)
+    (hp : Ideal.span (Set.range p) = ⊤) (φ : k[X] →ₐ[k] L) (hz : φ (p 2) ≠ 0)
+    (ψ : FermatAffineRing k n 2 →ₐ[k] L)
+    (hψ : ∀ P : MvPolynomial (Fin 2) k, ψ (Ideal.Quotient.mk _ P) =
+      MvPolynomial.aeval ![φ (p 0) / φ (p 2), φ (p 1) / φ (p 2)] P) :
+    Spec.map (CommRingCat.ofHom φ.toRingHom) ≫ fermatAffineMap p hF hp =
+      Spec.map (CommRingCat.ofHom ψ.toRingHom) ≫ fermatAffineChart k hn 2 := by
+  let g := Spec.map (CommRingCat.ofHom φ.toRingHom)
+  let γ := Scheme.ΓSpecIso (.of L)
+  let f := (φ.comp (fermatPolynomialCoordinates p hF)).toRingHom
+  let 𝒜 := fermatGrading k n
+  let z := Ideal.Quotient.mk (fermatIdeal k n) (MvPolynomial.X 2)
+  have hz' : f z = φ (p 2) := by
+    simp [f, z, fermatPolynomialCoordinates_mk]
+  have huf : IsUnit (f z) := isUnit_iff_ne_zero.mpr (hz' ▸ hz)
+  have hfΓ : (g.appTop.hom.comp (fermatAffineGlobalCoordinates p hF)) = γ.inv.hom.comp f := by
+    apply RingHom.ext
+    intro a
+    apply γ.commRingCatIsoToRingEquiv.injective
+    change γ.hom (g.appTop ((Scheme.ΓSpecIso (.of k[X])).inv
+      (fermatPolynomialCoordinates p hF a))) = γ.hom (γ.inv (f a))
+    rw [Iso.inv_hom_id_apply]
+    exact pullback_global_affine_section φ _
+  have hξ : z ∈ 𝒜 1 := fermatCoord_mem_degree_one 2
+  have hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤ :=
+    Ideal.eq_top_of_isUnit_mem _ (Ideal.mem_map_of_mem f
+      (HomogeneousIdeal.mem_irrelevant_of_mem 𝒜 Nat.zero_lt_one hξ)) huf
+  have hleft : g ≫ fermatAffineMap p hF hp =
+      Spec.map (CommRingCat.ofHom (Away.lift 𝒜 f huf)) ≫ Proj.awayι 𝒜 z hξ one_pos := by
+    change g ≫ Proj.fromOfGlobalSections 𝒜 (fermatAffineGlobalCoordinates p hF) _ = _
+    rw [Proj.fromOfGlobalSections_naturality]
+    suffices ∀ ha, Proj.fromOfGlobalSections 𝒜
+        (g.appTop.hom.comp (fermatAffineGlobalCoordinates p hF)) ha =
+        Spec.map (CommRingCat.ofHom (Away.lift 𝒜 f huf)) ≫ Proj.awayι 𝒜 z hξ one_pos by
+      exact this _
+    rw [hfΓ]
+    intro _
+    exact Proj.fromOfGlobalSections_Spec_eq_awayLift f hf one_pos hξ huf
+  rw [hleft, fermatAffineChart_eq_awayι]
+  -- Use the common Proj presentation before cancelling the chart immersion.
+  change Spec.map (CommRingCat.ofHom (Away.lift 𝒜 f huf)) ≫ Proj.awayι 𝒜 z hξ one_pos =
+    Spec.map (CommRingCat.ofHom ψ.toRingHom) ≫
+      Spec.map (CommRingCat.ofHom (fermatAwayEquivAffine k hn 2).toRingHom) ≫
+        Proj.awayι 𝒜 z hξ one_pos
+  rw [← Category.assoc, ← Spec.map_comp, cancel_mono, ← CommRingCat.ofHom_comp]
+  congr 2
+  ext a
+  obtain ⟨d, a, ha, rfl⟩ := Away.mk_surjective 𝒜 hξ a
+  have ha' : a ∈ fermatGrading k n d := by simpa only [Nat.nsmul_eq_mul, mul_one] using ha
+  obtain ⟨P, hP, rfl⟩ := (mem_quotientPiece_iff _ _).mp ha'
+  change Away.lift 𝒜 f huf (Away.mk 𝒜 hξ d (Ideal.Quotient.mk _ P) ha) =
+    ψ (fermatAwayEquivAffine k hn 2 (Away.mk 𝒜 hξ d (Ideal.Quotient.mk _ P) ha))
+  rw [Away.lift_mk, fermatAwayEquivAffine_mk k hn 2 d P hP, hψ, TauCeti.aeval_dehomogenize]
+  have huc : (↑huf.unit : L) = φ (p 2) := huf.unit_spec.trans hz'
+  rw [Units.val_inv_eq_inv_val, Units.val_pow_eq_pow_val, huc]
+  have hfP : f (Ideal.Quotient.mk _ P) = MvPolynomial.aeval (fun i ↦ φ (p i)) P := by
+    change φ (fermatPolynomialCoordinates p hF (Ideal.Quotient.mk _ P)) = _
+    rw [fermatPolynomialCoordinates_mk, MvPolynomial.comp_aeval_apply]
+  rw [hfP]
+  have hcoord : (2 : Fin 3).insertNth (1 : L)
+      ![φ (p 0) / φ (p 2), φ (p 1) / φ (p 2)] =
+      (φ (p 2))⁻¹ • (fun i ↦ φ (p i)) := by
+    ext i
+    fin_cases i
+    · exact div_eq_inv_mul _ _
+    · exact div_eq_inv_mul _ _
+    · exact (inv_mul_cancel₀ hz).symm
+  rw [hcoord, hP.aeval_smul, smul_eq_mul]
+  simp only [inv_pow, mul_comm]
 
 end TinyTauDemo

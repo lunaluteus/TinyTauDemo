@@ -7,6 +7,7 @@ module
 
 public import TinyTauDemo.BernoulliExamples
 public import TinyTauDemo.CaseTwoValuations
+public import TinyTauDemo.ChartFunctionField
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicCover
 public import TinyTauDemo.CyclotomicDifferentials
@@ -20,7 +21,9 @@ public import TinyTauDemo.DifferentialStalkMap
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
+public import TinyTauDemo.FermatAffineEval
 public import TinyTauDemo.FermatCharts
+public import TinyTauDemo.FermatDegree
 public import TinyTauDemo.FermatEquation
 public import TinyTauDemo.FermatFour
 public import TinyTauDemo.FermatGenus
@@ -29,6 +32,7 @@ public import TinyTauDemo.FermatLineExtension
 public import TinyTauDemo.FermatPolynomialDescent
 public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.FermatProjective
+public import TinyTauDemo.FermatProjectiveDegree
 public import TinyTauDemo.FermatSchemeGenus
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates

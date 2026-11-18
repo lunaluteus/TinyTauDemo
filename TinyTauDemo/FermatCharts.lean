@@ -149,6 +149,16 @@ noncomputable def fermatAwayEquivAffine {n : ℕ} (hn : 0 < n) (i : Fin 3) :
   RingEquiv.ofBijective (awayToAffine k n i) ⟨awayToAffine_injective k hn i,
     awayToAffine_surjective k n i⟩
 
+/-- The chart equivalence sends a homogeneous fraction to its dehomogenized numerator. -/
+theorem fermatAwayEquivAffine_mk {n : ℕ} (hn : 0 < n) (i : Fin 3) (m : ℕ)
+    (p : MvPolynomial (Fin 3) k) (hp : p.IsHomogeneous m) :
+    fermatAwayEquivAffine k hn i (Away.mk (fermatGrading k n) (fermatCoord_mem_degree_one i) m
+      (Ideal.Quotient.mk (fermatIdeal k n) p) (by
+        simpa only [Nat.nsmul_eq_mul, mul_one] using
+          mk_mem_quotientPiece (homogeneousSubmodule (Fin 3) k) (fermatIdeal k n) hp)) =
+      Ideal.Quotient.mk _ (TauCeti.dehomogenize (R := k) i p) :=
+  awayToAffine_mk k n i m p hp
+
 /-- Each coordinate basic open is the spectrum of the appropriate dehomogenized ring. -/
 noncomputable def fermatBasicOpenIsoSpecAffine {n : ℕ} (hn : 0 < n) (i : Fin 3) :
     (Proj.basicOpen (fermatGrading k n) (Ideal.Quotient.mk (fermatIdeal k n) (X i))).toScheme ≅
@@ -189,6 +199,14 @@ noncomputable def fermatAffineChart {n : ℕ} (hn : 0 < n) (i : Fin 3) :
     Spec (.of (FermatAffineRing k n i)) ⟶ fermatProjective k n :=
   (fermatBasicOpenIsoSpecAffine k hn i).inv ≫
     (Proj.basicOpen (fermatGrading k n) (coord k n i)).ι
+
+/-- The affine chart inclusion factors through the homogeneous localization. -/
+theorem fermatAffineChart_eq_awayι {n : ℕ} (hn : 0 < n) (i : Fin 3) :
+    fermatAffineChart k hn i = Spec.map
+      (CommRingCat.ofHom (fermatAwayEquivAffine k hn i).toRingHom) ≫
+      Proj.awayι (fermatGrading k n) (Ideal.Quotient.mk (fermatIdeal k n) (X i))
+        (fermatCoord_mem_degree_one i) Nat.one_pos := by
+  rfl
 
 instance {n : ℕ} (hn : 0 < n) (i : Fin 3) : IsOpenImmersion (fermatAffineChart k hn i) := by
   change IsOpenImmersion ((fermatBasicOpenIsoSpecAffine k hn i).inv ≫
