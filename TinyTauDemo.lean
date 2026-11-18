@@ -17,6 +17,7 @@ public import TinyTauDemo.ClassNumberTransfer
 public import TinyTauDemo.ClosedDifferentialLength
 public import TinyTauDemo.CurveCanonicalDegree
 public import TinyTauDemo.CyclotomicBernoulliReduction
+public import TinyTauDemo.CyclotomicClassNumberFormula
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicCover
 public import TinyTauDemo.CyclotomicDifferentials

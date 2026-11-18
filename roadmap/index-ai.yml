@@ -508,8 +508,9 @@
     - /roadmap/index-ai.qmd#prp-teichmuller-bernoulli-factors
     - /roadmap/index-ai.qmd#prp-odd-bernoulli-product-transport
     - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
+    - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
   docs: []
-  comment: The finite tests and infinitude theorem are verified for the numerator predicate. The normalized odd Bernoulli product detects divisibility of the norm kernel once the complex relative class-number formula is supplied. That formula and the implication from the real part to the relative part remain.
+  comment: The unconditional relative class-number criterion and the implication from a Bernoulli numerator divisor to cyclotomic class-number divisibility are verified, including infinitude of actual irregular primes. The reflection implication from the real class group to the relative norm kernel remains, along with the consequent converse and exact classification below 100.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -561,6 +562,20 @@
     - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.hurwitzZeta_zero_eq
     - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.dirichletLFunction_zero_eq_neg_generalizedBernoulli
   comment: Use Abel's theorem and summation by parts for the sine zeta at one. The Hurwitz functional equation and the finite sum over residue classes give the generalized Bernoulli value.
+- id: thm-cyclotomic-relative-class-number
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-cyclotomic-class-number-reduction
+    - /roadmap/index-ai.qmd#prp-odd-bernoulli-product-transport
+    - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
+  docs:
+    - /docs/TinyTauDemo/CyclotomicOddEulerProduct.html#TinyTauDemo.cyclotomic_dedekindZeta_div_eq_prod_odd
+    - /docs/TinyTauDemo/CyclotomicOddEulerProduct.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div_eq_prod_odd_LFunction
+    - /docs/TinyTauDemo/DirichletOddFunctionalEquation.html#TinyTauDemo.norm_prod_odd_dirichletLFunction_one
+    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.cyclotomic_relative_classNumber_eq_norm_oddBernoulli
+    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular
+    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_real_or_bernoulliIrregular
+  comment: Compare the odd Euler product limit and the explicit class-number ratio. Use the odd functional equation and transport of the generalized Bernoulli product to prove the criterion for the relative kernel.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []
@@ -573,12 +588,14 @@
   ok: true
   depends:
     - /roadmap/index-ai.qmd#lem-bernoulli-kummer-congruence
+    - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
   docs:
     - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.BernoulliIrregular
     - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulli_den_two_mul_prime_eq_six
     - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.bernoulli_num_two_mul_prime_mod_four
     - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular_mod_four
     - /docs/TinyTauDemo/BernoulliIrregular.html#TinyTauDemo.infinite_bernoulliIrregular
+    - /docs/TinyTauDemo/CyclotomicClassNumberFormula.html#TinyTauDemo.infinite_irregularPrime_mod_four
   comment: Choose a prime q in a suitable progression. The positive numerator of B_(2q) is three modulo four, and Kummer's congruence yields a new prime satisfying the numerator test.
 - id: prp-bernoulli-numerator-test-below-100
   ok: true

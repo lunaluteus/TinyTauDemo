@@ -205,6 +205,8 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let $p\ge5$ be p
 ## Infinitely many primes satisfying the Bernoulli numerator test
 
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), Jensen's argument begins with a finite set $S$ of primes satisfying the numerator test and a prime $q$ larger than every element of $S$, with $q\equiv1\pmod{12\prod_{p\in S}p(p-1)}$. The denominator of $B_{2q}$ is six. Euler's formula for even zeta values gives positivity, and Faulhaber's formula at four gives a numerator congruent to three modulo four. A prime divisor $p\equiv3\pmod4$ of that numerator is different from $q$ and is at least five. Reducing $2q$ modulo $p-1$ and using Kummer's congruence gives an even irregular index between two and $p-3$. For a prime in $S$, the reduced index would be two, whose Bernoulli numerator is one. Thus the numerator test holds for infinitely many primes, even within the residue class three modulo four.
+
+The relative class-number formula sends each of these primes to a divisor of the full class number of its cyclotomic field. Hence infinitely many primes congruent to three modulo four are irregular in the class-number sense.
 :::
 
 ::: {#prp-cyclotomic-class-number-reduction}
@@ -231,6 +233,16 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), every character 
 ## Dirichlet L-values and first generalized Bernoulli numbers
 
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), the logarithm series on the unit circle gives the sine series at exponent one. Summation by parts supplies a summable bound near that exponent, so the sine zeta has value $\pi(1/2-a)$ at one for $0<a<1$. Its functional equation gives $\zeta(0,a)=1/2-a$. Expansion over residue classes then gives $L(0,\chi)=-B_{1,\chi}$ for each nontrivial complex Dirichlet character.
+:::
+
+::: {#thm-cyclotomic-relative-class-number}
+## The relative class number and the Bernoulli criterion
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), the Euler factors of the full cyclotomic field and its maximal real subfield agree at the conductor. At any other prime their quotient is the product of local factors of the odd characters, by the order of Frobenius. Absolute convergence gives the corresponding quotient of zeta functions and continuity gives the ratio of residues at one. The odd functional equation and the Gauss sum of modulus $\sqrt p$ express the absolute value of each odd $L(1,\chi)$ as $\pi/\sqrt p$ times the modulus of the first Bernoulli number of the inverse character.
+
+Writing $m=(p-1)/2$ and $h,h^+$ for the two class numbers, comparison with the explicit residue ratio gives
+$$2^{m-1}h=h^+ p\left|\prod_{\chi\ \mathrm{odd}}B_{1,\chi}\right|.$$
+The product is real by conjugation. Transport to the $p$-adic coefficient field and the norm cokernel calculation identify divisibility of the relative class norm kernel with the ordinary Bernoulli test. Consequently $p\mid h$ precisely when $p\mid h^+$ or the Bernoulli test holds. Removing the real-class-number alternative requires the reflection implication.
 :::
 
 ::: {#prp-integral-fermat-sections}
