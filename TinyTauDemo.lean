@@ -15,6 +15,7 @@ public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.ChartFunctionField
 public import TinyTauDemo.ClassNumberTransfer
 public import TinyTauDemo.ClosedDifferentialLength
+public import TinyTauDemo.CurveCanonicalDegree
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicCover
 public import TinyTauDemo.CyclotomicDifferentials

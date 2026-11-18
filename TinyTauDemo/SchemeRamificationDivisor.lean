@@ -168,6 +168,21 @@ noncomputable def curveRamificationDivisor
   (Finsupp.domCongr (curveCodimensionOnePointEquivPlace k X).symm)
     (Divisor.tameDifferent k L hF)
 
+/-- The source Weil divisor is obtained by reindexing the tame different from places to points. -/
+theorem curveRamificationDivisor_eq_reindex_tameDifferent
+    [∀ x : CodimensionOnePoint X, IsDiscreteValuationRing (X.presheaf.stalk (x : X))] :
+    letI : Algebra F L := (f.functionFieldAlgHom k).toRingHom.toAlgebra
+    letI : IsScalarTower k F L :=
+      IsScalarTower.of_algebraMap_eq fun r ↦ ((f.functionFieldAlgHom k).commutes r).symm
+    let hF := Scheme.IsCurveOver.isFunctionField (X := Y) (k := k)
+    let hL := Scheme.IsCurveOver.isFunctionField (X := X) (k := k)
+    letI := finiteDimensional_of_functionFields hF hL
+    letI : CharZero F := charZero_of_injective_algebraMap (algebraMap k F).injective
+    curveRamificationDivisor k f =
+      (Finsupp.domCongr (curveCodimensionOnePointEquivPlace k X).symm)
+        (Divisor.tameDifferent k L hF) := by
+  rw [curveRamificationDivisor]
+
 private theorem coeff_curveRamificationDivisor_eq_toPlace
     [∀ x : CodimensionOnePoint X, IsDiscreteValuationRing (X.presheaf.stalk (x : X))]
     (z : CodimensionOnePoint X) :

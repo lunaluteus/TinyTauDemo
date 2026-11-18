@@ -147,6 +147,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), the in
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), separability makes the generic relative differential stalk zero. At a closed point the stalk is nonzero exactly when the ramification index exceeds one. These points are the finite support of the ramification divisor. On an open set, any tuple of germs at the supported points has representatives on neighbourhoods that exclude the other supported points. The representatives glue because agreement can be checked at stalks. This identifies the relative differential sheaf with the finite product of its stalk skyscrapers via the germ maps.
 :::
 
+::: {#prp-canonical-differential-degrees}
+## Canonical sheaf degrees and the ramification twist
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), a smooth proper integral curve over a perfect field exact in its function field has $\dim_k H^0(X,\Omega_{X/k})=g(X)$ and $\deg\Omega_{X/k}=2g(X)-2$. The Euler degree of the canonical sheaf is the sum of the degree of the pulled-back canonical sheaf and the residue-weighted degree of the Weil ramification divisor. In characteristic zero with exact constants on both curves, the degree of the pulled-back canonical sheaf is the degree of the function-field extension times that of the target canonical sheaf. Over algebraically closed constants all residue weights are one.
+:::
+
 ::: {#thm-tame-hurwitz-schemes}
 ## The numerical Riemann–Hurwitz formula for schemes
 

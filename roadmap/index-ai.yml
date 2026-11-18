@@ -180,8 +180,9 @@
     - /roadmap/index-ai.qmd#prp-closed-curve-differential-length
     - /roadmap/index-ai.qmd#prp-cartier-ramification-divisor
     - /roadmap/index-ai.qmd#prp-relative-differential-skyscrapers
+    - /roadmap/index-ai.qmd#prp-canonical-differential-degrees
   docs: []
-  comment: The numerical formula, short exact differential sequence, local lengths, finite skyscraper decomposition, and global Cartier and Weil twists agree with the same ramification divisor. The canonical-degree consequences for the sheaves remain to be linked.
+  comment: The numerical formula follows from the canonical sheaf degrees and the residue-weighted degree of the same Weil ramification divisor that gives the twist and the relative stalk lengths. The explicit divisor of dt on the projective line remains to be linked.
 - id: prp-cartier-ramification-divisor
   ok: true
   depends:
@@ -206,6 +207,18 @@
     - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.finite_support_morphismRelativeDifferentials
     - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.morphismRelativeDifferentials_isSkyscraper
   comment: The generic stalk vanishes by separability, and the ramified closed points form finite support. Gluing the local representatives gives the product with the canonical germ projections.
+- id: prp-canonical-differential-degrees
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-cartier-ramification-divisor
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
+  docs:
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.finrank_globalRelativeDifferentials_of_smoothProperCurve
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_of_smoothProperCurve
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_eq_pullback_add_ramification
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_pullback_relativeDifferentials
+  comment: The canonical bundle degree and global section dimension follow from function-field Riemann–Roch. Apply degree additivity to the actual Weil ramification twist and identify its residue-weighted degree with the tame different.
 - id: prp-closed-curve-differential-length
   ok: true
   depends:
