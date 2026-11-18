@@ -75,6 +75,7 @@ public import TinyTauDemo.Fermat.Integer.Kummer.KummerTranslatedRoot
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerUnramified
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerUnit
 public import TinyTauDemo.Algebra.Polynomial.MasonHurwitz
+public import TinyTauDemo.Algebra.Polynomial.MasonHurwitzInfinity
 public import TinyTauDemo.Algebra.Polynomial.MasonStothers
 public import TinyTauDemo.NumberTheory.Bernoulli.OddBernoulliTransport
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneFieldDegree
@@ -90,6 +91,7 @@ public import TinyTauDemo.AlgebraicGeometry.Dedekind.PrincipalDivisor
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineCharts
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineDifferentials
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineInfinityStalk
+public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineRatFuncMap
 public import TinyTauDemo.NumberTheory.Ramification.RamificationRecall
 public import TinyTauDemo.NumberTheory.Cyclotomic.RegularPrime
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.RelativeDifferentialSheaf

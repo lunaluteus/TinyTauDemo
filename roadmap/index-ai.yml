@@ -386,8 +386,13 @@
   depends:
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
   docs:
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineRatFuncMap.html#TinyTauDemo.projectiveLineMapOfRatFunc_functionFieldAlgHom
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineRatFuncMap.html#TinyTauDemo.eq_projectiveLineMapOfRatFunc_iff
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineRatFuncMap.html#TinyTauDemo.projectiveLineMapOfRatFunc_finrank
+    - /docs/TinyTauDemo/Algebra/Polynomial/MasonHurwitz.html#TinyTauDemo.exists_masonProjectiveLineMap
     - /docs/TinyTauDemo/Algebra/Polynomial/MasonHurwitz.html#TinyTauDemo.masonStothers_of_hurwitz
-  comment: Use the degree of the reduced fraction a/c and count the places above zero, one, and infinity. The finite places belong to the support of the radical, with at most the source place at infinity as an extra place.
+    - /docs/TinyTauDemo/Algebra/Polynomial/MasonHurwitzInfinity.html#TinyTauDemo.exists_masonTriple_infty_residue_one_half
+  comment: Construct the finite surjective projective-line morphism of degree M with affine coordinate a/c. The finite places over zero, one, and infinity belong to the support of the radical. The source place at infinity is an optional extra place, as the residue 1/2 example shows.
 - id: rem-arithmetic-surface
   ok: false
   depends:

@@ -7,6 +7,7 @@ module
 
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Mathlib.RingTheory.Radical.Basic
+public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineRatFuncMap
 import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.HurwitzFibreCount
 import TauCeti.FieldTheory.FunctionField.Divisor.RatFunc
 import TauCeti.FieldTheory.FunctionField.Place.Map
@@ -18,7 +19,7 @@ import TauCeti.FieldTheory.FunctionField.RiemannRoch.Equiv
 The cover given by the reduced rational function `a / c` has degree equal to the
 largest coordinate degree. The finite places over zero, one, and infinity belong
 to the zero divisor of the radical of `a * b * c`. There is at most one more place.
-See `/roadmap/index.qmd#rem-mason-hurwitz-bridge @ 1c4dad461408b9adac6d5698769a2b616a9cc434`.
+See `/roadmap/index.qmd#rem-mason-hurwitz-bridge` @ `d2c4d4a566aab2eb4ba61e9bb96a4fcd4b9e7eaa`.
 -/
 
 public section
@@ -86,6 +87,48 @@ private theorem max_natDegree_num_denom_of_isCoprime
       (natDegree_le_of_dvd hcd (RatFunc.denom_ne_zero f))
   rw [hnum, hden]
 
+private theorem max_natDegree_of_add_eq {a b c : k[X]} (hsum : a + b = c) :
+    max a.natDegree (max b.natDegree c.natDegree) = max a.natDegree c.natDegree := by
+  have hbdeg : b.natDegree ≤ max c.natDegree a.natDegree := by
+    have he : b = c - a := by rw [← hsum]; abel
+    rw [he]
+    exact natDegree_sub_le _ _
+  omega
+
+open AlgebraicGeometry CategoryTheory in
+/-- The Mason cover defined by the affine rational coordinate `a / c` is a finite surjective
+map of projective lines whose function-field degree is the largest coordinate degree. -/
+theorem exists_masonProjectiveLineMap {a b c : k[X]}
+    (hac : IsCoprime a c) (hsum : a + b = c)
+    (hpos : 0 < max a.natDegree (max b.natDegree c.natDegree)) :
+    ∃ φ : projectiveLine k ⟶ projectiveLine k,
+      ∃ (_ : IsDominant φ) (_ : φ.IsOver (Spec (.of k))),
+        IsFinite φ ∧ Surjective φ ∧
+          (let F := (projectiveLine k).functionField
+           let A := (φ.functionFieldAlgHom k).toRingHom.toAlgebra
+           @Module.finrank F F _ _ (@Algebra.toModule _ _ _ _ A) =
+             max a.natDegree (max b.natDegree c.natDegree)) ∧
+          (let e := projectiveLine.functionFieldEquiv k
+           e (φ.functionFieldMap (e.symm RatFunc.X)) =
+             algebraMap k[X] (RatFunc k) a / algebraMap k[X] (RatFunc k) c) := by
+  let f := algebraMap k[X] (RatFunc k) a / algebraMap k[X] (RatFunc k) c
+  have hmax := max_natDegree_of_add_eq hsum
+  have hdeg := hmax ▸ hpos
+  have ha : a ≠ 0 := by
+    intro h
+    rw [h] at hac hdeg
+    simp [natDegree_eq_zero_of_isUnit (isCoprime_zero_left.mp hac)] at hdeg
+  have hc : c ≠ 0 := by
+    intro h
+    rw [h] at hac hdeg
+    simp [natDegree_eq_zero_of_isUnit (isCoprime_zero_right.mp hac)] at hdeg
+  have hf : Transcendental k f := transcendental_ratFunc_div_of_isCoprime hc hac hdeg
+  let φ := projectiveLineMapOfRatFunc f hf
+  refine ⟨φ, inferInstance, inferInstance, inferInstance, inferInstance, ?_, ?_⟩
+  · exact (projectiveLineMapOfRatFunc_finrank f hf).trans
+      ((max_natDegree_num_denom_of_isCoprime ha hc hac rfl).trans hmax.symm)
+  · exact (eq_projectiveLineMapOfRatFunc_iff φ f hf).mp rfl
+
 private theorem ord_algebraMap_eq_zero_of_not_dvd {q r : k[X]}
     (hq : Irreducible q) (hr : r ≠ 0) (hqr : ¬ q ∣ r) :
     (Place.adicOfIrreducible hq).ord (algebraMap k[X] (RatFunc k) r) = 0 := by
@@ -103,20 +146,10 @@ theorem masonStothers_of_hurwitz [IsAlgClosed k] [CharZero k] {a b c : k[X]}
   -- The degree of the rational cover is the degree of the reduced fraction.
   let i := algebraMap k[X] (RatFunc k)
   let f := i a / i c
-  have hmax : max a.natDegree (max b.natDegree c.natDegree) =
-      max a.natDegree c.natDegree := by
-    have hbdeg : b.natDegree ≤ max c.natDegree a.natDegree := by
-      have he : b = c - a := by rw [← hsum]; abel
-      rw [he]
-      exact natDegree_sub_le _ _
-    omega
+  have hmax := max_natDegree_of_add_eq hsum
   have hdeg := max_natDegree_num_denom_of_isCoprime (f := f) ha hc hac rfl
-  have hf : Transcendental k f := by
-    apply RatFunc.transcendental_of_ne_C
-    rintro ⟨r, hr⟩
-    rw [hr] at hdeg
-    simp at hdeg
-    omega
+  have hf : Transcendental k f :=
+    transcendental_ratFunc_div_of_isCoprime hc hac (hmax ▸ hpos)
   let F := k⟮f⟯
   let e : RatFunc k ≃ₐ[k] F := RatFunc.algEquivOfTranscendental f hf
   have hF : IsFunctionField k F := hf.isFunctionField_adjoin
