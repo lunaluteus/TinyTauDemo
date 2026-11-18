@@ -514,7 +514,7 @@
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/RegularPrime.html#TinyTauDemo.RegularPrime.fractionalIdeal_isPrincipal_of_pow
   comment: Use the class number of the canonical ring of integers. Cauchy's theorem gives the torsion equivalence, and coprimality with the class number gives the principal ideal consequence.
 - id: rem-bernoulli-regular
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index-ai.qmd#prp-bernoulli-numerator-test-below-100
@@ -528,8 +528,13 @@
     - /roadmap/index-ai.qmd#prp-kummer-idele-norm-index
     - /roadmap/index-ai.qmd#thm-prime-idele-artin-reciprocity
     - /roadmap/index-ai.qmd#thm-kummer-character-realization
-  docs: []
-  comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. Prime-degree Artin reciprocity gives realization over a field containing the pth roots of unity. The remaining step is coprime descent of the constructed cyclic extension.
+    - /roadmap/index-ai.qmd#thm-hilbert-prime-existence
+  docs:
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/KummerBernoulliCriterion.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_bernoulliIrregular
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/KummerBernoulliCriterion.html#TinyTauDemo.regularPrime_iff_not_dvd_bernoulli_num
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/KummerBernoulliCriterion.html#TinyTauDemo.regularPrime_below_100_iff
+    - /docs/TinyTauDemo/NumberTheory/Bernoulli/CyclotomicClassNumberFormula.html#TinyTauDemo.infinite_irregularPrime_mod_four
+  comment: Apply prime-degree Hilbert existence over the real subfield and use Kummer reflection. The verified numerator calculation gives all regular odd primes below 100, and Jensen's argument gives infinitely many actual irregular primes.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -639,6 +644,16 @@
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerRealization.html#TinyTauDemo.exists_cyclic_norm_realization_at_good_S
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerRealization.html#TinyTauDemo.exists_cyclic_norm_realization
   comment: A ray subgroup gives the Kummer subgroup inside the character kernel. Artin reciprocity realizes the character by a prime-degree fixed field.
+- id: thm-hilbert-prime-existence
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-cyclotomic-reflection-reduction
+    - /roadmap/index-ai.qmd#thm-kummer-character-realization
+  docs:
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Hilbert/CharacterConjugation.html#TinyTauDemo.relativeCharacter_conjugation_invariant_in_tower_of_uniformizer_eq
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Hilbert/TransferDescent.html#TinyTauDemo.exists_unramified_cyclic_descent_of_relative_character
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Hilbert/Existence.html#TinyTauDemo.exists_unramified_cyclic_extension_of_dvd_classNumber
+  comment: Realize the norm-pullback character in a Galois Kummer field. Conjugate uniformizer ideles give equal character values, so transfer descends the unramified cyclic extension.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []

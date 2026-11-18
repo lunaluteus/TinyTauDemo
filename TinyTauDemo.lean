@@ -64,6 +64,7 @@ public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.HurwitzFibreCo
 public import TinyTauDemo.AlgebraicGeometry.Projective.InfinityCoordinates
 public import TinyTauDemo.NumberTheory.Cyclotomic.Kronecker
 public import TinyTauDemo.NumberTheory.Bernoulli.KummerBernoulliCongruence
+public import TinyTauDemo.NumberTheory.Bernoulli.KummerBernoulliCriterion
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerCaseOne
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerCaseTwo
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerLocalArithmetic

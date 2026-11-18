@@ -244,7 +244,7 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), the Euler factor
 
 Writing $m=(p-1)/2$ and $h,h^+$ for the two class numbers, comparison with the explicit residue ratio gives
 $$2^{m-1}h=h^+ p\left|\prod_{\chi\ \mathrm{odd}}B_{1,\chi}\right|.$$
-The product is real by conjugation. Transport to the $p$-adic coefficient field and the norm cokernel calculation identify divisibility of the relative class norm kernel with the ordinary Bernoulli test. Consequently $p\mid h$ precisely when $p\mid h^+$ or the Bernoulli test holds. Removing the real-class-number alternative requires the reflection implication.
+The product is real by conjugation. Transport to the $p$-adic coefficient field and the norm cokernel calculation identify divisibility of the relative class norm kernel with the ordinary Bernoulli test. Consequently $p\mid h$ precisely when $p\mid h^+$ or the Bernoulli test holds. Kummer reflection gives the Bernoulli test whenever the real class number is divisible by $p$.
 :::
 
 ::: {#prp-cyclotomic-reflection-reduction}
@@ -252,7 +252,7 @@ The product is real by conjugation. Transport to the $p$-adic coefficient field 
 
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), a prime divisor $p$ of the real class number gives an open cyclic quotient of the idele class group of order $p$ that kills the ideles that are units at every finite place. A cyclic extension of degree $p$ unramified at every finite place of the real subfield has an abelian compositum with the full cyclotomic field. The relative ramification indices in this compositum divide both the quadratic degree and $p$, so they are one.
 
-Complex conjugation inverts the resulting Kummer radicand modulo $p$th powers. The radicand has principal ideal $I^p$. If the relative norm kernel were prime to $p$, the conjugation relation would force $I$ to be principal. The cyclotomic unit decomposition would then force a primitive $p^2$th root of unity in the unramified extension, which contradicts the ramification index at the conductor. This proves the ordinary Bernoulli criterion from the unramified real extension. Realization of the open quotient by such an extension remains.
+Complex conjugation inverts the resulting Kummer radicand modulo $p$th powers. The radicand has principal ideal $I^p$. If the relative norm kernel were prime to $p$, the conjugation relation would force $I$ to be principal. The cyclotomic unit decomposition would then force a primitive $p^2$th root of unity in the unramified extension, which contradicts the ramification index at the conductor. This proves the ordinary Bernoulli criterion from the unramified real extension.
 :::
 
 ::: {#prp-kummer-idele-norm-index}
@@ -266,7 +266,7 @@ Counting local power classes and the image of the principal ideles gives the ind
 ::: {#thm-prime-idele-artin-reciprocity}
 ## The Artin map and the norm index in prime degree
 
-For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), adjoining the relevant roots of unity reduces the upper norm bound to the S-unit Kummer calculation. The first inequality then gives equality of the norm index and degree for every prime-degree extension. The two inequalities also give vanishing of the first idele-class cohomology for finite layers. This proves injectivity of Brauer localization and the sum formula for local invariants.
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), adjoining the relevant roots of unity reduces the upper norm bound to the S-unit Kummer calculation. The first inequality then gives equality of the norm index and degree for every prime-degree Galois extension. The two inequalities also give vanishing of the first idele-class cohomology for finite layers. This proves injectivity of Brauer localization and the sum formula for local invariants.
 
 The product of the finite and infinite local Artin symbols is well defined on ideles. Testing it on a principal idele against a Galois character gives the sum of the invariants of a global Brauer class, so the product descends to idele classes. It is surjective in abelian extensions, is compatible with restriction, and kills idele norms. In prime degree the index equality identifies its kernel with the norm group. At a finite prime, triviality on the completed integer units detects unramifiedness.
 :::
@@ -277,6 +277,16 @@ The product of the finite and infinite local Artin symbols is well defined on id
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let the base contain the $p$th roots of unity. The open kernel of a surjective idele-class character of order $p$ contains a ray subgroup. Choose $S$ to contain its finite support, the places above $p$, and enough prime ideal classes to generate the class group. At the places of $S$ and at infinity, take $p$th roots of the coordinates of an idele in the Kummer subgroup. Dividing by the resulting $p$th power gives an idele in the ray subgroup, so the character kills the Kummer subgroup.
 
 The Kummer subgroup is contained in the norm group of the full S-unit Kummer extension. Its index is the extension degree, which is also the index of the kernel of the surjective Artin map. The character therefore factors through that map. The fixed field of the factored kernel is cyclic of degree $p$, and prime-degree Artin reciprocity identifies its norm subgroup with the original character kernel.
+:::
+
+::: {#thm-hilbert-prime-existence}
+## Unramified cyclic extensions from the class number
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), suppose $p$ divides the ordinary class number of a number field. The class group gives a surjective order-$p$ idele-class character that kills the finite integral units. Pull it back along the norm from the field obtained by adjoining the $p$th roots of unity. The degree is prime to $p$, so the pulled-back character stays surjective with open kernel.
+
+Choose the Kummer places to be the places above a finite set of ground-field places. The resulting Kummer extension is Galois over the ground field, and the pulled-back character factors through its relative Artin map. Conjugate Frobenius elements come from uniformizer ideles over the same ground-field prime. These ideles have norms of equal order there, given by the residue degree, and the character kills their quotient. Frobenius elements outside a finite set generate the relative Galois group, so the factored character is conjugation invariant. Its relative fixed field is unramified at every finite prime because the local integer units have trivial image under the relative Artin map.
+
+Transfer extends the relative character to the ambient Galois group because the degree of the auxiliary cyclotomic extension is prime to $p$. The fixed field of the extended character has degree $p$. An inertia element in the relative subgroup has trivial character by unramifiedness upstairs, and the quotient by the relative subgroup has order prime to $p$. This makes the descended extension unramified at every finite prime.
 :::
 
 ::: {#prp-integral-fermat-sections}
