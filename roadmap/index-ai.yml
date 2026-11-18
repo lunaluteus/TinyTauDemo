@@ -160,8 +160,22 @@
     - /roadmap/index.qmd#def-kahler-log-deriv
     - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
+    - /roadmap/index-ai.qmd#prp-cyclotomic-differentials
   docs: []
-  comment: State the conditions on sections that correspond to primitivity and check the relative differential calculation after cyclotomic base change.
+  comment: The relative differentials, different ideal, and étale locus of the cyclotomic cover are verified. The comparison of sections and primitive projective coordinates remains.
+- id: prp-cyclotomic-differentials
+  ok: true
+  depends:
+    - /roadmap/index.qmd#prp-cyclotomic-ramification
+    - /roadmap/index.qmd#thm-ring-of-integers
+  docs:
+    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsAdjoinRoot.kaehlerDifferentialEquivQuotient
+    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.differentIdeal_eq_span_one_sub_pow
+    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.cyclotomicKaehlerDifferentialEquiv
+    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.isEtaleAt_iff_natCast_notMem
+    - /docs/TinyTauDemo/CyclotomicDifferentials.html#IsPrimitiveRoot.etale_localizationAway_natCast
+    - /docs/TinyTauDemo/CyclotomicDifferentials.html#TinyTauDemo.subsingleton_kaehlerDifferential_int
+  comment: The monogenic presentation gives the quotient by the derivative. The different then gives the exact étale locus when the prime is odd.
 - id: rem-ramification-disc-recall
   ok: true
   depends:

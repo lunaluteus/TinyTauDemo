@@ -8,6 +8,7 @@ module
 public import TinyTauDemo.BernoulliExamples
 public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.CyclotomicCongruences
+public import TinyTauDemo.CyclotomicDifferentials
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification
 public import TinyTauDemo.CyclotomicUnits

@@ -68,3 +68,9 @@ For the class-number step of the [unit lemma](index.qmd#lem-kummer-unit), a cycl
 
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), among odd primes below 100, some numerator in $B_2,B_4,\ldots,B_{p-3}$ is divisible by $p$ exactly for $37$, $59$, and $67$. The witnesses are $B_{32}$, $B_{44}$, and $B_{58}$, respectively. Lean checks the finite table using Mathlib’s rational Bernoulli recurrence.
 :::
+
+::: {#prp-cyclotomic-differentials}
+## Differentials of the prime cyclotomic integers
+
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), write $B=\mathbb{Z}[\zeta_p]$ and $\lambda=1-\zeta_p$. In the monogenic presentation of $B$, $d\zeta_p$ generates the module of relative differentials with relation $\Phi_p'(\zeta_p)d\zeta_p=0$. Differentiating $(X-1)\Phi_p(X)=X^p-1$ shows that $(\zeta_p-1)\Phi_p'(\zeta_p)=p\zeta_p^{p-1}$. The derivative therefore generates $(\lambda^{p-2})$, which is also the different ideal. For odd $p$, the cover is étale precisely at primes of $B$ away from $p$.
+:::
