@@ -59,6 +59,12 @@ noncomputable instance (n : ℕ) : GradedAlgebra (fermatGrading k n) :=
   gradedAlgebraQuotientPiece (homogeneousSubmodule (Fin 3) k) (fermatIdeal k n)
     (fermatIdeal_isHomogeneous k n)
 
+variable {k} in
+/-- The class of each coordinate variable in the Fermat ring has degree one. -/
+theorem fermatCoord_mem_degree_one {n : ℕ} (i : Fin 3) :
+    Ideal.Quotient.mk (fermatIdeal k n) (X i) ∈ fermatGrading k n 1 :=
+  mk_mem_quotientPiece _ _ (isHomogeneous_X (R := k) i)
+
 /-- The projective plane over the coefficient ring, in its monomial grading. -/
 noncomputable def fermatAmbientPlane : Scheme :=
   Proj (homogeneousSubmodule (Fin 3) k)
@@ -167,8 +173,7 @@ theorem fermatProjective_isIntegral {n : ℕ} (hn : 0 < n) :
   have : IsDomain (FermatCoordinateRing k n) := Ideal.Quotient.isDomain _
   apply Proj.isIntegral_of_isDomain
   intro h
-  have hx : Ideal.Quotient.mk (fermatIdeal k n) (X 0) ∈ fermatGrading k n 1 :=
-    mk_mem_quotientPiece _ _ (isHomogeneous_X (R := k) (0 : Fin 3))
+  have hx := fermatCoord_mem_degree_one (k := k) (n := n) (0 : Fin 3)
   have hmem := HomogeneousIdeal.mem_irrelevant_of_mem (fermatGrading k n) Nat.one_pos hx
   rw [h] at hmem
   exact fermatCoord_zero_ne_zero k hn (Ideal.mem_bot.mp hmem)

@@ -33,9 +33,6 @@ variable (k : Type u) [Field k]
 private noncomputable abbrev coord (n : ℕ) (i : Fin 3) : FermatCoordinateRing k n :=
   Ideal.Quotient.mk (fermatIdeal k n) (X i)
 
-private theorem coord_mem (n : ℕ) (i : Fin 3) : coord k n i ∈ fermatGrading k n 1 :=
-  mk_mem_quotientPiece _ _ (isHomogeneous_X (R := k) i)
-
 private noncomputable def chartQuotient (n : ℕ) (i : Fin 3) :
     FermatCoordinateRing k n →+* FermatAffineRing k n i :=
   Ideal.Quotient.lift (fermatIdeal k n)
@@ -60,7 +57,7 @@ private noncomputable def awayToAffine (n : ℕ) (i : Fin 3) :
 
 private theorem awayToAffine_mk (n : ℕ) (i : Fin 3) (m : ℕ) (p : MvPolynomial (Fin 3) k)
     (hp : p.IsHomogeneous m) :
-    awayToAffine k n i (Away.mk (fermatGrading k n) (coord_mem k n i) m
+    awayToAffine k n i (Away.mk (fermatGrading k n) (fermatCoord_mem_degree_one i) m
       (Ideal.Quotient.mk (fermatIdeal k n) p) (by
         simpa only [Nat.nsmul_eq_mul, mul_one] using
           mk_mem_quotientPiece (homogeneousSubmodule (Fin 3) k) (fermatIdeal k n) hp)) =
@@ -76,7 +73,7 @@ private theorem awayToAffine_surjective (n : ℕ) (i : Fin 3) :
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective y
   obtain ⟨P, hP, hPp⟩ :=
     TauCeti.exists_isHomogeneous_dehomogenize_eq i (le_refl p.totalDegree)
-  refine ⟨Away.mk (fermatGrading k n) (coord_mem k n i) p.totalDegree
+  refine ⟨Away.mk (fermatGrading k n) (fermatCoord_mem_degree_one i) p.totalDegree
     (Ideal.Quotient.mk (fermatIdeal k n) P) ?_, ?_⟩
   · simpa only [Nat.nsmul_eq_mul, mul_one] using
       mk_mem_quotientPiece (homogeneousSubmodule (Fin 3) k) (fermatIdeal k n) hP
@@ -133,7 +130,7 @@ private theorem awayToAffine_injective {n : ℕ} (hn : 0 < n) (i : Fin 3) :
     Function.Injective (awayToAffine k n i) := by
   apply (injective_iff_map_eq_zero _).mpr
   intro x hx
-  obtain ⟨d, a, ha, rfl⟩ := Away.mk_surjective (fermatGrading k n) (coord_mem k n i) x
+  obtain ⟨d, a, ha, rfl⟩ := Away.mk_surjective (fermatGrading k n) (fermatCoord_mem_degree_one i) x
   have ha' : a ∈ fermatGrading k n d := by simpa only [Nat.nsmul_eq_mul, mul_one] using ha
   obtain ⟨p, hp, rfl⟩ := (mem_quotientPiece_iff _ _).mp ha'
   rw [awayToAffine_mk k n i _ _ hp] at hx
@@ -156,7 +153,7 @@ noncomputable def fermatAwayEquivAffine {n : ℕ} (hn : 0 < n) (i : Fin 3) :
 noncomputable def fermatBasicOpenIsoSpecAffine {n : ℕ} (hn : 0 < n) (i : Fin 3) :
     (Proj.basicOpen (fermatGrading k n) (Ideal.Quotient.mk (fermatIdeal k n) (X i))).toScheme ≅
       Spec (.of (FermatAffineRing k n i)) :=
-  (Proj.basicOpenIsoSpec _ _ (coord_mem k n i) Nat.one_pos).trans
+  (Proj.basicOpenIsoSpec _ _ (fermatCoord_mem_degree_one i) Nat.one_pos).trans
     (Scheme.Spec.mapIso ((fermatAwayEquivAffine k hn i).toCommRingCatIso.op)).symm
 
 omit [CharZero k] [IsAlgClosed k] in
@@ -178,9 +175,9 @@ private theorem smoothOne_hasRingHomProperty :
 
 private theorem fermatAway_smoothOne {n : ℕ} (hn : 0 < n) (i : Fin 3) :
     SmoothOfRelativeDimension 1 (Proj.awayι (fermatGrading k n) (coord k n i)
-      (coord_mem k n i) Nat.one_pos ≫ fermatProjectiveToSpec k n) := by
+      (fermatCoord_mem_degree_one i) Nat.one_pos ≫ fermatProjectiveToSpec k n) := by
   change SmoothOfRelativeDimension 1 (Proj.awayι (fermatGrading k n) (coord k n i)
-    (coord_mem k n i) Nat.one_pos ≫ (Proj.toSpecZero (fermatGrading k n) ≫
+    (fermatCoord_mem_degree_one i) Nat.one_pos ≫ (Proj.toSpecZero (fermatGrading k n) ≫
       Spec.map (CommRingCat.ofHom (algebraMap k (fermatGrading k n 0)))))
   rw [← Category.assoc, Proj.awayι_toSpecZero, ← Spec.map_comp]
   have := smoothOne_hasRingHomProperty.{u}
@@ -216,17 +213,20 @@ theorem fermatProjective_smoothOne {n : ℕ} (hn : 0 < n) :
   let 𝒰 := (Proj (fermatGrading k n)).openCoverOfIsOpenCover U
     (TopologicalSpace.IsOpenCover.mk (fermatProjective_iSup_basicOpen k n))
   have hAffine (i : 𝒰.I₀) : IsAffine (𝒰.X i) :=
-    Proj.isAffineOpen_basicOpen (fermatGrading k n) (coord k n i) (coord_mem k n i) Nat.one_pos
+    Proj.isAffineOpen_basicOpen (fermatGrading k n) (coord k n i)
+      (fermatCoord_mem_degree_one i) Nat.one_pos
   refine HasRingHomProperty.of_source_openCover 𝒰 fun i => ?_
   apply HasRingHomProperty.appTop (@SmoothOfRelativeDimension 1)
   change SmoothOfRelativeDimension 1 ((U i).ι ≫ f)
-  let e := Proj.basicOpenIsoSpec (fermatGrading k n) (coord k n i) (coord_mem k n i) Nat.one_pos
+  let e := Proj.basicOpenIsoSpec (fermatGrading k n) (coord k n i)
+    (fermatCoord_mem_degree_one i) Nat.one_pos
   have hi : SmoothOfRelativeDimension 1 (Proj.awayι (fermatGrading k n) (coord k n i)
-      (coord_mem k n i) Nat.one_pos ≫ f) := fermatAway_smoothOne k hn i
+      (fermatCoord_mem_degree_one i) Nat.one_pos ≫ f) := fermatAway_smoothOne k hn i
   have hcomp := HasRingHomProperty.comp_of_isOpenImmersion (@SmoothOfRelativeDimension 1)
     e.hom _ hi
   change SmoothOfRelativeDimension 1 (e.hom ≫
-    Proj.awayι (fermatGrading k n) (coord k n i) (coord_mem k n i) Nat.one_pos ≫ f) at hcomp
+    Proj.awayι (fermatGrading k n) (coord k n i)
+      (fermatCoord_mem_degree_one i) Nat.one_pos ≫ f) at hcomp
   rw [← Proj.basicOpenIsoSpec_inv_ι, Category.assoc] at hcomp
   change SmoothOfRelativeDimension 1 (e.hom ≫ e.inv ≫ (U i).ι ≫ f) at hcomp
   rwa [Iso.hom_inv_id_assoc] at hcomp

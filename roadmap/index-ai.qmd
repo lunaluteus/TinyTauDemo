@@ -59,6 +59,12 @@ For the [projective curve recall](index.qmd#rem-scheme-curves-recall), a morphis
 For a nonconstant map to a plane curve of degree $n$, the coordinates give a pullback of $\mathcal O_C(1)$ of degree $M$. Since $\deg\mathcal O_C(1)=n$, the map degree satisfies $M=n\deg\pi$. For a direct map to $\mathbb P^1$ the corresponding line bundle has degree one.
 :::
 
+::: {#prp-fermat-line-morphism}
+## The morphism from polynomial coordinates
+
+For the [projective curve recall](index.qmd#rem-scheme-curves-recall), polynomial coordinates that generate the unit ideal and satisfy the homogeneous Fermat equation define a morphism from the affine line to the projective Fermat scheme. The inverse image of each coordinate open is the basic open of its coordinate polynomial. The affine morphism extends uniquely over the projective line, and on the chart at infinity its coordinates are the reflected polynomials. On the overlap the two coordinate systems differ by a common unit.
+:::
+
 ::: {#thm-tame-hurwitz-function-fields}
 ## Canonical divisors and tame Riemann–Hurwitz
 

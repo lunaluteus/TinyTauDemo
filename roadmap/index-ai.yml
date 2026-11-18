@@ -107,9 +107,20 @@
 - id: rem-scheme-curves-recall
   ok: false
   depends:
-    - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
+    - /roadmap/index-ai.qmd#prp-fermat-line-morphism
   docs: []
-  comment: The valuative extension and the normalized coordinates at infinity are verified. The chart-level projective map, the Jacobian criterion for the full model, and the degree calculation remain.
+  comment: The valuative extension, the actual Fermat morphism, and its chart at infinity are verified. The degree calculation and the general plane Jacobian criterion remain.
+- id: prp-fermat-line-morphism
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#def-fermat-projective-scheme
+    - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
+  docs:
+    - /docs/TinyTauDemo/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap
+    - /docs/TinyTauDemo/FermatPolynomialMap.html#TinyTauDemo.fermatAffineMap_preimage_basicOpen
+    - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.existsUnique_fermatProjectiveLineMap
+    - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.fermatProjectiveLineMap_on_infinity_chart
+  comment: Use the polynomial tuple to construct a Proj morphism. Compare its two affine restrictions along reciprocal parameters.
 - id: lem-curve-extension-and-infinity-coordinates
   ok: true
   depends: []
