@@ -218,14 +218,15 @@
   docs: []
   comment: Track the Bernoulli criterion and the finite examples separately from the open question about infinitely many regular primes.
 - id: thm-kummer-case-1
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#prp-unified-coprimality
     - /roadmap/index.qmd#prp-cyclotomic-units
     - /roadmap/index.qmd#lem-pth-power-congruence
     - /roadmap/index.qmd#def-regular-prime
-  docs: []
-  comment: Treat the cubic case modulo nine and use regularity, unit decomposition, and coefficient congruences for the remaining primes.
+  docs:
+    - /docs/TinyTauDemo/KummerCaseOne.html#TinyTauDemo.kummer_case_I
+  comment: Uses Mathlib for exponent three. Dividing by each pair's gcd gives the coprimality for the linear-factor argument, so the theorem also applies to nonprimitive triples.
 - id: lem-kummer-unit
   ok: false
   depends:
