@@ -453,8 +453,10 @@
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.radical_fermatIdeal_eq_linear
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRingEquiv_truncated
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRing_linear_nilpotence
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatSpecialFibreLinearInclusion
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjectiveNilradicalSubschemeIsoProjectiveLine
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_baseChange_charP
-  comment: The linear class has nilpotence index p by a linear coordinate change. The tensor description of the last affine chart transports nonreducedness to the projective base change.
+  comment: The linear class has nilpotence index p. The linear projective model gives the nilradical subscheme, which is a projective line. The last affine chart detects nonreducedness of the actual base change.
 - id: prp-cyclotomic-differentials
   ok: true
   depends:

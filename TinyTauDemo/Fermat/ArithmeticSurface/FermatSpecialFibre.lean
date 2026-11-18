@@ -6,6 +6,9 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.Fermat.Curve.FermatCharts
+public import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ProjectiveLine
+import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Basic
+import TauCeti.LinearAlgebra.SymmetricAlgebra.BasisComparison
 import TinyTauDemo.AlgebraicGeometry.Projective.ProjectiveHypersurface
 import Mathlib.Algebra.MvPolynomial.Division
 import Mathlib.RingTheory.TensorProduct.MvPolynomial
@@ -18,19 +21,81 @@ import Mathlib.Tactic.Ring
 The Frobenius identity makes the degree-p equation the pth power of the linear
 Fermat equation in characteristic p. The linear class has nilpotence index p.
 The last standard affine chart detects nonreducedness on the projective scheme
-and on the actual base change from the integral Fermat scheme.
+and on the actual base change from the integral Fermat scheme. The linear
+Fermat scheme maps into the characteristic-p model by a surjective closed
+immersion. It identifies the nilradical subscheme with the projective line.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `d6a1dfd0e33bc66f79ced5ef62990312885e3b1c`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `5972fa561ae1dd39b826aaf49cc874002874fb02`.
 -/
 
 public section
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits MvPolynomial
+open TauCeti TauCeti.AlgebraicGeometry TauCeti.GradedAlgebra
 open scoped TensorProduct
 
 namespace TinyTauDemo
 
 universe u
+
+private theorem proj_map_surjective_of_isNilpotent_ker
+    {A B σ τ : Type u} [CommRing A] [CommRing B] [SetLike σ A] [SetLike τ B]
+    [AddSubgroupClass σ A] [AddSubgroupClass τ B]
+    {𝒜 : ℕ → σ} {ℬ : ℕ → τ} [GradedRing 𝒜] [GradedRing ℬ]
+    (f : 𝒜 →+*ᵍ ℬ) (hs : Function.Surjective f)
+    (hker : ∀ a, f a = 0 → IsNilpotent a) :
+    Surjective (Proj.map f (HomogeneousIdeal.irrelevant_le_map_of_surjective f hs)) := by
+  constructor
+  intro x
+  let P := (show ProjectiveSpectrum 𝒜 from x).asHomogeneousIdeal
+  have hP : P.toIdeal.IsPrime := inferInstance
+  have hk : RingHom.ker f.toRingHom ≤ P.toIdeal := by
+    intro a ha
+    obtain ⟨n, hn⟩ := hker a ha
+    exact hP.mem_of_pow_mem n (hn ▸ P.toIdeal.zero_mem)
+  have hcomap : (P.map f).comap f = P := by
+    apply HomogeneousIdeal.ext
+    change (P.toIdeal.map f.toRingHom).comap f.toRingHom = P.toIdeal
+    rw [Ideal.comap_map_of_surjective f.toRingHom hs, ← RingHom.ker_eq_comap_bot,
+      sup_eq_left.mpr hk]
+  have hirr : ¬ HomogeneousIdeal.irrelevant ℬ ≤ P.map f := by
+    intro h
+    apply (show ProjectiveSpectrum 𝒜 from x).not_irrelevant_le
+    change HomogeneousIdeal.irrelevant 𝒜 ≤ P
+    rw [← hcomap]
+    apply (HomogeneousIdeal.irrelevant_le 𝒜).mpr
+    intro n hn a ha
+    exact h (HomogeneousIdeal.mem_irrelevant_of_mem ℬ hn (f.map_mem ha))
+  let y : ProjectiveSpectrum ℬ :=
+    ⟨P.map f, Ideal.map_isPrime_of_surjective hs hk, hirr⟩
+  refine ⟨show Proj ℬ from y, ?_⟩
+  change y.comapFun f (HomogeneousIdeal.irrelevant_le_map_of_surjective f hs) = x
+  exact ProjectiveSpectrum.ext hcomap
+
+private theorem ker_eq_nilradical_of_surjective_closedImmersion
+    {X Y : Scheme.{u}} (f : X ⟶ Y) [IsClosedImmersion f] [Surjective f]
+    [AlgebraicGeometry.IsReduced X] : f.ker = Y.nilradical := by
+  have hrad : f.ker.radical = f.ker := by
+    ext U : 2
+    rw [Scheme.IdealSheafData.radical_ideal, f.ker_apply U]
+    apply Ideal.radical_eq_iff.mpr
+    rintro a ⟨n, ha⟩
+    rw [RingHom.mem_ker, map_pow] at ha
+    exact RingHom.mem_ker.mpr (eq_zero_of_pow_eq_zero ha)
+  have hs : f.ker.support = ⊤ := by
+    apply SetLike.coe_injective
+    rw [f.support_ker, (show Function.Surjective f from Surjective.surj).range_eq, closure_univ]
+    rfl
+  rw [← Scheme.IdealSheafData.vanishingIdeal_top, ← hs,
+    Scheme.IdealSheafData.vanishingIdeal_support, hrad]
+
+/-- A surjective closed immersion from a reduced scheme identifies its source with
+the subscheme defined by the target's nilradical. -/
+private noncomputable def isoNilradicalSubschemeOfSurjectiveClosedImmersion
+    {X Y : Scheme.{u}} (f : X ⟶ Y) [IsClosedImmersion f] [Surjective f]
+    [AlgebraicGeometry.IsReduced X] : X ≅ Y.nilradical.subscheme :=
+  asIso f.toImage ≪≫ eqToIso (congrArg Scheme.IdealSheafData.subscheme
+    (ker_eq_nilradical_of_surjective_closedImmersion f))
 
 section LinearCoordinate
 
@@ -79,6 +144,87 @@ private theorem fermatEquation_one_prime : Prime (fermatEquation k 1) := by
   exact (MulEquiv.prime_iff (fermatLinearCoordinateEquiv k)).2
     (MvPolynomial.prime_X (i := (2 : Fin 3)))
 
+attribute [local instance] MvPolynomial.gradedAlgebra
+
+private noncomputable def linearFermatElimination :
+    MvPolynomial (Fin 3) k →ₐ[k] MvPolynomial (Fin 2) k :=
+  aeval ![X 0, X 1, X 0 + X 1]
+
+private noncomputable def linearFermatCoordinates :
+    FermatCoordinateRing k 1 →ₐ[k] MvPolynomial (Fin 2) k :=
+  Ideal.Quotient.liftₐ _ (linearFermatElimination k) (by
+    intro a ha
+    obtain ⟨b, rfl⟩ := Ideal.mem_span_singleton.mp ha
+    simp [linearFermatElimination, fermatEquation_def])
+
+@[simp] private theorem linearFermatCoordinates_mk (a : MvPolynomial (Fin 3) k) :
+    linearFermatCoordinates k (Ideal.Quotient.mk (fermatIdeal k 1) a) =
+      linearFermatElimination k a := rfl
+
+private noncomputable def polynomialToLinearFermat :
+    MvPolynomial (Fin 2) k →ₐ[k] FermatCoordinateRing k 1 :=
+  (Ideal.Quotient.mkₐ k _).comp (rename Fin.castSucc)
+
+private theorem linearFermatCoordinates_comp :
+    (linearFermatCoordinates k).comp (polynomialToLinearFermat k) = AlgHom.id k _ := by
+  apply MvPolynomial.algHom_ext
+  intro i
+  fin_cases i <;> simp [polynomialToLinearFermat, linearFermatElimination]
+
+private theorem polynomialToLinearFermat_comp :
+    (polynomialToLinearFermat k).comp (linearFermatCoordinates k) = AlgHom.id k _ := by
+  apply Ideal.Quotient.algHom_ext
+  apply MvPolynomial.algHom_ext
+  intro i
+  have hline := (Ideal.Quotient.eq_zero_iff_mem (I := fermatIdeal k 1)).2
+    (Ideal.mem_span_singleton_self (fermatEquation k 1))
+  simp only [fermatEquation_def, pow_one, map_sub, map_add, sub_eq_zero] at hline
+  fin_cases i <;>
+    simp [polynomialToLinearFermat, linearFermatElimination, hline]
+
+/-- Eliminating the third coordinate identifies the linear Fermat scheme with the projective
+line. -/
+noncomputable def fermatProjectiveOneIsoProjectiveLine :
+    fermatProjective k 1 ≅ projectiveLine k := by
+  let e := _root_.SymmetricAlgebra.equivMvPolynomial (Pi.basisFun k (Fin 2))
+  let forward :
+      SymmetricAlgebra.homogeneousSubmodule k (Fin 2 → k) →+*ᵍ fermatGrading k 1 := {
+    toRingHom := ((polynomialToLinearFermat k).comp e.toAlgHom).toRingHom
+    map_mem := by
+      intro n a ha
+      apply mk_mem_quotientPiece
+      exact ((_root_.SymmetricAlgebra.equivMvPolynomial_isHomogeneous_iff
+        k (Fin 2 → k) (Pi.basisFun k (Fin 2)) n a).2 ha).rename_isHomogeneous }
+  let backward :
+      fermatGrading k 1 →+*ᵍ SymmetricAlgebra.homogeneousSubmodule k (Fin 2 → k) := {
+    toRingHom := (e.symm.toAlgHom.comp (linearFermatCoordinates k)).toRingHom
+    map_mem := by
+      intro n a ha
+      obtain ⟨b, hb, rfl⟩ := (mem_quotientPiece_iff _ _).mp ha
+      apply (_root_.SymmetricAlgebra.equivMvPolynomial_isHomogeneous_iff
+        k (Fin 2 → k) (Pi.basisFun k (Fin 2)) n _).1
+      change (e (e.symm (linearFermatElimination k b))).IsHomogeneous n
+      rw [AlgEquiv.apply_symm_apply]
+      let v : Fin 3 → MvPolynomial (Fin 2) k := ![X 0, X 1, X 0 + X 1]
+      have hv (i : Fin 3) : (v i).IsHomogeneous 1 := by
+        fin_cases i
+        · exact isHomogeneous_X k 0
+        · exact isHomogeneous_X k 1
+        · exact (isHomogeneous_X k 0).add (isHomogeneous_X k 1)
+      change (aeval v b).IsHomogeneous n
+      simpa only [one_mul] using ((mem_homogeneousSubmodule _ _).1 hb).aeval v hv }
+  apply Proj.mapIso forward backward
+  · intro a
+    change polynomialToLinearFermat k (e (e.symm (linearFermatCoordinates k a))) = a
+    rw [AlgEquiv.apply_symm_apply]
+    exact DFunLike.congr_fun (polynomialToLinearFermat_comp k) a
+  · intro b
+    change e.symm (linearFermatCoordinates k (polynomialToLinearFermat k (e b))) = b
+    have he : linearFermatCoordinates k (polynomialToLinearFermat k (e b)) = e b :=
+      DFunLike.congr_fun (linearFermatCoordinates_comp k) (e b)
+    rw [he, e.symm_apply_apply]
+
+
 end LinearCoordinate
 
 section PositiveCharacteristic
@@ -126,6 +272,61 @@ theorem fermatCoordinateRing_linear_nilpotence :
     exact Ideal.mem_span_singleton_self _
   · exact mk_span_pow_pow_ne_zero (fermatEquation_one_prime k).ne_zero
       (fermatEquation_one_prime k).not_isUnit hm
+
+private theorem fermatIdeal_le_linear : fermatIdeal k p ≤ fermatIdeal k 1 :=
+  (Ideal.le_radical).trans (radical_fermatIdeal_eq_linear k p).le
+
+private noncomputable def fermatLinearQuotient : fermatGrading k p →+*ᵍ fermatGrading k 1 where
+  toRingHom := Ideal.Quotient.factor (fermatIdeal_le_linear k p)
+  map_mem := by
+    intro n b hb
+    obtain ⟨a, ha, rfl⟩ := (mem_quotientPiece_iff _ _).mp hb
+    exact mk_mem_quotientPiece _ _ ha
+
+private theorem fermatLinearQuotient_surjective : Function.Surjective (fermatLinearQuotient k p) :=
+  Ideal.Quotient.factor_surjective (fermatIdeal_le_linear k p)
+
+/-- The inclusion of the linear Fermat scheme into the characteristic-`p` Fermat scheme. -/
+noncomputable def fermatSpecialFibreLinearInclusion :
+    fermatProjective k 1 ⟶ fermatProjective k p :=
+  Proj.map (fermatLinearQuotient k p)
+    (HomogeneousIdeal.irrelevant_le_map_of_surjective _ (fermatLinearQuotient_surjective k p))
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The linear inclusion commutes with the structural maps to the coefficient field. -/
+@[reassoc]
+theorem fermatSpecialFibreLinearInclusion_comp_toSpec :
+    fermatSpecialFibreLinearInclusion k p ≫ fermatProjectiveToSpec k p =
+      fermatProjectiveToSpec k 1 := by
+  unfold fermatSpecialFibreLinearInclusion fermatProjectiveToSpec
+  rw [Proj.map_toSpecZero_assoc, ← Spec.map_comp]
+  congr 2
+
+instance : IsClosedImmersion (fermatSpecialFibreLinearInclusion k p) :=
+  Proj.isClosedImmersion_map _ _ (fermatLinearQuotient_surjective k p)
+
+instance : Surjective (fermatSpecialFibreLinearInclusion k p) := by
+  apply proj_map_surjective_of_isNilpotent_ker _ (fermatLinearQuotient_surjective k p)
+  intro b
+  obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective b
+  change Ideal.Quotient.mk (fermatIdeal k 1) a = 0 → _
+  intro h
+  have ha := Ideal.Quotient.eq_zero_iff_mem.mp h
+  rw [← radical_fermatIdeal_eq_linear k p] at ha
+  obtain ⟨n, hn⟩ := ha
+  exact ⟨n, by rw [← map_pow]; exact Ideal.Quotient.eq_zero_iff_mem.mpr hn⟩
+
+/-- The reduced subscheme of the characteristic-`p` Fermat scheme is the projective line. -/
+noncomputable def fermatProjectiveNilradicalSubschemeIsoProjectiveLine :
+    (fermatProjective k p).nilradical.subscheme ≅ projectiveLine k := by
+  have hprime := fermatEquation_one_prime k
+  let : (fermatIdeal k 1).IsPrime := (Ideal.span_singleton_prime hprime.ne_zero).2 hprime
+  let : IsDomain (FermatCoordinateRing k 1) := Ideal.Quotient.isDomain _
+  let : AlgebraicGeometry.IsReduced (fermatProjective k 1) :=
+    Proj.isReduced (𝒜 := fermatGrading k 1)
+  exact (isoNilradicalSubschemeOfSurjectiveClosedImmersion
+    (fermatSpecialFibreLinearInclusion k p)).symm ≪≫ fermatProjectiveOneIsoProjectiveLine k
+
 
 private theorem fermatAffineEquation_linear_last :
     fermatAffineEquation k 1 2 = X (0 : Fin 2) + X 1 - 1 := by
