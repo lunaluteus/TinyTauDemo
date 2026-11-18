@@ -5,6 +5,7 @@ Authors: Luna Luteus
 -/
 module
 
+public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification

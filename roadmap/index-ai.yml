@@ -241,13 +241,14 @@
   docs: []
   comment: Track the cubic specialization and clarify the local boundary congruence needed by the general proof sketch.
 - id: lem-case2-valuations
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#prp-unified-coprimality
     - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
-  docs: []
-  comment: State the coprimality calculation over cyclotomic integers and justify the exact valuations and cancellation of the ramified prime.
+  docs:
+    - /docs/TinyTauDemo/CaseTwoValuations.html#TinyTauDemo.caseTwo_valuations
+  comment: The twist is indexed by Fin p. Ideal factorization gives the exact valuations, and elements witness the integral quotients and their principal ideals.
 - id: thm-kummer-case-2
   ok: false
   depends:
