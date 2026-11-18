@@ -45,6 +45,14 @@ For the [Fermat genus calculation](index.qmd#prp-fermat-genus), let $F = k(x,y)$
 For the [projective Fermat curve](index.qmd#prp-fermat-genus), take the homogeneous quotient of $k[X,Y,Z]$ by $(X^n+Y^n-Z^n)$ and form its projective spectrum. This gives a closed subscheme of $\mathbb{P}^2_k$ and a proper morphism to $\operatorname{Spec}k$. Its three coordinate opens cover it. Over algebraically closed constants of characteristic zero and for $n>0$, dehomogenizing at $Z$ preserves degree and yields an irreducible equation, so the homogeneous coordinate ring is a domain and the projective scheme is integral.
 :::
 
+::: {#lem-curve-extension-and-infinity-coordinates}
+## Extension from a dense open and coordinates at infinity
+
+For the [projective curve recall](index.qmd#rem-scheme-curves-recall), a morphism into a proper scheme extends uniquely from a dense open of an integral curve with discrete valuation rings at its codimension-one points. On the chart at infinity, if $M$ is the maximum coordinate degree, the reflected polynomials $s^M p_i(s^{-1})$ generate the unit ideal and satisfy the same homogeneous equations. A leading coefficient gives a nonzero coordinate at $s=0$.
+
+For a nonconstant map to a plane curve of degree $n$, the coordinates give a pullback of $\mathcal O_C(1)$ of degree $M$. Since $\deg\mathcal O_C(1)=n$, the map degree satisfies $M=n\deg\pi$. For a direct map to $\mathbb P^1$ the corresponding line bundle has degree one.
+:::
+
 ::: {#thm-tame-hurwitz-function-fields}
 ## Canonical divisors and tame Riemann–Hurwitz
 

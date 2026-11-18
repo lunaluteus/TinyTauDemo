@@ -15,6 +15,7 @@ public import TinyTauDemo.CyclotomicRamification
 public import TinyTauDemo.CyclotomicUnits
 public import TinyTauDemo.DedekindPicard
 public import TinyTauDemo.DedekindSpectrum
+public import TinyTauDemo.DenseOpenExtension
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
@@ -26,6 +27,7 @@ public import TinyTauDemo.FermatPolynomialDescent
 public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.FermatProjective
 public import TinyTauDemo.HurwitzFibreCount
+public import TinyTauDemo.InfinityCoordinates
 public import TinyTauDemo.Kronecker
 public import TinyTauDemo.KummerCaseOne
 public import TinyTauDemo.KummerCaseTwo

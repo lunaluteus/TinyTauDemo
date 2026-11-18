@@ -106,9 +106,18 @@
   comment: Apply the Mason–Stothers bound to the powers of the primitive coordinates. The radical is unchanged by positive powers, while the maximum degree is multiplied by the exponent.
 - id: rem-scheme-curves-recall
   ok: false
-  depends: []
+  depends:
+    - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
   docs: []
-  comment: Identify reusable Jacobian and valuative extension results and the construction of the map from a primitive triple.
+  comment: The valuative extension and the normalized coordinates at infinity are verified. The chart-level projective map, the Jacobian criterion for the full model, and the degree calculation remain.
+- id: lem-curve-extension-and-infinity-coordinates
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen
+    - /docs/TinyTauDemo/InfinityCoordinates.html#TinyTauDemo.span_range_reflect_eq_top
+    - /docs/TinyTauDemo/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
+  comment: Use the valuative criterion at the codimension-one points, and reflect the polynomial coordinates while preserving the unit ideal and the homogeneous relation.
 - id: thm-riemann-hurwitz-recall
   ok: false
   depends:
