@@ -231,7 +231,7 @@
   ok: false
   depends:
     - /roadmap/index.qmd#def-regular-prime
-    - /roadmap/index-ai.qmd#lem-kummer-local-congruence
+    - /roadmap/index-ai.qmd#lem-kummer-extension-unramified
   docs: []
   comment: Use the local congruences to prove unramifiedness, then rule out a nontrivial cyclic extension via the class number.
 - id: lem-kummer-local-congruence
@@ -243,6 +243,14 @@
     - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
     - /docs/TinyTauDemo/KummerTranslatedRoot.html#TinyTauDemo.isIntegral_sub_one_div_of_prime_pow
   comment: The norm expansion lifts the congruence, and coefficientwise divisibility gives an integral translated root. The cubic case uses Mathlib's unit classification.
+- id: lem-kummer-extension-unramified
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#lem-kummer-local-congruence
+  docs:
+    - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.inertia_eq_bot_of_kummer_unit
+    - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
+  comment: A nontrivial automorphism changes the integral translated root by a unit, forcing trivial inertia at every finite prime.
 - id: rem-kummer-unit-proof
   ok: false
   depends:
@@ -250,7 +258,7 @@
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index.qmd#lem-kummer-unit
   docs: []
-  comment: The cubic specialization and local congruences are verified. The unramified extension argument is pending.
+  comment: The cubic specialization and unramifiedness of the Kummer extension are verified. The class-number argument is pending.
 - id: lem-case2-valuations
   ok: true
   depends:

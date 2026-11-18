@@ -48,3 +48,9 @@ Set $U=u^{p-1}$ and take $r^p=U$. Dividing $(\lambda X+1)^p-U$ coefficientwise b
 
 For $p=3$, the congruence hypothesis implies $u=\pm1$ by Mathlib’s classification of cubic cyclotomic units congruent to integers modulo $\lambda^2$. Cubing the six units $\pm\zeta_3^j$ gives exactly the two values $\pm1$.
 :::
+
+::: {#lem-kummer-extension-unramified}
+## Unramifiedness of the Kummer extension
+
+For the [proof of Kummer’s unit lemma](index.qmd#rem-kummer-unit-proof), a nontrivial automorphism of $K(r)/K$ sends $r$ to $\zeta_p^j r$ with $1\le j<p$. Its difference on the integral element $(r-1)/\lambda$ is $((\zeta_p^j-1)/\lambda)r$. The first factor is a cyclotomic unit, and $r$ is an integral unit because $r^p=U$. The difference is a unit, so it cannot vanish modulo any proper prime ideal. This makes the inertia group trivial at every finite prime.
+:::
