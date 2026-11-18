@@ -5,6 +5,7 @@ Authors: Luna Luteus
 -/
 module
 
+public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.ExponentReduction
 public import TinyTauDemo.FermatEquation
 public import TinyTauDemo.FermatFour
