@@ -734,9 +734,10 @@
     - /roadmap/index.qmd#lem-kummer-unit
   docs:
     - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
+    - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerLocalArithmetic.html#TinyTauDemo.exists_eisenstein_unit_not_cube
     - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/UnramifiedCyclicDegree.html#TinyTauDemo.finrank_eq_one_of_unramified_cyclic_of_coprime_classNumber
-  comment: The cubic specialization uses the congruence hypothesis. For the class-field step, local norms and class-number coprimality give idèle-class norm surjectivity.
+  comment: The cubic specialization uses the congruence hypothesis. A primitive cubic root of unity is a counterexample to the unrestricted cube claim. For the class-field step, local norms and class-number coprimality give idèle-class norm surjectivity.
 - id: lem-case2-valuations
   ok: true
   depends:

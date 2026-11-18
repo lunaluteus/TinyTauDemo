@@ -180,7 +180,7 @@ For the [proof of Kummer’s unit lemma](index.qmd#rem-kummer-unit-proof), suppo
 
 Set $U=u^{p-1}$ and take $r^p=U$. Dividing $(\lambda X+1)^p-U$ coefficientwise by $\lambda^p$ gives a monic integral polynomial vanishing at $(r-1)/\lambda$.
 
-For $p=3$, the congruence hypothesis implies $u=\pm1$ by Mathlib’s classification of cubic cyclotomic units congruent to integers modulo $\lambda^2$. Cubing the six units $\pm\zeta_3^j$ gives exactly the two values $\pm1$.
+For $p=3$, the congruence hypothesis implies $u=\pm1$ by Mathlib’s classification of cubic cyclotomic units congruent to integers modulo $\lambda^2$. Cubing the six units $\pm\zeta_3^j$ gives exactly the two values $\pm1$. In particular, the primitive unit $\zeta_3$ has no cube root in the unit group.
 :::
 
 ::: {#lem-kummer-extension-unramified}

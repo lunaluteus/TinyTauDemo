@@ -17,8 +17,9 @@ import Mathlib.Tactic.LinearCombination
 
 The trace of an integer reduces to its residue times the cyclotomic degree.
 The norm expansion at one then lifts a unit congruence to the required power of
-the ramified prime. See `/roadmap/index.qmd#rem-kummer-unit-proof` @
-`908896c23e184ab55914aea0b3d6bbacbdcae5d2`.
+the ramified prime. In the cubic case, the unit classification also shows that
+primitive cubic units have no cube root. See `/roadmap/index.qmd#rem-kummer-unit-proof` @
+`d2c4d4a566aab2eb4ba61e9bb96a4fcd4b9e7eaa`.
 -/
 
 public section
@@ -151,5 +152,57 @@ theorem exists_unit_cube_of_congruent {K : Type*} [Field K] [NumberField K]
       hζ u ⟨r, hdiv.trans hr⟩ with h | h
   · exact ⟨1, by rw [h, one_pow]⟩
   · exact ⟨-1, by rw [h]; exact (show Odd (3 : ℕ) by decide).neg_one_pow⟩
+
+section CubicUnits
+
+variable {F : Type*} [Field F] {θ : F}
+
+/-- The cube of a unit in the Eisenstein integers is `1` or `-1`. -/
+theorem cubicCyclotomic_unit_cube_eq_one_or_neg_one [NumberField F]
+    [IsCyclotomicExtension {3} ℚ F] (hθ : IsPrimitiveRoot θ 3)
+    (u : (𝓞 F)ˣ) : u ^ 3 = 1 ∨ u ^ 3 = -1 := by
+  let η := (hθ.toInteger_isPrimitiveRoot.isUnit (by decide)).unit
+  have hη : η ^ 3 = 1 := Units.ext hθ.toInteger_cube_eq_one
+  have hη₂ : (η ^ 2) ^ 3 = 1 := by
+    rw [← pow_mul, show 2 * 3 = 3 * 2 by decide, pow_mul, hη, one_pow]
+  have hodd : Odd (3 : ℕ) := by decide
+  have hu := IsCyclotomicExtension.Rat.Three.Units.mem hθ u
+  change u ∈ [1, -1, η, -η, η ^ 2, -η ^ 2] at hu
+  simp only [List.mem_cons, List.not_mem_nil, or_false] at hu
+  rcases hu with rfl | rfl | rfl | rfl | rfl | rfl
+  · exact Or.inl (one_pow 3)
+  · exact Or.inr hodd.neg_one_pow
+  · exact Or.inl hη
+  · exact Or.inr (by rw [hodd.neg_pow, hη])
+  · exact Or.inl hη₂
+  · exact Or.inr (by rw [hodd.neg_pow, hη₂])
+
+/-- The unit associated to a primitive cubic root is never the cube of an Eisenstein unit. -/
+theorem primitive_cubic_unit_not_cube [NumberField F] [IsCyclotomicExtension {3} ℚ F]
+    (hθ : IsPrimitiveRoot θ 3) :
+    ¬ ∃ u : (𝓞 F)ˣ, u ^ 3 = (hθ.toInteger_isPrimitiveRoot.isUnit (by decide)).unit := by
+  rintro ⟨u, hu⟩
+  rcases cubicCyclotomic_unit_cube_eq_one_or_neg_one hθ u with h | h
+  · have hη : hθ.toInteger = 1 := congrArg Units.val (hu.symm.trans h)
+    exact hθ.toInteger_isPrimitiveRoot.ne_one (by decide) hη
+  · have hη : hθ.toInteger = -1 := congrArg Units.val (hu.symm.trans h)
+    apply hθ.toInteger_isPrimitiveRoot.pow_ne_one_of_pos_of_lt (l := 2) (by decide) (by decide)
+    rw [hη, (show Even (2 : ℕ) by decide).neg_one_pow]
+
+end CubicUnits
+
+/-- The Eisenstein integers contain a primitive cubic unit with no cube root in their
+unit group. -/
+theorem exists_eisenstein_unit_not_cube :
+    ∃ η : (𝓞 (CyclotomicField 3 ℚ))ˣ,
+      IsPrimitiveRoot (η : 𝓞 (CyclotomicField 3 ℚ)) 3 ∧
+        ¬ ∃ u : (𝓞 (CyclotomicField 3 ℚ))ˣ, u ^ 3 = η := by
+  let : NeZero (3 : ℕ) := ⟨by decide⟩
+  let : IsCyclotomicExtension {3} ℚ (CyclotomicField 3 ℚ) :=
+    CyclotomicField.isCyclotomicExtension 3 ℚ
+  obtain ⟨ζ, hζ⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField 3 ℚ)
+    (S := {3}) (n := 3) (by simp) (by decide)
+  exact ⟨(hζ.toInteger_isPrimitiveRoot.isUnit (by decide)).unit,
+    hζ.toInteger_isPrimitiveRoot, primitive_cubic_unit_not_cube hζ⟩
 
 end TinyTauDemo
