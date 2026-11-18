@@ -488,7 +488,9 @@
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_etale_away
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_fiber_prime
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_fiber_prime_truncated
-  comment: The restriction to the base open D(p) is the map of affine localizations. The fibre at (p) is the spectrum of a truncated polynomial ring over the residue field.
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.not_isReduced_ringOfIntegersSpecHom_fiber_prime
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_restrict_etale_iff
+  comment: The restriction to D(p) is the map of affine localizations. For odd p the fibre at (p) has a nonzero nilpotent, so D(p) is the largest open over which the cover is étale.
 - id: rem-ramification-disc-recall
   ok: true
   depends:

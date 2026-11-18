@@ -13,6 +13,8 @@ import Mathlib.NumberTheory.NumberField.Ideal.KummerDedekind
 import Mathlib.RingTheory.Polynomial.Cyclotomic.Expand
 import Mathlib.Algebra.Polynomial.Taylor
 import Mathlib.RingTheory.TensorProduct.Quotient
+import Mathlib.Algebra.Polynomial.Div
+import TauCeti.AlgebraicGeometry.Morphisms.Smooth.GeometricallyReduced
 
 /-!
 # The cyclotomic cover of the integer spectrum
@@ -21,13 +23,14 @@ The spectrum of the ring of integers is finite and flat over the integer
 spectrum. For an odd prime cyclotomic field, restricting to the complement
 of the prime gives an étale morphism. The scheme-theoretic fibre at the prime
 is the spectrum of a truncated polynomial ring over its residue field.
+Its nonreducedness makes the complement of the prime the largest étale base open.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `cee501fadd7e1d00992825b62fa0edeae19d4e50`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `34239e77e326c658dcbc8f1ce9b3526b80d0405f`.
 -/
 
 public section
 
-open AlgebraicGeometry CategoryTheory NumberField Polynomial
+open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField Polynomial
 
 namespace TinyTauDemo
 
@@ -129,5 +132,79 @@ noncomputable def ringOfIntegersSpecHom_fiber_prime_truncated {K : Type} [Field 
   refine ringOfIntegersSpecHom_fiber_prime hζ ≪≫ Scheme.Spec.mapIso ?_
   exact ((Ideal.quotEquivOfEq hζ.span_natCast_eq_span_one_sub_pow.symm).trans
     (cyclotomicQuotientPrimeEquivTruncated hζ)).symm.toCommRingCatIso.op
+
+variable {K : Type} [Field K] [NumberField K]
+  {p : ℕ} [hp : Fact p.Prime] [IsCyclotomicExtension {p} ℚ K] {ζ : K}
+
+/-- The fibre of the odd-prime cyclotomic cover over the ramified point is nonreduced. -/
+theorem not_isReduced_ringOfIntegersSpecHom_fiber_prime (hζ : IsPrimitiveRoot ζ p)
+    (hp2 : p ≠ 2) :
+    ¬ AlgebraicGeometry.IsReduced ((ringOfIntegersSpecHom K).fiber (primeIntPoint p)) := by
+  let I : Ideal (ZMod p)[X] := Ideal.span {(X : (ZMod p)[X]) ^ (p - 1)}
+  let x : (ZMod p)[X] ⧸ I := Ideal.Quotient.mk I X
+  have hx : x ^ (p - 1) = 0 := by
+    dsimp only [x]
+    rw [← map_pow, Ideal.Quotient.eq_zero_iff_mem]
+    exact Ideal.mem_span_singleton_self _
+  intro h
+  have hred : AlgebraicGeometry.IsReduced (Spec (.of ((ZMod p)[X] ⧸ I))) :=
+    isReduced_of_isOpenImmersion (ringOfIntegersSpecHom_fiber_prime_truncated hζ).inv
+  have : IsReduced ((ZMod p)[X] ⧸ I) := (affine_isReduced_iff _).mp hred
+  have hz : x = 0 := eq_zero_of_pow_eq_zero hx
+  have hd : (X : (ZMod p)[X]) ^ (p - 1) ∣ X :=
+    Ideal.mem_span_singleton.mp (Ideal.Quotient.eq_zero_iff_mem.mp hz)
+  have hlt : 1 < p - 1 := by have := hp.out.two_le; omega
+  have hc := Polynomial.X_pow_dvd_iff.mp hd 1 hlt
+  exact one_ne_zero ((Polynomial.coeff_X_one).symm.trans hc)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The restriction of the odd-prime cyclotomic cover to a base open is étale exactly when the
+open lies in the complement of the ramified prime. -/
+theorem ringOfIntegersSpecHom_restrict_etale_iff (hζ : IsPrimitiveRoot ζ p) (hp2 : p ≠ 2)
+    (U : (Spec (.of ℤ)).Opens) :
+    Etale (ringOfIntegersSpecHom K ∣_ U) ↔ U ≤ PrimeSpectrum.basicOpen (R := ℤ) (p : ℤ) := by
+  let f := ringOfIntegersSpecHom K
+  let y := primeIntPoint p
+  let D : (Spec (.of ℤ)).Opens := PrimeSpectrum.basicOpen (R := ℤ) (p : ℤ)
+  constructor
+  · intro hU x hx hxD
+    have hxy : x = y := by
+      apply PrimeSpectrum.ext
+      have hle : Ideal.span {(p : ℤ)} ≤ x.asIdeal := by
+        rw [Ideal.span_singleton_le_iff_mem]
+        exact hxD
+      exact ((Int.ideal_span_isMaximal_of_prime p).eq_of_le x.isPrime.ne_top hle).symm
+    subst x
+    let b := (Spec (.of ℤ)).fromSpecResidueField y
+    let j := IsOpenImmersion.lift U.ι b (by
+      rw [Scheme.range_fromSpecResidueField]
+      rintro x rfl
+      exact ⟨⟨y, hx⟩, rfl⟩)
+    have hj : j ≫ U.ι = b := IsOpenImmersion.lift_fac _ _ _
+    have : GeometricallyReduced (f ∣_ U) := inferInstance
+    have hr : AlgebraicGeometry.IsReduced (pullback (f ∣_ U) j) :=
+      GeometricallyReduced.geometrically_isReduced j _ _ (.of_hasPullback _ _)
+    have hcart := (IsPullback.of_hasPullback (f ∣_ U) j).paste_horiz
+      (isPullback_morphismRestrict f U).flip
+    rw [hj] at hcart
+    exact not_isReduced_ringOfIntegersSpecHom_fiber_prime hζ hp2
+      (isReduced_of_isOpenImmersion hcart.isoPullback.inv)
+  · intro hUD
+    change U ≤ D at hUD
+    let g := (Spec (.of ℤ)).homOfLE hUD
+    let i := (Spec (.of (𝓞 K))).homOfLE (show f ⁻¹ᵁ U ≤ f ⁻¹ᵁ D from
+      (Scheme.Hom.preimage_mono f hUD))
+    have hg : g ≫ D.ι = U.ι := Scheme.homOfLE_ι _ _
+    have hi : i ≫ (f ⁻¹ᵁ D).ι = (f ⁻¹ᵁ U).ι := Scheme.homOfLE_ι _ _
+    have hc : (f ∣_ U) ≫ g = i ≫ f ∣_ D := by
+      rw [← cancel_mono D.ι, Category.assoc, hg, Category.assoc, morphismRestrict_ι f U,
+        morphismRestrict_ι f D, ← Category.assoc, hi]
+    have hcart : IsPullback (f ∣_ U) i g (f ∣_ D) := by
+      refine IsPullback.of_bot (v₂₁ := (f ⁻¹ᵁ D).ι) (v₂₂ := D.ι) ?_ hc
+        (isPullback_morphismRestrict f D)
+      rw [hg, hi]
+      exact isPullback_morphismRestrict f U
+    exact MorphismProperty.of_isPullback hcart.flip
+      (ringOfIntegersSpecHom_etale_away hζ hp2)
 
 end TinyTauDemo
