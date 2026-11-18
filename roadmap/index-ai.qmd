@@ -271,6 +271,14 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), adjoining the re
 The product of the finite and infinite local Artin symbols is well defined on ideles. Testing it on a principal idele against a Galois character gives the sum of the invariants of a global Brauer class, so the product descends to idele classes. It is surjective in abelian extensions, is compatible with restriction, and kills idele norms. In prime degree the index equality identifies its kernel with the norm group. At a finite prime, triviality on the completed integer units detects unramifiedness.
 :::
 
+::: {#thm-kummer-character-realization}
+## Realizing a prime-order character by a Kummer subextension
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let the base contain the $p$th roots of unity. The open kernel of a surjective idele-class character of order $p$ contains a ray subgroup. Choose $S$ to contain its finite support, the places above $p$, and enough prime ideal classes to generate the class group. At the places of $S$ and at infinity, take $p$th roots of the coordinates of an idele in the Kummer subgroup. Dividing by the resulting $p$th power gives an idele in the ray subgroup, so the character kills the Kummer subgroup.
+
+The Kummer subgroup is contained in the norm group of the full S-unit Kummer extension. Its index is the extension degree, which is also the index of the kernel of the surjective Artin map. The character therefore factors through that map. The fixed field of the factored kernel is cyclic of degree $p$, and prime-degree Artin reciprocity identifies its norm subgroup with the original character kernel.
+:::
+
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 

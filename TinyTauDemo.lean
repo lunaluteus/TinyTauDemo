@@ -67,6 +67,7 @@ public import TinyTauDemo.NumberTheory.Bernoulli.KummerBernoulliCongruence
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerCaseOne
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerCaseTwo
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerLocalArithmetic
+public import TinyTauDemo.NumberTheory.ClassFieldTheory.Kummer.KummerRealization
 public import TinyTauDemo.NumberTheory.ClassFieldTheory.Kummer.KummerSecondInequality
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerTranslatedRoot
 public import TinyTauDemo.Fermat.Integer.Kummer.KummerUnramified

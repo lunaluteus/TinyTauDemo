@@ -134,21 +134,25 @@ theorem ideleClassAbelianArtinMap_restrict (M : IntermediateField K L) [NumberFi
     ← Abelianization.map_of, abelianization_of_ideleClassAbelianArtinMap,
     ← MonoidHom.comp_apply, ← M.restrictNormalHom_val, ideleClassArtinMap_comp]
 
+/-- The norm group of an abelian extension lies in the kernel of its Artin map. -/
+theorem range_ideleClassNormMap_le_ker_ideleClassAbelianArtinMap :
+    (ideleClassNormMap K L).range ≤ (ideleClassAbelianArtinMap K L).ker := by
+  intro c hc
+  apply (Abelianization.equivOfComm (H := L ≃ₐ[K] L)).injective
+  change Abelianization.of (ideleClassAbelianArtinMap K L c) = Abelianization.of 1
+  rw [abelianization_of_ideleClassAbelianArtinMap, map_one]
+  exact range_ideleClassNormMap_le_ker_ideleClassArtinMap K L hc
+
 /-- If the norm index divides the degree, the Artin kernel is exactly the norm group. -/
 theorem ker_ideleClassAbelianArtinMap_eq_of_index_dvd
     (h : (ideleClassNormMap K L).range.index ∣ Module.finrank K L) :
     (ideleClassAbelianArtinMap K L).ker = (ideleClassNormMap K L).range := by
   let f := ideleClassAbelianArtinMap K L
-  have hle : (ideleClassNormMap K L).range ≤ f.ker := by
-    intro c hc
-    apply (Abelianization.equivOfComm (H := L ≃ₐ[K] L)).injective
-    change Abelianization.of (ideleClassAbelianArtinMap K L c) = Abelianization.of 1
-    rw [abelianization_of_ideleClassAbelianArtinMap, map_one]
-    exact range_ideleClassNormMap_le_ker_ideleClassArtinMap K L hc
   have hidx : f.ker.index = Module.finrank K L := by
     rw [Subgroup.index_ker, MonoidHom.range_eq_top.mpr (surjective_ideleClassAbelianArtinMap K L),
       Subgroup.card_top, IsGalois.card_aut_eq_finrank]
-  exact (Subgroup.eq_of_index_dvd_index hle (hidx ▸ h)).symm
+  exact (Subgroup.eq_of_index_dvd_index
+    (range_ideleClassNormMap_le_ker_ideleClassAbelianArtinMap K L) (hidx ▸ h)).symm
 
 /-- For a prime-degree abelian extension the Artin kernel is exactly the norm group. -/
 theorem ker_ideleClassAbelianArtinMap_eq_of_prime_degree (hp : (Module.finrank K L).Prime) :

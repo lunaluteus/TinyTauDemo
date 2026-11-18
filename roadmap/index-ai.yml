@@ -527,8 +527,9 @@
     - /roadmap/index-ai.qmd#prp-cyclotomic-reflection-reduction
     - /roadmap/index-ai.qmd#prp-kummer-idele-norm-index
     - /roadmap/index-ai.qmd#thm-prime-idele-artin-reciprocity
+    - /roadmap/index-ai.qmd#thm-kummer-character-realization
   docs: []
-  comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. Global Artin reciprocity identifies the norm kernel in prime degree. Realizing the open idele-class quotient by an unramified extension remains.
+  comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. Prime-degree Artin reciprocity gives realization over a field containing the pth roots of unity. The remaining step is coprime descent of the constructed cyclic extension.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -628,6 +629,16 @@
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Artin/Frobenius.html#TinyTauDemo.finiteLocalArtinAt_uniformizer
     - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Artin/Unramified.html#TinyTauDemo.isUnramifiedAt_of_ideleClassCharacter_ker_eq
   comment: The prime-degree norm bound gives the Brauer sum formula. The Artin product then descends to idele classes with the norm group as kernel in prime degree.
+- id: thm-kummer-character-realization
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-kummer-idele-norm-index
+    - /roadmap/index-ai.qmd#thm-prime-idele-artin-reciprocity
+  docs:
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerExistence.html#TinyTauDemo.exists_kummerIdeleClassSubgroup_le_ker_of_isOpen
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerRealization.html#TinyTauDemo.exists_cyclic_norm_realization_at_good_S
+    - /docs/TinyTauDemo/NumberTheory/ClassFieldTheory/Kummer/KummerRealization.html#TinyTauDemo.exists_cyclic_norm_realization
+  comment: A ray subgroup gives the Kummer subgroup inside the character kernel. Artin reciprocity realizes the character by a prime-degree fixed field.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []
