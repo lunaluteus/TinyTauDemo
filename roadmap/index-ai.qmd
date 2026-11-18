@@ -79,6 +79,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), use di
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), write the image of the source uniformizer as $\varepsilon\pi^e$ in the target discrete valuation ring. If $e$ is a unit in the residue field, the differential is $\pi^{e-1}$ times a unit times $d\pi$. Under the local smoothness hypotheses, the uniformizer differential generates the absolute differential module by the cotangent sequence and Nakayama’s lemma. Transitivity then presents the relative differential module as the quotient by the $(e-1)$st power of the maximal ideal, so it has length $e-1$.
 :::
 
+::: {#prp-differential-pullback-on-stalks}
+## Pullback of differentials on stalks and at places
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), the sheaf morphism $\Omega_{Y/k}\to f_*\Omega_{X/k}$ induces the Kähler differential map of the local ring homomorphism after identifying the stalk modules. The local transitivity calculation then applies to the actual stalk rings. For places of a finite function-field extension, the normalized discrete valuation of a pulled-back uniformizer is the place ramification index. The corresponding relative differential length is $e-1$ under the local smoothness hypotheses.
+:::
+
 ::: {#thm-tame-hurwitz-schemes}
 ## The numerical Riemann–Hurwitz formula for schemes
 

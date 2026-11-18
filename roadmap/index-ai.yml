@@ -135,9 +135,20 @@
     - /roadmap/index.qmd#def-kahler-log-deriv
     - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
-    - /roadmap/index-ai.qmd#lem-tame-relative-differential-length
+    - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
   docs: []
-  comment: The scheme genus formula and the local differential length are verified. The comparison with the scheme differential sequence remains.
+  comment: The scheme genus formula, the differential pullback on stalks, and the local lengths are verified. The pullback sheaf and global short exact sequence remain.
+- id: prp-differential-pullback-on-stalks
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#lem-tame-relative-differential-length
+  docs:
+    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.pullbackRelativeDifferentialsHom
+    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.pullbackRelativeDifferentialsStalk_eq_map
+    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.length_relativeKaehlerDifferential_stalkMap
+    - /docs/TinyTauDemo/PlaceDifferentialLength.html#TinyTauDemo.addVal_algebraMap_place_uniformizer
+    - /docs/TinyTauDemo/PlaceDifferentialLength.html#TinyTauDemo.length_relativeKaehlerDifferential_placeIntegers
+  comment: Compare the induced sheaf stalk map with the local Kähler map. Normalize the place valuation on a uniformizer to identify the length with the place ramification index.
 - id: thm-tame-hurwitz-schemes
   ok: true
   depends:

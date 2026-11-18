@@ -16,6 +16,7 @@ public import TinyTauDemo.CyclotomicUnits
 public import TinyTauDemo.DedekindPicard
 public import TinyTauDemo.DedekindSpectrum
 public import TinyTauDemo.DenseOpenExtension
+public import TinyTauDemo.DifferentialStalkMap
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
@@ -40,6 +41,7 @@ public import TinyTauDemo.KummerUnramified
 public import TinyTauDemo.KummerUnit
 public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
+public import TinyTauDemo.PlaceDifferentialLength
 public import TinyTauDemo.PolynomialLogDerivative
 public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor
