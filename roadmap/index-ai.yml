@@ -141,9 +141,19 @@
     - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index.qmd#thm-riemann-hurwitz-recall
     - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
-    - /roadmap/index-ai.qmd#def-fermat-projective-scheme
+    - /roadmap/index-ai.qmd#prp-fermat-projective-smooth
   docs: []
-  comment: The integral projective model, Jacobian calculation, and function-field genus are verified. The chart identifications, scheme smoothness, and genus comparison for this model remain.
+  comment: The projective model and smooth charts are verified. Relate the function field of this model to the verified genus calculation.
+- id: prp-fermat-projective-smooth
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#def-fermat-projective-scheme
+  docs:
+    - /docs/TinyTauDemo/FermatAffineSmooth.html#TinyTauDemo.fermatAffine_locally_standardSmoothOne
+    - /docs/TinyTauDemo/FermatCharts.html#TinyTauDemo.fermatAwayEquivAffine
+    - /docs/TinyTauDemo/FermatCharts.html#TinyTauDemo.fermatBasicOpenIsoSpecAffine
+    - /docs/TinyTauDemo/FermatCharts.html#TinyTauDemo.fermatProjective_smoothOne
+  comment: Identify the actual affine charts of Proj. The dehomogenized equations satisfy the Jacobian criterion in relative dimension one.
 - id: def-fermat-projective-scheme
   ok: true
   depends: []

@@ -19,6 +19,7 @@ public import TinyTauDemo.DenseOpenExtension
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
+public import TinyTauDemo.FermatCharts
 public import TinyTauDemo.FermatEquation
 public import TinyTauDemo.FermatFour
 public import TinyTauDemo.FermatGenus
