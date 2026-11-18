@@ -165,7 +165,7 @@
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.span_range_reflect_eq_top
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap
-    - /docs/TinyTauDemo/Fermat/Polynomial/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv_algebraMap
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinity_maximalIdeal

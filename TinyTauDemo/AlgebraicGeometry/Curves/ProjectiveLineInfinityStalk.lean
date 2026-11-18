@@ -5,7 +5,7 @@ Authors: Luna Luteus
 -/
 module
 
-public import TinyTauDemo.Fermat.Polynomial.FermatLineExtension
+public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineCharts
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineDifferentials
 public import Mathlib.RingTheory.Localization.AtPrime.Basic
 import Mathlib.RingTheory.Polynomial.Quotient

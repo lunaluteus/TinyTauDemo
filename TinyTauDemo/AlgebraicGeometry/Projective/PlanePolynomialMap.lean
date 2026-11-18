@@ -5,18 +5,21 @@ Authors: Luna Luteus
 -/
 module
 
+public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineCharts
 public import TinyTauDemo.AlgebraicGeometry.Projective.ProjectiveHypersurface
 public import TinyTauDemo.AlgebraicGeometry.Projective.InfinityCoordinates
 public import TauCeti.RingTheory.GradedAlgebra.HomogeneousLocalization.Basic
+import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ChartEquality
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Naturality
 import TauCeti.RingTheory.MvPolynomial.Homogeneous
+import TauCeti.RingTheory.Spectrum.Prime.Topology
 
 /-!
 # Coordinate morphisms to a projective hypersurface
 
 The coordinate map generalizes the construction for Fermat tuples.
-See `/roadmap/index.qmd#rem-scheme-curves-recall @ 0f81dbcc90994e1c646ad8a893818389c1142003`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `659046d7f13ad754bd0e36712b5fe02840fd1035`.
 -/
 
 public section
@@ -294,5 +297,49 @@ theorem specMap_reflect_overlap (p : Fin (m + 1) → k[X]) {M : ℕ}
     mul_comm (t ^ M)⁻¹] using hh
 
 end Overlap
+
+open TauCeti TauCeti.AlgebraicGeometry
+
+/-- On the infinity chart, a projective extension is the actual morphism defined by
+reflecting the coordinates of its affine polynomial tuple at their maximum degree. -/
+theorem projectiveLineMap_on_infinity_chart (p : Fin (m + 1) → k[X]) {M : ℕ}
+    (hP : MvPolynomial.aeval p F = 0) (hp : Ideal.span (Set.range p) = ⊤)
+    (hdeg : ∀ i, (p i).natDegree ≤ M) (hmax : ∃ i, p i ≠ 0 ∧ (p i).natDegree = M)
+    (f : projectiveLine k ⟶ scheme hF)
+    (hfS : f ≫ toSpec hF = (projectiveLine k ↘ Spec (.of k)))
+    (hf : projectiveLinePolynomialChart k 0 ≫ f = specMap hF p hP hp) :
+    projectiveLinePolynomialChart k 1 ≫ f =
+      specMap hF (fun i ↦ (p i).reflect M)
+        (aeval_reflect_eq_zero_of_isHomogeneous p hF hdeg hP)
+        (span_range_reflect_eq_top p hp hdeg hmax) := by
+  let S := Spec (.of k)
+  let Y := scheme hF
+  let A := Spec (.of k[X])
+  let : Y.Over S := ⟨toSpec hF⟩
+  let : A.Over S := ⟨Spec.map (CommRingCat.ofHom (algebraMap k k[X]))⟩
+  let : IsProper (Y ↘ S) := inferInstanceAs (IsProper (toSpec hF))
+  let q := fun i ↦ (p i).reflect M
+  let hQ := aeval_reflect_eq_zero_of_isHomogeneous p hF hdeg hP
+  let hq := span_range_reflect_eq_top p hp hdeg hmax
+  let : (specMap hF q hQ hq).IsOver S := (Scheme.Hom.isOver_iff S).mpr
+    (specMap_toSpec hF q hQ hq)
+  let : (projectiveLinePolynomialChart k 1 ≫ f).IsOver S := by
+    rw [Scheme.Hom.isOver_iff S]
+    change projectiveLinePolynomialChart k 1 ≫ f ≫ toSpec hF = _
+    rw [hfS, projectiveLinePolynomialChart_toSpec]
+    rfl
+  let t : RatFunc k := RatFunc.X
+  have ht : t ≠ 0 := RatFunc.X_ne_zero
+  have htrans : Transcendental k t⁻¹ := by
+    rw [Transcendental, IsAlgebraic.inv_iff]
+    exact RatFunc.transcendental_X
+  let b := Spec.map (CommRingCat.ofHom (Polynomial.aeval (R := k) t⁻¹).toRingHom)
+  let : IsDominant b :=
+    ⟨RingHom.denseRange_comap_of_injective _ (transcendental_iff_injective.mp htrans)⟩
+  change projectiveLinePolynomialChart k 1 ≫ f = specMap hF q hQ hq
+  apply ext_of_isDominant_of_isSeparated' S b
+  dsimp only [b]
+  rw [← Category.assoc, projectiveLinePolynomialChart_aeval_inv t ht, Category.assoc, hf]
+  exact (specMap_reflect_overlap hF p hP hp hdeg hmax ht).symm
 
 end TinyTauDemo.ProjectiveHypersurface

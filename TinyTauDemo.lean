@@ -87,6 +87,7 @@ public import TinyTauDemo.AlgebraicGeometry.Projective.PolynomialTuplePoles
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.PullbackStalk
 public import TinyTauDemo.NumberTheory.Ramification.PowerBasisDiscriminant
 public import TinyTauDemo.AlgebraicGeometry.Dedekind.PrincipalDivisor
+public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineCharts
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineDifferentials
 public import TinyTauDemo.AlgebraicGeometry.Curves.ProjectiveLineInfinityStalk
 public import TinyTauDemo.NumberTheory.Ramification.RamificationRecall

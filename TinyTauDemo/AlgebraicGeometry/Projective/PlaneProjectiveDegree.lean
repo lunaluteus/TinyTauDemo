@@ -7,7 +7,6 @@ module
 
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlanePolynomialMap
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneJacobianIntegral
-public import TinyTauDemo.Fermat.Polynomial.FermatLineExtension
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneFieldDegree
 import TinyTauDemo.AlgebraicGeometry.Curves.ChartFunctionField
 import TauCeti.FieldTheory.FunctionField.PlaneCurve.ConstantField
