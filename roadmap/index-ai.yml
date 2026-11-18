@@ -473,8 +473,9 @@
     - /roadmap/index-ai.qmd#thm-bernoulli-irregular-infinite
     - /roadmap/index-ai.qmd#prp-cyclotomic-class-number-reduction
     - /roadmap/index-ai.qmd#prp-teichmuller-bernoulli-factors
+    - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
   docs: []
-  comment: The finite tests and infinitude theorem are verified for the numerator predicate. The explicit residue ratio and the normalized odd Bernoulli product are verified separately. The relative class-number formula and the implication from the real part to the relative part remain.
+  comment: The finite tests and infinitude theorem are verified for the numerator predicate. The explicit residue ratio, normalized odd Bernoulli product, and Dirichlet values at zero are verified. The relative class-number formula and the implication from the real part to the relative part remain.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -505,6 +506,15 @@
     - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.orderOf_padicTeichmullerCharacter
     - /docs/TinyTauDemo/BernoulliTeichmullerProduct.html#TinyTauDemo.padicTeichmuller_odd_generalizedBernoulli_product_dvd_iff
   comment: Reduce each Teichmüller lift modulo p squared to the pth power of its residue representative. Faulhaber and Kummer congruences identify the ordinary numerator test. The exceptional weighted sum is a unit, so the normalized odd product satisfies the same test.
+- id: prp-dirichlet-l-values-at-zero
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.tendsto_sum_geom_div_eq_neg_log
+    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.sinZeta_one_eq
+    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.hurwitzZeta_zero_eq
+    - /docs/TinyTauDemo/DirichletLZero.html#TinyTauDemo.dirichletLFunction_zero_eq_neg_generalizedBernoulli
+  comment: Use Abel's theorem and summation by parts for the sine zeta at one. The Hurwitz functional equation and the finite sum over residue classes give the generalized Bernoulli value.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []

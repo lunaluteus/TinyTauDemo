@@ -30,6 +30,7 @@ public import TinyTauDemo.DifferentialMonomorphism
 public import TinyTauDemo.DifferentialRamificationOrder
 public import TinyTauDemo.DifferentialSkyscraper
 public import TinyTauDemo.DifferentialStalkMap
+public import TinyTauDemo.DirichletLZero
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
