@@ -108,11 +108,12 @@
   ok: false
   depends:
     - /roadmap/index-ai.qmd#prp-plane-jacobian-criterion
+    - /roadmap/index-ai.qmd#lem-curve-extension-and-infinity-coordinates
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
     - /roadmap/index-ai.qmd#prp-plane-line-morphism-degree
   docs: []
-  comment: The plane Jacobian criterion, the infinity stalk and chart, and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The Fermat conic supplies a verified counterexample to the stated degree M.
+  comment: The plane Jacobian criterion for regular curves, extension from dense opens of smooth curves, the infinity chart and stalk, and the corrected degree formula are verified. The Fermat conic supplies a verified counterexample to the stated degree M.
 - id: prp-plane-line-morphism-degree
   ok: true
   depends:
@@ -133,9 +134,11 @@
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/AmbientProjectiveCharts.html#TinyTauDemo.ProjectiveHypersurface.ambientBasicOpenIsoSpecAffine
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/ProjectiveHypersurface.html#TinyTauDemo.ProjectiveHypersurface.basicOpenIsoSpec
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianConverse.html#TinyTauDemo.ProjectiveHypersurface.smooth_iff_forall_exists_pderiv_ne_zero
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianRegular.html#TinyTauDemo.ProjectiveHypersurface.regular_stalks_iff_smooth
+    - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianRegular.html#TinyTauDemo.ProjectiveHypersurface.isIntegral_isProper_regularCurve_iff_forall_exists_pderiv_ne_zero
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isIntegral_smoothOne_dim_of_forall_exists_pderiv_ne_zero
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isDiscreteValuationRing_stalk_of_isClosed
-  comment: Dehomogenize on the standard charts. The derivative opens are standard smooth, and formal smoothness splits the affine conormal inclusion. For a nonzero positive-degree equation the criterion gives an integral proper curve.
+  comment: Dehomogenize on the standard charts. The derivative opens are standard smooth. In the converse, vanishing derivatives place the equation in the square of the ambient maximal ideal, contradicting regularity of the quotient stalk.
 - id: prp-fermat-line-morphism-degree
   ok: true
   depends:
@@ -162,6 +165,8 @@
   depends: []
   docs:
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen_of_regular
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/DenseOpenExtension.html#TinyTauDemo.existsUnique_hom_extending_denseOpen_of_smoothCurve
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.span_range_reflect_eq_top
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/InfinityCoordinates.html#TinyTauDemo.aeval_reflect_eq_zero_of_isHomogeneous
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/PlanePolynomialMap.html#TinyTauDemo.ProjectiveHypersurface.specMap_reflect_overlap

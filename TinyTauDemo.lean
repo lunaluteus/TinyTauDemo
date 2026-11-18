@@ -83,6 +83,7 @@ public import TinyTauDemo.NumberTheory.Bernoulli.OddBernoulliTransport
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneFieldDegree
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneJacobianConverse
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneJacobianIntegral
+public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneJacobianRegular
 public import TinyTauDemo.AlgebraicGeometry.Projective.PlaneProjectiveDegree
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.PlaceDifferentialLength
 public import TinyTauDemo.Algebra.Polynomial.PolynomialLogDerivative

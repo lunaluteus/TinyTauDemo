@@ -7,19 +7,22 @@ module
 
 public import TauCeti.AlgebraicGeometry.Birational.RationalMap
 public import TauCeti.AlgebraicGeometry.Scheme.DiscreteValuationStalk
+public import TauCeti.AlgebraicGeometry.Morphisms.Smooth.RelativeDimension
+import TauCeti.AlgebraicGeometry.Morphisms.Smooth.Regular
 
 /-!
 # Extension from a dense open of a regular curve
 
 The generic-point restriction determines a morphism on a dense open. Properness
 extends it through the valuation rings of the curve and separatedness gives uniqueness.
-See `/roadmap/index.qmd#rem-scheme-curves-recall @ bfa7759fd8ba44b8e13df934ebe5c27f37f987eb`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `b66bcc7d88f40dba3595163ba382bdb7ff736e7b`.
 -/
 
 public section
 
 open AlgebraicGeometry CategoryTheory
 open AlgebraicGeometry.Scheme
+open TauCeti.AlgebraicGeometry
 
 namespace TinyTauDemo
 
@@ -56,5 +59,32 @@ theorem existsUnique_hom_extending_denseOpen
   let : f'.IsOver S := hf'.1
   let : IsDominant U.ι := Opens.isDominant_ι hU
   exact ext_of_isDominant_of_isSeparated' S U.ι (hf'.2.trans hf.symm)
+
+/-- On a regular integral scheme of dimension at most one, every morphism from
+a dense open into a proper scheme over the base extends uniquely. -/
+theorem existsUnique_hom_extending_denseOpen_of_regular
+    {X Y S : Scheme.{u}} [X.Over S] [Y.Over S] [IsIntegral X] [S.IsSeparated]
+    [IsProper (Y ↘ S)] [∀ x : X, IsRegularLocalRing (X.presheaf.stalk x)]
+    (hdim : topologicalKrullDim X ≤ 1) (U : X.Opens) (hU : Dense (U : Set X))
+    (g : (U : Scheme) ⟶ Y) [g.IsOver S] :
+    ∃! f : X ⟶ Y, f.IsOver S ∧ U.ι ≫ f = g := by
+  let : ∀ x : CodimensionOnePoint X, IsDiscreteValuationRing (X.presheaf.stalk (x : X)) :=
+    fun x ↦ CodimensionOnePoint.isDiscreteValuationRing_stalk x
+  exact existsUnique_hom_extending_denseOpen hdim U hU g
+
+/-- A morphism of a dense open of a smooth integral curve to a proper scheme
+over the base field extends uniquely over the curve. -/
+theorem existsUnique_hom_extending_denseOpen_of_smoothCurve
+    (k : Type u) [Field k] {X Y : Scheme.{u}}
+    [X.Over (Spec (.of k))] [Y.Over (Spec (.of k))] [IsIntegral X]
+    [SmoothOfRelativeDimension 1 (X ↘ Spec (.of k))]
+    [IsProper (Y ↘ Spec (.of k))] (U : X.Opens) (hU : Dense (U : Set X))
+    (g : (U : Scheme) ⟶ Y) [g.IsOver (Spec (.of k))] :
+    ∃! f : X ⟶ Y, f.IsOver (Spec (.of k)) ∧ U.ι ≫ f = g := by
+  let : Smooth (X ↘ Spec (.of k)) := SmoothOfRelativeDimension.smooth 1 _
+  let : ∀ x : X, IsRegularLocalRing (X.presheaf.stalk x) :=
+    isRegularLocalRing_stalk_of_smooth (X ↘ Spec (.of k))
+  exact existsUnique_hom_extending_denseOpen_of_regular
+    (topologicalKrullDim_eq_of_smoothOfRelativeDimension (X ↘ Spec (.of k))).le U hU g
 
 end TinyTauDemo
