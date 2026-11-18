@@ -6,6 +6,7 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.Fermat.Curve.FermatCharts
+public import TinyTauDemo.AlgebraicGeometry.Dedekind.IntegerFibres
 import TinyTauDemo.Fermat.ArithmeticSurface.FermatProjectiveBaseChange
 public import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ProjectiveLine
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Basic
@@ -20,10 +21,10 @@ The Frobenius identity makes the degree-p equation the pth power of the linear
 Fermat equation in characteristic p. The linear class has nilpotence index p.
 The last standard affine chart detects nonreducedness. The linear Fermat scheme
 maps into the characteristic-p model by a surjective closed immersion, identifying
-the nilradical subscheme with the projective line. The coefficient-base-change
-isomorphism gives both conclusions for the fibre of the integral model.
+the nilradical subscheme with the projective line. The base-change and residue
+field isomorphisms give both conclusions for the scheme-theoretic fibre at `(p)`.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `2a0cfce18730a72e3af59be8ebaa793115ffd6d3`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `cee501fadd7e1d00992825b62fa0edeae19d4e50`.
 -/
 
 public section
@@ -320,13 +321,24 @@ instance : Surjective (fermatSpecialFibreLinearInclusion k p) := by
   obtain ⟨n, hn⟩ := ha
   exact ⟨n, by rw [← map_pow]; exact Ideal.Quotient.eq_zero_iff_mem.mpr hn⟩
 
+private noncomputable def fermatNilradicalSubschemeIsoProjectiveLine
+    {Y : Scheme.{u}} (e : fermatProjective k p ≅ Y) :
+    Y.nilradical.subscheme ≅ projectiveLine k := by
+  let f := fermatSpecialFibreLinearInclusion k p ≫ e.hom
+  let : IsClosedImmersion f := by
+    dsimp only [f]
+    infer_instance
+  let : Surjective f := by
+    dsimp only [f]
+    infer_instance
+  let := fermatProjectiveOne_isReduced k
+  exact (isoNilradicalSubschemeOfSurjectiveClosedImmersion f).symm ≪≫
+    fermatProjectiveOneIsoProjectiveLine k
+
 /-- The reduced subscheme of the characteristic-`p` Fermat scheme is the projective line. -/
 noncomputable def fermatProjectiveNilradicalSubschemeIsoProjectiveLine :
-    (fermatProjective k p).nilradical.subscheme ≅ projectiveLine k := by
-  let := fermatProjectiveOne_isReduced k
-  exact (isoNilradicalSubschemeOfSurjectiveClosedImmersion
-    (fermatSpecialFibreLinearInclusion k p)).symm ≪≫ fermatProjectiveOneIsoProjectiveLine k
-
+    (fermatProjective k p).nilradical.subscheme ≅ projectiveLine k :=
+  fermatNilradicalSubschemeIsoProjectiveLine k p (Iso.refl _)
 
 private theorem fermatAffineEquation_linear_last :
     fermatAffineEquation k 1 2 = X (0 : Fin 2) + X 1 - 1 := by
@@ -380,19 +392,26 @@ theorem not_isReduced_fermatProjective_baseChange_charP :
   exact not_isReduced_fermatProjective_charP k p
     (isReduced_of_isOpenImmersion (fermatProjective_baseChangeIso k p).hom)
 
-/-- The reduced subscheme of the actual characteristic-`p` fibre is the projective line. -/
+/-- The reduced subscheme after extending coefficients to characteristic `p` is the projective
+line. -/
 noncomputable def fermatProjective_baseChange_charP_nilradicalSubschemeIsoProjectiveLine :
     (pullback (fermatProjectiveToSpec ℤ p)
-      (Spec.map (CommRingCat.ofHom (algebraMap ℤ k)))).nilradical.subscheme ≅ projectiveLine k := by
-  let f := fermatSpecialFibreLinearInclusion k p ≫ (fermatProjective_baseChangeIso k p).hom
-  let : IsClosedImmersion f := by
-    dsimp only [f]
-    infer_instance
-  let : Surjective f := by
-    dsimp only [f]
-    infer_instance
-  let := fermatProjectiveOne_isReduced k
-  exact (isoNilradicalSubschemeOfSurjectiveClosedImmersion f).symm ≪≫
-    fermatProjectiveOneIsoProjectiveLine k
+      (Spec.map (CommRingCat.ofHom (algebraMap ℤ k)))).nilradical.subscheme ≅ projectiveLine k :=
+  fermatNilradicalSubschemeIsoProjectiveLine k p (fermatProjective_baseChangeIso k p)
+
+/-- The fibre of the integral Fermat model of prime degree `p` at `(p)` is nonreduced. -/
+theorem not_isReduced_fermatProjective_fiber_prime :
+    ¬ AlgebraicGeometry.IsReduced ((fermatProjectiveToSpec ℤ p).fiber (primeIntPoint p)) := by
+  intro h
+  exact not_isReduced_fermatProjective_charP (ZMod p) p
+    (isReduced_of_isOpenImmersion (fermatProjective_fiberPrimeIntPointIso p p).inv)
+
+/-- The nilradical subscheme of the scheme-theoretic fibre at `(p)` is the projective line
+over the residue field. -/
+noncomputable def fermatProjective_fiber_prime_nilradicalSubschemeIsoProjectiveLine :
+    ((fermatProjectiveToSpec ℤ p).fiber (primeIntPoint p)).nilradical.subscheme ≅
+      projectiveLine (ZMod p) :=
+  fermatNilradicalSubschemeIsoProjectiveLine (ZMod p) p
+    (fermatProjective_fiberPrimeIntPointIso p p).symm
 
 end TinyTauDemo

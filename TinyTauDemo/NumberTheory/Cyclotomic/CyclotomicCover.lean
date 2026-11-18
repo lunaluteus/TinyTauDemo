@@ -8,7 +8,7 @@ module
 public import TinyTauDemo.NumberTheory.Cyclotomic.CyclotomicDifferentials
 public import Mathlib.AlgebraicGeometry.Morphisms.Etale
 public import Mathlib.AlgebraicGeometry.Morphisms.Finite
-public import Mathlib.AlgebraicGeometry.Fiber
+public import TinyTauDemo.AlgebraicGeometry.Dedekind.IntegerFibres
 import Mathlib.NumberTheory.NumberField.Ideal.KummerDedekind
 import Mathlib.RingTheory.Polynomial.Cyclotomic.Expand
 import Mathlib.Algebra.Polynomial.Taylor
@@ -22,7 +22,7 @@ spectrum. For an odd prime cyclotomic field, restricting to the complement
 of the prime gives an étale morphism. The scheme-theoretic fibre at the prime
 is the spectrum of a truncated polynomial ring over its residue field.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `dcc2fb06f18c4581012b6e6fcb95d799f888e888`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `cee501fadd7e1d00992825b62fa0edeae19d4e50`.
 -/
 
 public section
@@ -72,10 +72,6 @@ theorem ringOfIntegersSpecHom_etale_away {K : Type} [Field K] [NumberField K]
   have := IsScalarTower.of_algebraMap_eq'
     (R := ℤ) (S := A) (A := B) (Subsingleton.elim _ _)
   exact Algebra.Etale.of_restrictScalars ℤ A B
-
-/-- The closed point of the integer spectrum associated to a rational prime. -/
-def primeIntPoint (p : ℕ) [Fact p.Prime] : PrimeSpectrum ℤ :=
-  ⟨Ideal.span {(p : ℤ)}, (Int.ideal_span_isMaximal_of_prime p).isPrime⟩
 
 /-- The scheme-theoretic fibre of the cyclotomic cover at the rational prime is the spectrum
 of the ring of integers modulo the `(p - 1)`st power of the unique prime above it. -/

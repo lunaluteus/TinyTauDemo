@@ -67,6 +67,7 @@ public import TinyTauDemo.NumberTheory.ClassFieldTheory.HilbertClassPrimeQuotien
 public import TinyTauDemo.AlgebraicGeometry.Curves.RiemannHurwitz.HurwitzFibreCount
 public import TinyTauDemo.AlgebraicGeometry.Projective.HypersurfaceBaseChange
 public import TinyTauDemo.AlgebraicGeometry.Projective.InfinityCoordinates
+public import TinyTauDemo.AlgebraicGeometry.Dedekind.IntegerFibres
 public import TinyTauDemo.NumberTheory.Cyclotomic.Kronecker
 public import TinyTauDemo.NumberTheory.Bernoulli.KummerBernoulliCongruence
 public import TinyTauDemo.NumberTheory.Bernoulli.KummerBernoulliCriterion

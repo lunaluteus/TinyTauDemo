@@ -458,9 +458,13 @@
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjectiveNilradicalSubschemeIsoProjectiveLine
     - /docs/TinyTauDemo/AlgebraicGeometry/Projective/HypersurfaceBaseChange.html#TinyTauDemo.ProjectiveHypersurface.isPullback_baseChangeHom
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatProjectiveBaseChange.html#TinyTauDemo.fermatProjective_baseChangeIso
+    - /docs/TinyTauDemo/AlgebraicGeometry/Dedekind/IntegerFibres.html#TinyTauDemo.fiberPrimeIntPointIso
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatProjectiveBaseChange.html#TinyTauDemo.fermatProjective_fiberPrimeIntPointIso
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_baseChange_charP
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjective_baseChange_charP_nilradicalSubschemeIsoProjectiveLine
-  comment: The linear class has nilpotence index p. The linear model gives the nilradical subscheme, which is a projective line. Projective base change exposes both properties on the actual special fibre of the integral model.
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_fiber_prime
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatSpecialFibre.html#TinyTauDemo.fermatProjective_fiber_prime_nilradicalSubschemeIsoProjectiveLine
+  comment: The linear class has nilpotence index p. The linear model gives the nilradical subscheme, which is a projective line. The residue-field comparison and projective base change give these properties on the fibre over the closed point (p).
 - id: prp-cyclotomic-differentials
   ok: true
   depends:

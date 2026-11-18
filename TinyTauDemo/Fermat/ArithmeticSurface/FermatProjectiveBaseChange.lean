@@ -6,6 +6,7 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.AlgebraicGeometry.Projective.HypersurfaceBaseChange
+public import TinyTauDemo.AlgebraicGeometry.Dedekind.IntegerFibres
 public import TinyTauDemo.Fermat.Curve.FermatProjective
 import TinyTauDemo.Fermat.ArithmeticSurface.FermatArithmeticIntegrality
 
@@ -15,7 +16,7 @@ import TinyTauDemo.Fermat.ArithmeticSurface.FermatArithmeticIntegrality
 Scalar extension of the integer Fermat hypersurface gives the Fermat
 hypersurface over the new coefficient ring, including in positive characteristic.
 
-See `/roadmap/index.qmd#rem-arithmetic-surface` @ `2a0cfce18730a72e3af59be8ebaa793115ffd6d3`.
+See `/roadmap/index.qmd#rem-arithmetic-surface` @ `cee501fadd7e1d00992825b62fa0edeae19d4e50`.
 -/
 
 public section
@@ -53,5 +54,12 @@ theorem isIntegral_fermatProjective_baseChange_of_charZero
       (Spec.map (CommRingCat.ofHom (algebraMap ℤ R)))) := by
   let := fermatProjective_isIntegral_of_charZero R hn
   exact IsIntegral.of_isIso (fermatProjective_baseChangeIso R n).hom
+
+/-- The scheme-theoretic fibre of the integral Fermat model at the closed point `(p)`
+is the Fermat model over `ZMod p`. -/
+noncomputable def fermatProjective_fiberPrimeIntPointIso (n p : ℕ) [Fact p.Prime] :
+    (fermatProjectiveToSpec ℤ n).fiber (primeIntPoint p) ≅ fermatProjective (ZMod p) n :=
+  fiberPrimeIntPointIso (fermatProjectiveToSpec ℤ n) p ≪≫
+    (fermatProjective_baseChangeIso (ZMod p) n).symm
 
 end TinyTauDemo
