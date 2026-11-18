@@ -255,6 +255,14 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), a prime divisor 
 Complex conjugation inverts the resulting Kummer radicand modulo $p$th powers. The radicand has principal ideal $I^p$. If the relative norm kernel were prime to $p$, the conjugation relation would force $I$ to be principal. The cyclotomic unit decomposition would then force a primitive $p^2$th root of unity in the unramified extension, which contradicts the ramification index at the conductor. This proves the ordinary Bernoulli criterion from the unramified real extension. Realization of the open quotient by such an extension remains.
 :::
 
+::: {#prp-kummer-idele-norm-index}
+## The idele norm index of an S-unit Kummer extension
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), take a finite set $S$ of places containing all finite primes above $p$ and enough finite primes to generate the class group. Over a number field containing the $p$th roots of unity, the $S$-units generate an exponent-$p$ Kummer extension. Frobenius elements at auxiliary primes outside $S$ give a basis for the Galois group over a chosen subfield. An $S$-unit has a $p$th root in that subfield exactly when it has a $p$th root in all the auxiliary completions.
+
+Counting local power classes and the image of the principal ideles gives the index of the auxiliary idele-class subgroup. Local norm preimages show that this subgroup is contained in the norm group from the chosen subfield. Hence the norm index divides the subfield degree. With the auxiliary set empty, the same count gives the index of the ordinary Kummer idele-class subgroup.
+:::
+
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 

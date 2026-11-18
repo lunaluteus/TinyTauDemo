@@ -525,6 +525,7 @@
     - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
     - /roadmap/index-ai.qmd#thm-cyclotomic-relative-class-number
     - /roadmap/index-ai.qmd#prp-cyclotomic-reflection-reduction
+    - /roadmap/index-ai.qmd#prp-kummer-idele-norm-index
   docs: []
   comment: The relative class-number criterion and infinitude of actual irregular primes are verified. A real unramified cyclic extension of degree p implies reflection. The remaining reflection step is to realize an open prime-index idele-class quotient of the real subfield by such a field extension.
 - id: prp-cyclotomic-class-number-reduction
@@ -604,6 +605,15 @@
     - /docs/TinyTauDemo/CyclotomicReflectionBaseChange.html#TinyTauDemo.dvd_relativeNormKernel_of_unramified_real_extension
     - /docs/TinyTauDemo/CyclotomicReflectionBaseChange.html#TinyTauDemo.bernoulliIrregular_of_unramified_real_extension
   comment: Construct the open idele-class quotient from the ordinary class group. A degree-p unramified real extension gives the required abelian Kummer tower and a p-factor of the relative norm kernel.
+- id: prp-kummer-idele-norm-index
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/KummerFrobeniusBasis.html#TinyTauDemo.exists_finset_frobeniusBasis_kummerField_sUnits
+    - /docs/TinyTauDemo/KummerFrobeniusPower.html#TinyTauDemo.exists_local_pow_iff_exists_intermediate_pow_of_frobeniusBasis
+    - /docs/TinyTauDemo/KummerNormIndex.html#TinyTauDemo.index_kummerIdeleClassSubgroup_eq_pow
+    - /docs/TinyTauDemo/KummerSecondInequality.html#TinyTauDemo.index_range_ideleClassNormMap_dvd_finrank_of_kummerField_sUnits
+  comment: The auxiliary Frobenius basis detects roots of S-units. Local powers and the principal intersection give an idele-class subgroup of the required index inside the norm group.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []

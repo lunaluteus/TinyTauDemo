@@ -65,6 +65,7 @@ public import TinyTauDemo.KummerBernoulliCongruence
 public import TinyTauDemo.KummerCaseOne
 public import TinyTauDemo.KummerCaseTwo
 public import TinyTauDemo.KummerLocalArithmetic
+public import TinyTauDemo.KummerSecondInequality
 public import TinyTauDemo.KummerTranslatedRoot
 public import TinyTauDemo.KummerUnramified
 public import TinyTauDemo.KummerUnit
