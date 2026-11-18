@@ -174,7 +174,9 @@
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv_algebraMap
     - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinity_maximalIdeal
-  comment: Extend at the codimension-one points by the valuative criterion. Identify the infinity stalk with the localization at the origin of the second chart. A common unit on the overlap identifies the reflected tuple with the chart restriction.
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineCharts.html#TinyTauDemo.projectiveLinePolynomialChart_one_atGenericPoint
+    - /docs/TinyTauDemo/AlgebraicGeometry/Curves/ProjectiveLineInfinityStalk.html#TinyTauDemo.projectiveLineInfinityStalkEquiv_symm_X_functionField
+  comment: Extend at the codimension-one points by the valuative criterion. Identify the infinity stalk with the localization at the origin of the second chart and its uniformizer with t⁻¹ in the function field. A common unit on the overlap identifies the reflected tuple with the chart restriction.
 - id: thm-riemann-hurwitz-recall
   ok: true
   depends:

@@ -10,6 +10,7 @@ import TinyTauDemo.AlgebraicGeometry.Curves.DenseOpenExtension
 import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ChartEquality
 import TauCeti.LinearAlgebra.SymmetricAlgebra.Homogeneous
 import TauCeti.Topology.KrullDimension
+import Mathlib.AlgebraicGeometry.Stalk
 
 /-!
 # Polynomial charts of the projective line
@@ -17,12 +18,12 @@ import TauCeti.Topology.KrullDimension
 The two charts are affine lines with reciprocal coordinates off their origins.
 A map from the first chart to a proper scheme extends uniquely over the line.
 
-See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `659046d7f13ad754bd0e36712b5fe02840fd1035`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `4d403603cffec9de98dce6a57245c0b9a8671286`.
 -/
 
 public section
 
-open AlgebraicGeometry CategoryTheory HomogeneousLocalization Order Polynomial
+open AlgebraicGeometry CategoryTheory HomogeneousLocalization Order Polynomial TopologicalSpace
 open TauCeti TauCeti.AlgebraicGeometry
 
 namespace TinyTauDemo
@@ -200,5 +201,63 @@ theorem projectiveLinePolynomialChart_aeval_inv (t : L) (ht : t ≠ 0) :
   rfl
 
 end Transition
+
+local notation "P₁" => projectiveLine k
+local notation "𝒜" => SymmetricAlgebra.homogeneousSubmodule k (Fin 2 → k)
+
+/-- On the second polynomial chart, the generic point evaluates to the reciprocal
+of the first chart's coordinate. -/
+theorem projectiveLinePolynomialChart_one_atGenericPoint :
+    Spec.map (CommRingCat.ofHom (aeval (RatFunc.X : RatFunc k)⁻¹).toRingHom) ≫
+      projectiveLinePolynomialChart k 1 =
+    Spec.map (CommRingCat.ofHom (projectiveLine.functionFieldEquiv k).toRingHom) ≫
+      (P₁).fromSpecStalk (genericPoint P₁) := by
+  let R := CommRingCat.of (Away 𝒜 (projectiveLine.coord k 0))
+  let i : Spec R ⟶ P₁ := projectiveLine.awayι k 0
+  let d := CommRingCat.ofHom (projectiveLine.awayEquivPolynomial k 0).toRingHom
+  let U := i ''ᵁ ⊤
+  have hU : IsAffineOpen U := by
+    rw [show U = i ''ᵁ ⊤ from rfl, Scheme.Hom.image_top_eq_opensRange]
+    exact isAffineOpen_opensRange i
+  have hNon : (U : Set P₁).Nonempty := by
+    let z : Spec (.of k[X]) := (⊥ : PrimeSpectrum k[X])
+    refine ⟨i (Spec.map d z), ?_⟩
+    change i (Spec.map d z) ∈ i ''ᵁ ⊤
+    rw [Scheme.Hom.image_top_eq_opensRange]
+    exact Scheme.Hom.mem_opensRange.mpr ⟨_, rfl⟩
+  have hη : genericPoint P₁ ∈ U :=
+    ((genericPoint_spec P₁).mem_open_set_iff U.isOpen).mpr
+      (by simpa only [Set.univ_inter] using hNon)
+  let : Nonempty U := ⟨⟨_, hη⟩⟩
+  let e := projectiveLine.functionFieldEquiv k
+  let γ := Scheme.ΓSpecIso R
+  let α := (i.appIso ⊤).hom ≫ γ.hom
+  let β := CommRingCat.ofHom (projectiveLine.chartSectionsEquiv k 0).toRingHom
+  have hα : Spec.map α ≫ hU.fromSpec = i := by
+    have h := IsAffineOpen.SpecMap_appLE_fromSpec i hU (isAffineOpen_top (Spec R))
+      (Scheme.Hom.preimage_image_eq i ⊤).ge
+    rw [IsAffineOpen.fromSpec_top, Scheme.isoSpec_Spec_inv, ← Scheme.Hom.appIso_hom'] at h
+    dsimp only [α]
+    rw [Spec.map_comp_assoc, h, ← Spec.map_comp_assoc, Iso.inv_hom_id, Spec.map_id,
+      Category.id_comp]
+  have hβ : β = α ≫ d := by
+    apply CommRingCat.hom_ext
+    apply RingHom.ext
+    intro a
+    exact projectiveLine.chartSectionsEquiv_apply k 0 a
+  have hChart : Spec.map β ≫ hU.fromSpec = projectiveLinePolynomialChart k 0 := by
+    rw [hβ, Spec.map_comp_assoc, hα, projectiveLinePolynomialChart_def]
+  have hg : (P₁).germToFunctionField U ≫ CommRingCat.ofHom e.toRingHom =
+      β ≫ CommRingCat.ofHom (algebraMap k[X] (RatFunc k)) := by
+    apply CommRingCat.hom_ext
+    apply RingHom.ext
+    intro a
+    exact projectiveLine.functionFieldEquiv_germToFunctionField k a
+  have haeval : (aeval (RatFunc.X : RatFunc k)).toRingHom = algebraMap k[X] (RatFunc k) :=
+    RingHom.ext RatFunc.aeval_X_left_eq_algebraMap
+  rw [projectiveLinePolynomialChart_aeval_inv RatFunc.X RatFunc.X_ne_zero, haeval,
+    ← hU.fromSpecStalk_eq_fromSpecStalk hη, IsAffineOpen.fromSpecStalk, ← Spec.map_comp_assoc]
+  change _ = Spec.map ((P₁).germToFunctionField U ≫ CommRingCat.ofHom e.toRingHom) ≫ hU.fromSpec
+  rw [hg, Spec.map_comp_assoc, hChart]
 
 end TinyTauDemo

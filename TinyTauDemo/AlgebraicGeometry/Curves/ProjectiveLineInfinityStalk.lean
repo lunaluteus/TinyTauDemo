@@ -16,8 +16,10 @@ public import TauCeti.AlgebraicGeometry.Scheme.BaseAlgebra
 
 The valuation-defined point at infinity is the origin in the chart with
 coordinate `X₀/X₁`. The stalk is the localization of the polynomial ring at `(X)`.
+The image of its uniformizer in the function field is the reciprocal of the
+first chart's affine coordinate.
 
-See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `027c4b61e59169b60bcae3dd1dcdf45fdd82d1f4`.
+See `/roadmap/index.qmd#rem-scheme-curves-recall` @ `4d403603cffec9de98dce6a57245c0b9a8671286`.
 -/
 
 public section
@@ -163,5 +165,69 @@ theorem projectiveLineInfinityStalkEquiv_algebraMap (a : k) :
       ← Spec.map_comp, ← CommRingCat.ofHom_comp, ← IsScalarTower.algebraMap_eq]
   rw [(P₁).fromSpecStalk_comp_over (k := k), ← Spec.map_comp, Spec.map_inj] at hs
   exact DFunLike.congr_fun (congrArg CommRingCat.Hom.hom hs) a
+
+/-- The infinity-chart coordinate is the reciprocal of the rational affine
+coordinate under the inclusion of the local ring into the function field. -/
+theorem projectiveLineInfinityStalkEquiv_symm_X_functionField :
+    let S := (P₁).presheaf.stalk (projectiveLineInfinity k : P₁)
+    let A := Localization.AtPrime (polynomialChartOrigin k).asIdeal
+    projectiveLine.functionFieldEquiv k
+      (algebraMap S (P₁).functionField
+        ((projectiveLineInfinityStalkEquiv k).symm (algebraMap k[X] A X))) =
+      (RatFunc.X : RatFunc k)⁻¹ := by
+  let Z := Spec (.of k[X])
+  let q : Z := polynomialChartOrigin k
+  let f : Z ⟶ P₁ := projectiveLinePolynomialChart k 1
+  let x : P₁ := projectiveLineInfinity k
+  let S := (P₁).presheaf.stalk x
+  let A := Localization.AtPrime (polynomialChartOrigin k).asIdeal
+  let e := projectiveLineInfinityStalkEquiv k
+  let F := (P₁).functionField
+  let eF := projectiveLine.functionFieldEquiv k
+  let h : x = f q := projectiveLineInfinity_eq_polynomialChartOrigin k
+  let c := (P₁).presheaf.stalkCongr (.of_eq h)
+  let d := Spec.stalkIso (.of k[X]) q
+  have hc : Spec.map c.hom ≫ (P₁).fromSpecStalk x = (P₁).fromSpecStalk (f q) := by
+    dsimp only [c]
+    rw [TopCat.Presheaf.stalkCongr_hom]
+    exact Scheme.SpecMap_stalkSpecializes_fromSpecStalk (X := P₁) (Inseparable.of_eq h).ge
+  have hd : Spec.map d.hom ≫ Z.fromSpecStalk q =
+      Spec.map (CommRingCat.ofHom (algebraMap k[X] A)) := by
+    change Spec.map d.hom ≫ (Spec (.of k[X])).fromSpecStalk q = _
+    dsimp only [d]
+    rw [Spec.fromSpecStalk_eq, ← Spec.map_comp, Category.assoc, Spec.germ_stalkMapIso_hom,
+      Iso.inv_hom_id_assoc]
+  have he : Spec.map (CommRingCat.ofHom e.toRingHom) ≫ (P₁).fromSpecStalk x =
+      Spec.map (CommRingCat.ofHom (algebraMap k[X] A)) ≫ f := by
+    change Spec.map (c.hom ≫ f.stalkMap q ≫ d.hom) ≫ (P₁).fromSpecStalk x = _
+    simp only [Spec.map_comp, Category.assoc]
+    rw [hc, Scheme.SpecMap_stalkMap_fromSpecStalk, ← Category.assoc, hd]
+  have heInv : Spec.map (CommRingCat.ofHom e.symm.toRingHom) ≫
+      Spec.map (CommRingCat.ofHom (algebraMap k[X] A)) ≫ f = (P₁).fromSpecStalk x := by
+    have hinv : CommRingCat.ofHom e.toRingHom ≫ CommRingCat.ofHom e.symm.toRingHom = 𝟙 S := by
+      apply CommRingCat.hom_ext
+      apply RingHom.ext
+      intro a
+      exact e.symm_apply_apply a
+    rw [← he, ← Spec.map_comp_assoc, hinv]
+    erw [Spec.map_id, Category.id_comp]
+  have hs : Spec.map (CommRingCat.ofHom (algebraMap S F)) ≫ (P₁).fromSpecStalk x =
+      (P₁).fromSpecStalk (genericPoint P₁) :=
+    Scheme.SpecMap_stalkSpecializes_fromSpecStalk (X := P₁) (genericPoint_specializes x)
+  let θ := (eF.toRingHom.comp ((algebraMap S F).comp e.symm.toRingHom)).comp (algebraMap k[X] A)
+  have hθ : Spec.map (CommRingCat.ofHom θ) ≫ f =
+      Spec.map (CommRingCat.ofHom eF.toRingHom) ≫ (P₁).fromSpecStalk (genericPoint P₁) := by
+    dsimp only [θ]
+    simp only [CommRingCat.ofHom_comp, Spec.map_comp_assoc, heInv, hs]
+  have hmaps : Spec.map (CommRingCat.ofHom θ) =
+      Spec.map (CommRingCat.ofHom (aeval (RatFunc.X : RatFunc k)⁻¹).toRingHom) := by
+    apply (cancel_mono f).mp
+    exact hθ.trans (projectiveLinePolynomialChart_one_atGenericPoint k).symm
+  have hX := congrArg (fun (g : CommRingCat.of k[X] ⟶ CommRingCat.of (RatFunc k)) ↦ g X)
+    (Spec.map_inj.mp hmaps)
+  change eF (algebraMap S F (e.symm (algebraMap k[X] A X))) =
+    aeval (RatFunc.X : RatFunc k)⁻¹ X at hX
+  rw [Polynomial.aeval_X] at hX
+  exact hX
 
 end TinyTauDemo
