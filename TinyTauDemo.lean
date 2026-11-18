@@ -5,6 +5,7 @@ Authors: Luna Luteus
 -/
 module
 
+public import TinyTauDemo.AmbientProjectiveCharts
 public import TinyTauDemo.BernoulliExamples
 public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.ChartFunctionField
@@ -46,6 +47,8 @@ public import TinyTauDemo.KummerUnramified
 public import TinyTauDemo.KummerUnit
 public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
+public import TinyTauDemo.PlaneJacobianConverse
+public import TinyTauDemo.PlaneJacobianIntegral
 public import TinyTauDemo.PlaceDifferentialLength
 public import TinyTauDemo.PolynomialLogDerivative
 public import TinyTauDemo.PullbackStalk

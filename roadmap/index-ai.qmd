@@ -53,6 +53,12 @@ For the [projective Fermat curve](index.qmd#prp-fermat-genus), the degree-zero l
 
 The function field of the projective Fermat curve is the fraction field of the $Z\ne0$ chart. Its normalized coordinates satisfy $x^n+y^n=1$ and generate the field over $k$. The curve is smooth, integral, and proper of dimension one. The comparison of its scheme genus with its function-field genus gives $\dim_k H^1(F_n,\mathcal O_{F_n})=(n-1)(n-2)/2$.
 
+::: {#prp-plane-jacobian-criterion}
+## The projective plane Jacobian criterion
+
+For the [projective curve recall](index.qmd#rem-scheme-curves-recall), the standard opens of the projective plane are spectra of polynomial rings in two variables. On the corresponding opens of a homogeneous hypersurface, the chart rings are the quotients by the dehomogenized equation. The affine derivative opens are smooth of relative dimension one. The Euler relation transfers projective nonvanishing of a derivative to these charts, including in positive characteristic. Conversely, formal smoothness splits the conormal map of the affine hypersurface and forces some derivative to survive at every point of the equation over the algebraically closed field. For a nonzero equation of positive degree, the no-common-zero condition gives an integral proper curve of dimension one and discrete valuation rings at its closed points.
+:::
+
 ::: {#lem-curve-extension-and-infinity-coordinates}
 ## Extension from a dense open and coordinates at infinity
 

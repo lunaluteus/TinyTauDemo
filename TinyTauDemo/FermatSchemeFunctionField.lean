@@ -32,7 +32,7 @@ noncomputable instance fermatProjective_over (n : ℕ) :
     (fermatProjective k n).Over (Spec (.of k)) :=
   ⟨fermatProjectiveToSpec k n⟩
 
-variable [CharZero k] [IsAlgClosed k] {n : ℕ}
+variable {n : ℕ}
 
 private noncomputable abbrev zChart (hn : 0 < n) :
     Spec (.of (FermatAffineRing k n 2)) ⟶ fermatProjective k n :=
@@ -43,15 +43,9 @@ private theorem zChart_over (hn : 0 < n) :
       Spec.map (CommRingCat.ofHom (algebraMap k (FermatAffineRing k n 2))) :=
   fermatAffineChart_comp_toSpec k hn 2
 
-omit [CharZero k] [IsAlgClosed k] in
 private theorem zChart_nonempty (hn : 0 < n) :
     Nonempty (Spec (.of (FermatAffineRing k n 2))) :=
   PrimeSpectrum.nonempty_iff_nontrivial.mpr (fermatAffineRing_nontrivial_two k hn)
-
-private theorem zChartRing_isDomain (hn : 0 < n) : IsDomain (FermatAffineRing k n 2) := by
-  have := fermatProjective_isIntegral k hn
-  have := zChart_nonempty k hn
-  exact (affine_isIntegral_iff _).mp (isIntegral_of_isOpenImmersion (zChart k hn))
 
 private theorem zChart_isAffineOpen (hn : 0 < n) : IsAffineOpen (zChart k hn ''ᵁ ⊤) := by
   rw [Scheme.Hom.image_top_eq_opensRange]
@@ -82,6 +76,13 @@ private theorem zChartSections_appLE (hn : 0 < n) (a : Γ(Spec (.of k), ⊤)) :
       (Scheme.Hom.preimage_image_eq _ _).ge]
   rw [show Scheme.Hom.appLE _ ⊤ ⊤ _ = Scheme.Hom.appTop _ from Scheme.Hom.appLE_eq_app _,
     zChart_over, Scheme.ΓSpecIso_naturality, Iso.inv_hom_id_assoc]
+
+variable [CharZero k] [IsAlgClosed k]
+
+private theorem zChartRing_isDomain (hn : 0 < n) : IsDomain (FermatAffineRing k n 2) := by
+  have := fermatProjective_isIntegral k hn
+  have := zChart_nonempty k hn
+  exact (affine_isIntegral_iff _).mp (isIntegral_of_isOpenImmersion (zChart k hn))
 
 /-- The function field of the projective model is the fraction field of its last affine chart. -/
 noncomputable def fermatProjectiveFunctionFieldEquiv (hn : 0 < n) :

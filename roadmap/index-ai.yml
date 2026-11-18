@@ -107,10 +107,21 @@
 - id: rem-scheme-curves-recall
   ok: false
   depends:
+    - /roadmap/index-ai.qmd#prp-plane-jacobian-criterion
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
   docs: []
-  comment: The valuative extension and the Fermat morphism, including its chart at infinity and degree, are verified. The general plane Jacobian criterion and the degree formula for arbitrary smooth plane curves remain.
+  comment: The plane Jacobian criterion, the valuative extension, and the Fermat morphism with its degree are verified. The corrected degree formula for arbitrary smooth plane curves remains.
+- id: prp-plane-jacobian-criterion
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/AmbientProjectiveCharts.html#TinyTauDemo.ProjectiveHypersurface.ambientBasicOpenIsoSpecAffine
+    - /docs/TinyTauDemo/ProjectiveHypersurface.html#TinyTauDemo.ProjectiveHypersurface.basicOpenIsoSpec
+    - /docs/TinyTauDemo/PlaneJacobianConverse.html#TinyTauDemo.ProjectiveHypersurface.smooth_iff_forall_exists_pderiv_ne_zero
+    - /docs/TinyTauDemo/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isIntegral_smoothOne_dim_of_forall_exists_pderiv_ne_zero
+    - /docs/TinyTauDemo/PlaneJacobianIntegral.html#TinyTauDemo.ProjectiveHypersurface.isDiscreteValuationRing_stalk_of_isClosed
+  comment: Dehomogenize on the standard charts. The derivative opens are standard smooth, and formal smoothness splits the affine conormal inclusion. For a nonzero positive-degree equation the criterion gives an integral proper curve.
 - id: prp-fermat-line-morphism-degree
   ok: true
   depends:

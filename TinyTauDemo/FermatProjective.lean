@@ -6,13 +6,11 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.FermatCoordinateRing
+import TinyTauDemo.PlaneJacobianIntegral
 public import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.ClosedImmersion
 public import TauCeti.AlgebraicGeometry.ProjectiveSpectrum.Integral
 public import TauCeti.RingTheory.GradedAlgebra.Homogeneous.Quotient
 public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Proper
-import Mathlib.RingTheory.MvPolynomial.Ideal
-import Mathlib.RingTheory.Polynomial.UniqueFactorization
-import Mathlib.RingTheory.Finiteness.Quotient
 
 /-!
 # The projective Fermat scheme
@@ -45,11 +43,8 @@ abbrev FermatCoordinateRing (n : ℕ) := MvPolynomial (Fin 3) k ⧸ fermatIdeal 
 
 /-- The Fermat equation generates a homogeneous ideal. -/
 theorem fermatIdeal_isHomogeneous (n : ℕ) :
-    (fermatIdeal k n).IsHomogeneous (homogeneousSubmodule (Fin 3) k) := by
-  apply Ideal.homogeneous_span
-  intro f hf
-  rw [Set.mem_singleton_iff] at hf
-  exact ⟨n, hf.symm ▸ fermatEquation_isHomogeneous k n⟩
+    (fermatIdeal k n).IsHomogeneous (homogeneousSubmodule (Fin 3) k) :=
+  ProjectiveHypersurface.ideal_isHomogeneous (fermatEquation_isHomogeneous k n)
 
 /-- The total-degree grading induced on the quotient by the Fermat equation. -/
 noncomputable abbrev fermatGrading (n : ℕ) : ℕ → Submodule k (FermatCoordinateRing k n) :=
@@ -74,74 +69,28 @@ noncomputable def fermatAmbientPlane : Scheme :=
 noncomputable def fermatProjective (n : ℕ) : Scheme :=
   Proj (fermatGrading k n)
 
-private noncomputable def fermatGradedQuotient (n : ℕ) :
-    homogeneousSubmodule (Fin 3) k →+*ᵍ fermatGrading k n where
-  toRingHom := Ideal.Quotient.mk (fermatIdeal k n)
-  map_mem := mk_mem_quotientPiece _ _
-
-private theorem fermatGradedQuotient_surjective (n : ℕ) :
-    Function.Surjective (fermatGradedQuotient k n) :=
-  Ideal.Quotient.mk_surjective
-
 /-- The inclusion of the projective Fermat scheme in the projective plane. -/
 noncomputable def fermatProjectiveInclusion (n : ℕ) :
     fermatProjective k n ⟶ fermatAmbientPlane k :=
-  Proj.map (fermatGradedQuotient k n)
-    (HomogeneousIdeal.irrelevant_le_map_of_surjective _ (fermatGradedQuotient_surjective k n))
+  ProjectiveHypersurface.inclusion (fermatEquation_isHomogeneous k n)
 
 instance (n : ℕ) : IsClosedImmersion (fermatProjectiveInclusion k n) :=
-  Proj.isClosedImmersion_map _ _ (fermatGradedQuotient_surjective k n)
+  inferInstanceAs (IsClosedImmersion
+    (ProjectiveHypersurface.inclusion (fermatEquation_isHomogeneous k n)))
 
 /-- The structure morphism of the projective Fermat scheme to the coefficient ring. -/
 @[expose]
 noncomputable def fermatProjectiveToSpec (n : ℕ) : fermatProjective k n ⟶ Spec (.of k) :=
   Proj.toSpecZero (fermatGrading k n) ≫ Spec.map (CommRingCat.ofHom (algebraMap k _))
 
-private theorem fermatGradeZero_algebraMap_surjective (n : ℕ) :
-    Function.Surjective (algebraMap k (fermatGrading k n 0)) := by
-  rintro ⟨z, hz⟩
-  obtain ⟨p, hp, hq⟩ := (mem_quotientPiece_iff _ _).mp hz
-  have hp' : p.IsHomogeneous 0 := hp
-  have hC : p = C (p.coeff 0) :=
-    totalDegree_eq_zero_iff_eq_C.mp (Nat.eq_zero_of_le_zero hp'.totalDegree_le)
-  refine ⟨p.coeff 0, Subtype.ext ?_⟩
-  change Ideal.Quotient.mk (fermatIdeal k n) (C (p.coeff 0)) = z
-  rw [← hC]
-  exact hq
-
-instance (n : ℕ) : IsProper (fermatProjectiveToSpec k n) := by
-  have : IsScalarTower k (fermatGrading k n 0) (FermatCoordinateRing k n) :=
-    IsScalarTower.of_algebraMap_eq fun _ => rfl
-  have : Algebra.FiniteType k (FermatCoordinateRing k n) := inferInstance
-  have : Algebra.FiniteType (fermatGrading k n 0) (FermatCoordinateRing k n) :=
-    Algebra.FiniteType.of_restrictScalars_finiteType k _ _
-  have : IsClosedImmersion
-      (Spec.map (CommRingCat.ofHom (algebraMap k (fermatGrading k n 0)))) :=
-    IsClosedImmersion.spec_of_surjective _ (fermatGradeZero_algebraMap_surjective k n)
-  have h₁ : IsProper (Proj.toSpecZero (fermatGrading k n)) := inferInstance
-  have h₂ : IsProper (Spec.map (CommRingCat.ofHom (algebraMap k (fermatGrading k n 0)))) :=
-    inferInstance
-  exact MorphismProperty.comp_mem @IsProper _ _ h₁ h₂
+instance (n : ℕ) : IsProper (fermatProjectiveToSpec k n) :=
+  inferInstanceAs (IsProper (ProjectiveHypersurface.toSpec (fermatEquation_isHomogeneous k n)))
 
 /-- The opens on which the three coordinate classes are nonzero cover the Fermat scheme. -/
 theorem fermatProjective_iSup_basicOpen (n : ℕ) :
     ⨆ j : Fin 3, Proj.basicOpen (fermatGrading k n) (Ideal.Quotient.mk (fermatIdeal k n) (X j)) =
-      ⊤ := by
-  apply Proj.iSup_basicOpen_eq_top
-  rw [HomogeneousIdeal.toIdeal_irrelevant_le]
-  intro i hi z hz
-  obtain ⟨p, hp, rfl⟩ := (mem_quotientPiece_iff _ _).mp hz
-  have hpI : p ∈ idealOfVars (Fin 3) k := by
-    rw [← pow_one (idealOfVars (Fin 3) k), mem_pow_idealOfVars_iff]
-    intro m hm
-    have hmdeg : m.degree = i := by
-      rw [Finsupp.degree_eq_weight_one]
-      exact hp (mem_support_iff.mp hm)
-    rwa [hmdeg]
-  change Ideal.Quotient.mk (fermatIdeal k n) p ∈ Ideal.span
-    (Set.range (Ideal.Quotient.mk (fermatIdeal k n) ∘ (X : Fin 3 → MvPolynomial (Fin 3) k)))
-  rw [Set.range_comp, ← Ideal.map_span]
-  exact Ideal.mem_map_of_mem _ hpI
+      ⊤ :=
+  ProjectiveHypersurface.iSup_basicOpen_eq_top (fermatEquation_isHomogeneous k n)
 
 end BaseRing
 
@@ -149,34 +98,21 @@ section Field
 
 variable (k : Type*) [Field k]
 
-private theorem fermatCoord_zero_ne_zero {n : ℕ} (hn : 0 < n) :
-    Ideal.Quotient.mk (fermatIdeal k n) (X 0) ≠ 0 := by
-  intro h
-  let e : MvPolynomial (Fin 3) k →ₐ[k] k := aeval ![1, 0, 1]
-  have he : e (fermatEquation k n) = 0 :=
-    (aeval_fermatEquation_eq_zero_iff n 1 0).mpr (by simp [zero_pow hn.ne'])
-  have hker : fermatIdeal k n ≤ RingHom.ker e.toRingHom := by
-    apply Ideal.span_le.mpr
-    intro p hp
-    rw [Set.mem_singleton_iff] at hp
-    exact RingHom.mem_ker.mpr (hp.symm ▸ he)
-  have hzero := RingHom.mem_ker.mp (hker (Ideal.Quotient.eq_zero_iff_mem.mp h))
-  simp [e] at hzero
-
 variable [CharZero k] [IsAlgClosed k]
+
+/-- The homogeneous Fermat coordinate ring over algebraically closed constants is a domain. -/
+theorem fermatCoordinateRing_isDomain {n : ℕ} (hn : 0 < n) :
+    IsDomain (FermatCoordinateRing k n) := by
+  have hprime := (fermatEquation_irreducible (k := k) hn).prime
+  have : (fermatIdeal k n).IsPrime := (Ideal.span_singleton_prime hprime.ne_zero).mpr hprime
+  exact Ideal.Quotient.isDomain _
 
 /-- The projective Fermat scheme is integral for every positive exponent. -/
 theorem fermatProjective_isIntegral {n : ℕ} (hn : 0 < n) :
-    IsIntegral (fermatProjective k n) := by
-  have hprime := (fermatEquation_irreducible (k := k) hn).prime
-  have : (fermatIdeal k n).IsPrime := (Ideal.span_singleton_prime hprime.ne_zero).mpr hprime
-  have : IsDomain (FermatCoordinateRing k n) := Ideal.Quotient.isDomain _
-  apply Proj.isIntegral_of_isDomain
-  intro h
-  have hx := fermatCoord_mem_degree_one (k := k) (n := n) (0 : Fin 3)
-  have hmem := HomogeneousIdeal.mem_irrelevant_of_mem (fermatGrading k n) Nat.one_pos hx
-  rw [h] at hmem
-  exact fermatCoord_zero_ne_zero k hn (Ideal.mem_bot.mp hmem)
+    IsIntegral (fermatProjective k n) :=
+  ProjectiveHypersurface.isIntegral_of_forall_exists_pderiv_ne_zero
+    (K := k) (fermatEquation_isHomogeneous k n) hn (fermatEquation_irreducible hn).ne_zero
+    (fun b hb _ ↦ fermatEquation_exists_aeval_pderiv_ne_zero hn b hb)
 
 end Field
 
