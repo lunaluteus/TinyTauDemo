@@ -148,8 +148,19 @@
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
     - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
     - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
+    - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
   docs: []
-  comment: The numerical scheme genus formula, right-exact transitivity of differential sheaves, and local ring differential lengths are verified. Injectivity of the first sheaf map and comparison of the relative differential sheaf with those local modules remain.
+  comment: The numerical genus formula, right-exact sheaf transitivity, and the base-change comparison for the first map on stalks are verified. Injectivity of the first sheaf map and the length of the relative sheaf stalks remain.
+- id: prp-scalar-extension-of-stalks
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
+    - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
+  docs:
+    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.pullbackStalkEquiv
+    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.pullbackStalkEquiv_tmul_germ
+    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.differentialPullbackStalk_eq_mapBaseChange
+  comment: Skyscraper sheaves identify stalk maps out of the pullback with semilinear maps from the original stalk. This gives the scalar-extension comparison and identifies the first differential map.
 - id: prp-differential-sheaf-transitivity
   ok: true
   depends:

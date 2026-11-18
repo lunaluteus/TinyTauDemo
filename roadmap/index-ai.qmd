@@ -91,6 +91,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), write 
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), adjunction gives the map $f^*\Omega_{Y/k}\to\Omega_{X/k}$. Its cokernel represents derivations on $X$ that annihilate every local function pulled back from $Y$. This identifies the cokernel as $\Omega_{X/Y}$ and yields the right-exact transitivity sequence $f^*\Omega_{Y/k}\to\Omega_{X/k}\to\Omega_{X/Y}\to 0$.
 :::
 
+::: {#prp-scalar-extension-of-stalks}
+## Scalar extension on stalks of pullback sheaves
+
+For a morphism $f\colon X\to Y$ and an $\mathcal O_Y$-module $M$, the stalk $(f^*M)_x$ identifies with $\mathcal O_{X,x}\otimes_{\mathcal O_{Y,f(x)}}M_{f(x)}$. This follows by applying the pullback adjunction to skyscraper modules at $x$. For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), this identification sends the first map of the sheaf transitivity sequence on stalks to the first map of Kähler transitivity for the local rings.
+:::
+
 ::: {#prp-differential-pullback-on-stalks}
 ## Pullback of differentials on stalks and at places
 

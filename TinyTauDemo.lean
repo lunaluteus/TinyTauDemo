@@ -47,6 +47,7 @@ public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
 public import TinyTauDemo.PlaceDifferentialLength
 public import TinyTauDemo.PolynomialLogDerivative
+public import TinyTauDemo.PullbackStalk
 public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor
 public import TinyTauDemo.RamificationRecall
