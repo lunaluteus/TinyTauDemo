@@ -17,7 +17,7 @@ import Mathlib.RingTheory.Localization.FractionRing
 /-!
 # Function field of an affine Fermat chart
 
-See `/roadmap/index.qmd#prp-fermat-genus` @ `baac39b56ab0e308195904f79c46c65fadbb5c32`.
+See `/roadmap/index.qmd#prp-fermat-genus` @ `b2c9a29565e4747906e07cca00173aa6354b72f0`.
 -/
 
 public section
@@ -31,27 +31,9 @@ section AffineCoordinates
 
 variable (k : Type*) [Field k] {n : ℕ}
 
-private theorem affineEquation_two (n : ℕ) :
-    fermatAffineEquation k n 2 = X (0 : Fin 2) ^ n + X 1 ^ n - 1 := by
-  have h0 : TauCeti.dehomogenize (R := k) (2 : Fin 3) (X 0) = X 0 := by simp; rfl
-  have h1 : TauCeti.dehomogenize (R := k) (2 : Fin 3) (X 1) = X 1 := by simp; rfl
-  have h2 : TauCeti.dehomogenize (R := k) (2 : Fin 3) (X 2) = 1 := by simp
-  change TauCeti.dehomogenize (R := k) (2 : Fin 3) (fermatEquation k n) = _
-  simp only [fermatEquation_def, map_sub, map_add, map_pow, h0, h1, h2, one_pow]
-
-private noncomputable def chartEval {a b : k} (h : a ^ n + b ^ n = 1) :
-    FermatAffineRing k n 2 →ₐ[k] k :=
-  Ideal.Quotient.liftₐ _ (aeval ![a, b]) (by
-    intro p hp
-    obtain ⟨q, rfl⟩ := Ideal.mem_span_singleton.mp hp
-    simp [affineEquation_two, h])
-
-private theorem chartEval_mk {a b : k} (h : a ^ n + b ^ n = 1) (p : MvPolynomial (Fin 2) k) :
-    chartEval k h (Ideal.Quotient.mk _ p) = aeval ![a, b] p := rfl
-
 /-- The affine Fermat ring on the last standard chart has a rational point. -/
 theorem fermatAffineRing_nontrivial_two (hn : 0 < n) : Nontrivial (FermatAffineRing k n 2) :=
-  (chartEval k (a := 1) (b := 0) (by simp [zero_pow hn.ne'])).toRingHom.domain_nontrivial
+  (fermatLastChartEval (a := 1) (b := 0) (by simp [zero_pow hn.ne'])).toRingHom.domain_nontrivial
 
 variable [CharZero k] [IsAlgClosed k]
 
@@ -84,18 +66,18 @@ theorem fermatAffineFractionField_explicit_coordinates (hn : 0 < n) :
       apply IsFractionRing.injective A F
       rw [← IsScalarTower.algebraMap_apply]
       exact hc
-    let e0 := chartEval k (n := n) (a := 0) (b := 1) (by simp [zero_pow hn.ne'])
-    let e1 := chartEval k (n := n) (a := 1) (b := 0) (by simp [zero_pow hn.ne'])
+    let e0 := fermatLastChartEval (k := k) (n := n) (a := 0) (b := 1) (by simp [zero_pow hn.ne'])
+    let e1 := fermatLastChartEval (k := k) (n := n) (a := 1) (b := 0) (by simp [zero_pow hn.ne'])
     have hc0 : c = 0 := by
       have he := congrArg e0 hc'
-      change e0 (algebraMap k A c) = e0 (Ideal.Quotient.mk _ (X 0)) at he
+      change e0 (algebraMap k A c) = e0 (Ideal.Quotient.mkₐ k _ (X 0)) at he
       have hec : e0 (algebraMap k A c) = c := e0.commutes c
-      simpa only [hec, e0, chartEval_mk, aeval_X, Matrix.cons_val_zero] using he
+      simpa only [hec, e0, fermatLastChartEval_mk, aeval_X, Matrix.cons_val_zero] using he
     have hc1 : c = 1 := by
       have he := congrArg e1 hc'
-      change e1 (algebraMap k A c) = e1 (Ideal.Quotient.mk _ (X 0)) at he
+      change e1 (algebraMap k A c) = e1 (Ideal.Quotient.mkₐ k _ (X 0)) at he
       have hec : e1 (algebraMap k A c) = c := e1.commutes c
-      simpa only [hec, e1, chartEval_mk, aeval_X, Matrix.cons_val_zero] using he
+      simpa only [hec, e1, fermatLastChartEval_mk, aeval_X, Matrix.cons_val_zero] using he
     exact zero_ne_one (hc0.symm.trans hc1)
   · let E : IntermediateField k F := k⟮x, y⟯
     have hti (i : Fin 2) : t i ∈ E := by
@@ -118,7 +100,7 @@ theorem fermatAffineFractionField_explicit_coordinates (hn : 0 < n) :
   · have hzero : q (fermatAffineEquation k n 2) = 0 :=
       Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span (Set.mem_singleton _))
     have hz := congrArg f hzero
-    simp only [affineEquation_two, map_sub, map_add, map_pow, map_one, map_zero] at hz
+    simp only [fermatAffineEquation_last, map_sub, map_add, map_pow, map_one, map_zero] at hz
     exact sub_eq_zero.mp hz
 
 
@@ -146,7 +128,7 @@ private theorem fermatAffine_as_bivariate (k : Type*) [Field k] (n : ℕ) :
     (Bivariate.equivMvPolynomial k).symm (TauCeti.dehomogenize (2 : Fin 3) (fermatEquation k n)) =
       Polynomial.X ^ n - Polynomial.C (1 - Polynomial.X ^ n) := by
   change (Bivariate.equivMvPolynomial k).symm (fermatAffineEquation k n 2) = _
-  rw [affineEquation_two]
+  rw [fermatAffineEquation_last]
   simp only [map_sub, map_add, map_pow, map_one,
     Bivariate.equivMvPolynomial_symm_X_0, Bivariate.equivMvPolynomial_symm_X_1]
   ring
