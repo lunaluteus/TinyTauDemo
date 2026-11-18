@@ -16,7 +16,9 @@ import TauCeti.AlgebraicGeometry.CartierDivisor.WeilComparison
 The relative differential line bundle has degree `2g - 2` over a perfect exact
 constant field. The canonical-sheaf twist adds the degree of the effective
 ramification divisor, and the degree of the pullback of the target canonical
-line bundle scales by the extension degree in characteristic zero.
+line bundle scales by the extension degree in characteristic zero. Over
+algebraically closed constants the correction term is the sum of the
+local ramification indices minus one.
 
 See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `9b9ee87967b2eead614c7f821927fa415c834846`.
 -/
@@ -241,5 +243,83 @@ theorem eulerDegree_pullback_relativeDifferentials
   exact add_right_cancel (h.symm.trans hh)
 
 end RamificationDegree
+
+section LocalIndexSum
+
+variable {k : Type u} [Field k] [CharZero k] {X Y : Scheme.{u}}
+    [X.Over (Spec (.of k))] [Y.Over (Spec (.of k))] [X.IsCurveOver k] [Y.IsCurveOver k]
+    [SmoothOfRelativeDimension 1 (X ↘ Spec (.of k))]
+    [SmoothOfRelativeDimension 1 (Y ↘ Spec (.of k))]
+    (f : X ⟶ Y) [f.IsOver (Spec (.of k))] [IsDominant f]
+
+/-- The support of the ramification divisor consists exactly of the points with local
+ramification index strictly larger than one. -/
+theorem mem_support_curveRamificationDivisor_iff (z : CodimensionOnePoint X) :
+    let _ := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+    let _ := algebraStalkMap f z
+    z ∈ (curveRamificationDivisor k f).support ↔
+      1 < (IsLocalRing.maximalIdeal (X.presheaf.stalk (z : X))).ramificationIdx
+        (Y.presheaf.stalk (f z)) := by
+  let := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+  let := algebraStalkMap f z
+  dsimp only
+  rw [WeilDivisor.mem_support_iff, coeff_curveRamificationDivisor_eq_localIndex]
+  omega
+
+variable [IsAlgClosed k]
+
+/-- Over an algebraically closed field, the degree of the actual ramification divisor is
+the sum of the local ramification indices minus one. -/
+theorem relativeDegree_curveRamificationDivisor_eq_localIndex_sum :
+    let _ := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+    SchemeWeilDivisor.relativeDegree (X ↘ Spec (.of k)) (curveRamificationDivisor k f) =
+      ∑ z ∈ (curveRamificationDivisor k f).support,
+        let _ := algebraStalkMap f z
+        ((IsLocalRing.maximalIdeal (X.presheaf.stalk (z : X))).ramificationIdx
+          (Y.presheaf.stalk (f z)) : ℤ) - 1 := by
+  let := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+  dsimp only
+  rw [SchemeWeilDivisor.relativeDegree_apply, Finsupp.sum]
+  refine Finset.sum_congr rfl fun z hz ↦ ?_
+  let := algebraStalkMap f z
+  have hdeg : (X ↘ Spec (.of k)).residueDegree (z : X) = 1 :=
+    (X.toPlace_degree_eq_residueDegree (k := k) (z : X)).symm.trans
+      ((X.toPlace (k := k) (z : X)).degree_eq_one_of_isAlgClosed_of_isFunctionField
+        (Scheme.IsCurveOver.isFunctionField (X := X) (k := k)))
+  change (curveRamificationDivisor k f).coeff z * _ = _
+  rw [hdeg, Nat.cast_one, mul_one, coeff_curveRamificationDivisor_eq_localIndex]
+  have hpos := (mem_support_curveRamificationDivisor_iff (k := k) f z).mp hz
+  omega
+
+/-- Riemann–Hurwitz on smooth proper curves, with the correction term the explicit sum of
+local ramification indices minus one over the support of the ramification divisor. -/
+theorem hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum :
+    let _ := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+    let _ := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := Y)
+    let _ : Algebra Y.functionField X.functionField := (f.functionFieldAlgHom k).toRingHom.toAlgebra
+    let _ := finiteDimensional_cohomology_one_trivial_of_isProper k
+      (Scheme.IsCurveOver.topologicalKrullDim_eq_one (X := X) k)
+    let _ := finiteDimensional_cohomology_one_trivial_of_isProper k
+      (Scheme.IsCurveOver.topologicalKrullDim_eq_one (X := Y) k)
+    2 * (X.genus k : ℤ) - 2 =
+      Module.finrank Y.functionField X.functionField * (2 * (Y.genus k : ℤ) - 2) +
+        ∑ z ∈ (curveRamificationDivisor k f).support,
+          let _ := algebraStalkMap f z
+          ((IsLocalRing.maximalIdeal (X.presheaf.stalk (z : X))).ramificationIdx
+            (Y.presheaf.stalk (f z)) : ℤ) - 1 := by
+  let := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := X)
+  let := isDiscreteValuationRing_stalk_of_codimensionOne_smoothCurve (k := k) (X := Y)
+  let : Algebra Y.functionField X.functionField := (f.functionFieldAlgHom k).toRingHom.toAlgebra
+  let := finiteDimensional_cohomology_one_trivial_of_isProper k
+    (Scheme.IsCurveOver.topologicalKrullDim_eq_one (X := X) k)
+  let := finiteDimensional_cohomology_one_trivial_of_isProper k
+    (Scheme.IsCurveOver.topologicalKrullDim_eq_one (X := Y) k)
+  have h := hurwitz_genus_formula_of_smoothProperCurves (k := k) f
+    isIntegrallyClosedIn_of_isAlgClosed isIntegrallyClosedIn_of_isAlgClosed
+  dsimp only at h ⊢
+  rw [relativeDegree_curveRamificationDivisor_eq_localIndex_sum] at h
+  exact h
+
+end LocalIndexSum
 
 end TinyTauDemo

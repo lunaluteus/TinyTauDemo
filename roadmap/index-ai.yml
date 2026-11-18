@@ -167,10 +167,9 @@
     - /docs/TinyTauDemo/FermatLineExtension.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_on_infinity_chart
   comment: Extend at the codimension-one points by the valuative criterion. Compare the original and reflected tuples by a common unit on the overlap to identify the restriction to the chart at infinity.
 - id: thm-riemann-hurwitz-recall
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-kahler-log-deriv
-    - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
     - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
     - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
@@ -181,8 +180,15 @@
     - /roadmap/index-ai.qmd#prp-cartier-ramification-divisor
     - /roadmap/index-ai.qmd#prp-relative-differential-skyscrapers
     - /roadmap/index-ai.qmd#prp-canonical-differential-degrees
-  docs: []
-  comment: The numerical formula follows from the canonical sheaf degrees and the residue-weighted degree of the same Weil ramification divisor that gives the twist and the relative stalk lengths. The explicit divisor of dt on the projective line remains to be linked.
+    - /roadmap/index-ai.qmd#prp-projective-line-canonical-differential
+  docs:
+    - /docs/TinyTauDemo/FiniteCurveMorphisms.html#TinyTauDemo.finite_and_surjective_of_nonconstant_properCurveHom
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
+    - /docs/TinyTauDemo/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
+    - /docs/TinyTauDemo/DifferentialSkyscraper.html#TinyTauDemo.morphismRelativeDifferentials_isSkyscraper
+    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveWeilRamificationDivisor
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_relativeDifferentialsIsoInfinity
+  comment: A nonconstant proper curve morphism is finite and surjective. The canonical sheaves give the local-index sum, and the same Weil divisor describes the twist and the support of relative differentials.
 - id: prp-cartier-ramification-divisor
   ok: true
   depends:
@@ -218,7 +224,21 @@
     - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_relativeDifferentials_eq_pullback_add_ramification
     - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves
     - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.eulerDegree_pullback_relativeDifferentials
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.mem_support_curveRamificationDivisor_iff
+    - /docs/TinyTauDemo/CurveCanonicalDegree.html#TinyTauDemo.hurwitz_genus_formula_of_smoothProperCurves_localIndex_sum
   comment: The canonical bundle degree and global section dimension follow from function-field Riemann–Roch. Apply degree additivity to the actual Weil ramification twist and identify its residue-weighted degree with the tame different.
+- id: prp-projective-line-canonical-differential
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-canonical-differential-degrees
+  docs:
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_smoothOfRelativeDimension
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_genus
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_eulerDegree_relativeDifferentials
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_inv_coordinate_isUniformizer
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_differential_coordinate
+    - /docs/TinyTauDemo/ProjectiveLineDifferentials.html#TinyTauDemo.projectiveLine_relativeDifferentialsIsoInfinity
+  comment: Use the two standard charts and the rational function-field equivalence. The differential of the affine coordinate gives the divisor minus twice the point at infinity.
 - id: prp-closed-curve-differential-length
   ok: true
   depends:

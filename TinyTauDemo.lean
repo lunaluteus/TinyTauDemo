@@ -51,6 +51,7 @@ public import TinyTauDemo.FermatProjective
 public import TinyTauDemo.FermatProjectiveDegree
 public import TinyTauDemo.FermatSchemeGenus
 public import TinyTauDemo.FermatSpecMap
+public import TinyTauDemo.FiniteCurveMorphisms
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates
 public import TinyTauDemo.Kronecker
@@ -74,6 +75,7 @@ public import TinyTauDemo.PolynomialTuplePoles
 public import TinyTauDemo.PullbackStalk
 public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor
+public import TinyTauDemo.ProjectiveLineDifferentials
 public import TinyTauDemo.RamificationRecall
 public import TinyTauDemo.RegularPrime
 public import TinyTauDemo.RelativeDifferentialSheaf

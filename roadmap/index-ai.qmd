@@ -151,6 +151,16 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), separa
 ## Canonical sheaf degrees and the ramification twist
 
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), a smooth proper integral curve over a perfect field exact in its function field has $\dim_k H^0(X,\Omega_{X/k})=g(X)$ and $\deg\Omega_{X/k}=2g(X)-2$. The Euler degree of the canonical sheaf is the sum of the degree of the pulled-back canonical sheaf and the residue-weighted degree of the Weil ramification divisor. In characteristic zero with exact constants on both curves, the degree of the pulled-back canonical sheaf is the degree of the function-field extension times that of the target canonical sheaf. Over algebraically closed constants all residue weights are one.
+
+In the algebraically closed case the correction term is the sum of the actual local ring indices minus one over the support of the Weil ramification divisor. A codimension-one point belongs to the support exactly when its local index exceeds one.
+
+A morphism of proper integral curves with two distinct image points is dominant and proper. Each fibre is finite, so the morphism is finite by Zariski's main theorem. Its image is closed and dense, hence it is surjective.
+:::
+
+::: {#prp-projective-line-canonical-differential}
+## The canonical differential of the projective line
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), the two polynomial charts make the projective line smooth of relative dimension one. Its function field is $k(t)$, and its genus is zero. At the point outside the affine chart, $s=t^{-1}$ has order one and $dt=-s^{-2}ds$. The divisor of the rational differential $dt$ is $-2[\infty]$ in characteristic zero. Its divisor sheaf identifies with the canonical sheaf, whose degree is $-2$.
 :::
 
 ::: {#thm-tame-hurwitz-schemes}
