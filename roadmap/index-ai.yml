@@ -194,21 +194,20 @@
   docs: []
   comment: Track the Bernoulli criterion and the finite examples separately from the open question about infinitely many regular primes.
 - id: thm-kummer-case-1
-  ok: true
+  ok: false
   depends:
     - /roadmap/index.qmd#prp-unified-coprimality
+    - /roadmap/index.qmd#prp-cyclotomic-units
     - /roadmap/index.qmd#lem-pth-power-congruence
     - /roadmap/index.qmd#def-regular-prime
-  docs:
-    - /docs/TinyTauDemo/KummerCaseOne.html#TinyTauDemo.kummer_case_I
-  comment: Apply flt-regular's Case I theorem with the last coordinate negated. Its coefficient argument handles integer solutions under the prime nondivisibility hypothesis alone.
+  docs: []
+  comment: Treat the cubic case modulo nine and use regularity, unit decomposition, and coefficient congruences for the remaining primes.
 - id: lem-kummer-unit
-  ok: true
+  ok: false
   depends:
     - /roadmap/index.qmd#def-regular-prime
-  docs:
-    - /docs/TinyTauDemo/KummerUnit.html#TinyTauDemo.kummer_unit
-  comment: Apply flt-regular's eq_pow_prime_of_unit_of_congruent using coprimality of the exponent with the class number.
+  docs: []
+  comment: Check for an existing formalized unit lemma before developing the ramification and class-group argument.
 - id: rem-kummer-unit-proof
   ok: false
   depends:

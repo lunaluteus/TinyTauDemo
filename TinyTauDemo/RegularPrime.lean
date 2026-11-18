@@ -30,10 +30,6 @@ structure RegularPrime (p : ℕ) : Prop where
   odd : Odd p
   not_dvd_classNumber : ¬ p ∣ classNumber (CyclotomicField p ℚ)
 
-/-- A regular prime in the odd-prime convention is different from two. -/
-theorem RegularPrime.ne_two {p : ℕ} (hr : RegularPrime p) : p ≠ 2 :=
-  ne_of_gt (hr.prime.odd_iff.mp hr.odd)
-
 /-- Regularity is equivalent to the absence of nontrivial prime torsion in the class group. -/
 theorem regularPrime_iff_no_classGroup_torsion {p : ℕ} (hp : p.Prime) (ho : Odd p) :
     RegularPrime p ↔ ∀ c : ClassGroup (𝓞 (CyclotomicField p ℚ)), c ^ p = 1 → c = 1 := by
