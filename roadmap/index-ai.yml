@@ -167,12 +167,13 @@
   docs: []
   comment: Track the roots of unity in the odd-prime cyclotomic field and the identification of conjugation-fixed units with units of the real subring.
 - id: lem-pth-power-congruence
-  ok: false
+  ok: true
   depends:
-    - /roadmap/index.qmd#prp-cyclotomic-ramification
     - /roadmap/index.qmd#thm-ring-of-integers
-  docs: []
-  comment: Relate the congruences modulo the ramified prime and modulo the rational prime to the integral power basis.
+  docs:
+    - /docs/TinyTauDemo/CyclotomicCongruences.html#TinyTauDemo.exists_int_pow_congruent
+    - /docs/TinyTauDemo/CyclotomicCongruences.html#TinyTauDemo.natCast_dvd_sum_smul_zeta_pow_iff
+  comment: Taking the prime power of the initial integer lift gives both congruences modulo the prime power of the uniformizer. The integral basis representation detects divisibility coefficient by coefficient.
 - id: def-regular-prime
   ok: true
   depends: []
