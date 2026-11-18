@@ -23,7 +23,8 @@ open Finset
 
 namespace TinyTauDemo
 
-private theorem pow_add_square_zero {R : Type*} [CommRing R] (a b : R) (hb : b * b = 0)
+/-- The binomial expansion truncates after the linear term for a square-zero increment. -/
+theorem pow_add_square_zero {R : Type*} [CommRing R] (a b : R) (hb : b * b = 0)
     (n : ℕ) : (a + b) ^ (n + 1) = a ^ (n + 1) + (n + 1 : ℕ) * a ^ n * b := by
   induction n with
   | zero => simp
@@ -143,8 +144,9 @@ theorem mul_bernoulli_mem_pIntegrals (n : ℕ) :
     · rw [bernoulli_eq_zero_of_odd ⟨k, by omega⟩ (by omega), mul_zero]
       exact zero_mem _
 
-private theorem bernoulli_mem_pIntegrals {k : ℕ} (h : ¬ (p - 1) ∣ 2 * k) :
-    bernoulli (2 * k) ∈ pIntegrals p := by
+/-- An even Bernoulli number is integral at primes whose predecessor does not divide the index. -/
+theorem bernoulli_mem_pIntegrals {k : ℕ} (h : ¬ (p - 1) ∣ 2 * k) :
+    bernoulli (2 * k) ∈ (Rat.padicValuation p).integer := by
   obtain ⟨a, ha⟩ := Bernoulli.vonStaudt_clausen k
   have hsum : (∑ a ∈ range (2 * k + 2) with a.Prime ∧ (a - 1) ∣ 2 * k,
       (1 : ℚ) / a) ∈ pIntegrals p := by
@@ -238,10 +240,12 @@ private theorem faulhaber_remainder_mem_pIntegrals (hp5 : 5 ≤ p) {k : ℕ} (hk
           (factorization_succ_le_sub_two hp5 hd)) using 1
     field_simp
 
-private theorem faulhaber_p_divided_remainder_mem_pIntegrals (hp5 : 5 ≤ p) {k : ℕ}
+/-- Dividing a prime-length even power sum by that prime gives the corresponding
+Bernoulli number modulo the prime in the ring of integral rationals at that prime. -/
+theorem faulhaber_p_divided_remainder_mem_pIntegrals (hp5 : 5 ≤ p) {k : ℕ}
     (hk : 0 < k) :
     (((∑ a ∈ range p, (a : ℚ) ^ (2 * k)) / (p : ℚ) - bernoulli (2 * k)) / (p : ℚ)) ∈
-      pIntegrals p := by
+      (Rat.padicValuation p).integer := by
   rw [sum_range_pow, sum_range_succ, Nat.choose_succ_self_right,
     show 2 * k + 1 - 2 * k = 1 by omega]
   push_cast
@@ -270,8 +274,10 @@ private theorem int_dvd_iff_div_mem_pIntegrals (a : ℤ) :
   · simp [h, hp.not_dvd_one]
   · simp [h, hp.ne_one]
 
-private theorem num_dvd_iff_div_mem_pIntegrals {x : ℚ} (hx : x ∈ pIntegrals p) :
-    (p : ℤ) ∣ x.num ↔ x / (p : ℚ) ∈ pIntegrals p := by
+/-- For a rational integral at a prime, division by that prime preserves
+integrality exactly when its numerator is divisible by the prime. -/
+theorem num_dvd_iff_div_mem_pIntegrals {x : ℚ} (hx : x ∈ (Rat.padicValuation p).integer) :
+    (p : ℤ) ∣ x.num ↔ x / (p : ℚ) ∈ (Rat.padicValuation p).integer := by
   have hd : ¬ p ∣ x.den := Rat.padicValuation_le_one_iff.mp hx
   have hnum : (x.num : ℚ) = (x.den : ℚ) * x := by
     have hne : (x.den : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr x.den_nz

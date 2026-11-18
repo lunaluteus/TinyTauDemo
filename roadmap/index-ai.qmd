@@ -183,6 +183,18 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let $p\ge5$ be p
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), Jensen's argument begins with a finite set $S$ of primes satisfying the numerator test and a prime $q$ larger than every element of $S$, with $q\equiv1\pmod{12\prod_{p\in S}p(p-1)}$. The denominator of $B_{2q}$ is six. Euler's formula for even zeta values gives positivity, and Faulhaber's formula at four gives a numerator congruent to three modulo four. A prime divisor $p\equiv3\pmod4$ of that numerator is different from $q$ and is at least five. Reducing $2q$ modulo $p-1$ and using Kummer's congruence gives an even irregular index between two and $p-3$. For a prime in $S$, the reduced index would be two, whose Bernoulli numerator is one. Thus the numerator test holds for infinitely many primes, even within the residue class three modulo four.
 :::
 
+::: {#prp-cyclotomic-class-number-reduction}
+## Class numbers and zeta residues of a prime cyclotomic field
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let $K$ be a prime cyclotomic field of odd conductor $p$ and let $K^+$ be its maximal real subfield. Extension of ideal classes followed by relative norm is squaring. By Cauchy's theorem, $p$ divides the class number of $K$ precisely when it divides the class number of $K^+$ or the order of the relative norm kernel. The analytic class-number formula expresses the ratio of the two Dedekind-zeta residues using the ratio of class numbers, the square-root discriminants, and the CM regulator factor. The cyclotomic real-unit index is one and the torsion has order $2p$, so the remaining explicit factor is $(2\pi)^{r_2(K)}/(2p)$ times the square-root discriminant ratio.
+:::
+
+::: {#prp-teichmuller-bernoulli-factors}
+## The ordinary numerator test for the Teichmüller factors
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), write $\omega$ for the $p$-adic Teichmüller character. For odd $i$, $p B_{1,\omega^i}$ is the weighted sum $\sum_{a=0}^{p-1}a\omega(a)^i$. Each Teichmüller lift is congruent to $a^p$ modulo $p^2$. For $i+1<p-1$, Faulhaber's formula and Kummer's congruence identify divisibility of this sum by $p^2$ with divisibility of the numerator of $B_{i+1}$ by $p$. At the exceptional exponent $i=p-2$, the weighted sum reduces to $-1$ modulo $p$, so $B_{1,\omega^{p-2}}$ has valuation $-1$.
+:::
+
 ::: {#prp-integral-fermat-sections}
 ## Integral sections and primitive Fermat coordinates
 

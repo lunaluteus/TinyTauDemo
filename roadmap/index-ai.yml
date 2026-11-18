@@ -456,8 +456,35 @@
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index-ai.qmd#prp-bernoulli-numerator-test-below-100
     - /roadmap/index-ai.qmd#thm-bernoulli-irregular-infinite
+    - /roadmap/index-ai.qmd#prp-cyclotomic-class-number-reduction
+    - /roadmap/index-ai.qmd#prp-teichmuller-bernoulli-factors
   docs: []
-  comment: The finite tests and infinitude theorem are verified for the Bernoulli numerator predicate. Its equivalence with divisibility of the cyclotomic class number remains.
+  comment: The finite tests and infinitude theorem are verified for the numerator predicate. The norm-kernel and analytic residue reductions are verified. The relative class-number formula and the implication from the real part to the relative part remain.
+- id: prp-cyclotomic-class-number-reduction
+  ok: true
+  depends:
+    - /roadmap/index.qmd#def-regular-prime
+    - /roadmap/index.qmd#prp-cyclotomic-units
+  docs:
+    - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.dvd_classNumber_iff_dvd_base_or_dvd_normKernel
+    - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_maximalRealSubfield_or_dvd_normKernel
+    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cm_dedekindZeta_residue_div
+    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_indexRealUnits_eq_one
+    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_torsionOrder_eq_two_mul
+    - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_dedekindZeta_residue_div
+  comment: Combine relative norm and extension of ideals for the divisibility reduction. The analytic residue ratio uses the CM regulator identity, the cyclotomic real-unit index one, and torsion order twice the conductor.
+- id: prp-teichmuller-bernoulli-factors
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#lem-bernoulli-kummer-congruence
+  docs:
+    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.prime_sq_dvd_power_sum_iff_dvd_bernoulli_num
+    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichNat_toZModPow_two
+    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_generalizedBernoulli_one
+    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_generalizedBernoulli_one_dvd_iff
+    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichWeightedSum_toZMod
+    - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.padicTeichmullerCharacter_exceptional_generalizedBernoulli_one_not_integral
+  comment: Reduce each Teichmüller lift modulo p squared to the pth power of its residue representative. Faulhaber and Kummer congruences identify the ordinary numerator test, and the exceptional weighted sum is a unit.
 - id: lem-bernoulli-kummer-congruence
   ok: true
   depends: []
