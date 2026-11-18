@@ -136,8 +136,19 @@
     - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
     - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
+    - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
   docs: []
-  comment: The scheme genus formula, the differential pullback on stalks, and the local lengths are verified. The pullback sheaf and global short exact sequence remain.
+  comment: The numerical scheme genus formula, right-exact transitivity of differential sheaves, and local ring differential lengths are verified. Injectivity of the first sheaf map and comparison of the relative differential sheaf with those local modules remain.
+- id: prp-differential-sheaf-transitivity
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
+  docs:
+    - /docs/TinyTauDemo/DifferentialStalkMap.html#TinyTauDemo.differentialPullback
+    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsHomEquiv
+    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.differentialTransitivity_exact
+    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.differentialTransitivity_epi
+  comment: Take the cokernel of the adjoint pullback map and prove its universal property for derivations that annihilate pulled-back sections.
 - id: prp-differential-pullback-on-stalks
   ok: true
   depends:

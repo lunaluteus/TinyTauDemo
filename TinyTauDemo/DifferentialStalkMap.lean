@@ -44,6 +44,20 @@ theorem pullbackRelativeDifferentialsHom_app_d (U : Y.Opens) (a : Γ(Y, U)) :
     (TauCeti.AlgebraicGeometry.pushforwardDerivation R f (X.universalDerivation R))).trans
       (TauCeti.AlgebraicGeometry.pushforwardDerivation_d R f (X.universalDerivation R) U a)
 
+/-- The map from the pullback of the differential sheaf on `Y` to the differential
+sheaf on `X`, obtained from pullback of local functions by adjunction. -/
+noncomputable def differentialPullback :
+    (Scheme.Modules.pullback f).obj (Y.relativeDifferentials R) ⟶ X.relativeDifferentials R :=
+  ((Scheme.Modules.pullbackPushforwardAdjunction f).homEquiv _ _).symm
+    (pullbackRelativeDifferentialsHom R f)
+
+/-- Under the pullback–pushforward adjunction, the differential pullback is the map
+induced by the derivation on pulled-back functions. -/
+theorem differentialPullback_homEquiv :
+    (Scheme.Modules.pullbackPushforwardAdjunction f).homEquiv _ _ (differentialPullback R f) =
+      pullbackRelativeDifferentialsHom R f :=
+  Equiv.apply_symm_apply _ _
+
 /-- The map on additive stalks induced by pullback of differentials. -/
 noncomputable def pullbackRelativeDifferentialsStalk (x : X) :
     (Y.relativeDifferentials R).presheaf.stalk (f x) ⟶

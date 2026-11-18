@@ -47,6 +47,7 @@ public import TinyTauDemo.PowerBasisDiscriminant
 public import TinyTauDemo.PrincipalDivisor
 public import TinyTauDemo.RamificationRecall
 public import TinyTauDemo.RegularPrime
+public import TinyTauDemo.RelativeDifferentialSheaf
 public import TinyTauDemo.SchemeHurwitz
 public import TinyTauDemo.TameDifferentials
 public import TinyTauDemo.TameRamificationIndex

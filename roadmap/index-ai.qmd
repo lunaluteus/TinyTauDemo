@@ -79,6 +79,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), use di
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), write the image of the source uniformizer as $\varepsilon\pi^e$ in the target discrete valuation ring. If $e$ is a unit in the residue field, the differential is $\pi^{e-1}$ times a unit times $d\pi$. Under the local smoothness hypotheses, the uniformizer differential generates the absolute differential module by the cotangent sequence and Nakayama’s lemma. Transitivity then presents the relative differential module as the quotient by the $(e-1)$st power of the maximal ideal, so it has length $e-1$.
 :::
 
+::: {#prp-differential-sheaf-transitivity}
+## Transitivity of relative differential sheaves
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), adjunction gives the map $f^*\Omega_{Y/k}\to\Omega_{X/k}$. Its cokernel represents derivations on $X$ that annihilate every local function pulled back from $Y$. This identifies the cokernel as $\Omega_{X/Y}$ and yields the right-exact transitivity sequence $f^*\Omega_{Y/k}\to\Omega_{X/k}\to\Omega_{X/Y}\to 0$.
+:::
+
 ::: {#prp-differential-pullback-on-stalks}
 ## Pullback of differentials on stalks and at places
 
