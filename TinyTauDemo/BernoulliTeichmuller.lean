@@ -217,6 +217,10 @@ private theorem padicTeichmullerCharacter_neg_one (hp2 : 2 < p) :
   · rfl
   · simpa only [Padic.natCard_residueField p] using hp
 
+/-- The Teichmüller character modulo an odd prime is odd. -/
+theorem padicTeichmullerCharacter_odd (hp2 : 2 < p) : (padicTeichmullerCharacter (p := p)).Odd :=
+  padicTeichmullerCharacter_neg_one hp2
+
 private theorem padicTeichmullerCharacter_pow_ne_one (hp2 : 2 < p) {i : ℕ} (hi : Odd i) :
     (padicTeichmullerCharacter (p := p)) ^ i ≠ 1 := by
   intro h
@@ -307,6 +311,28 @@ theorem padicTeichWeightedSum_toZMod (i : ℕ) :
   apply sum_congr rfl
   intro a _
   rw [map_mul, map_natCast, map_pow, padicTeichNat_toZMod, pow_succ']
+
+/-- The Teichmüller character modulo p has exact order p − 1. -/
+theorem orderOf_padicTeichmullerCharacter :
+    orderOf (padicTeichmullerCharacter (p := p)) = p - 1 := by
+  let χ := padicTeichmullerCharacter (p := p)
+  have hχ : χ ^ (p - 1) = 1 := by
+    rw [← ZMod.card_units p]
+    exact χ.pow_card_eq_one
+  apply Nat.dvd_antisymm (orderOf_dvd_of_pow_eq_one hχ)
+  obtain ⟨g, hg⟩ := IsCyclic.exists_generator (α := (ZMod p)ˣ)
+  rw [← ZMod.card_units p, ← Nat.card_eq_fintype_card,
+    ← orderOf_eq_card_of_forall_mem_zpowers hg]
+  apply orderOf_dvd_of_pow_eq_one
+  have h := DFunLike.congr_fun (pow_orderOf_eq_one χ) (g : ZMod p)
+  rw [MulChar.pow_apply_coe, MulChar.one_apply_coe] at h
+  rw [← ZMod.natCast_zmod_val (g : ZMod p)] at h
+  rw [padicTeichmullerCharacter_natCast, ← PadicInt.coe_pow, ← PadicInt.coe_one,
+    PadicInt.coe_inj] at h
+  apply Units.ext
+  have hz := congrArg (PadicInt.toZMod (p := p)) h
+  rw [map_pow, map_one, padicTeichNat_toZMod] at hz
+  simpa only [ZMod.natCast_zmod_val, Units.val_pow_eq_pow_val, Units.val_one] using hz
 
 /-- The exceptional Teichmüller character has a nonintegral first generalized Bernoulli
 number. Multiplying it by the residue prime gives an integer with nonzero reduction. -/

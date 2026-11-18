@@ -194,13 +194,15 @@ For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), Jensen's argumen
 ::: {#prp-cyclotomic-class-number-reduction}
 ## Class numbers and zeta residues of a prime cyclotomic field
 
-For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let $K$ be a prime cyclotomic field of odd conductor $p$ and let $K^+$ be its maximal real subfield. Extension of ideal classes followed by relative norm is squaring. By Cauchy's theorem, $p$ divides the class number of $K$ precisely when it divides the class number of $K^+$ or the order of the relative norm kernel. The analytic class-number formula expresses the ratio of the two Dedekind-zeta residues using the ratio of class numbers, the square-root discriminants, and the CM regulator factor. The cyclotomic real-unit index is one and the torsion has order $2p$, so the remaining explicit factor is $(2\pi)^{r_2(K)}/(2p)$ times the square-root discriminant ratio.
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), let $K$ be a prime cyclotomic field of odd conductor $p$ and let $K^+$ be its maximal real subfield. Extension of ideal classes followed by relative norm is squaring. By Cauchy's theorem, $p$ divides the class number of $K$ precisely when it divides the class number of $K^+$ or the order of the relative norm kernel. The cyclotomic real-unit index is one and the torsion has order $2p$. The primitive root $\zeta$ generates the integer ring over that of $K^+$, and the derivative $\zeta-\zeta^{-1}$ generates the relative different of absolute norm $p$. The discriminant tower and analytic class-number formula give the quotient of the two Dedekind-zeta residues as $(2\pi)^m/(2p\sqrt{p^m})$ times the class-number ratio, where $m=(p-1)/2$.
 :::
 
 ::: {#prp-teichmuller-bernoulli-factors}
 ## The ordinary numerator test for the Teichmüller factors
 
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), write $\omega$ for the $p$-adic Teichmüller character. For odd $i$, $p B_{1,\omega^i}$ is the weighted sum $\sum_{a=0}^{p-1}a\omega(a)^i$. Each Teichmüller lift is congruent to $a^p$ modulo $p^2$. For $i+1<p-1$, Faulhaber's formula and Kummer's congruence identify divisibility of this sum by $p^2$ with divisibility of the numerator of $B_{i+1}$ by $p$. At the exceptional exponent $i=p-2$, the weighted sum reduces to $-1$ modulo $p$, so $B_{1,\omega^{p-2}}$ has valuation $-1$.
+
+The character $\omega$ is odd and has order $p-1$. The normalized product $p\prod_{1\le i<p-1,\ i\text{ odd}} B_{1,\omega^i}$ is a $p$-adic integer. The exceptional factor uses the prefactor $p$ and becomes a unit. The normalized product is divisible by $p$ precisely when an ordinary numerator in the irregularity range is divisible by $p$.
 :::
 
 ::: {#prp-integral-fermat-sections}

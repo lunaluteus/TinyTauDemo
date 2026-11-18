@@ -9,6 +9,7 @@ public import TinyTauDemo.AmbientProjectiveCharts
 public import TinyTauDemo.BernoulliExamples
 public import TinyTauDemo.BernoulliIrregular
 public import TinyTauDemo.BernoulliTeichmuller
+public import TinyTauDemo.BernoulliTeichmullerProduct
 public import TinyTauDemo.CartierRamification
 public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.ChartFunctionField
@@ -19,6 +20,7 @@ public import TinyTauDemo.CyclotomicCover
 public import TinyTauDemo.CyclotomicDifferentials
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification
+public import TinyTauDemo.CyclotomicRealDiscriminant
 public import TinyTauDemo.CyclotomicResidueRatio
 public import TinyTauDemo.CyclotomicUnits
 public import TinyTauDemo.DedekindPicard

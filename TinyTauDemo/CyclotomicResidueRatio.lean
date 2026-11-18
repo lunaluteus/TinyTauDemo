@@ -5,9 +5,11 @@ Authors: Luna Luteus
 -/
 module
 
+public import TinyTauDemo.CyclotomicRealDiscriminant
 public import TinyTauDemo.CyclotomicUnits
 public import Mathlib.NumberTheory.NumberField.DedekindZeta
 import TauCeti.NumberTheory.NumberField.Units.Torsion
+import Mathlib.NumberTheory.NumberField.Cyclotomic.Embeddings
 
 /-!
 # Dedekind-zeta residue ratios for CM fields
@@ -197,5 +199,26 @@ theorem cyclotomic_dedekindZeta_residue_div (hp : 2 < p) :
   rw [one_mul]
 
 end Cyclotomic
+
+section Explicit
+
+variable {K : Type*} [Field K] [NumberField K] {p : ℕ} [hp : Fact p.Prime]
+  [IsCyclotomicExtension {p} ℚ K]
+
+/-- The Dedekind-zeta residue ratio of an odd-prime cyclotomic field and its maximal
+real subfield, with the coefficient written entirely in terms of the conductor. -/
+theorem cyclotomic_dedekindZeta_residue_div_explicit (hp2 : p ≠ 2) :
+    dedekindZeta_residue K / dedekindZeta_residue (maximalRealSubfield K) =
+      (2 * π) ^ ((p - 1) / 2) / ((2 * p : ℝ) * Real.sqrt ((p : ℝ) ^ ((p - 1) / 2))) *
+        ((classNumber K : ℝ) / classNumber (maximalRealSubfield K)) := by
+  have hpge := hp.out.two_le
+  have hζ := IsCyclotomicExtension.zeta_spec p ℚ K
+  rw [cyclotomic_dedekindZeta_residue_div hζ (by omega),
+    cyclotomic_real_sqrt_discr_div (K := K) (p := p) hp2,
+    IsCyclotomicExtension.Rat.nrComplexPlaces_eq_totient_div_two p K,
+    Nat.totient_prime hp.out]
+  simp only [div_mul_div_comm, mul_one]
+
+end Explicit
 
 end TinyTauDemo
