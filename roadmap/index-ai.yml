@@ -146,11 +146,15 @@
   docs: []
   comment: Locate the ideal ramification, discriminant-index, and Eisenstein results used in the cyclotomic calculations.
 - id: prp-cyclotomic-ramification
-  ok: false
-  depends:
-    - /roadmap/index.qmd#rem-ramification-disc-recall
-  docs: []
-  comment: Check existing results for cyclotomic irreducibility, prime ramification, the norm of one minus the root, and the power-basis discriminant.
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.span_natCast_eq_span_one_sub_pow
+    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.primesOver_span_natCast_eq_singleton_one_sub
+    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.quotientOneSubEquivZMod
+    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.norm_toInteger_one_sub_of_prime_ne_two
+    - /docs/TinyTauDemo/CyclotomicRamification.html#IsPrimitiveRoot.integralPowerBasis_discr_prime
+  comment: Use Mathlib's cyclotomic field degree, Galois action, and local indices. The integral formulas use one minus the root as generator and the primitive root as the basis generator.
 - id: thm-ring-of-integers
   ok: true
   depends: []
