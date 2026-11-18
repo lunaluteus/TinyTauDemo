@@ -42,6 +42,7 @@ public import TinyTauDemo.Fermat.Integer.Kummer.ExceptionalIdealFactors
 public import TinyTauDemo.Fermat.Integer.ExponentReduction
 public import TinyTauDemo.Fermat.Polynomial.FermatAffineEval
 public import TinyTauDemo.Fermat.ArithmeticSurface.FermatArithmeticFlatness
+public import TinyTauDemo.Fermat.ArithmeticSurface.FermatArithmeticIntegrality
 public import TinyTauDemo.Fermat.Curve.FermatCharts
 public import TinyTauDemo.Fermat.Polynomial.FermatConicDegree
 public import TinyTauDemo.Fermat.Polynomial.FermatDegree

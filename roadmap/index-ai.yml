@@ -398,19 +398,21 @@
     - /roadmap/index-ai.qmd#prp-fermat-cone-integral
     - /roadmap/index-ai.qmd#prp-fermat-special-fibre
   docs: []
-  comment: Flatness of the Fermat scheme, its sections modulo common sign, the cyclotomic cover, and the nonreduced characteristic-p fibre are verified. The section [1:0:1] needs a zero coordinate. Geometric generic integrality disproves the stated hyperplane splitting.
+  comment: Integrality, flatness, and dimension two of the Fermat scheme are verified, along with its sections modulo common sign, the cyclotomic cover, and the nonreduced characteristic-p fibre. The section [1:0:1] needs a zero coordinate. Geometric generic integrality disproves the stated hyperplane splitting.
 - id: prp-integral-fermat-sections
   ok: true
   depends:
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjectiveToSpec_int_flat
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticFlatness.html#TinyTauDemo.fermatProjective_int_krullDim
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatArithmeticIntegrality.html#TinyTauDemo.fermatProjective_int_isIntegral
     - /docs/TinyTauDemo/Fermat/Polynomial/FermatSpecMap.html#TinyTauDemo.fermatSpecMap
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.PrimitiveIntegerFermatCoordinates.toSection
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.primitiveIntegerFermatCoordinates_toSection_eq_iff
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.integralFermatSectionsEquiv
     - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatIntegralSections.html#TinyTauDemo.exists_integralFermatSection_only_zero_secondCoordinate
-  comment: Use the monic affine equations for flatness. Normalize a rational point in a standard chart, clear denominators primitively, and use separatedness and common signs to compare sections.
+  comment: The monic affine equations give flatness and dimension two. Irreducibility over the algebraic closure of the rationals descends to the integers. Normalize a rational point in a standard chart, clear denominators primitively, and use separatedness and common signs to compare sections.
 - id: prp-fermat-cone-integral
   ok: true
   depends:

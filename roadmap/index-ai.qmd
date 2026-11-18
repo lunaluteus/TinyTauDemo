@@ -290,9 +290,9 @@ Transfer extends the relative character to the ambient Galois group because the 
 :::
 
 ::: {#prp-integral-fermat-sections}
-## Integral sections and primitive Fermat coordinates
+## The Fermat arithmetic surface and its integral sections
 
-For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the integral Fermat scheme of positive degree is flat over $\mathbb Z$. Each of its three standard chart rings is a free module over a polynomial ring in one variable, by the monic dehomogenized equation.
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the positive-degree Fermat scheme over $\mathbb Z$ is integral, flat, and of Krull dimension two. Irreducibility of the homogeneous equation descends from $\overline{\mathbb Q}$ because the coefficient of $X^n$ is one. Each monic dehomogenized equation gives a standard chart ring that is free and integral over a polynomial ring in one variable. The chart dimensions are two and the charts cover the model.
 
 A triple satisfying the Fermat equation and generating the unit ideal gives a section. Conversely, restrict a section to the rational generic point, normalize a coordinate to one on a standard chart, and clear denominators with a primitive tuple. Separatedness identifies the reconstructed section with the original. Two primitive integral tuples define the same section exactly when they differ by a common sign. Every primitive presentation of the section $[1:0:1]$ has zero second coordinate.
 :::
