@@ -10,7 +10,6 @@ public import TinyTauDemo.NumberTheory.Cyclotomic.CyclotomicCongruences
 import Mathlib.NumberTheory.NumberField.Cyclotomic.Ideal
 import Mathlib.RingTheory.Prime
 import TinyTauDemo.Fermat.Integer.Kummer.UnifiedCyclotomicCoprimality
-import Mathlib.NumberTheory.FLT.Three
 import TinyTauDemo.NumberTheory.Cyclotomic.CyclotomicUnits
 
 /-!
@@ -19,8 +18,8 @@ import TinyTauDemo.NumberTheory.Cyclotomic.CyclotomicUnits
 For primes above three, reduce the cyclotomic linear factor modulo the exponent
 and compare it with its conjugate. The resulting relation among at most four
 powers of the primitive root forces the coordinates to agree modulo the exponent.
-Use Mathlib's theorem for exponent three. See `/roadmap/index.qmd#thm-kummer-case-1` @
-`3ff060e4b20abf58ff71f30420901b7f608e6201`.
+Use cubes modulo nine for exponent three. See `/roadmap/index.qmd#thm-kummer-case-1` @
+`e35b3ba0aa8b46c5d4439d13defc2c2ec6c1a0cb`.
 -/
 
 public section
@@ -353,6 +352,22 @@ private theorem intCast_eq_of_fermat_pair {p : ℕ} (hr : RegularPrime p) (hp : 
   have hres := intCast_eq_of_unit_mul_pow hroot hp (hnotDvd hx hxq) (hnotDvd hy hyq) u a ha
   rw [← hxq, ← hyq, Int.cast_mul, Int.cast_mul, hres]
 
+private theorem three_case_one_of_mod_nine {x y z : ℤ} (hndvd : ¬ (3 : ℤ) ∣ x * y * z) :
+    x ^ 3 + y ^ 3 + z ^ 3 ≠ 0 := by
+  have cube (a : ℤ) (ha : ¬ (3 : ℤ) ∣ a) :
+      (a : ZMod 9) ^ 3 = 1 ∨ (a : ZMod 9) ^ 3 = -1 := by
+    have htable : ∀ r : ZMod 9, ZMod.castHom (show 3 ∣ 9 by decide) (ZMod 3) r ≠ 0 →
+        r ^ 3 = 1 ∨ r ^ 3 = -1 := by decide
+    apply htable
+    rwa [map_intCast, ne_eq, ZMod.intCast_zmod_eq_zero_iff_dvd]
+  simp_rw [Int.prime_three.dvd_mul, not_or] at hndvd
+  apply mt (congrArg (Int.cast : ℤ → ZMod 9))
+  simp only [Int.cast_add, Int.cast_pow, Int.cast_zero]
+  rcases cube x hndvd.1.1 with hx | hx <;>
+    rcases cube y hndvd.1.2 with hy | hy <;>
+    rcases cube z hndvd.2 with hz | hz <;>
+    rw [hx, hy, hz] <;> decide
+
 /-- At a regular prime, any integer solution of the symmetric Fermat equation has a
 coordinate divisible by the exponent. -/
 theorem kummer_case_I {p : ℕ} (hr : RegularPrime p) {x y z : ℤ}
@@ -366,11 +381,7 @@ theorem kummer_case_I {p : ℕ} (hr : RegularPrime p) {x y z : ℤ}
     exact eq_neg_of_add_eq_zero_left h
   by_cases hp3 : p = 3
   · subst p
-    have hthree : FermatLastTheoremWith ℤ 3 :=
-      ((fermatLastTheoremWith_nat_int_rat_tfae 3).out 1 2).mp fermatLastTheoremThree
-    exact hthree x y (-z) (fun hx0 => hx (hx0.symm ▸ dvd_zero _))
-      (fun hy0 => hy (hy0.symm ▸ dvd_zero _))
-      (neg_ne_zero.mpr (fun hz0 => hz (hz0.symm ▸ dvd_zero _))) hxy
+    exact three_case_one_of_mod_nine hndvd h
   have hp : 4 < p := by
     have hge := hr.prime.odd_iff.mp hr.odd
     obtain ⟨k, hk⟩ := hr.odd

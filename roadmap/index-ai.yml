@@ -733,7 +733,7 @@
     - /roadmap/index.qmd#def-regular-prime
   docs:
     - /docs/TinyTauDemo/Fermat/Integer/Kummer/KummerCaseOne.html#TinyTauDemo.kummer_case_I
-  comment: Uses Mathlib for exponent three. Dividing by each pair's gcd gives the coprimality for the linear-factor argument, so the theorem also applies to nonprimitive triples.
+  comment: For exponent three, cubes of integers prime to three are ±1 modulo 9, so three such cubes cannot sum to zero. In the other cases, dividing by each pair's gcd gives the coprimality needed by the linear-factor argument.
 - id: lem-kummer-unit
   ok: true
   depends:
