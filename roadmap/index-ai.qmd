@@ -121,6 +121,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), taking
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), a dominant morphism of integral curves over a field of characteristic zero induces a finite separable extension of function fields. The pullback map on differentials at the generic point is an isomorphism after extending scalars. When the target is smooth of relative dimension one, its differential sheaf is a line bundle and so is its pullback. Each section of the pulled-back line bundle is determined by its generic germ on a nonempty open. The first differential map is therefore injective, giving the short exact transitivity sequence.
 :::
 
+::: {#prp-closed-curve-differential-length}
+## Relative differential length at closed curve points
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), consider a dominant morphism of smooth integral curves over a characteristic-zero field. At a closed point $x$, the local rings at $x$ and $f(x)$ are discrete valuation rings, and both absolute differential modules are free of rank one. The residue fields are finite separable extensions of the base and have zero relative differentials. Dominance gives injectivity of the local ring map. The length of $(\Omega_{X/Y})_x$ is $e_x-1$, and the stalk is nonzero exactly when $e_x>1$. In any bases of the pulled-back and target differential stalks, the first sheaf arrow is multiplication by a scalar. Its order is the length of the quotient by that scalar, hence also $e_x-1$.
+:::
+
 ::: {#thm-tame-hurwitz-schemes}
 ## The numerical Riemann–Hurwitz formula for schemes
 

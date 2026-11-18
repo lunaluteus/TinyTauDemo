@@ -9,6 +9,7 @@ public import TinyTauDemo.AmbientProjectiveCharts
 public import TinyTauDemo.BernoulliExamples
 public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.ChartFunctionField
+public import TinyTauDemo.ClosedDifferentialLength
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicCover
 public import TinyTauDemo.CyclotomicDifferentials
@@ -19,6 +20,7 @@ public import TinyTauDemo.DedekindPicard
 public import TinyTauDemo.DedekindSpectrum
 public import TinyTauDemo.DenseOpenExtension
 public import TinyTauDemo.DifferentialMonomorphism
+public import TinyTauDemo.DifferentialRamificationOrder
 public import TinyTauDemo.DifferentialStalkMap
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors

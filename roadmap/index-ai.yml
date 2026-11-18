@@ -162,8 +162,19 @@
     - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
     - /roadmap/index-ai.qmd#prp-relative-differential-sheaf-stalks
     - /roadmap/index-ai.qmd#prp-differential-sheaf-short-exact
+    - /roadmap/index-ai.qmd#prp-closed-curve-differential-length
   docs: []
-  comment: The numerical genus formula, short exact differential sequence, and the local length calculation are verified. The geometric verification of the local length hypotheses and the ramification divisor twist remain.
+  comment: The numerical genus formula, short exact differential sequence, and geometric closed-point length are verified. The global ramification divisor twist and its comparison with function-field places remain.
+- id: prp-closed-curve-differential-length
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-differential-sheaf-short-exact
+    - /roadmap/index-ai.qmd#prp-relative-differential-sheaf-stalks
+  docs:
+    - /docs/TinyTauDemo/ClosedDifferentialLength.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk_of_closed_smoothCurves
+    - /docs/TinyTauDemo/ClosedDifferentialLength.html#TinyTauDemo.nontrivial_morphismRelativeDifferentials_stalk_iff_ramified
+    - /docs/TinyTauDemo/DifferentialRamificationOrder.html#TinyTauDemo.ord_differentialPullbackStalk_eq_ramificationIdx_sub_one
+  comment: Smoothness gives rank-one absolute differential stalks and discrete valuation rings at closed points. Use finite separable residue fields and injectivity under dominance. The stalk cokernel length equals the order of the local differential multiplier.
 - id: prp-differential-sheaf-short-exact
   ok: true
   depends:
