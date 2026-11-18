@@ -16,6 +16,7 @@ public import TinyTauDemo.ChartFunctionField
 public import TinyTauDemo.ClassNumberTransfer
 public import TinyTauDemo.ClosedDifferentialLength
 public import TinyTauDemo.CurveCanonicalDegree
+public import TinyTauDemo.CyclotomicBernoulliReduction
 public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicCover
 public import TinyTauDemo.CyclotomicDifferentials
@@ -62,6 +63,7 @@ public import TinyTauDemo.KummerUnramified
 public import TinyTauDemo.KummerUnit
 public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
+public import TinyTauDemo.OddBernoulliTransport
 public import TinyTauDemo.PlaneFieldDegree
 public import TinyTauDemo.PlaneJacobianConverse
 public import TinyTauDemo.PlaneJacobianIntegral

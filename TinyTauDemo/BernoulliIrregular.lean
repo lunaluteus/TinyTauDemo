@@ -204,6 +204,12 @@ index strictly below one less than the prime. -/
 def BernoulliIrregular (p : ℕ) : Prop :=
   p.Prime ∧ ∃ k : ℕ, 0 < k ∧ 2 * k ≤ p - 3 ∧ (p : ℤ) ∣ (bernoulli (2 * k)).num
 
+/-- The numerator divisibility condition for Bernoulli irregularity. -/
+theorem bernoulliIrregular_iff {p : ℕ} :
+    BernoulliIrregular p ↔
+      p.Prime ∧ ∃ k : ℕ, 0 < k ∧ 2 * k ≤ p - 3 ∧ (p : ℤ) ∣ (bernoulli (2 * k)).num :=
+  Iff.rfl
+
 private theorem bernoulliIrregular_prime_ge_five {p : ℕ} (hp : BernoulliIrregular p) :
     5 ≤ p := by
   obtain ⟨hp, k, hk, hkp, _⟩ := hp

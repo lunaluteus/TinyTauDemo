@@ -15,6 +15,7 @@ public import TauCeti.RingTheory.ClassGroup.RelNorm
 Extending a class and taking its relative norm raises it to the extension degree.
 Cauchy's theorem then relates prime divisors of the class numbers to those of
 the kernel of the relative norm, provided the prime is coprime to the extension degree.
+The same coprimality excludes that prime from the order of the norm cokernel.
 
 See `/roadmap/index.qmd#rem-bernoulli-regular` @ `4e4554e0be56c8c2d2c6edbca48ac7d6ed9e4f16`.
 -/
@@ -57,6 +58,20 @@ private theorem dvd_card_of_dvd_card_of_norm_extension [Finite H] (f : G →* H)
   rw [← he]
   exact orderOf_dvd_natCard (j x)
 
+private theorem mulHom_range_index_prime {G H : Type*} [Group G] [CommGroup H] [Finite H]
+    (f : G →* H) (j : H →* G) {d p : ℕ} (hcomp : ∀ x, f (j x) = x ^ d)
+    (hp : p.Prime) (hpd : ¬ p ∣ d) : ¬ p ∣ f.range.index := by
+  intro h
+  let : Fact p.Prime := ⟨hp⟩
+  obtain ⟨x, hx⟩ := exists_prime_orderOf_dvd_card' p
+    (show p ∣ Nat.card (H ⧸ f.range) from h)
+  obtain ⟨y, rfl⟩ := QuotientGroup.mk'_surjective f.range x
+  have hpow : (QuotientGroup.mk' f.range y) ^ d = 1 := by
+    rw [← map_pow]
+    exact (QuotientGroup.eq_one_iff _).mpr ⟨j y, hcomp y⟩
+  exact hpd (hx ▸ orderOf_dvd_of_pow_eq_one hpow)
+
+
 end FiniteGroups
 
 variable (K L : Type*) [Field K] [Field L] [NumberField K] [NumberField L] [Algebra K L]
@@ -83,6 +98,27 @@ theorem dvd_classNumber_iff_dvd_base_or_dvd_normKernel {p : ℕ} (hp : p.Prime)
         exact ClassGroup.relNorm_extendedHom a
       exact dvd_card_of_dvd_card_of_norm_extension f j _ hcomp hp hpd h
     · exact h.trans f.ker.card_subgroup_dvd_card
+
+/-- The size of the norm cokernel is prime to any prime coprime to the extension
+degree. The kernel and cokernel recover the quotient of class numbers. -/
+theorem classNumber_relNorm_index (p : ℕ) (hp : p.Prime) (hpd : ¬ p ∣ Module.finrank K L) :
+    let norm := ClassGroup.relNorm (R := 𝓞 K) (S := 𝓞 L)
+    ¬ p ∣ norm.range.index ∧
+      classNumber L * norm.range.index = Nat.card norm.ker * classNumber K := by
+  let f := ClassGroup.relNorm (R := 𝓞 K) (S := 𝓞 L)
+  let j := ClassGroup.extendedHom (𝓞 K) (𝓞 L)
+  have hd : Module.finrank (𝓞 K) (𝓞 L) = Module.finrank K L :=
+    (IsFractionRing.finrank_eq (𝓞 K) K (𝓞 L) L).symm
+  have hcomp (a : ClassGroup (𝓞 K)) : f (j a) = a ^ Module.finrank K L := by
+    rw [← hd]
+    exact ClassGroup.relNorm_extendedHom a
+  change ¬ p ∣ f.range.index ∧ classNumber L * f.range.index = Nat.card f.ker * classNumber K
+  refine ⟨mulHom_range_index_prime f j hcomp hp hpd, ?_⟩
+  change Fintype.card (ClassGroup (𝓞 L)) * f.range.index =
+    Nat.card f.ker * Fintype.card (ClassGroup (𝓞 K))
+  rw [← Nat.card_eq_fintype_card, ← Nat.card_eq_fintype_card, ← Subgroup.card_ker_mul_card_range f,
+    mul_assoc, Subgroup.card_mul_index]
+
 
 /-- For a CM field the odd-prime factors of the class number come from the maximal
 real subfield and from the relative ideal class-group norm kernel. -/

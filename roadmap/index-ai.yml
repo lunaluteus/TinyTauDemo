@@ -486,9 +486,10 @@
     - /roadmap/index-ai.qmd#thm-bernoulli-irregular-infinite
     - /roadmap/index-ai.qmd#prp-cyclotomic-class-number-reduction
     - /roadmap/index-ai.qmd#prp-teichmuller-bernoulli-factors
+    - /roadmap/index-ai.qmd#prp-odd-bernoulli-product-transport
     - /roadmap/index-ai.qmd#prp-dirichlet-l-values-at-zero
   docs: []
-  comment: The finite tests and infinitude theorem are verified for the numerator predicate. The explicit residue ratio, normalized odd Bernoulli product, and Dirichlet values at zero are verified. The relative class-number formula and the implication from the real part to the relative part remain.
+  comment: The finite tests and infinitude theorem are verified for the numerator predicate. The normalized odd Bernoulli product detects divisibility of the norm kernel once the complex relative class-number formula is supplied. That formula and the implication from the real part to the relative part remain.
 - id: prp-cyclotomic-class-number-reduction
   ok: true
   depends:
@@ -497,6 +498,7 @@
   docs:
     - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.dvd_classNumber_iff_dvd_base_or_dvd_normKernel
     - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.dvd_cyclotomicClassNumber_iff_dvd_maximalRealSubfield_or_dvd_normKernel
+    - /docs/TinyTauDemo/ClassNumberTransfer.html#TinyTauDemo.classNumber_relNorm_index
     - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cm_dedekindZeta_residue_div
     - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_indexRealUnits_eq_one
     - /docs/TinyTauDemo/CyclotomicResidueRatio.html#TinyTauDemo.cyclotomic_torsionOrder_eq_two_mul
@@ -519,6 +521,17 @@
     - /docs/TinyTauDemo/BernoulliTeichmuller.html#TinyTauDemo.orderOf_padicTeichmullerCharacter
     - /docs/TinyTauDemo/BernoulliTeichmullerProduct.html#TinyTauDemo.padicTeichmuller_odd_generalizedBernoulli_product_dvd_iff
   comment: Reduce each Teichmüller lift modulo p squared to the pth power of its residue representative. Faulhaber and Kummer congruences identify the ordinary numerator test. The exceptional weighted sum is a unit, so the normalized odd product satisfies the same test.
+- id: prp-odd-bernoulli-product-transport
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-cyclotomic-class-number-reduction
+    - /roadmap/index-ai.qmd#prp-teichmuller-bernoulli-factors
+  docs:
+    - /docs/TinyTauDemo/OddBernoulliTransport.html#TinyTauDemo.map_prod_oddDirichletCharacters_generalizedBernoulli
+    - /docs/TinyTauDemo/OddBernoulliTransport.html#TinyTauDemo.exists_oddDirichletCharacters_generalizedBernoulli_common_preimage
+    - /docs/TinyTauDemo/OddBernoulliTransport.html#TinyTauDemo.dvd_iff_bernoulli_irregular_of_complex_oddProduct_eq
+    - /docs/TinyTauDemo/CyclotomicBernoulliReduction.html#TinyTauDemo.dvd_cyclotomicNormKernel_iff_bernoulliIrregular_of_complex_oddProduct_eq
+  comment: Transport the odd product through a common cyclotomic coefficient field. Use the norm cokernel to pass from the complex relative class-number identity to the criterion for the norm kernel.
 - id: prp-dirichlet-l-values-at-zero
   ok: true
   depends: []
