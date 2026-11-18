@@ -30,12 +30,14 @@ public import TinyTauDemo.FermatEquation
 public import TinyTauDemo.FermatFour
 public import TinyTauDemo.FermatGenus
 public import TinyTauDemo.FermatHurwitz
+public import TinyTauDemo.FermatIntegralSections
 public import TinyTauDemo.FermatLineExtension
 public import TinyTauDemo.FermatPolynomialDescent
 public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.FermatProjective
 public import TinyTauDemo.FermatProjectiveDegree
 public import TinyTauDemo.FermatSchemeGenus
+public import TinyTauDemo.FermatSpecMap
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates
 public import TinyTauDemo.Kronecker

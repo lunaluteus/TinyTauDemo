@@ -153,6 +153,18 @@ For the class-number step of the [unit lemma](index.qmd#lem-kummer-unit), a cycl
 For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), among odd primes below 100, some numerator in $B_2,B_4,\ldots,B_{p-3}$ is divisible by $p$ exactly for $37$, $59$, and $67$. The witnesses are $B_{32}$, $B_{44}$, and $B_{58}$, respectively. Lean checks the finite table using Mathlib’s rational Bernoulli recurrence.
 :::
 
+::: {#prp-integral-fermat-sections}
+## Integral sections and primitive Fermat coordinates
+
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), a triple satisfying the Fermat equation and generating the unit ideal gives a section of the integral Fermat scheme. Conversely, restrict a section to the rational generic point, normalize a coordinate to one on a standard chart, and clear denominators with a primitive tuple. Separatedness identifies the reconstructed section with the original. Two primitive integral tuples define the same section exactly when they differ by a common sign. Zero coordinates are allowed, as in $(1,0,1)$ for positive exponents.
+:::
+
+::: {#prp-fermat-cone-integral}
+## The Fermat cone and the cyclotomic factors
+
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homogeneous Fermat coordinate ring over algebraically closed characteristic-zero coefficients is a domain in every positive degree. The geometric generic Fermat cone is therefore integral. The cyclotomic identity factors $X^p+Y^p$ as $\prod_j(X+\zeta_p^jY)$ for odd $p$. Evaluating that identity on a primitive solution gives an ideal factorization with $p$th powers away from the prime over $p$.
+:::
+
 ::: {#prp-cyclotomic-differentials}
 ## Differentials of the prime cyclotomic integers
 

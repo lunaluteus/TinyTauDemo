@@ -53,10 +53,16 @@ public theorem fermatEquation_exists_aeval_pderiv_ne_zero {k K : Type*} [CommRin
   · change b 2 ≠ 0 at hi
     simp [fermatEquation, pderiv_X, hnK, hi]
 
+/-- Evaluating the homogeneous polynomial gives the Fermat equation on the coordinates. -/
+public theorem aeval_fermatEquation_eq_zero_iff_coordinates {k B : Type*}
+    [CommRing k] [CommRing B] [Algebra k B] (n : ℕ) (p : Fin 3 → B) :
+    aeval p (fermatEquation k n) = 0 ↔ p 0 ^ n + p 1 ^ n = p 2 ^ n := by
+  simp [fermatEquation, sub_eq_zero]
+
 /-- On the chart with third coordinate one, the Fermat equation is `xⁿ + yⁿ = 1`. -/
 public theorem aeval_fermatEquation_eq_zero_iff {k K : Type*} [CommRing k] [CommRing K]
     [Algebra k K] (n : ℕ) (x y : K) :
     aeval ![x, y, 1] (fermatEquation k n) = 0 ↔ x ^ n + y ^ n = 1 := by
-  simp [fermatEquation, sub_eq_zero]
+  simpa using aeval_fermatEquation_eq_zero_iff_coordinates (k := k) n ![x, y, 1]
 
 end TinyTauDemo
