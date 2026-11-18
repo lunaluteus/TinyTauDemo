@@ -412,7 +412,7 @@
     - /roadmap/index-ai.qmd#prp-fermat-cone-integral
     - /roadmap/index-ai.qmd#prp-fermat-special-fibre
   docs: []
-  comment: Integrality, flatness, and dimension two of the Fermat scheme are verified, along with its sections modulo common sign, the cyclotomic cover, and the nonreduced characteristic-p fibre. The section [1:0:1] needs a zero coordinate. Geometric generic integrality disproves the stated hyperplane splitting.
+  comment: Integrality, flatness, and dimension two of the Fermat scheme are verified, along with its sections modulo common sign, the cyclotomic cover, and the nonreduced characteristic-p fibre. The section [1:0:1] needs a zero coordinate. The affine cone over the cyclotomic integers remains integral, disproving the stated hyperplane splitting.
 - id: prp-integral-fermat-sections
   ok: true
   depends:
@@ -434,8 +434,11 @@
     - /roadmap/index-ai.qmd#def-fermat-projective-scheme
   docs:
     - /docs/TinyTauDemo/Fermat/Curve/FermatProjective.html#TinyTauDemo.fermatCoordinateRing_isDomain
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatConeBaseChange.html#TinyTauDemo.fermatCoordinateRing_isDomain_of_charZero
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatConeBaseChange.html#TinyTauDemo.tensorFermatConeEquiv
+    - /docs/TinyTauDemo/Fermat/ArithmeticSurface/FermatConeBaseChange.html#TinyTauDemo.isIntegral_fermatCone_baseChange_ringOfIntegers
     - /docs/TinyTauDemo/Fermat/Integer/Kummer/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
-  comment: The homogeneous Fermat coordinate ring over algebraically closed characteristic-zero constants is a domain for every positive exponent. For primitive solutions the cyclotomic ideal decomposition applies to the linear factors of the sum of two powers.
+  comment: Monic division descends integrality to any characteristic-zero domain, and the affine pullback to the cyclotomic integers has that integral coordinate ring. For primitive solutions the cyclotomic ideal decomposition applies to the linear factors of the sum of two powers.
 - id: prp-fermat-special-fibre
   ok: true
   depends:

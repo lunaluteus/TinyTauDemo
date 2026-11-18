@@ -304,7 +304,7 @@ A triple satisfying the Fermat equation and generating the unit ideal gives a se
 ::: {#prp-fermat-cone-integral}
 ## The Fermat cone and the cyclotomic factors
 
-For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homogeneous Fermat coordinate ring over algebraically closed characteristic-zero coefficients is a domain in every positive degree. The geometric generic Fermat cone is therefore integral. The cyclotomic identity factors $X^p+Y^p$ as $\prod_j(X+\zeta_p^jY)$ for odd $p$. Evaluating that identity on a primitive solution gives an ideal factorization with $p$th powers away from the prime over $p$.
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homogeneous Fermat coordinate ring is a domain in positive degree over any characteristic-zero domain. The equation is monic in $X$, so division by it commutes with extending coefficients to an algebraic closure of the fraction field. The resulting embedding of quotient rings descends integrality. The affine cone after actual base change to $\mathbb Z[\zeta_p]$ is therefore integral. The cyclotomic identity factors $X^p+Y^p$ as $\prod_j(X+\zeta_p^jY)$ for odd $p$. Evaluating that identity on a primitive solution gives an ideal factorization with $p$th powers away from the prime over $p$.
 :::
 
 ::: {#prp-fermat-special-fibre}
