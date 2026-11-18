@@ -23,6 +23,7 @@ public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.Kronecker
 public import TinyTauDemo.KummerCaseOne
+public import TinyTauDemo.KummerCaseTwo
 public import TinyTauDemo.KummerLocalArithmetic
 public import TinyTauDemo.KummerTranslatedRoot
 public import TinyTauDemo.KummerUnramified

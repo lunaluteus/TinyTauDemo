@@ -283,12 +283,15 @@
     - /docs/TinyTauDemo/CaseTwoValuations.html#TinyTauDemo.caseTwo_valuations
   comment: The twist is indexed by Fin p. Ideal factorization gives the exact valuations, and elements witness the integral quotients and their principal ideals.
 - id: thm-kummer-case-2
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
     - /roadmap/index.qmd#thm-kummer-case-1
     - /roadmap/index.qmd#lem-kummer-unit
     - /roadmap/index.qmd#lem-pth-power-congruence
     - /roadmap/index.qmd#lem-case2-valuations
-  docs: []
-  comment: Extract the three-factor linear relation and prove that the new coprime triple gives a strict decrease of the valuation parameter.
+  docs:
+    - /docs/TinyTauDemo/KummerCaseTwo.html#TinyTauDemo.RegularPrime.caseTwo_no_solution
+    - /docs/TinyTauDemo/KummerCaseTwo.html#TinyTauDemo.RegularPrime.not_primitiveFermatSolution
+    - /docs/TinyTauDemo/KummerCaseTwo.html#TinyTauDemo.RegularPrime.fermatLastTheoremWith
+  comment: Eliminate three linear factors, use the unit lemma, and descend from m to m − 1. Combining the two cases with Mathlib's gcd reduction proves Fermat's last theorem at every regular prime.
