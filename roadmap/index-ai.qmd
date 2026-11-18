@@ -259,6 +259,12 @@ For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), a triple 
 For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the homogeneous Fermat coordinate ring over algebraically closed characteristic-zero coefficients is a domain in every positive degree. The geometric generic Fermat cone is therefore integral. The cyclotomic identity factors $X^p+Y^p$ as $\prod_j(X+\zeta_p^jY)$ for odd $p$. Evaluating that identity on a primitive solution gives an ideal factorization with $p$th powers away from the prime over $p$.
 :::
 
+::: {#prp-fermat-special-fibre}
+## The Fermat special fibre in characteristic p
+
+For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), in characteristic $p$ Frobenius gives $X^p+Y^p-Z^p=(X+Y-Z)^p$. The radical of the equation ideal is the single linear ideal $(X+Y-Z)$. A linear coordinate change gives the cone coordinate ring $k[X,Y,T]/(T^p)$, and the class of $T$ has nilpotence index exactly $p$. The last affine chart detects nonreducedness on the actual projective base change of the integral Fermat scheme to $k$.
+:::
+
 ::: {#prp-cyclotomic-differentials}
 ## Differentials of the prime cyclotomic integers
 

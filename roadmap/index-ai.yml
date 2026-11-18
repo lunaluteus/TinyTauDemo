@@ -396,8 +396,9 @@
     - /roadmap/index-ai.qmd#prp-cyclotomic-cover-scheme
     - /roadmap/index-ai.qmd#prp-integral-fermat-sections
     - /roadmap/index-ai.qmd#prp-fermat-cone-integral
+    - /roadmap/index-ai.qmd#prp-fermat-special-fibre
   docs: []
-  comment: The sections modulo common sign, the finite flat cyclotomic cover, and its differentials are verified. The human assertion of a hyperplane splitting requires correction because the geometric generic Fermat cone is integral.
+  comment: The sections modulo common sign, the finite flat cyclotomic cover and its differentials, and the nonreduced characteristic-p fibre are verified. Geometric generic integrality disproves the stated hyperplane splitting.
 - id: prp-integral-fermat-sections
   ok: true
   depends:
@@ -416,6 +417,17 @@
     - /docs/TinyTauDemo/FermatProjective.html#TinyTauDemo.fermatCoordinateRing_isDomain
     - /docs/TinyTauDemo/UnifiedCyclotomicCoprimality.html#TinyTauDemo.PrimitiveFermatSolution.cyclotomic_ideal_decomposition_integralClosure
   comment: The homogeneous Fermat coordinate ring over algebraically closed characteristic-zero constants is a domain for every positive exponent. For primitive solutions the cyclotomic ideal decomposition applies to the linear factors of the sum of two powers.
+- id: prp-fermat-special-fibre
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#def-fermat-projective-scheme
+  docs:
+    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.fermatEquation_eq_linear_pow
+    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.radical_fermatIdeal_eq_linear
+    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRingEquiv_truncated
+    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.fermatCoordinateRing_linear_nilpotence
+    - /docs/TinyTauDemo/FermatSpecialFibre.html#TinyTauDemo.not_isReduced_fermatProjective_baseChange_charP
+  comment: The linear class has nilpotence index p by a linear coordinate change. The tensor description of the last affine chart transports nonreducedness to the projective base change.
 - id: prp-cyclotomic-differentials
   ok: true
   depends:

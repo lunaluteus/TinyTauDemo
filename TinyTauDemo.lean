@@ -53,6 +53,7 @@ public import TinyTauDemo.FermatProjective
 public import TinyTauDemo.FermatProjectiveDegree
 public import TinyTauDemo.FermatSchemeGenus
 public import TinyTauDemo.FermatSpecMap
+public import TinyTauDemo.FermatSpecialFibre
 public import TinyTauDemo.FiniteCurveMorphisms
 public import TinyTauDemo.HurwitzFibreCount
 public import TinyTauDemo.InfinityCoordinates
