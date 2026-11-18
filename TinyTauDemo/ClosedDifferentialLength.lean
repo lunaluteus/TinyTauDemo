@@ -6,6 +6,7 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.DifferentialMonomorphism
+import TinyTauDemo.SchemeHurwitz
 import TauCeti.AlgebraicGeometry.LineBundle.Germ
 import TauCeti.AlgebraicGeometry.Scheme.ClosedPoint
 import TauCeti.AlgebraicGeometry.Morphisms.Smooth.Regular
@@ -36,15 +37,12 @@ universe u
 noncomputable section
 
 set_option backward.isDefEq.respectTransparency false in
-private def invertibleStalkLinearEquiv {X : Scheme.{u}} (L : InvertibleSheaf X) (x : X) :
-    X.presheaf.stalk x ≃ₗ[X.presheaf.stalk x] L.obj.presheaf.stalk x := by
-  let M := L.obj
-  let T := TauCeti.SheafOfModules.LocalTrivializations.ofIsInvertible M
-  have hcover := ((Opens.coversTop_iff X T.X).mp T.coversTop).exists_mem x
-  let i := hcover.choose
-  have hi := hcover.choose_spec
-  let U := T.X i
-  let t := T.iso i
+/-- A rank-one trivialization gives a linear coordinate on the stalk at a point
+of its domain. -/
+def stalkLinearEquivOfTrivialization {X : Scheme.{u}} (M : X.Modules) {U : X.Opens}
+    (t : SheafOfModules.free (R := X.ringCatSheaf.over U) PUnit ≅ M.over U)
+    (x : X) (hi : x ∈ U) :
+    X.presheaf.stalk x ≃ₗ[X.presheaf.stalk x] M.presheaf.stalk x := by
   let s := M.trivializationGenerator t
   let v := M.presheaf.germ U x hi s
   let F : X.presheaf.stalk x →ₗ[X.presheaf.stalk x] M.presheaf.stalk x :=
@@ -87,6 +85,20 @@ private def invertibleStalkLinearEquiv {X : Scheme.{u}} (L : InvertibleSheaf X) 
     rw [map_smul, M.trivializationCoordinate_map_trivializationGenerator]
     exact mul_one r
 
+/-- The stalk basis is the germ of the generating section of the trivialization. -/
+theorem stalkLinearEquivOfTrivialization_apply {X : Scheme.{u}} (M : X.Modules)
+    {U : X.Opens} (t : SheafOfModules.free (R := X.ringCatSheaf.over U) PUnit ≅ M.over U)
+    (x : X) (hx : x ∈ U) (r : X.presheaf.stalk x) :
+    stalkLinearEquivOfTrivialization M t x hx r =
+      r • M.presheaf.germ U x hx (M.trivializationGenerator t) :=
+  by unfold stalkLinearEquivOfTrivialization; rfl
+
+private def invertibleStalkLinearEquiv {X : Scheme.{u}} (L : InvertibleSheaf X) (x : X) :
+    X.presheaf.stalk x ≃ₗ[X.presheaf.stalk x] L.obj.presheaf.stalk x := by
+  have h := L.obj.exists_mem_trivialization x
+  exact stalkLinearEquivOfTrivialization L.obj h.choose_spec.choose x
+    h.choose_spec.choose_spec
+
 variable {k : Type u} [Field k] {X : Scheme.{u}} [X.Over (Spec (.of k))]
 
 set_option backward.isDefEq.respectTransparency false in
@@ -95,7 +107,8 @@ private def smoothCurveKaehlerEquiv [SmoothOfRelativeDimension 1 (X ↘ Spec (.o
   let L : InvertibleSheaf X := ⟨X.relativeDifferentials k, isInvertible_relativeDifferentials k⟩
   (invertibleStalkLinearEquiv L x).trans (X.relativeDifferentialsStalkEquiv k x)
 
-private theorem isDiscreteValuationRing_stalk_of_closed_smoothCurve
+/-- A smooth integral curve has a discrete valuation ring at each closed point. -/
+theorem isDiscreteValuationRing_stalk_of_closed_smoothCurve
     [IsIntegral X] [SmoothOfRelativeDimension 1 (X ↘ Spec (.of k))] (x : X) (hx : IsClosed {x}) :
     IsDiscreteValuationRing (X.presheaf.stalk x) := by
   have h := (smoothOfRelativeDimension_iff_ringKrullDim_stalk_eq (X ↘ Spec (.of k)) 1).mp
@@ -121,24 +134,24 @@ private theorem subsingleton_closed_residueDifferentials [CharZero k]
 private theorem stalkMap_injective_of_dominant_curves {X Y : Scheme.{u}}
     [IsIntegral X] [IsIntegral Y] (f : X ⟶ Y) [IsDominant f] (x : X) :
     Function.Injective (f.stalkMap x) := by
-  rw [injective_iff_map_eq_zero]
-  intro a ha
-  obtain ⟨U, hx, s, rfl⟩ := Y.presheaf.exists_germ_eq a
-  let hU : Nonempty U := ⟨⟨f x, hx⟩⟩
-  have hzero : f.app U s = 0 := by
-    rw [f.germ_stalkMap_apply] at ha
-    apply germ_injective_of_isIntegral X x (show x ∈ f ⁻¹ᵁ U from hx)
-    exact ha.trans (map_zero _).symm
-  have he := f.germToFunctionField_functionFieldMap U
-  have hem := congrArg (fun h ↦ h s) he
-  change f.functionFieldMap (Y.germToFunctionField U s) =
-    X.germToFunctionField (f ⁻¹ᵁ U) (f.app U s) at hem
-  rw [hzero, map_zero] at hem
-  have hs' := (f.functionFieldMap).hom.injective
-    (hem.trans (f.functionFieldMap.hom.map_zero).symm)
-  have hs := Y.germToFunctionField_injective U
-    (hs'.trans (Y.germToFunctionField U).hom.map_zero.symm)
-  rw [hs, map_zero]
+  intro a b hab
+  apply IsFractionRing.injective (Y.presheaf.stalk (f x)) Y.functionField
+  apply f.functionFieldMap.hom.injective
+  rw [f.functionFieldMap_algebraMap_stalk_apply, f.functionFieldMap_algebraMap_stalk_apply, hab]
+
+/-- A morphism over a field between smooth curves sends closed points to closed points. -/
+theorem isClosed_image_of_smoothCurveHom {Y : Scheme.{u}} [Y.Over (Spec (.of k))]
+    [SmoothOfRelativeDimension 1 (X ↘ Spec (.of k))]
+    [SmoothOfRelativeDimension 1 (Y ↘ Spec (.of k))]
+    (f : X ⟶ Y) [f.IsOver (Spec (.of k))] (x : X) (hx : IsClosed {x}) : IsClosed {f x} := by
+  have := SmoothOfRelativeDimension.smooth 1 (X ↘ Spec (.of k))
+  have := SmoothOfRelativeDimension.smooth 1 (Y ↘ Spec (.of k))
+  have : LocallyOfFiniteType (f ≫ (Y ↘ Spec (.of k))) := by
+    rw [comp_over f (Spec (.of k))]
+    infer_instance
+  have : LocallyOfFiniteType f := locallyOfFiniteType_of_comp f (Y ↘ Spec (.of k))
+  have : JacobsonSpace Y := LocallyOfFiniteType.jacobsonSpace (Y ↘ Spec (.of k))
+  exact f.closedPoints_subset_preimage_closedPoints hx
 
 section Length
 
@@ -163,12 +176,7 @@ theorem length_morphismRelativeDifferentials_stalk_of_closed_smoothCurves
       ↑((IsLocalRing.maximalIdeal B).ramificationIdx A - 1 : ℕ) := by
   have := SmoothOfRelativeDimension.smooth 1 (X ↘ Spec (.of k))
   have := SmoothOfRelativeDimension.smooth 1 (Y ↘ Spec (.of k))
-  have : LocallyOfFiniteType (f ≫ (Y ↘ Spec (.of k))) := by
-    rw [comp_over f (Spec (.of k))]
-    infer_instance
-  have : LocallyOfFiniteType f := locallyOfFiniteType_of_comp f (Y ↘ Spec (.of k))
-  have : JacobsonSpace Y := LocallyOfFiniteType.jacobsonSpace (Y ↘ Spec (.of k))
-  have hy : IsClosed {f x} := f.closedPoints_subset_preimage_closedPoints hx
+  have hy : IsClosed {f x} := isClosed_image_of_smoothCurveHom (k := k) f x hx
   have : IsDiscreteValuationRing A :=
     isDiscreteValuationRing_stalk_of_closed_smoothCurve (k := k) (f x) hy
   have : IsDiscreteValuationRing B :=

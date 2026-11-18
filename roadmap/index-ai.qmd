@@ -127,6 +127,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), a domi
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), consider a dominant morphism of smooth integral curves over a characteristic-zero field. At a closed point $x$, the local rings at $x$ and $f(x)$ are discrete valuation rings, and both absolute differential modules are free of rank one. The residue fields are finite separable extensions of the base and have zero relative differentials. Dominance gives injectivity of the local ring map. The length of $(\Omega_{X/Y})_x$ is $e_x-1$, and the stalk is nonzero exactly when $e_x>1$. In any bases of the pulled-back and target differential stalks, the first sheaf arrow is multiplication by a scalar. Its order is the length of the quotient by that scalar, hence also $e_x-1$.
 :::
 
+::: {#prp-cartier-ramification-divisor}
+## The Cartier ramification divisor and the canonical sheaf
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), the injective morphism $f^*\Omega_{Y/k}\to\Omega_{X/k}$ between line bundles defines an effective Cartier divisor $R_f$ by its local multipliers. The target bundle is isomorphic to the source bundle tensored with $\mathcal O_X(R_f)$. At a closed point the order of a local equation is the relative differential length. The place of that point restricts to the place of its image, and the local ring ramification index agrees with the normalized function-field index. Thus the Weil divisor of $R_f$ is the tame different transported to the curve.
+:::
+
 ::: {#thm-tame-hurwitz-schemes}
 ## The numerical Riemann–Hurwitz formula for schemes
 

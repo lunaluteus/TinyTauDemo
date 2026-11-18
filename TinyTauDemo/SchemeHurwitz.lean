@@ -26,9 +26,23 @@ public section
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits Order
 open TauCeti TauCeti.AlgebraicGeometry
 
-namespace TinyTauDemo
-
 universe u
+
+/-- The map on function fields agrees with the map on each stalk under the canonical inclusions. -/
+theorem AlgebraicGeometry.Scheme.Hom.functionFieldMap_algebraMap_stalk_apply
+    {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y] (f : X ⟶ Y) [IsDominant f]
+    (x : X) (a : Y.presheaf.stalk (f x)) :
+    f.functionFieldMap (algebraMap (Y.presheaf.stalk (f x)) Y.functionField a) =
+      algebraMap (X.presheaf.stalk x) X.functionField (f.stalkMap x a) := by
+  obtain ⟨U, hx, s, rfl⟩ := Y.presheaf.exists_germ_eq a
+  let : Nonempty U := ⟨⟨_, hx⟩⟩
+  let : Nonempty (f ⁻¹ᵁ U) := ⟨⟨x, hx⟩⟩
+  rw [Y.algebraMap_germ_eq_germToFunctionField, f.germ_stalkMap_apply]
+  have h := congrArg (fun g ↦ g s) (f.germToFunctionField_functionFieldMap U)
+  exact h.trans (X.algebraMap_germ_eq_germToFunctionField (show x ∈ f ⁻¹ᵁ U from hx)
+    (f.app U s)).symm
+
+namespace TinyTauDemo
 
 section FiniteFunctionFields
 
@@ -84,6 +98,16 @@ noncomputable def curveCodimensionOnePointEquivPlace (k : Type u) [Field k]
   let : Z.IsSeparated := curveIsSeparated k Z
   exact CodimensionOnePoint.equivPlace
     (valuativeExistenceOfProper (Z ↘ Spec (.of k))) (coheight_le_one_of_isCurveOver k Z)
+
+/-- The place of a codimension-one point is the normalized valuation of its local ring. -/
+theorem curveCodimensionOnePointEquivPlace_apply (k : Type u) [Field k]
+    (Z : Scheme.{u}) [Z.Over (Spec (.of k))] [Z.IsCurveOver k]
+    [∀ z : CodimensionOnePoint Z, IsDiscreteValuationRing (Z.presheaf.stalk (z : Z))]
+    (z : CodimensionOnePoint Z) :
+    curveCodimensionOnePointEquivPlace k Z z = Z.toPlace (k := k) (z : Z) := by
+  let : Z.IsSeparated := curveIsSeparated k Z
+  unfold curveCodimensionOnePointEquivPlace
+  exact CodimensionOnePoint.equivPlace_apply _ _ _
 
 /-- Over algebraically closed constants, the genus of a regular proper curve
 agrees with the genus of its function field. -/

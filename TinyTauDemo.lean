@@ -8,6 +8,7 @@ module
 public import TinyTauDemo.AmbientProjectiveCharts
 public import TinyTauDemo.BernoulliExamples
 public import TinyTauDemo.BernoulliIrregular
+public import TinyTauDemo.CartierRamification
 public import TinyTauDemo.CaseTwoValuations
 public import TinyTauDemo.ChartFunctionField
 public import TinyTauDemo.ClosedDifferentialLength
@@ -64,6 +65,7 @@ public import TinyTauDemo.RamificationRecall
 public import TinyTauDemo.RegularPrime
 public import TinyTauDemo.RelativeDifferentialSheaf
 public import TinyTauDemo.SchemeHurwitz
+public import TinyTauDemo.SchemeRamificationDivisor
 public import TinyTauDemo.TameDifferentials
 public import TinyTauDemo.TameRamificationIndex
 public import TinyTauDemo.Test

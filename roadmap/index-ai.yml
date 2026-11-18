@@ -163,8 +163,21 @@
     - /roadmap/index-ai.qmd#prp-relative-differential-sheaf-stalks
     - /roadmap/index-ai.qmd#prp-differential-sheaf-short-exact
     - /roadmap/index-ai.qmd#prp-closed-curve-differential-length
+    - /roadmap/index-ai.qmd#prp-cartier-ramification-divisor
   docs: []
-  comment: The numerical genus formula, short exact differential sequence, and geometric closed-point length are verified. The global ramification divisor twist and its comparison with function-field places remain.
+  comment: The numerical formula, short exact differential sequence, local lengths, and global Cartier twist agree with the same ramification divisor. The finite skyscraper decomposition and the canonical-degree consequences remain to be linked for this target.
+- id: prp-cartier-ramification-divisor
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-closed-curve-differential-length
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
+  docs:
+    - /docs/TinyTauDemo/SchemeRamificationDivisor.html#TinyTauDemo.toPlace_restrict_eq_of_dominant_curveHom
+    - /docs/TinyTauDemo/SchemeRamificationDivisor.html#TinyTauDemo.ramificationIdx_stalk_eq_toPlace
+    - /docs/TinyTauDemo/SchemeRamificationDivisor.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk_eq_ramificationDivisor_coeff
+    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveCartierDivisor_twist_of_lineMap
+    - /docs/TinyTauDemo/CartierRamification.html#TinyTauDemo.exists_effectiveCartierRamificationDivisor_with_WeilDivisor
+  comment: A monomorphism of line bundles gives an effective Cartier divisor from its local multipliers. Its Weil divisor is the tame different reindexed from function-field places.
 - id: prp-closed-curve-differential-length
   ok: true
   depends:
