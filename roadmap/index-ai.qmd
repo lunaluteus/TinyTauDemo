@@ -55,6 +55,8 @@ For $p=3$, the congruence hypothesis implies $u=\pm1$ by Mathlib’s classificat
 For the [proof of Kummer’s unit lemma](index.qmd#rem-kummer-unit-proof), a nontrivial automorphism of $K(r)/K$ sends $r$ to $\zeta_p^j r$ with $1\le j<p$. Its difference on the integral element $(r-1)/\lambda$ is $((\zeta_p^j-1)/\lambda)r$. The first factor is a cyclotomic unit, and $r$ is an integral unit because $r^p=U$. The difference is a unit, so it cannot vanish modulo any proper prime ideal. This makes the inertia group trivial at every finite prime.
 :::
 
+For the class-number step of the [unit lemma](index.qmd#lem-kummer-unit), a cyclic extension of degree $d$ supplies all $d$th powers as idèle-class norms. If $d$ is coprime to the class number, each idèle class is a product of such a power and a class represented by local units at every finite place. Unramifiedness makes these local units norms, and all infinite places of the base are complex. The first fundamental inequality then forces $d=1$. Thus $U=u^{p-1}$ has a $p$th root $r$ in $K$, and $u/r$ and its inverse are integral because their $p$th powers are integral units.
+
 ::: {#prp-bernoulli-numerator-test-below-100}
 ## Bernoulli numerator tests below 100
 

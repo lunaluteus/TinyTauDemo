@@ -238,12 +238,13 @@
     - /docs/TinyTauDemo/KummerCaseOne.html#TinyTauDemo.kummer_case_I
   comment: Uses Mathlib for exponent three. Dividing by each pair's gcd gives the coprimality for the linear-factor argument, so the theorem also applies to nonprimitive triples.
 - id: lem-kummer-unit
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index-ai.qmd#lem-kummer-extension-unramified
-  docs: []
-  comment: Use the local congruences to prove unramifiedness, then rule out a nontrivial cyclic extension via the class number.
+  docs:
+    - /docs/TinyTauDemo/KummerUnit.html#TinyTauDemo.RegularPrime.kummer_unit
+  comment: Finite-prime unramifiedness and the class number rule out a nontrivial cyclic splitting field for the Kummer polynomial.
 - id: lem-kummer-local-congruence
   ok: true
   depends:
@@ -262,13 +263,16 @@
     - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
   comment: A nontrivial automorphism changes the integral translated root by a unit, forcing trivial inertia at every finite prime.
 - id: rem-kummer-unit-proof
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#prp-cyclotomic-units
     - /roadmap/index.qmd#def-regular-prime
     - /roadmap/index.qmd#lem-kummer-unit
-  docs: []
-  comment: The cubic specialization and unramifiedness of the Kummer extension are verified. The class-number argument is pending.
+  docs:
+    - /docs/TinyTauDemo/KummerLocalArithmetic.html#TinyTauDemo.exists_unit_cube_of_congruent
+    - /docs/TinyTauDemo/KummerUnramified.html#TinyTauDemo.isUnramifiedAt_of_kummer_unit
+    - /docs/TinyTauDemo/UnramifiedCyclicDegree.html#TinyTauDemo.finrank_eq_one_of_unramified_cyclic_of_coprime_classNumber
+  comment: The cubic specialization uses the congruence hypothesis. For the class-field step, local norms and class-number coprimality give idèle-class norm surjectivity.
 - id: lem-case2-valuations
   ok: true
   depends:

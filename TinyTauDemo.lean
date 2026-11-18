@@ -26,6 +26,7 @@ public import TinyTauDemo.KummerCaseOne
 public import TinyTauDemo.KummerLocalArithmetic
 public import TinyTauDemo.KummerTranslatedRoot
 public import TinyTauDemo.KummerUnramified
+public import TinyTauDemo.KummerUnit
 public import TinyTauDemo.MasonHurwitz
 public import TinyTauDemo.MasonStothers
 public import TinyTauDemo.PolynomialLogDerivative
@@ -35,4 +36,5 @@ public import TinyTauDemo.RamificationRecall
 public import TinyTauDemo.RegularPrime
 public import TinyTauDemo.Test
 public import TinyTauDemo.UnifiedCyclotomicCoprimality
+public import TinyTauDemo.UnramifiedCyclicDegree
 public import TinyTauDemo.WeilDivisor
