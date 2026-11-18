@@ -31,6 +31,8 @@ In the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the order of a n
 For the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the generic point is the zero prime, and its residue field is canonically the fraction field. Every other point is closed and has a discrete valuation ring as its stalk. When the coordinate ring is a field, the generic point is also closed and its stalk is a field. At a nonzero prime the order on the stalk, expressed multiplicatively, is the inverse adic valuation on the fraction field. Taking its logarithm gives the usual additive order.
 :::
 
+For the [Picard group comparison](index.qmd#rem-scheme-dedekind), the height-one primes correspond to codimension-one points, with matching orders on rational functions. If $D_I$ records the prime exponents of a fractional ideal $I$, then the invertible sheaf $\mathcal O(-D_I)$ has $I$ as its global rational sections. Its class is the image of $[I]$ under the isomorphism $\operatorname{Cl}(R)\cong\operatorname{Pic}(\operatorname{Spec}R)$.
+
 ::: {#thm-fermat-function-field-genus}
 ## Genus of the Fermat function field
 

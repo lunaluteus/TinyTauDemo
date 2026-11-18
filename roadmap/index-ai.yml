@@ -1,11 +1,17 @@
 - id: rem-scheme-dedekind
-  ok: false
+  ok: true
   depends:
     - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
     - /roadmap/index-ai.qmd#lem-dedekind-principal-order
     - /roadmap/index-ai.qmd#prp-dedekind-spectrum-local-rings
-  docs: []
-  comment: The spectrum, stalk, and fractional ideal statements are verified. The comparison with the Picard group remains.
+  docs:
+    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.heightOneSpectrumEquivCodimensionOneSpec
+    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.fractionalIdealDivisorSpecAddEquiv
+    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.coeff_fractionalIdealDivisorSpecAddEquiv
+    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.classGroupMulEquivPicardSpec
+    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.classGroupMulEquivPicardSpec_mk
+    - /docs/TinyTauDemo/DedekindPicard.html#TinyTauDemo.mem_sections_neg_fractionalIdealDivisor_iff
+  comment: Reindex prime exponents by codimension-one points. The corresponding ideal sheaf is the line bundle of the negative of that divisor, and its global rational sections recover the fractional ideal.
 - id: prp-dedekind-spectrum-local-rings
   ok: true
   depends: []
