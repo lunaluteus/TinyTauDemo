@@ -85,6 +85,8 @@ Let $k$ be algebraically closed of characteristic zero, and let $n>0$. If a poly
 ## Degree of the polynomial-coordinate map to a smooth plane curve
 
 For the [projective curve recall](index.qmd#rem-scheme-curves-recall), take a nonzero homogeneous equation of degree $d>0$ defining a smooth plane curve over an algebraically closed field. A polynomial tuple satisfying the equation, generating the unit ideal, and having maximum coordinate degree $M>0$ extends uniquely to a dominant morphism $\pi$ from the projective line. Choose a nonzero denominator among the coordinates and use its affine chart. On the target, the supremum of the pole divisors of the two coordinate ratios has degree $d$. On $k(t)$ its pullback is the zero divisor of the denominator plus the difference between $M$ and the denominator's degree at infinity. Its degree is therefore $M$. Conorm multiplies the divisor degree by the degree of the actual function-field extension, so $M=d\deg\pi$. The argument also applies to lines and tuples with a zero coordinate.
+
+In characteristic zero the tuple $(t^2-1,2t,t^2+1)$ gives an explicit example on the Fermat conic. The polynomials span the unit ideal, and the projective morphism has function-field degree one while the maximum coordinate degree is two.
 :::
 
 ::: {#thm-tame-hurwitz-function-fields}

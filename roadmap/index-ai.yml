@@ -112,7 +112,7 @@
     - /roadmap/index-ai.qmd#prp-fermat-line-morphism-degree
     - /roadmap/index-ai.qmd#prp-plane-line-morphism-degree
   docs: []
-  comment: The plane Jacobian criterion, the general chart at infinity, and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The stated degree M in the human text requires the plane degree factor.
+  comment: The plane Jacobian criterion, the general chart at infinity, and the corrected degree formula for actual polynomial-coordinate morphisms are verified. The Fermat conic supplies a verified counterexample to the stated degree M.
 - id: prp-plane-line-morphism-degree
   ok: true
   depends:
@@ -124,6 +124,7 @@
     - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.existsUnique_projectiveLineMap
     - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_finrank_eq_chartCoordinates
     - /docs/TinyTauDemo/PlaneProjectiveDegree.html#TinyTauDemo.ProjectiveHypersurface.projectiveLineMap_degree
+    - /docs/TinyTauDemo/FermatConicDegree.html#TinyTauDemo.pythagoreanCoordinates_projectiveLineMap_degree_one
   comment: Form the actual projective extension. The supremum of the two ratio pole divisors pulls back to the supremum on k(t), whose degree is the maximum tuple degree.
 - id: prp-plane-jacobian-criterion
   ok: true
