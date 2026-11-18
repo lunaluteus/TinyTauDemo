@@ -25,6 +25,12 @@ For the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), index Weil divi
 In the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the order of a nonzero rational function at a nonzero prime equals the prime exponent of the principal fractional ideal it generates. Mathlib writes the valuation multiplicatively. The exponential of the negative ideal exponent gives that multiplicative valuation.
 :::
 
+::: {#prp-dedekind-spectrum-local-rings}
+## Points and local rings of an affine Dedekind scheme
+
+For the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the generic point is the zero prime, and its residue field is canonically the fraction field. Every other point is closed and has a discrete valuation ring as its stalk. When the coordinate ring is a field, the generic point is also closed and its stalk is a field. At a nonzero prime the order on the stalk, expressed multiplicatively, is the inverse adic valuation on the fraction field. Taking its logarithm gives the usual additive order.
+:::
+
 ::: {#thm-fermat-function-field-genus}
 ## Genus of the Fermat function field
 

@@ -3,8 +3,20 @@
   depends:
     - /roadmap/index-ai.qmd#thm-dedekind-weil-divisor
     - /roadmap/index-ai.qmd#lem-dedekind-principal-order
+    - /roadmap/index-ai.qmd#prp-dedekind-spectrum-local-rings
   docs: []
-  comment: The fractional ideal isomorphism and principal ideal order formula are available. The spectrum and stalk statements and comparison with invertible sheaves remain.
+  comment: The spectrum, stalk, and fractional ideal statements are verified. The comparison with the Picard group remains.
+- id: prp-dedekind-spectrum-local-rings
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/DedekindSpectrum.html#PrimeSpectrum.isClosed_singleton_iff_ne_bot_or_isField
+    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.fractionRingEquivGenericResidueField
+    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.fractionRingEquivGenericResidueField_algebraMap
+    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.stalk_isDiscreteValuationRing_iff_ne_genericPoint
+    - /docs/TinyTauDemo/DedekindSpectrum.html#AlgebraicGeometry.Spec.isClosed_singleton_iff_stalk_isDiscreteValuationRing
+    - /docs/TinyTauDemo/DedekindSpectrum.html#IsDedekindDomain.HeightOneSpectrum.ordFrac_eq_inv_adicValuation
+  comment: Include the field case, identify the generic residue field, and match local orders with the adic valuations.
 - id: thm-dedekind-weil-divisor
   ok: true
   depends: []

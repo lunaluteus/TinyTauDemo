@@ -11,6 +11,7 @@ public import TinyTauDemo.CyclotomicCongruences
 public import TinyTauDemo.CyclotomicIntegers
 public import TinyTauDemo.CyclotomicRamification
 public import TinyTauDemo.CyclotomicUnits
+public import TinyTauDemo.DedekindSpectrum
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors
 public import TinyTauDemo.ExponentReduction
