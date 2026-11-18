@@ -98,17 +98,26 @@
   depends:
     - /roadmap/index.qmd#rem-scheme-curves-recall
     - /roadmap/index.qmd#thm-riemann-hurwitz-recall
+    - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
   docs: []
-  comment: Check the smoothness criterion and the degree and ramification of the projection used for the genus calculation.
+  comment: The function-field genus and the Jacobian calculation are available. The projective scheme and the branch count for its coordinate projection remain.
+- id: thm-fermat-function-field-genus
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/FermatEquation.html#TinyTauDemo.fermatEquation_exists_aeval_pderiv_ne_zero
+    - /docs/TinyTauDemo/FermatGenus.html#TinyTauDemo.isIntegrallyClosedIn_of_fermatEquation
+    - /docs/TinyTauDemo/FermatGenus.html#TinyTauDemo.genus_eq_of_fermatEquation
+  comment: Apply Tau Ceti's plane curve genus and constant field results to the nonsingular Fermat equation.
 - id: thm-flt-geometric
-  ok: false
+  ok: true
   depends:
     - /roadmap/index.qmd#def-primitive-solution
-    - /roadmap/index.qmd#rem-scheme-curves-recall
-    - /roadmap/index.qmd#thm-riemann-hurwitz-recall
-    - /roadmap/index.qmd#prp-fermat-genus
-  docs: []
-  comment: Establish the curve map from a primitive solution and the degree obstruction when the target genus is at least one.
+    - /roadmap/index-ai.qmd#thm-fermat-function-field-genus
+  docs:
+    - /docs/TinyTauDemo/FermatHurwitz.html#TinyTauDemo.not_ratFunc_fermat_of_transcendental
+    - /docs/TinyTauDemo/FermatHurwitz.html#TinyTauDemo.not_primitiveFermatSolution_polynomial_of_hurwitz
+  comment: Normalizing a primitive triple gives a transcendental Fermat coordinate. The resulting subfield of the rational function field has positive genus, contradicting Riemann–Hurwitz.
 - id: rem-mason-hurwitz-bridge
   ok: false
   depends:

@@ -6,7 +6,10 @@ Authors: Luna Luteus
 module
 
 public import TinyTauDemo.ExponentReduction
+public import TinyTauDemo.FermatEquation
 public import TinyTauDemo.FermatFour
+public import TinyTauDemo.FermatGenus
+public import TinyTauDemo.FermatHurwitz
 public import TinyTauDemo.FermatPolynomialDescent
 public import TinyTauDemo.FermatPolynomialMason
 public import TinyTauDemo.Kronecker

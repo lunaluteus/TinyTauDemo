@@ -22,3 +22,9 @@ For the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), index Weil divi
 
 In the [Dedekind domain recall](index.qmd#rem-scheme-dedekind), the order of a nonzero rational function at a nonzero prime equals the prime exponent of the principal fractional ideal it generates. Mathlib writes the valuation multiplicatively. The exponential of the negative ideal exponent gives that multiplicative valuation.
 :::
+
+::: {#thm-fermat-function-field-genus}
+## Genus of the Fermat function field
+
+For the [Fermat genus calculation](index.qmd#prp-fermat-genus), let $F = k(x,y)$ with $x$ transcendental over a field $k$ of characteristic zero and $x^n + y^n = 1$ for $n > 0$. The homogeneous Fermat polynomial has no common nonzero zero of its partial derivatives over an algebraic closure. Tau Ceti's plane curve genus theorem gives $g(F) = (n-1)(n-2)/2$ and shows that $k$ is the exact constant field. For the [geometric Fermat theorem](index.qmd#thm-flt-geometric), the normalized coordinates would put this field inside $k(t)$, which has genus zero. Riemann–Hurwitz excludes that inclusion when $n \ge 3$.
+:::
