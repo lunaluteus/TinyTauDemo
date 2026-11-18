@@ -54,3 +54,9 @@ For $p=3$, the congruence hypothesis implies $u=\pm1$ by Mathlib’s classificat
 
 For the [proof of Kummer’s unit lemma](index.qmd#rem-kummer-unit-proof), a nontrivial automorphism of $K(r)/K$ sends $r$ to $\zeta_p^j r$ with $1\le j<p$. Its difference on the integral element $(r-1)/\lambda$ is $((\zeta_p^j-1)/\lambda)r$. The first factor is a cyclotomic unit, and $r$ is an integral unit because $r^p=U$. The difference is a unit, so it cannot vanish modulo any proper prime ideal. This makes the inertia group trivial at every finite prime.
 :::
+
+::: {#prp-bernoulli-numerator-test-below-100}
+## Bernoulli numerator tests below 100
+
+For the [Bernoulli criterion](index.qmd#rem-bernoulli-regular), among odd primes below 100, some numerator in $B_2,B_4,\ldots,B_{p-3}$ is divisible by $p$ exactly for $37$, $59$, and $67$. The witnesses are $B_{32}$, $B_{44}$, and $B_{58}$, respectively. Lean checks the finite table using Mathlib’s rational Bernoulli recurrence.
+:::

@@ -215,8 +215,18 @@
   ok: false
   depends:
     - /roadmap/index.qmd#def-regular-prime
+    - /roadmap/index-ai.qmd#prp-bernoulli-numerator-test-below-100
   docs: []
-  comment: Track the Bernoulli criterion and the finite examples separately from the open question about infinitely many regular primes.
+  comment: The finite numerator tests are verified. The comparison with class numbers and the infinitude of irregular primes remain to be formalized.
+- id: prp-bernoulli-numerator-test-below-100
+  ok: true
+  depends: []
+  docs:
+    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.bernoulli_irregular_primes_below_100
+    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_37
+    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_59
+    - /docs/TinyTauDemo/BernoulliExamples.html#TinyTauDemo.dvd_bernoulli_num_67
+  comment: Kernel evaluation of the rational recurrence certifies all of the finite numerator tests and the three witnesses.
 - id: thm-kummer-case-1
   ok: true
   depends:
