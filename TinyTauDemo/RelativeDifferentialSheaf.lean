@@ -5,14 +5,15 @@ Authors: Luna Luteus
 -/
 module
 
-public import TinyTauDemo.DifferentialStalkMap
+public import TinyTauDemo.PullbackStalk
 public import Mathlib.CategoryTheory.Abelian.Exact
 
 /-!
 # Transitivity of relative differential sheaves
 
 The cokernel of the pullback map on differential sheaves represents derivations
-over the morphism. This gives the right-exact transitivity sequence.
+over the morphism. The stalk of this cokernel is the relative Kähler differential
+module of the map on local rings.
 
 See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `866d7919b0ef1ac3e973d5c6b7b8fc759727d68e`.
 -/
@@ -124,5 +125,59 @@ theorem differentialTransitivity_exact : (differentialTransitivity R f).Exact :=
 theorem differentialTransitivity_epi : Epi (differentialTransitivity R f).g := by
   change Epi (cokernel.π (differentialPullback R f))
   infer_instance
+
+/-- An injective pullback gives the short exact transitivity sequence. -/
+theorem differentialTransitivity_shortExact_of_mono [Mono (differentialPullback R f)] :
+    (differentialTransitivity R f).ShortExact where
+  exact := differentialTransitivity_exact R f
+  mono_f := inferInstanceAs (Mono (differentialPullback R f))
+  epi_g := differentialTransitivity_epi R f
+
+section Stalk
+
+open KaehlerDifferential
+
+variable (x : X)
+
+local notation "A" => Y.presheaf.stalk (f x)
+local notation "B" => X.presheaf.stalk x
+
+attribute [local instance] algebraStalkMap
+
+/-- The stalk of the sheaf of relative differentials is the module of Kähler
+differentials of the induced homomorphism of local rings. -/
+noncomputable def morphismRelativeDifferentialsStalkEquiv :
+    (morphismRelativeDifferentials R f).presheaf.stalk x ≃ₗ[B] Ω[B⁄A] :=
+  cokernelDifferentialPullbackStalkEquiv R f x
+
+local instance relativeStalkScalarTower : IsScalarTower R A B :=
+  IsScalarTower.of_algebraMap_eq fun c ↦ (stalkMap_algebraMap R f x c).symm
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The projection of the differential sheaf sequence becomes the canonical
+map from absolute to relative Kähler differentials at each stalk. -/
+theorem morphismRelativeDifferentialsStalkEquiv_projection
+    (m : (X.relativeDifferentials R).presheaf.stalk x) :
+    morphismRelativeDifferentialsStalkEquiv R f x
+        ((modulesStalkFunctor x).map (morphismRelativeDifferentialsπ R f) m) =
+      KaehlerDifferential.map R A B B (X.relativeDifferentialsStalkEquiv R x m) :=
+  cokernelDifferentialPullbackStalkEquiv_projection R f x m
+
+/-- The length of the relative differential sheaf stalk of a tame curve map is
+the ramification index of the map on local rings minus one. -/
+theorem length_morphismRelativeDifferentials_stalk
+    [IsDomain A] [IsDomain B] [IsDiscreteValuationRing A] [IsDiscreteValuationRing B]
+    [CharZero (IsLocalRing.ResidueField B)]
+    [Module.Finite A Ω[A⁄R]] [Module.Finite B Ω[B⁄R]]
+    [Module.IsTorsionFree B Ω[B⁄R]] [Nontrivial Ω[B⁄R]]
+    (hA : Subsingleton Ω[IsLocalRing.ResidueField A⁄R])
+    (hB : Subsingleton Ω[IsLocalRing.ResidueField B⁄R])
+    {t : A} {v : B} (ht : Irreducible t) (hv : Irreducible v) (ht₀ : f.stalkMap x t ≠ 0) :
+    Module.length B ((morphismRelativeDifferentials R f).presheaf.stalk x) =
+      ↑((IsLocalRing.maximalIdeal B).ramificationIdx A - 1 : ℕ) :=
+  (morphismRelativeDifferentialsStalkEquiv R f x).length_eq.trans
+    (length_relativeKaehlerDifferential_stalkMap R f x hA hB ht hv ht₀)
+
+end Stalk
 
 end TinyTauDemo

@@ -17,6 +17,7 @@ public import TinyTauDemo.CyclotomicUnits
 public import TinyTauDemo.DedekindPicard
 public import TinyTauDemo.DedekindSpectrum
 public import TinyTauDemo.DenseOpenExtension
+public import TinyTauDemo.DifferentialMonomorphism
 public import TinyTauDemo.DifferentialStalkMap
 public import TinyTauDemo.DiscriminantIndex
 public import TinyTauDemo.ExceptionalIdealFactors

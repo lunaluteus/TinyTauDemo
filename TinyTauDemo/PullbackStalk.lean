@@ -14,9 +14,10 @@ import Mathlib.Topology.Sheaves.SheafCondition.UniqueGluing
 At a point of a scheme, morphisms to a skyscraper sheaf of modules describe
 linear maps from the stalk. This identifies the stalk of a pullback sheaf
 with the scalar extension of the original stalk. The induced pullback of
-differentials becomes the first map of Kähler transitivity.
+differentials becomes the first map of Kähler transitivity. Taking stalks
+preserves the cokernel and identifies it with relative Kähler differentials.
 
-See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `4f0dad51900b325d2e02ca772286a9c4589888b3`.
+See `/roadmap/index.qmd#thm-riemann-hurwitz-recall` @ `6a5e0c4054932c37eb1c977c31a738196704b232`.
 -/
 
 public section
@@ -247,6 +248,83 @@ private theorem stalkSkyscraperEquiv_symm_app
 
 end stalk
 
+section ModuleStalkFunctor
+
+variable {X : Scheme.{u}} (x : X)
+
+local notation "B" => X.presheaf.stalk x
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The stalk of a sheaf of modules, with its module structure over the local ring. -/
+@[expose] def modulesStalkFunctor : X.Modules ⥤ ModuleCat.{u} B where
+  obj M := ModuleCat.of _ (M.presheaf.stalk x)
+  map φ := ModuleCat.ofHom (PresheafOfModules.stalkMapCommRing (S := X.presheaf) x φ.val)
+  map_id M := by
+    ext m
+    obtain ⟨U, hx, m₀, rfl⟩ := M.presheaf.exists_germ_eq m
+    exact PresheafOfModules.stalkMapCommRing_germ (S := X.presheaf) x (𝟙 M.val) U hx m₀
+  map_comp {M N P} φ ψ := by
+    ext m
+    obtain ⟨U, hx, m₀, rfl⟩ := M.presheaf.exists_germ_eq m
+    change PresheafOfModules.stalkMapCommRing (S := X.presheaf) x (φ.val ≫ ψ.val)
+        (M.presheaf.germ U x hx m₀) =
+      PresheafOfModules.stalkMapCommRing (S := X.presheaf) x ψ.val
+        (PresheafOfModules.stalkMapCommRing (S := X.presheaf) x φ.val
+          (M.presheaf.germ U x hx m₀))
+    have h := PresheafOfModules.stalkMapCommRing_germ (S := X.presheaf) x (φ.val ≫ ψ.val)
+      U hx m₀
+    have hφ := PresheafOfModules.stalkMapCommRing_germ (S := X.presheaf) x φ.val U hx m₀
+    have hψ := PresheafOfModules.stalkMapCommRing_germ (S := X.presheaf) x ψ.val U hx
+      (φ.val.app (op U) m₀)
+    exact h.trans ((congrArg (PresheafOfModules.stalkMapCommRing (S := X.presheaf) x ψ.val)
+      hφ).trans hψ).symm
+
+set_option backward.isDefEq.respectTransparency false in
+/-- On germs the stalk functor applies the given morphism to the underlying section. -/
+theorem modulesStalkFunctor_map_germ {M N : X.Modules} (φ : M ⟶ N)
+    (U : X.Opens) (hx : x ∈ U) (m : Γ(M, U)) :
+    (modulesStalkFunctor x).map φ (M.presheaf.germ U x hx m) =
+      N.presheaf.germ U x hx (φ.app U m) :=
+  PresheafOfModules.stalkMapCommRing_germ (S := X.presheaf) x φ.val U hx m
+
+set_option backward.isDefEq.respectTransparency false in
+instance : (modulesStalkFunctor x).PreservesZeroMorphisms where
+  map_zero M N := by
+    ext m
+    obtain ⟨U, hx, m₀, rfl⟩ := M.presheaf.exists_germ_eq m
+    change (modulesStalkFunctor x).map (0 : M ⟶ N) (M.presheaf.germ U x hx m₀) = 0
+    rw [modulesStalkFunctor_map_germ, Scheme.Modules.Hom.zero_app]
+    change N.presheaf.germ U x hx (0 : Γ(N, U)) = 0
+    exact (N.presheaf.germ U x hx).hom.map_zero
+
+set_option backward.isDefEq.respectTransparency false in
+private def modulesStalkRepresentable (T : ModuleCat.{u} B) :
+    ((modulesStalkFunctor x).op ⋙ yoneda.obj T).RepresentableBy (skyscraper x T) where
+  homEquiv {M} := (stalkSkyscraperEquiv x M T).trans
+    { toFun := ModuleCat.ofHom
+      invFun := ModuleCat.Hom.hom
+      left_inv := fun _ ↦ rfl
+      right_inv := fun _ ↦ rfl }
+  homEquiv_comp {M N} φ ψ := by
+    change (ModuleCat.ofHom _ : (modulesStalkFunctor x).obj M ⟶ T) =
+      (modulesStalkFunctor x).map φ ≫ ModuleCat.ofHom _
+    ext m
+    obtain ⟨U, hx, m₀, rfl⟩ := M.presheaf.exists_germ_eq m
+    change fromSkyscraper x M T (φ ≫ ψ) (M.presheaf.germ U x hx m₀) =
+      fromSkyscraper x N T ψ ((modulesStalkFunctor x).map φ (M.presheaf.germ U x hx m₀))
+    rw [modulesStalkFunctor_map_germ, fromSkyscraper_germ, fromSkyscraper_germ]
+    rfl
+
+/-- Taking the stalk of a sheaf of modules has a right adjoint, given by the
+skyscraper sheaf at that point. -/
+instance : (modulesStalkFunctor x).IsLeftAdjoint := by
+  apply Functor.isLeftAdjoint_of_rightAdjointObjIsDefined_eq_top
+  ext T
+  simp only [Pi.top_apply, Prop.top_eq_true, iff_true]
+  exact (modulesStalkRepresentable x T).isRepresentable
+
+end ModuleStalkFunctor
+
 section PullbackStalk
 
 variable {X Y : Scheme.{u}} (f : X ⟶ Y) (x : X) (M : Y.Modules)
@@ -385,7 +463,7 @@ local instance stalkMapAlgebraTower : IsScalarTower R A B :=
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The map on stalks of the adjoint pullback of differentials. -/
-noncomputable def differentialPullbackStalk : Pₓ →ₗ[B] Nₓ :=
+@[expose] noncomputable def differentialPullbackStalk : Pₓ →ₗ[B] Nₓ :=
   PresheafOfModules.stalkMapCommRing (S := X.presheaf) x (differentialPullback R f).val
 
 set_option backward.isDefEq.respectTransparency false in
@@ -424,6 +502,83 @@ theorem differentialPullbackStalk_eq_mapBaseChange :
     pullbackRelativeDifferentialsStalk_eq_map R f x m]
 
 end DifferentialPullbackStalk
+
+section RelativeDifferentialStalk
+
+open CategoryTheory.Limits KaehlerDifferential
+
+variable (R : Type u) [CommRing R] {X Y : Scheme.{u}}
+    [X.Over (Spec (.of R))] [Y.Over (Spec (.of R))]
+    (f : X ⟶ Y) [f.IsOver (Spec (.of R))] (x : X)
+
+local notation "A" => Y.presheaf.stalk (f x)
+local notation "B" => X.presheaf.stalk x
+set_option quotPrecheck false in
+local notation "Nₓ" => ↑((X.relativeDifferentials R).presheaf.stalk x)
+
+attribute [local instance] algebraStalkMap
+attribute [local instance] stalkMapAlgebraTower
+
+set_option backward.isDefEq.respectTransparency false in
+private def quotientDifferentialStalkMap : Nₓ →ₗ[B] Ω[B⁄A] :=
+  (KaehlerDifferential.map R A B B).comp (X.relativeDifferentialsStalkEquiv R x).toLinearMap
+
+set_option backward.isDefEq.respectTransparency false in
+private theorem quotientDifferentialStalkMap_exact :
+    Function.Exact (differentialPullbackStalk R f x) (quotientDifferentialStalkMap R f x) := by
+  let ea := (Y.relativeDifferentialsStalkEquiv R (f x)).baseChange A B _ _
+  let eb := X.relativeDifferentialsStalkEquiv R x
+  let ep := pullbackStalkEquiv f x (Y.relativeDifferentials R)
+  let d := differentialPullbackStalk R f x
+  let c := KaehlerDifferential.mapBaseChange R A B
+  have hmap (m : B ⊗[A] ↑((Y.relativeDifferentials R).presheaf.stalk (f x))) :
+      eb (d (ep m)) = c (ea m) :=
+    congrArg (fun l ↦ l m) (differentialPullbackStalk_eq_mapBaseChange R f x)
+  intro m
+  change KaehlerDifferential.map R A B B (eb m) = 0 ↔ ∃ z, d z = m
+  rw [KaehlerDifferential.exact_mapBaseChange_map R A B (eb m)]
+  constructor
+  · rintro ⟨z, hz⟩
+    refine ⟨ep (ea.symm z), eb.injective ?_⟩
+    change eb (d (ep (ea.symm z))) = eb m
+    rw [hmap, ea.apply_symm_apply, hz]
+  · rintro ⟨z, hz⟩
+    refine ⟨ea (ep.symm z), ?_⟩
+    rw [← hmap, ep.apply_symm_apply, hz]
+
+set_option backward.isDefEq.respectTransparency false in
+private def quotientDifferentialStalkIsCokernel :
+    IsColimit (CokernelCofork.ofπ
+      (f := (modulesStalkFunctor x).map (differentialPullback R f))
+      (ModuleCat.ofHom (quotientDifferentialStalkMap R f x))
+      (by ext; exact (quotientDifferentialStalkMap_exact R f x).apply_apply_eq_zero _)) :=
+  ModuleCat.isColimitCokernelCofork _ _ (quotientDifferentialStalkMap_exact R f x)
+    ((KaehlerDifferential.map_surjective R A B).comp
+      (X.relativeDifferentialsStalkEquiv R x).surjective)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The stalk of the cokernel of the differential pullback is the relative
+Kähler differential module of the map on local rings. -/
+def cokernelDifferentialPullbackStalkEquiv :
+    (cokernel (differentialPullback R f)).presheaf.stalk x ≃ₗ[B] Ω[B⁄A] :=
+  (IsColimit.coconePointUniqueUpToIso
+    (isColimitOfHasCokernelOfPreservesColimit (modulesStalkFunctor x) (differentialPullback R f))
+    (quotientDifferentialStalkIsCokernel R f x)).toLinearEquiv
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The stalk comparison identifies the cokernel projection with the canonical
+map from the absolute to the relative Kähler differential module. -/
+theorem cokernelDifferentialPullbackStalkEquiv_projection (m : Nₓ) :
+    cokernelDifferentialPullbackStalkEquiv R f x
+        ((modulesStalkFunctor x).map (cokernel.π (differentialPullback R f)) m) =
+      KaehlerDifferential.map R A B B (X.relativeDifferentialsStalkEquiv R x m) := by
+  let c := isColimitOfHasCokernelOfPreservesColimit (modulesStalkFunctor x)
+    (differentialPullback R f)
+  let d := quotientDifferentialStalkIsCokernel R f x
+  exact congrArg (fun h ↦ h m)
+    (IsColimit.comp_coconePointUniqueUpToIso_hom c d WalkingParallelPair.one)
+
+end RelativeDifferentialStalk
 
 end
 

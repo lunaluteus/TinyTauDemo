@@ -149,8 +149,29 @@
     - /roadmap/index-ai.qmd#prp-differential-pullback-on-stalks
     - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
     - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
+    - /roadmap/index-ai.qmd#prp-relative-differential-sheaf-stalks
+    - /roadmap/index-ai.qmd#prp-differential-sheaf-short-exact
   docs: []
-  comment: The numerical genus formula, right-exact sheaf transitivity, and the base-change comparison for the first map on stalks are verified. Injectivity of the first sheaf map and the length of the relative sheaf stalks remain.
+  comment: The numerical genus formula, short exact differential sequence, and the local length calculation are verified. The geometric verification of the local length hypotheses and the ramification divisor twist remain.
+- id: prp-differential-sheaf-short-exact
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-differential-sheaf-transitivity
+    - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
+  docs:
+    - /docs/TinyTauDemo/DifferentialMonomorphism.html#TinyTauDemo.differentialPullback_mono_of_dominant_curve
+    - /docs/TinyTauDemo/DifferentialMonomorphism.html#TinyTauDemo.differentialTransitivity_shortExact
+  comment: At the generic point the extension of function fields is finite separable. Its differential map is an isomorphism after extending scalars, and a section of the pulled-back line bundle is determined by its generic germ.
+- id: prp-relative-differential-sheaf-stalks
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#prp-scalar-extension-of-stalks
+  docs:
+    - /docs/TinyTauDemo/PullbackStalk.html#TinyTauDemo.modulesStalkFunctor
+    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsStalkEquiv
+    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.morphismRelativeDifferentialsStalkEquiv_projection
+    - /docs/TinyTauDemo/RelativeDifferentialSheaf.html#TinyTauDemo.length_morphismRelativeDifferentials_stalk
+  comment: The stalk functor is left adjoint to skyscraper modules and preserves the transitivity cokernel. Its identification with the local Kähler module transfers the length formula under the DVR and differential hypotheses.
 - id: prp-scalar-extension-of-stalks
   ok: true
   depends:
