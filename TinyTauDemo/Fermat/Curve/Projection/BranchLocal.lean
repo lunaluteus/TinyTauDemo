@@ -11,13 +11,14 @@ import Mathlib.Algebra.Ring.GeomSum
 import Mathlib.RingTheory.Localization.AtPrime.Basic
 
 /-!
-# Local parameters at the affine branch points
+# Local parameters on the last Fermat chart
 
 At a rational point with coordinates `(a, 0)` and `a^n = 1`, the second
 affine coordinate generates the maximal ideal. The difference `x - a` is
-a unit times its `n`th power.
+a unit times its `n`th power. At a point `(a, b)` with `b ≠ 0`, the
+first coordinate difference `x - a` generates the maximal ideal.
 
-See `/roadmap/index.qmd#prp-fermat-genus` @ `b2c9a29565e4747906e07cca00173aa6354b72f0`.
+See `/roadmap/index.qmd#prp-fermat-genus` @ `0adb09d1c1175fedb866e25f57c50df3018f6da8`.
 -/
 
 public section
@@ -155,5 +156,65 @@ theorem fermatLastChart_branch_local_parameters [CharZero k] (hn : 0 < n)
         · exact Ideal.subset_span hmem
       · exact Ideal.span_mono (Set.singleton_subset_iff.mpr
           (Set.mem_insert_of_mem _ (Set.mem_singleton _)))
+
+/-- Where the second affine coordinate is nonzero, the difference `x - a`
+generates the maximal ideal of the local ring. -/
+theorem fermatLastChart_nonbranch_local_parameter [CharZero k] (hn : 0 < n)
+    {a b : k} (h : a ^ n + b ^ n = 1) (hb : b ≠ 0) :
+    let p := fermatLastChartPoint h
+    haveI : p.asIdeal.IsPrime := p.isPrime
+    let L := Localization.AtPrime p.asIdeal
+    let j := algebraMap A L
+    maximalIdeal L = Ideal.span {j (x - algebraMap k A a)} := by
+  dsimp only
+  let f := fermatLastChartEval h
+  let p := fermatLastChartPoint h
+  have : p.asIdeal.IsPrime := p.isPrime
+  let L := Localization.AtPrime p.asIdeal
+  let j := algebraMap A L
+  let a₀ := algebraMap k A a
+  let b₀ := algebraMap k A b
+  let s : A := ∑ i ∈ Finset.range n, y ^ i * b₀ ^ (n - 1 - i)
+  let t : A := ∑ i ∈ Finset.range n, x ^ i * a₀ ^ (n - 1 - i)
+  have hz : a₀ ^ n + b₀ ^ n = 1 := by
+    rw [show a₀ ^ n = algebraMap k A (a ^ n) from (map_pow _ _ _).symm,
+      show b₀ ^ n = algebraMap k A (b ^ n) from (map_pow _ _ _).symm, ← map_add, h, map_one]
+  have hsum : (y - b₀) * s = -((x - a₀) * t) := by
+    rw [show (y - b₀) * s = y ^ n - b₀ ^ n from (Commute.all y b₀).mul_geom_sum₂ n,
+      show (x - a₀) * t = x ^ n - a₀ ^ n from (Commute.all x a₀).mul_geom_sum₂ n]
+    linear_combination coordinate_relation (k := k) (n := n) - hz
+  have hf : f s = (n : k) * b ^ (n - 1) := by
+    simp only [s, map_sum, map_mul, map_pow, b₀, f, fermatLastChartEval_mk, aeval_X,
+      Matrix.cons_val_one, Matrix.cons_val_zero, AlgHom.commutes, Algebra.algebraMap_self_apply,
+      geom_sum₂_self]
+  have hu : IsUnit (j s) := by
+    apply (IsLocalization.AtPrime.isUnit_to_map_iff L p.asIdeal s).2
+    rw [Ideal.mem_primeCompl_iff, fermatLastChartPoint_asIdeal, RingHom.mem_ker]
+    change f s ≠ 0
+    rw [hf]
+    exact mul_ne_zero (Nat.cast_ne_zero.mpr hn.ne') (pow_ne_zero _ hb)
+  let I : Ideal L := Ideal.span {j (x - a₀)}
+  have hmem : j (y - b₀) ∈ I := by
+    apply (I.mul_unit_mem_iff_mem hu).mp
+    have he := congrArg j hsum
+    rw [map_mul, map_neg, map_mul] at he
+    rw [he]
+    exact I.neg_mem (I.mul_mem_right _ (Ideal.subset_span (Set.mem_singleton _)))
+  have hp : p.asIdeal = Ideal.span {x - a₀, y - b₀} :=
+    (fermatLastChartPoint_asIdeal h).trans (ker_fermatLastChartEval h)
+  change maximalIdeal L = I
+  calc
+    maximalIdeal L = p.asIdeal.map j :=
+      (IsLocalization.AtPrime.map_eq_maximalIdeal p.asIdeal L).symm
+    _ = (Ideal.span {x - a₀, y - b₀}).map j := congrArg (fun J : Ideal A ↦ J.map j) hp
+    _ = I := by
+      rw [Ideal.map_span, Set.image_insert_eq, Set.image_singleton]
+      apply le_antisymm
+      · refine Ideal.span_le.mpr ?_
+        rintro _ (rfl | hmem')
+        · exact Ideal.subset_span (Set.mem_singleton _)
+        · obtain rfl := Set.mem_singleton_iff.mp hmem'
+          exact hmem
+      · exact Ideal.span_mono (Set.singleton_subset_iff.mpr (Set.mem_insert _ _))
 
 end TinyTauDemo

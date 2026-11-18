@@ -354,7 +354,8 @@
     - /docs/TinyTauDemo/Fermat/Curve/FermatProjection.html#TinyTauDemo.fermatAffineChart_comp_fermatProjection
     - /docs/TinyTauDemo/Fermat/Curve/FermatProjection.html#TinyTauDemo.fermatProjection_functionField_finrank
     - /docs/TinyTauDemo/Fermat/Curve/Projection/Ramification.html#TinyTauDemo.fermatProjection_ramificationIdx_at_affineBranchPoint
-  comment: The projection from the Z-chart extends to a finite map of degree n. The local maximal-ideal calculation gives index n above each affine root of unity, and scheme genus agrees with the function-field genus.
+    - /docs/TinyTauDemo/Fermat/Curve/Projection/Ramification.html#TinyTauDemo.fermatProjection_ramificationIdx_at_affineNonbranchPoint
+  comment: The projection from the Z-chart extends to a finite map of degree n. The local maximal-ideal calculation gives index n at the points with y equal to zero and index one at the other affine points. Scheme genus agrees with the function-field genus.
 - id: prp-fermat-projective-smooth
   ok: true
   depends:

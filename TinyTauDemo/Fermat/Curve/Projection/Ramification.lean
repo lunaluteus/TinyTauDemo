@@ -16,9 +16,9 @@ import TauCeti.AlgebraicGeometry.RationalPoint.Basic
 
 The computation in the normalized affine coordinates gives the pullback
 of the maximal ideal on the scheme stalk. The projection has index `n`
-at the point with coordinates `[a : 0 : 1]` when `a^n = 1`.
+at `[a : 0 : 1]` when `a^n = 1`, and index one at `[a : b : 1]` when `b ≠ 0`.
 
-See `/roadmap/index.qmd#prp-fermat-genus` @ `b2c9a29565e4747906e07cca00173aa6354b72f0`.
+See `/roadmap/index.qmd#prp-fermat-genus` @ `0adb09d1c1175fedb866e25f57c50df3018f6da8`.
 -/
 
 public section
@@ -88,16 +88,14 @@ local notation "A" => FermatAffineRing k n 2
 local notation "x" => Ideal.Quotient.mk _ (MvPolynomial.X (0 : Fin 2))
 local notation "y" => Ideal.Quotient.mk _ (MvPolynomial.X (1 : Fin 2))
 
-/-- The point `(a,0)` on the last Fermat chart viewed in the projective Fermat scheme. -/
-noncomputable def fermatProjectionAffineBranchPoint (hn : 0 < n) {a : k} (ha : a ^ n = 1) :
-    fermatProjective k n :=
-  fermatAffineChart k hn 2
-    (fermatLastChartPoint (a := a) (b := (0 : k)) (by simpa [zero_pow hn.ne'] using ha))
+/-- The point `(a,b)` on the last affine chart of the projective Fermat scheme. -/
+noncomputable def fermatProjectiveLastChartPoint (hn : 0 < n) {a b : k}
+    (h : a ^ n + b ^ n = 1) : fermatProjective k n :=
+  fermatAffineChart k hn 2 (fermatLastChartPoint h)
 
-/-- The point `(a,0)` on the projective Fermat scheme is closed. -/
-theorem isClosed_fermatProjectionAffineBranchPoint (hn : 0 < n) {a : k} (ha : a ^ n = 1) :
-    IsClosed {fermatProjectionAffineBranchPoint k hn ha} := by
-  let h : a ^ n + (0 : k) ^ n = 1 := by simpa [zero_pow hn.ne'] using ha
+/-- A rational point in the last standard chart is closed in the projective curve. -/
+theorem isClosed_fermatProjectiveLastChartPoint (hn : 0 < n) {a b : k}
+    (h : a ^ n + b ^ n = 1) : IsClosed {fermatProjectiveLastChartPoint k hn h} := by
   let ev := fermatLastChartEval h
   let i := fermatAffineChart k hn 2
   let s := Spec.map (CommRingCat.ofHom ev.toRingHom) ≫ i
@@ -109,8 +107,8 @@ theorem isClosed_fermatProjectionAffineBranchPoint (hn : 0 < n) {a : k} (ha : a 
     rw [show ev.toRingHom.comp (algebraMap k A) = RingHom.id k from
       RingHom.ext (fun r ↦ ev.commutes r)]
     exact Spec.map_id _
-  have hp : s (closedPoint k) = fermatProjectionAffineBranchPoint k hn ha := by
-    unfold fermatProjectionAffineBranchPoint
+  have hp : s (closedPoint k) = fermatProjectiveLastChartPoint k hn h := by
+    unfold fermatProjectiveLastChartPoint
     apply congrArg i
     apply PrimeSpectrum.ext
     change (maximalIdeal k).comap ev.toRingHom = (fermatLastChartPoint h).asIdeal
@@ -119,21 +117,34 @@ theorem isClosed_fermatProjectionAffineBranchPoint (hn : 0 < n) {a : k} (ha : a 
   rw [← hp]
   exact isClosed_singleton_of_section hs
 
+/-- The point `(a,0)` on the last Fermat chart viewed in the projective Fermat scheme. -/
+noncomputable def fermatProjectionAffineBranchPoint (hn : 0 < n) {a : k} (ha : a ^ n = 1) :
+    fermatProjective k n :=
+  fermatProjectiveLastChartPoint k hn (a := a) (b := (0 : k))
+    (by simpa [zero_pow hn.ne'] using ha)
+
+/-- The point `(a,0)` on the projective Fermat scheme is closed. -/
+theorem isClosed_fermatProjectionAffineBranchPoint (hn : 0 < n) {a : k} (ha : a ^ n = 1) :
+    IsClosed {fermatProjectionAffineBranchPoint k hn ha} := by
+  unfold fermatProjectionAffineBranchPoint
+  exact isClosed_fermatProjectiveLastChartPoint k hn _
+
 variable [CharZero k] [IsAlgClosed k]
 
-/-- On local rings of the actual projection, the pullback of the maximal ideal at the image
-of the affine branch point `(a,0)` is the `n`th power of the point's maximal ideal. -/
-theorem fermatProjection_map_maximalIdeal_at_affineBranchPoint (hn : 0 < n)
-    {a : k} (ha : a ^ n = 1) :
-    let p := fermatProjectionAffineBranchPoint k hn ha
+private theorem fermatProjection_map_maximalIdeal_at_lastChartPoint (hn : 0 < n)
+    {a b : k} (h : a ^ n + b ^ n = 1) (e : ℕ)
+    (hparam :
+      let p := fermatLastChartPoint h
+      haveI : p.asIdeal.IsPrime := p.isPrime
+      let L := Localization.AtPrime p.asIdeal
+      Ideal.span {algebraMap A L (x - algebraMap k A a)} = maximalIdeal L ^ e) :
+    let p := fermatProjectiveLastChartPoint k hn h
     let f := fermatProjection k hn
     (maximalIdeal ((projectiveLine k).presheaf.stalk (f p))).map (f.stalkMap p).hom =
-      maximalIdeal ((fermatProjective k n).presheaf.stalk p) ^ n := by
+      maximalIdeal ((fermatProjective k n).presheaf.stalk p) ^ e := by
   dsimp only
-  let h : a ^ n + (0 : k) ^ n = 1 := by simpa [zero_pow hn.ne'] using ha
   let p := fermatLastChartPoint h
   let x₀ : A := x
-  let y₀ : A := y
   let g := Polynomial.aeval (R := k) x₀
   let q := p.comap g.toRingHom
   let i := fermatAffineChart k hn 2
@@ -142,12 +153,12 @@ theorem fermatProjection_map_maximalIdeal_at_affineBranchPoint (hn : 0 < n)
   have hcomm : i ≫ f = Spec.map (CommRingCat.ofHom g.toRingHom) ≫ j := by
     rw [show i ≫ f = fermatProjectionOnLastChart k n from
       fermatAffineChart_comp_fermatProjection k hn, fermatProjectionOnLastChart_def]
-  have hp : i p = fermatProjectionAffineBranchPoint k hn ha := by
-    unfold fermatProjectionAffineBranchPoint
+  have hp : i p = fermatProjectiveLastChartPoint k hn h := by
+    unfold fermatProjectiveLastChartPoint
     rfl
   rw [← hp]
   refine map_maximalIdeal_stalk_of_affine_charts i j f
-    (CommRingCat.ofHom g.toRingHom) hcomm p n ?_
+    (CommRingCat.ofHom g.toRingHom) hcomm p e ?_
   have hq : q.asIdeal = Ideal.span {Polynomial.X - Polynomial.C a} := by
     rw [← Polynomial.ker_evalRingHom]
     have he : (fermatLastChartEval h).comp g = Polynomial.aeval a := by
@@ -170,28 +181,58 @@ theorem fermatProjection_map_maximalIdeal_at_affineBranchPoint (hn : 0 < n)
       _ = (Ideal.span {Polynomial.X - Polynomial.C a}).map (algebraMap k[X] T) :=
         congrArg (fun I : Ideal k[X] ↦ I.map (algebraMap k[X] T)) hq
       _ = Ideal.span {t} := by rw [Ideal.map_span, Set.image_singleton]
-  obtain ⟨hsource, u, hu⟩ := fermatLastChart_branch_local_parameters hn ha
-  have hsource' : maximalIdeal L = Ideal.span {algebraMap A L y₀} := hsource
-  have hℓ : ℓ t = (u : L) * (algebraMap A L y₀) ^ n := by
+  have hℓ : ℓ t = algebraMap A L (x₀ - algebraMap k A a) := by
     rw [show ℓ t = algebraMap A L (g (Polynomial.X - Polynomial.C a)) from
-      Localization.localRingHom_to_map _ _ _ _ _]
-    rw [map_sub, Polynomial.aeval_X, Polynomial.aeval_C]
-    exact hu
-  change (maximalIdeal T).map ℓ = maximalIdeal L ^ n
-  rw [htarget, hsource', Ideal.map_span, Set.image_singleton, hℓ,
-    Ideal.span_singleton_mul_left_unit u.isUnit, Ideal.span_singleton_pow]
+      Localization.localRingHom_to_map _ _ _ _ _, map_sub, Polynomial.aeval_X, Polynomial.aeval_C]
+  change (maximalIdeal T).map ℓ = maximalIdeal L ^ e
+  rw [htarget, Ideal.map_span, Set.image_singleton, hℓ]
+  exact hparam
 
-/-- The ramification index of the actual Fermat projection at `(a,0)` is `n`. -/
-theorem fermatProjection_ramificationIdx_at_affineBranchPoint (hn : 0 < n)
+/-- On local rings of the actual projection, the pullback of the maximal ideal at the image
+of the affine branch point `(a,0)` is the `n`th power of the point's maximal ideal. -/
+theorem fermatProjection_map_maximalIdeal_at_affineBranchPoint (hn : 0 < n)
     {a : k} (ha : a ^ n = 1) :
     let p := fermatProjectionAffineBranchPoint k hn ha
+    let f := fermatProjection k hn
+    (maximalIdeal ((projectiveLine k).presheaf.stalk (f p))).map (f.stalkMap p).hom =
+      maximalIdeal ((fermatProjective k n).presheaf.stalk p) ^ n := by
+  dsimp only
+  let h : a ^ n + (0 : k) ^ n = 1 := by simpa [zero_pow hn.ne'] using ha
+  unfold fermatProjectionAffineBranchPoint
+  apply fermatProjection_map_maximalIdeal_at_lastChartPoint k hn h n
+  obtain ⟨hsource, u, hu⟩ := fermatLastChart_branch_local_parameters hn ha
+  dsimp only
+  rw [hsource, show algebraMap A (Localization.AtPrime (fermatLastChartPoint h).asIdeal)
+      (x - algebraMap k A a) = (u : Localization.AtPrime (fermatLastChartPoint h).asIdeal) *
+        (algebraMap A _ y) ^ n from hu,
+    Ideal.span_singleton_mul_left_unit u.isUnit, Ideal.span_singleton_pow]
+  simp only [Ideal.Quotient.mkₐ_eq_mk]
+
+/-- At an affine point `(a,b)` with `b ≠ 0`, the pullback of the target maximal ideal
+is the maximal ideal of the Fermat curve. -/
+theorem fermatProjection_map_maximalIdeal_at_affineNonbranchPoint (hn : 0 < n)
+    {a b : k} (h : a ^ n + b ^ n = 1) (hb : b ≠ 0) :
+    let p := fermatProjectiveLastChartPoint k hn h
+    let f := fermatProjection k hn
+    (maximalIdeal ((projectiveLine k).presheaf.stalk (f p))).map (f.stalkMap p).hom =
+      maximalIdeal ((fermatProjective k n).presheaf.stalk p) := by
+  simpa only [pow_one] using fermatProjection_map_maximalIdeal_at_lastChartPoint k hn h 1 (by
+    dsimp only
+    rw [pow_one]
+    exact (fermatLastChart_nonbranch_local_parameter hn h hb).symm)
+
+private theorem fermatProjection_ramificationIdx_eq_of_map_maximalIdeal_pow (hn : 0 < n)
+    {p : fermatProjective k n} (hp : IsClosed {p}) (e : ℕ)
+    (hmap :
+      let f := fermatProjection k hn
+      (maximalIdeal ((projectiveLine k).presheaf.stalk (f p))).map (f.stalkMap p).hom =
+        maximalIdeal ((fermatProjective k n).presheaf.stalk p) ^ e) :
     let f := fermatProjection k hn
     let R := (projectiveLine k).presheaf.stalk (f p)
     let S := (fermatProjective k n).presheaf.stalk p
     letI : Algebra R S := (f.stalkMap p).hom.toAlgebra
-    (maximalIdeal S).ramificationIdx R = n := by
+    (maximalIdeal S).ramificationIdx R = e := by
   dsimp only
-  let p := fermatProjectionAffineBranchPoint k hn ha
   let f := fermatProjection k hn
   let R := (projectiveLine k).presheaf.stalk (f p)
   let S := (fermatProjective k n).presheaf.stalk p
@@ -203,20 +244,45 @@ theorem fermatProjection_ramificationIdx_at_affineBranchPoint (hn : 0 < n)
   have : SmoothOfRelativeDimension 1 (fermatProjective k n ↘ Spec (.of k)) :=
     fermatProjective_smoothOne k hn
   have : IsDiscreteValuationRing S := isDiscreteValuationRing_stalk_of_closed_smoothCurve
-    (k := k) p (isClosed_fermatProjectionAffineBranchPoint k hn ha)
+    (k := k) p hp
   have : IsDiscreteValuationRing L :=
     IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain S
       (IsDiscreteValuationRing.not_a_field S) L
-  have hmap : (maximalIdeal R).map g = Q ^ n :=
-    fermatProjection_map_maximalIdeal_at_affineBranchPoint k hn ha
   have hunder : Q.under R = maximalIdeal R := maximalIdeal_comap g
-  have hL : (maximalIdeal R).map (algebraMap R L) = maximalIdeal L ^ n := by
+  have hL : (maximalIdeal R).map (algebraMap R L) = maximalIdeal L ^ e := by
     rw [IsScalarTower.algebraMap_eq R S L, ← Ideal.map_map]
     change ((maximalIdeal R).map g).map (algebraMap S L) = _
     rw [hmap, Ideal.map_pow, IsLocalization.AtPrime.map_eq_maximalIdeal]
-  change Q.ramificationIdx R = n
+  change Q.ramificationIdx R = e
   rw [Ideal.ramificationIdx_def, hunder, hL,
     IsDiscreteValuationRing.length_quotient_pow_maximalIdeal, ENat.toNat_natCast]
+
+/-- The ramification index of the actual Fermat projection at `(a,0)` is `n`. -/
+theorem fermatProjection_ramificationIdx_at_affineBranchPoint (hn : 0 < n)
+    {a : k} (ha : a ^ n = 1) :
+    let p := fermatProjectionAffineBranchPoint k hn ha
+    let f := fermatProjection k hn
+    let R := (projectiveLine k).presheaf.stalk (f p)
+    let S := (fermatProjective k n).presheaf.stalk p
+    letI : Algebra R S := (f.stalkMap p).hom.toAlgebra
+    (maximalIdeal S).ramificationIdx R = n := by
+  exact fermatProjection_ramificationIdx_eq_of_map_maximalIdeal_pow k hn
+    (isClosed_fermatProjectionAffineBranchPoint k hn ha) n
+    (fermatProjection_map_maximalIdeal_at_affineBranchPoint k hn ha)
+
+/-- The ramification index of the Fermat projection at an affine point with `b ≠ 0` is one. -/
+theorem fermatProjection_ramificationIdx_at_affineNonbranchPoint (hn : 0 < n)
+    {a b : k} (h : a ^ n + b ^ n = 1) (hb : b ≠ 0) :
+    let p := fermatProjectiveLastChartPoint k hn h
+    let f := fermatProjection k hn
+    let R := (projectiveLine k).presheaf.stalk (f p)
+    let S := (fermatProjective k n).presheaf.stalk p
+    letI : Algebra R S := (f.stalkMap p).hom.toAlgebra
+    (maximalIdeal S).ramificationIdx R = 1 := by
+  exact fermatProjection_ramificationIdx_eq_of_map_maximalIdeal_pow k hn
+    (isClosed_fermatProjectiveLastChartPoint k hn h) 1 (by
+      simpa only [pow_one] using
+        fermatProjection_map_maximalIdeal_at_affineNonbranchPoint k hn h hb)
 
 end Fermat
 
