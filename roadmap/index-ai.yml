@@ -468,7 +468,9 @@
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_finite_flat
     - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_etale_away
-  comment: The morphism restricts to the actual base open D(p), identified with a map of affine localizations.
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_fiber_prime
+    - /docs/TinyTauDemo/NumberTheory/Cyclotomic/CyclotomicCover.html#TinyTauDemo.ringOfIntegersSpecHom_fiber_prime_truncated
+  comment: The restriction to the base open D(p) is the map of affine localizations. The fibre at (p) is the spectrum of a truncated polynomial ring over the residue field.
 - id: rem-ramification-disc-recall
   ok: true
   depends:

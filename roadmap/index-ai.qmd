@@ -323,4 +323,6 @@ For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), write $B=
 ## The cyclotomic cover over the integer spectrum
 
 For the [arithmetic surface recall](index.qmd#rem-arithmetic-surface), the structural morphism from the spectrum of a number ring to $\operatorname{Spec}\mathbb{Z}$ is finite and flat. Over the basic open $D(p)$, the prime cyclotomic morphism is the spectrum map of $\mathbb{Z}[1/p]\to B[1/p]$. For odd $p$, this map is étale by the differential computation.
+
+The scheme-theoretic fibre at $(p)$ is $\operatorname{Spec}(B/(p))$, with $(p)=(\lambda)^{p-1}$. The cyclotomic polynomial reduces to $(X-1)^{p-1}$ modulo $p$. Translating $X$ by one identifies the fibre with $\operatorname{Spec}(\mathbb F_p[T]/(T^{p-1}))$.
 :::
