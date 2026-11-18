@@ -71,6 +71,12 @@ For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), use di
 For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), write the image of the source uniformizer as $\varepsilon\pi^e$ in the target discrete valuation ring. If $e$ is a unit in the residue field, the differential is $\pi^{e-1}$ times a unit times $d\pi$. Under the local smoothness hypotheses, the uniformizer differential generates the absolute differential module by the cotangent sequence and Nakayama’s lemma. Transitivity then presents the relative differential module as the quotient by the $(e-1)$st power of the maximal ideal, so it has length $e-1$.
 :::
 
+::: {#thm-tame-hurwitz-schemes}
+## The numerical Riemann–Hurwitz formula for schemes
+
+For the [Riemann–Hurwitz recall](index.qmd#thm-riemann-hurwitz-recall), a dominant morphism of proper regular curves over an algebraically closed field of characteristic zero gives a finite extension of their function fields. The scheme genus $\dim_k H^1(X,\mathcal O_X)$ agrees with the function-field genus. Codimension-one points correspond to places, so the degree of the tame different becomes the sum of $e_P-1$ over the ramified points of the source. This gives the numerical formula for the actual scheme morphism.
+:::
+
 In the [Mason–Hurwitz argument](index.qmd#rem-mason-hurwitz-bridge), the point at infinity of the source contributes to the three fibres if its image is $0$, $1$, or $\infty$. This gives the stated upper bound of the radical degree plus one.
 
 ::: {#lem-kummer-local-congruence}

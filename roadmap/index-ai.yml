@@ -123,10 +123,19 @@
   depends:
     - /roadmap/index.qmd#def-kahler-log-deriv
     - /roadmap/index.qmd#rem-scheme-curves-recall
-    - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-schemes
     - /roadmap/index-ai.qmd#lem-tame-relative-differential-length
   docs: []
-  comment: The function-field formula and the local differential length are verified. The comparison with the scheme differential sequence remains.
+  comment: The scheme genus formula and the local differential length are verified. The comparison with the scheme differential sequence remains.
+- id: thm-tame-hurwitz-schemes
+  ok: true
+  depends:
+    - /roadmap/index-ai.qmd#thm-tame-hurwitz-function-fields
+  docs:
+    - /docs/TinyTauDemo/SchemeHurwitz.html#TinyTauDemo.curveCodimensionOnePointEquivPlace
+    - /docs/TinyTauDemo/SchemeHurwitz.html#TinyTauDemo.genus_eq_genus_of_regularProperCurve
+    - /docs/TinyTauDemo/SchemeHurwitz.html#TinyTauDemo.hurwitz_genus_formula_of_regularProperCurveHom
+  comment: Use the pullback of function fields along the dominant morphism. Compare the scheme genera and reindex the ramification term by codimension-one points.
 - id: lem-tame-relative-differential-length
   ok: true
   depends: []
