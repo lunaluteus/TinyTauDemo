@@ -1,6 +1,5 @@
 name: Pages
 
-# Note: docgen-action runs API doc caching, building, and Pages deployment only on `push` events.
 on:
   push:
     branches:

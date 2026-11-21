@@ -14,9 +14,7 @@ TinyTau relies on a small set of standard tools shared between local execution a
 
 ## Automatic Worker Pushes
 
-Run `python3 .tinytau/scripts/push.py` from the repository root to publish committed work. It uses the normal Git push destination and honors `auto-push` in [`.tinytau/config.yml`](/.tinytau/config.yml). The default `push-min-interval` is 10 minutes. Set it to 0 to disable the interval.
-
-The timer starts after a successful automatic push and is shared by the clone's linked worktrees. If a push is deferred, a later worker invocation can publish the accumulated commits. Manual `git push` remains available.
+The [worker](/.tinytau/prompt/worker.md#automatic-pushes) checks the interval before automatically pushing. Configure it with `push-min-interval` in [`.tinytau/config.yml`](/.tinytau/config.yml). The default is 10 minutes and `0` disables the interval. The last successful automatic push time is local to the clone. A later worker invocation can publish deferred commits. Manual `git push` remains available.
 
 ## Running `compare-human` Locally
 

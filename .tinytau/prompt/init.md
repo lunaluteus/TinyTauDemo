@@ -27,7 +27,6 @@ First read [`README.md`](/README.md), [`.tinytau/config.yml`](/.tinytau/config.y
 - **Lean 4 & Lake** *(Required for `Bump`, `Refactor`, and `Feat`)*: Check `lean-toolchain`, `lakefile.toml` (or `lakefile.lean`), and `lake --version`. Also note if the project still uses a template library name.
 - **Search (`rg` / `grep`)** *(Recommended)*: Check `rg --version` or `grep --version` for fast searching across `roadmap/`, Mathlib, and Tau Ceti sources.
 - **`lean-lsp-mcp`** *(Optional)*: Check whether `lean-lsp-mcp` is available for fine-grained interactive Lean diagnostics and goal inspection.
-- **Python 3** *(Required for automatic pushes)*: Check `python3 --version` if `auto-push: true`. The local push script uses Python's standard library.
 - **Quarto & Local Doc/CI Scripts** *(Optional)*: Check `quarto --version`, `bash --version`, and `python3 --version` (3.11+ for `parse-lake-metadata.py`). Explicitly inform the user that **Quarto (and `python3`/`build-docs.sh`) is only needed if they want to render `roadmap/` or `doc-gen4` docs locally**—if they rely on GitHub Actions (`.github/workflows/pages.yml` and `compare-human.yml`), local Quarto is unnecessary.
 
 ## Report Format

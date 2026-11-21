@@ -43,7 +43,7 @@ Pick one `ok: refactor` target in `*-ai.yml` or one cohesive cleanup (duplicate,
 
 Navigate `roadmap/` per [`guide/roadmap.md`](/.tinytau/guide/roadmap.md). From `roadmap/` frontmatter and `*-ai.yml`, pick an `ok: false` (or untracked) target, preferring ready targets whose `depends` in `*-ai.yml` are all `ok: true`.
 
-If none of these apply, run `python3 .tinytau/scripts/push.py` once to retry any deferred pushes, then report that no actionable task is available and whether commits are still pending.
+If none of these apply, check whether [an automatic push](#automatic-pushes) is due for any pending commits. Then report that no actionable task is available and whether commits are still pending.
 
 ## Committing Work
 
@@ -58,4 +58,12 @@ For each task in `Sync`, `Bump`, `Refactor`, or `Feat`:
    - `bump: update TauCeti to <latest-upstream-tag>`
 
    Include a concise commit body summarizing the purpose, design choices, and modified declarations or targets.
-3. **Push (If Configured)**: Run `python3 .tinytau/scripts/push.py`. It reads `auto-push` and `push-min-interval` from [`.tinytau/config.yml`](/.tinytau/config.yml). If the interval has not elapsed, continue the work and leave the commit for a later push. If the script reports a Git error, report it without guessing a different destination or force-pushing.
+3. Check whether an [automatic push](#automatic-pushes) is due after committing.
+
+## Automatic Pushes
+
+Read `auto-push` and `push-min-interval` from [`.tinytau/config.yml`](/.tinytau/config.yml). Publish only when `auto-push` is `true` and there are committed changes to push to the configured destination.
+
+The interval defaults to 10 minutes. A value of `0` skips the timing check. Read the last successful automatic push time with `git config --local --get tinytau.lastAutoPush`. The value is Unix time in seconds. With no recorded time, the first push is due immediately. Otherwise compare elapsed time in seconds with the configured minutes multiplied by 60. If the interval has not elapsed, keep the commits local and continue other work when available.
+
+When due, run `git push` to the configured destination. After a successful push that publishes commits, record the current Unix time with `git config --local tinytau.lastAutoPush <timestamp>`. A failed push or a branch that is already up to date does not advance the timer. Report Git errors and use the configured push destination.
