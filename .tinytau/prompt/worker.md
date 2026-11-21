@@ -43,7 +43,7 @@ Pick one `ok: refactor` target in `*-ai.yml` or one cohesive cleanup (duplicate,
 
 Navigate `roadmap/` per [`guide/roadmap.md`](/.tinytau/guide/roadmap.md). From `roadmap/` frontmatter and `*-ai.yml`, pick an `ok: false` (or untracked) target, preferring ready targets whose `depends` in `*-ai.yml` are all `ok: true`.
 
-If none of these apply, report that no actionable task is currently available.
+If none of these apply, run `python3 .tinytau/scripts/push.py` once to retry any deferred pushes, then report that no actionable task is available and whether commits are still pending.
 
 ## Committing Work
 
@@ -58,4 +58,4 @@ For each task in `Sync`, `Bump`, `Refactor`, or `Feat`:
    - `bump: update TauCeti to <latest-upstream-tag>`
 
    Include a concise commit body summarizing the purpose, design choices, and modified declarations or targets.
-3. **Push (If Configured)**: Read `auto-push` from [`.tinytau/config.yml`](/.tinytau/config.yml). If `auto-push` is `true`, push the commit (`git push`, never force-pushing; if pushing fails or no upstream is configured, report the error instead of guessing). If `auto-push` is `false` (or unset), leave the commit local.
+3. **Push (If Configured)**: Run `python3 .tinytau/scripts/push.py`. It reads `auto-push` and `push-min-interval` from [`.tinytau/config.yml`](/.tinytau/config.yml). If the interval has not elapsed, continue the work and leave the commit for a later push. If the script reports a Git error, report it without guessing a different destination or force-pushing.

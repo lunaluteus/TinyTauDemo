@@ -12,6 +12,12 @@ TinyTau relies on a small set of standard tools shared between local execution a
 - **API Documentation (`docgen-action` in CI / `build-docs.sh` locally)**: GitHub Actions ([`.github/workflows/pages.yml`](/.github/workflows/pages.yml)) builds and caches [`doc-gen4`](https://github.com/leanprover/doc-gen4) API reference pages into `_site/docs/` and deploys `_site/` to GitHub Pages on every `push` to `main` or `master` via [`leanprover-community/docgen-action`](https://github.com/leanprover-community/docgen-action). Locally, `build-docs.sh` + `parse-lake-metadata.py` remain available to build `_site/docs/` in a temporary `docbuild/` Lake workspace for previewing.
 - **Roadmap Rendering (`build-roadmap.sh` + `tinytau.lua`)**: Uses [Quarto](https://quarto.org/) to render `roadmap/` into `_site/roadmap/`. During rendering, `.tinytau/scripts/tinytau.lua` hooks into Quarto's `pre-ast` filter stage (`quarto.doc`, `quarto.project.offset`, `quarto.utils`), reads each document's paired `<stem>-ai.yml` sidecar, and appends a `.tinytau-meta` block (`Status`, `docs` links, `Depends` links, and `Note` with Quarto `@crossref` support) to the end of each matching `::: {#id}` block.
 
+## Automatic Worker Pushes
+
+Run `python3 .tinytau/scripts/push.py` from the repository root to publish committed work. It uses the normal Git push destination and honors `auto-push` in [`.tinytau/config.yml`](/.tinytau/config.yml). The default `push-min-interval` is 10 minutes. Set it to 0 to disable the interval.
+
+The timer starts after a successful automatic push and is shared by the clone's linked worktrees. If a push is deferred, a later worker invocation can publish the accumulated commits. Manual `git push` remains available.
+
 ## Running `compare-human` Locally
 
 To verify locally that your `HEAD` commit has not modified any human-authored files under `roadmap/` relative to `.tinytau/sync.yml`:

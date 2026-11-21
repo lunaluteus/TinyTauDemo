@@ -33,10 +33,14 @@ sync-min-interval: 24
 # Set to false to disable automatic bumps.
 bump: true
 
-# Whether the worker automatically pushes to the remote after committing.
-# Set to true to run `git push` after each Sync, Bump, Refactor, or Feat commit;
-# set to false to keep commits local.
+# Whether the worker automatically pushes committed work to the remote.
+# Set to false to keep commits local.
 auto-push: true
+
+# Minimum whole minutes between successful automatic pushes from this clone.
+# A worker leaves commits local during the interval and can push them later.
+# Use 0 to push without waiting for a minimum interval.
+push-min-interval: 10
 
 # Optional Quarto profile (or comma-separated profiles) passed as `--profile`
 # when rendering roadmap/ via .tinytau/scripts/build-roadmap.sh.
