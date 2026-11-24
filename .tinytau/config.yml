@@ -25,7 +25,7 @@ human-directory: /
 # Sync is allowed at or above this gap; a smaller gap skips Sync.
 # Use a non-negative number. 0 requires no positive commit-time gap.
 # The first Sync has no tracked commit and does not use this gate.
-sync-min-interval: 24
+sync-min-interval: 12
 
 # Whether the worker checks for and bumps the upstream TauCeti dependency.
 # When true, Bump triggers only when TauCeti has a newer stable Lean release
@@ -33,16 +33,24 @@ sync-min-interval: 24
 # Set to false to disable automatic bumps.
 bump: true
 
-# Whether the worker automatically pushes to the remote after committing.
-# Set to true to run `git push` after each Sync, Bump, Refactor, or Feat commit;
-# set to false to keep commits local.
-auto-push: true
+# Optional GitHub CLI (`gh`) settings.
+# These require an authenticated `gh` CLI; when `gh` is unavailable or
+# unauthenticated, the worker skips these features.
+gh:
+  # Whether the worker checks the latest CI runs on the current branch before
+  # starting other modes and enters `Fix` mode if any workflow failed.
+  fix-ci: true
 
-# Minimum gap, in hours, between the last successful Pages site build and a new
-# automatic build triggered on push (see .github/workflows/pages.yml).
-# Use a positive number (e.g. 8) to throttle automatic builds, or 0 to never
-# build automatically on push (manual workflow_dispatch runs still build).
-docs-min-interval: 8
+  # Whether the worker automatically pushes committed work to the remote.
+  # Set to true to push automatically (waiting for active CI to finish and
+  # honoring `gh.push-min-interval`); set to false to keep all commits local.
+  auto-push: true
+
+  # Minimum interval, in minutes, from the latest CI run's creation time before
+  # `gh.auto-push` pushes again (also waits for active CI runs to complete).
+  # Bypassed when pushing a fix for a failing CI run.
+  # Use 0 to push once active CI is complete without a time delay.
+  push-min-interval: 15
 
 # Optional Quarto profile (or comma-separated profiles) passed as `--profile`
 # when rendering roadmap/ via .tinytau/scripts/build-roadmap.sh.

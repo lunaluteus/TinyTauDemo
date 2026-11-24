@@ -66,10 +66,14 @@ To let your agent work autonomously, you can use a `/goal` like "Autonomously fo
 
 ## Update
 
-To update your repository with the latest TinyTau template, the following is recommended:
+To pull updates from the TinyTau template into your repository (starting from a clean working tree):
 
 ```sh
-git remote add tinytau git@github.com:sun123zxy/TinyTau.git # add the TinyTau template repo as a remote
-git pull tinytau master --allow-unrelated-histories --no-commit # pull updates from the TinyTau template repo without committing automatically
-# ASK your agent to resolve merge conflicts and commit the changes
+git remote add tinytau https://github.com/sun123zxy/TinyTau.git # one-time setup
+git pull tinytau master --allow-unrelated-histories --no-commit
 ```
+
+Then ask your agent to finish the merge:
+
+- Resolve any merge conflicts while keeping your project's specific settings.
+- Remember to remove any re-introduced template placeholder files.

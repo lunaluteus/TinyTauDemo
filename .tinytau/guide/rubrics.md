@@ -3,11 +3,11 @@ name: Formalization Quality Rubrics
 description: Reference quality standards for self-checking Lean 4 formalizations and roadmap updates before committing.
 ---
 
-Use these rubrics as a self-check reference before committing `Feat`, `Refactor`, `Bump`, or `Sync` work.
+Use these rubrics as a self-check reference before committing `Fix`, `Feat`, `Refactor`, `Bump`, or `Sync` work.
 
 ## Correctness and Faithfulness (`correctness`)
 
-Every new definition and theorem must faithfully capture the intended mathematics. Passing local verification ([`guide/build.md`](/.tinytau/guide/build.md)) guarantees valid, warning-free proofs using only standard axioms, not that a statement says what it should. Inspect every definition and statement adversarially: try to find a counterexample, vacuous case, or hidden narrowing.
+Every new definition and theorem must faithfully capture the intended mathematics. Passing Lean verification ([`guide/build.md`](/.tinytau/guide/build.md)) guarantees valid, warning-free proofs using only standard axioms, not that a statement says what it should. Inspect every definition and statement adversarially: try to find a counterexample, vacuous case, or hidden narrowing.
 
 - **No Mis-formalization**: Verify that the Lean statement matches `roadmap/`. Check quantifiers, implication directions, edge cases (empty, zero, degenerate, characteristic `p`), and underlying objects.
 - **No Weakened Claims / Content in Hypotheses**: Do not make hypotheses too strong or smuggle real mathematical content into assumptions (e.g., a structure turning downstream theorems into fields rather than consequences).
@@ -33,6 +33,7 @@ Keep each commit focused on a single coherent topic that belongs in the reposito
 
 - **Existing Code (`Refactor` mode)**: Refactoring, relocating, renaming, simplifying, re-proving, modestly generalizing, or fixing doc–code drift for existing material is in scope.
 - **Dependency Upgrades (`Bump` mode)**: Updating `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, minimal compatibility fixes in `.lean` files, and marking newly redundant or unsuitable targets as `ok: refactor` in `*-ai.yml` is one coherent unit.
+- **No Unrequested Dependency Changes**: Outside `Bump` mode, do not add, remove, or modify Lean/Lake dependencies or toolchain pins (`lakefile.toml`, `lakefile.lean`, `lake-manifest.json`, `lean-toolchain`), and do not run `lake update`, unless explicitly instructed by the user.
 - **New Mathematical Material (`Feat` mode)**: New definitions, theorems, instances, or files must advance a specific `roadmap/` target or provide a concrete, proximate prerequisite for one. Avoid speculative theory ("might be useful later") detached from the roadmap.
 - **Single Topic**: Do not bundle unrelated roadmap targets or mix opportunistic refactoring of unrelated areas with new feature work. Updating `*-ai.qmd` and `*-ai.yml` alongside the Lean code for the same target counts as one coherent unit.
 
@@ -96,13 +97,7 @@ Keep names and notation clear, accurate, and consistent with Lean/Mathlib conven
 
 ## Documentation (`documentation`)
 
-Write accurate, concise docstrings and comments in Lean files.
-
-- **Copyright Header**: New `.lean` files should begin with the standard copyright/author header referencing `copyright-name` from [`.tinytau/config.yml`](/.tinytau/config.yml).
-- **Module Docstrings**: Substantive new Lean files should begin with a module docstring explaining what mathematical content lives there and why.
-- **Public Declarations**: Document public definitions, main theorems, non-obvious abbreviations, and exported instances whose purpose is not self-evident. Describe the mathematical object or statement, not proof mechanics.
-- **Commit-Pinned Roadmap References**: Lean docstrings or comments may reference `roadmap/` paths or target IDs **only** when pinned to an exact commit SHA (e.g., `/roadmap/area/topic.qmd#thm-main @ <commit-sha>`), so stale references remain detectable.
-- **No Overclaiming**: Keep docstrings accurate and up to date.
+Write accurate, concise docstrings and comments in Lean files and follow [`schema/docs.md`](/.tinytau/schema/docs.md). Describe the mathematical object or statement. Keep docstrings up to date and avoid overclaiming.
 
 ## Proof Quality (`proof-quality`)
 
