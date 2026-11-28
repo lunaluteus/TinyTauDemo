@@ -1,0 +1,108 @@
+name: TinyTau CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  compare-human:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Compare roadmap/ human files against upstream
+        run: bash .tinytau/scripts/compare-human.sh
+
+  build:
+    name: Build
+    needs: compare-human
+    runs-on: ubuntu-24.04
+    outputs:
+      site-artifact: ${{ steps.site-artifact.outcome }}
+    steps:
+      - name: Cleanup to free disk space
+        if: github.event_name == 'push'
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          android: true
+          dotnet: false
+          large-packages: false
+          swap-storage: false
+
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          build-args: "--wfail"
+          axiom-audit: "true"
+          axiom-audit-allow: "propext,Classical.choice,Quot.sound"
+
+      - name: Set up Quarto
+        if: github.event_name == 'push'
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render roadmap and copy site pages
+        if: github.event_name == 'push'
+        run: |
+          bash .tinytau/scripts/build-roadmap.sh
+          cp -r .tinytau/page/. _site/
+
+      - name: Build API documentation
+        if: github.event_name == 'push'
+        uses: leanprover-community/docgen-action@main
+        with:
+          homepage: _site
+          build-page: false
+          api-docs: true
+          use-github-cache: true
+          deploy: false
+
+      - name: Rewrite roadmap links in API documentation
+        if: github.event_name == 'push'
+        run: python3 .tinytau/scripts/rewrite-doc-links.py
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push'
+        id: site-artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  pages:
+    name: Pages
+    needs: build
+    if: needs.build.outputs.site-artifact == 'success'
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  add-tag:
+    name: Add Tag
+    needs: build
+    if: github.event_name == 'push' && !github.event.created
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Tag Lean toolchain updates
+        uses: leanprover-community/lean-release-tag@v1
+        continue-on-error: true
+        with:
+          do-release: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

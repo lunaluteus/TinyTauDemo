@@ -12,9 +12,9 @@ description: Formalize an unclaimed roadmap/ target while keeping AI documentati
 3. **Write Docs & Lean Together**:
 
    - If the human text is high-level or needs intermediate theory not in Mathlib or Tau Ceti, add it to `roadmap/path/<stem>-ai.qmd` (or a standalone `*-ai.qmd` file under `roadmap/`) with `title`/`description` frontmatter, explicit `::: {#id}` targets, and a note naming the human target(s) each item serves.
-   - Write complete, clean Lean 4 definitions and proofs (no `sorry` or custom `axiom`s). Whenever a Lean docstring or comment cites a `roadmap/` path or target ID, pin it to the current `HEAD` commit SHA (e.g., `/roadmap/area/topic.qmd#thm-main @ <commit-sha>`).
+   - Write complete, clean Lean 4 definitions and proofs (no `sorry` or custom `axiom`s). For roadmap references in Lean docstrings or comments, follow the [commit-pinned reference convention](/.tinytau/schema/docs.md#commit-pinned-roadmap-references).
 
-4. **Build**: Verify per [`guide/build.md`](/.tinytau/guide/build.md).
+4. **Build**: Verify per [`guide/check.md`](/.tinytau/guide/check.md).
 
 5. **Update Metadata**: Update `*-ai.yml` per [`schema/metadata.md`](/.tinytau/schema/metadata.md) in the same commit—set `ok: true` with verified `/docs/...` paths in `docs` and a concise `comment` for completed targets, and `ok: false` with `docs: []` for any remaining stepping-stone targets (keeping `depends` up to date).
 

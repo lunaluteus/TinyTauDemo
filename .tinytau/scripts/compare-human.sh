@@ -4,9 +4,9 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO_ROOT"
 
-HUMAN_REPO="$(awk -F': *' '/^human-repo:/ {print $2}' .tinytau/config.yml | sed 's/#.*//; s/[[:space:]"\r]//g')"
-HUMAN_DIR="$(awk -F': *' '/^human-directory:/ {print $2}' .tinytau/config.yml | sed 's/#.*//; s/[[:space:]"\r]//g; s:^/*::; s:/*$::')"
-HUMAN_SHA="$(awk -F': *' '/^human-sha:/ {print $2}' .tinytau/sync.yml | sed 's/#.*//; s/[[:space:]"\r]//g')"
+HUMAN_REPO="$(yq -r '.["human-repo"] // ""' .tinytau/config.yml)"
+HUMAN_DIR="$(yq -r '.["human-directory"] // ""' .tinytau/config.yml | sed 's:^/*::; s:/*$::')"
+HUMAN_SHA="$(yq -r '.["human-sha"] // ""' .tinytau/sync.yml)"
 
 echo "human-repo=${HUMAN_REPO} human-directory=/${HUMAN_DIR} human-sha=${HUMAN_SHA}"
 
