@@ -5,7 +5,7 @@ description: Run a diagnostic self-check of configuration, upstream access, and 
 
 ## Doctor Self-Check
 
-First read [`README.md`](/README.md), [`.tinytau/config.yml`](/.tinytau/config.yml), [`.tinytau/sync.yml`](/.tinytau/sync.yml), and [`guide/tooling.md`](/.tinytau/guide/tooling.md), then inspect the local environment:
+First read [`README.md`](/README.md), [`.tinytau/config.yml`](/.tinytau/config.yml), [`.tinytau/sync.yml`](/.tinytau/sync.yml), and [`guide/check.md`](/.tinytau/guide/check.md), then inspect the local environment:
 
 ### Repository & Upstream Access
 
@@ -44,14 +44,14 @@ After reporting the doctor summary, offer to help the user with any of the follo
 
 - **Install or Fix Missing Tools**: Give concise OS-specific setup instructions for missing required tools and any optional tools the user chooses to enable. Offer to re-run the affected check.
 
+- **Configure `.tinytau/config.yml`**: Guide the user through configuring [`.tinytau/config.yml`](/.tinytau/config.yml) and replacing its sample placeholders (and any matching placeholder headers in existing Lean files).
+
+- **Configure documentation & GitHub Pages settings**: Remind the user to enable GitHub Pages in their repository settings (**Settings → Pages → Build and deployment → Source: GitHub Actions**) so [TinyTau CI](/.github/workflows/ci.yml) can deploy the site on pushes to the main branch. Ask whether they want to adjust `gh.fix-ci`, `gh.auto-push`, or `gh.push-min-interval` (to check CI before work and throttle how often worker commits trigger Pages builds), or set `quarto-profile` (`--profile`) in [`.tinytau/config.yml`](/.tinytau/config.yml).
+
 - **Initialize the Lean Library**: If the Lake config still uses a template library name (or the user asks to rename the Lean library), ask for their desired UpperCamelCase library name `<ProjectName>`, then:
 
   1. Update `name`, `defaultTargets`, and `[[lean_lib]] name` in `lakefile.toml` (or `lakefile.lean`).
   2. Rename the root `.lean` file and library directory to `<ProjectName>.lean` and `<ProjectName>/`, updating all `import` paths accordingly.
-  3. **Initialize the Lean Toolchain**: `lake update` to refresh the Lean toolchain and dependencies. Then verify the renamed library per [`guide/build.md`](/.tinytau/guide/build.md).
-
-- **Configure `.tinytau/config.yml`**: Guide the user through configuring [`.tinytau/config.yml`](/.tinytau/config.yml) and replacing its sample placeholders (and any matching placeholder headers in existing Lean files).
+  3. **Initialize the Lean Toolchain**: `lake update` to refresh the Lean toolchain and dependencies. Then verify the renamed library per [`guide/check.md`](/.tinytau/guide/check.md).
 
 - **Offer to Run the First `Sync`**: If everything is settled, offer to run the first `Sync` to initialize the local `roadmap/` with the human-authored repository.
-
-- **Configure documentation & GitHub Pages settings**: Remind the user to enable GitHub Pages in their repository settings (**Settings → Pages → Build and deployment → Source: GitHub Actions**) so [`.github/workflows/pages.yml`](/.github/workflows/pages.yml) can build and deploy the site on `push` to the main branch. Ask whether they want to adjust `gh.fix-ci`, `gh.auto-push`, or `gh.push-min-interval` (to check CI before work and throttle how often worker commits trigger Pages builds), or set `quarto-profile` (`--profile`) in [`.tinytau/config.yml`](/.tinytau/config.yml).

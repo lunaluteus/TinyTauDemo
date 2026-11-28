@@ -5,7 +5,7 @@ description: Upgrade the upstream TauCeti dependency when a new stable Lean rele
 
 ## Goal
 
-Adopt the new stable `TauCeti` release (`<latest-upstream-tag>`) rapidly and cleanly. Prioritize passing [`guide/build.md`](/.tinytau/guide/build.md) first; defer larger cleanups or deduplications of newly redundant local code to follow-up `Refactor` commits by recording `ok: refactor` in `*-ai.yml`.
+Adopt the new stable `TauCeti` release (`<latest-upstream-tag>`) rapidly and cleanly. Prioritize passing [`guide/check.md`](/.tinytau/guide/check.md) first; defer larger cleanups or deduplications of newly redundant local code to follow-up `Refactor` commits by recording `ok: refactor` in `*-ai.yml`.
 
 ## Procedure
 

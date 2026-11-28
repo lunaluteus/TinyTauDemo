@@ -50,7 +50,7 @@ gh:
   # `gh.auto-push` pushes again (also waits for active CI runs to complete).
   # Bypassed when pushing a fix for a failing CI run.
   # Use 0 to push once active CI is complete without a time delay.
-  push-min-interval: 15
+  push-min-interval: 60
 
 # Optional Quarto profile (or comma-separated profiles) passed as `--profile`
 # when rendering roadmap/ via .tinytau/scripts/build-roadmap.sh.

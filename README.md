@@ -62,7 +62,11 @@ lean-toolchain                 # Lean 4 version pinning
 
 Create your own repository from this template, then clone it locally. Start your agent at the root directory, and ask it to guide you through the installation. You may also start manually from `AGENTS.md`.
 
-To let your agent work autonomously, you can use a `/goal` like "Autonomously formalize the entire roadmap until no actionable tasks are available".
+To let your agent work autonomously, you can use a `/goal` like
+
+```
+/goal Loop as a TinyTau worker. Read `.tinytau/prompt/worker.md` again and follow the instructions. Autonomously formalize the entire roadmap until no actionable tasks are available.
+```
 
 ## Update
 

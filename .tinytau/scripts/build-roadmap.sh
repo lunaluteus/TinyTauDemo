@@ -11,7 +11,22 @@ WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/tinytau-roadmap.XXXXXX")"
 trap 'rm -rf "$WORK_DIR"' EXIT
 
 mkdir -p "$WORK_DIR/roadmap"
-cp -r roadmap/. "$WORK_DIR/roadmap/"
+if [[ -e roadmap || -L roadmap ]]; then
+  cp -r roadmap/. "$WORK_DIR/roadmap/"
+else
+  human_sha="$(yq -r '.["human-sha"] // ""' .tinytau/sync.yml)"
+  if [[ -n "$human_sha" && "$human_sha" != null ]]; then
+    printf 'roadmap/ is missing for synced commit %s.\n' "$human_sha" >&2
+    exit 1
+  fi
+  cat <<'EOF' > "$WORK_DIR/roadmap/index.qmd"
+---
+title: Roadmap
+---
+
+The roadmap will appear here after the first sync.
+EOF
+fi
 
 # Ensure a root _quarto.yml exists so --output-dir is always respected by Quarto
 if [ ! -f "$WORK_DIR/roadmap/_quarto.yml" ] && [ ! -f "$WORK_DIR/roadmap/_quarto.yaml" ]; then
@@ -30,20 +45,16 @@ filters:
     path: "$FILTER_PATH"
 EOF
 
-rm -rf "$OUT_DIR"
-mkdir -p "$OUT_DIR"
-
 QUARTO_PROFILE=""
 if [ -f .tinytau/config.yml ]; then
-  if command -v yq >/dev/null 2>&1; then
-    QUARTO_PROFILE="$(yq '."quarto-profile" // ""' .tinytau/config.yml)"
-  else
-    QUARTO_PROFILE="$(awk -F': *' '/^quarto-profile:/ {print $2}' .tinytau/config.yml | sed "s/#.*//; s/[[:space:]\"'\r]//g")"
-  fi
-  if [ "$QUARTO_PROFILE" = "null" ] || [ "$QUARTO_PROFILE" = "~" ]; then
+  QUARTO_PROFILE="$(yq -r '.["quarto-profile"] // ""' .tinytau/config.yml)"
+  if [[ "$QUARTO_PROFILE" == null || "$QUARTO_PROFILE" == '~' ]]; then
     QUARTO_PROFILE=""
   fi
 fi
+
+rm -rf "$OUT_DIR"
+mkdir -p "$OUT_DIR"
 
 QUARTO_ARGS=(
   --to html
